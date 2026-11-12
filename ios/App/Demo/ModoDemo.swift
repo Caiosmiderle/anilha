@@ -22,7 +22,13 @@ enum ModoDemo {
         // Fixed, fictional input. The normal engine calculates evolution and preview from it.
         let json = #"""
         {
-          "profiles":[{"id":"demo-profile","unit":"kg","return_mode":"off"}],
+          "profiles":[{"id":"demo-profile","unit":"kg","return_mode":"off","onboarding":{"goal":"hipertrofia"}}],
+          "body_logs":[
+            {"id":"demo-body1","local_date":"2026-11-02","weight_kg":80,"waist_cm":82},
+            {"id":"demo-body2","local_date":"2026-11-09","weight_kg":80.2,"waist_cm":81.5},
+            {"id":"demo-body3","local_date":"2026-11-12","weight_kg":80.4,"waist_cm":81}
+          ],
+          "records":[{"id":"demo-record","exercise_id":"supino-reto-barra","exercise_name":"Supino reto com barra","kind":"carga","value":25,"unit":"kg","local_date":"2026-11-12"}],
           "routines":[
             {"id":"demo-routine","name":"Peito e tríceps","split_key":"peito_triceps","position":0,"archived":false},
             {"id":"demo-back","name":"Costas e bíceps","split_key":"costas_biceps","position":1,"archived":false},
@@ -35,7 +41,7 @@ enum ModoDemo {
             {"id":"demo-rib","routine_id":"demo-back","exercise_id":"puxada-frente","position":0,"sets":3,"target_min":8,"target_max":12,"warmup_sets":0,"rest_sec":90},
             {"id":"demo-ril","routine_id":"demo-legs","exercise_id":"agachamento-livre","position":0,"sets":3,"target_min":8,"target_max":12,"warmup_sets":0,"rest_sec":90}
           ],
-          "plans":[{"id":"demo-plan","active_from":"2026-11-09","updated_at":1,"days":[{"weekday":4,"kind":"gym","split_key":"peito_triceps","time":"18:30"}],"rules":{"no_legs_before_run":false},"params":{"focus":"equilibrado"}}],
+          "plans":[{"id":"demo-plan","active_from":"2026-11-09","updated_at":1,"gym_per_week":3,"run_per_week":1,"days":[{"weekday":4,"kind":"gym","split_key":"peito_triceps","time":"18:30"}],"rules":{"no_legs_before_run":false},"params":{"focus":"equilibrado"}}],
           "runs":[{"id":"demo-run","local_date":"2026-11-12","source":"crunning","run_type":"leve","distance_km":5,"duration_sec":1800}],
           "external_plan_items":[{"id":"demo-run-plan","source":"crunning","kind":"corrida","local_date":"2026-11-14","status":"planejada","name":"Longão","run_type":"longo","distance_m":12000,"important":true}],
           "sessions":[
@@ -78,7 +84,9 @@ enum ModoDemo {
             }
             for index in tables["sets", default: []].indices {
                 if tables["sets"]?[index].string("item_id") == "demo-ia" {
-                    tables["sets"]?[index].fields["position"] = .number((tables["sets"]?[index].number("position") ?? 0) + 2)
+                    // Read first: reading `tables` inside its own mutation is an exclusivity violation.
+                    let position = tables["sets"]?[index].number("position") ?? 0
+                    tables["sets"]?[index].fields["position"] = .number(position + 2)
                 }
             }
             if let index = tables["session_items"]?.firstIndex(where: { $0.id == "demo-ia" }) {
@@ -142,7 +150,10 @@ struct DemoView: View {
         case "analise":
             List { CartaoAnaliseTreino(conta: conta, sessionID: "demo-done", mostrarEvolucao: false) }
                 .scrollContentBackground(.hidden).background { FundoAnilha() }.navigationTitle("Treino concluído")
-        case "historico": HistoricoView(conta: conta)
+        case "historico": HistoricoView(conta: conta, today: "2026-11-12")
+        case "historico-progresso": HistoricoView(conta: conta, parteInicial: "Progresso", today: "2026-11-12")
+        case "historico-semanas": HistoricoView(conta: conta, parteInicial: "Semanas", today: "2026-11-12")
+        case "historico-corpo": HistoricoView(conta: conta, parteInicial: "Corpo", today: "2026-11-12")
         case "calendario": CalendarioView(conta: conta, today: "2026-11-12", diaInicial: "2026-11-01")
         case "calendario-dia": CalendarioView(conta: conta, today: "2026-11-12")
         default:

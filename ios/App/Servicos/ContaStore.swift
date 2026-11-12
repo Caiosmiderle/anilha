@@ -21,6 +21,12 @@ final class ContaStore {
     private(set) var pendentes = 0
     private(set) var rejeitadas = 0
     private(set) var analises: [String: ReadRow] = [:]
+    private(set) var consentimento: ReadRow?
+    var saudePermitida: Bool { History.healthOn(consentimento) }
+    var saudePendente: Bool {
+        guard let consentimento else { return false }
+        return consentimento.fields["saude"] == .null
+    }
     private(set) var analisando: Set<String> = []
     private var analisesNaoGravadas: [String: ReadRow] = [:]
     var sessaoAberta: String?
@@ -160,6 +166,16 @@ final class ContaStore {
         aviso = "Atualizando..."
         defer { if geracao == epoch { sincronizando = false } }
         do {
+            // Refresh before sending queued health data. Offline uses the last persisted answer.
+            if let session = try? await cliente.auth.session {
+                try conferir(owner, epoch)
+                guard session.user.id.uuidString.lowercased() == owner else { throw ReadSync.Failure.accountChanged }
+                if let consent: ReadRow = try? await rpc("consent_state", body: Data("{}".utf8), token: session.accessToken) {
+                    try conferir(owner, epoch)
+                    try cache.guardarConsentimento(consent, dono: owner)
+                    try recarregar()
+                }
+            }
             for _ in 0..<100 {
                 try conferir(owner, epoch)
                 let batch = try cache.lote(owner)
@@ -243,6 +259,7 @@ final class ContaStore {
         guard let dono, let cache else { return }
         dados = try cache.ler(dono)
         analises = try cache.metadados(dono).merging(analisesNaoGravadas) { _, memory in memory }
+        consentimento = analises["consent"]
         pendentes = try cache.pendentes(dono); rejeitadas = try cache.rejeitadas(dono)
         descanso.atualizar(fim: avisosDescanso ? ativa.flatMap(Workout.restEnd) : nil)
     }
@@ -255,6 +272,33 @@ final class ContaStore {
             aviso = "Salvo neste iPhone. \(pendentes) alterações aguardando envio."
             return true
         } catch { erro = "Não foi possível salvar. Tente novamente antes de fechar o app."; return false }
+    }
+    func permitirSaude() async {
+        guard !ocupado, let dono, let cliente, let cache, !limpezaPendente else { return }
+        let epoch = geracao
+        ocupado = true
+        defer { ocupado = false }
+        do {
+            let session = try await cliente.auth.session
+            try conferir(dono, epoch)
+            guard session.user.id.uuidString.lowercased() == dono else { throw ReadSync.Failure.accountChanged }
+            let params = ReadRow(fields: ["p_kind": .string("saude"), "p_version": .string("2026-10-19"), "p_granted": .bool(true)])
+            let consent: ReadRow = try await rpc("record_consent", body: JSONEncoder().encode(params), token: session.accessToken)
+            try conferir(dono, epoch)
+            try cache.guardarConsentimento(consent, dono: dono)
+            try recarregar(); erro = nil
+            await atualizar()
+        } catch {
+            guard geracao == epoch else { return }
+            erro = "Não deu para salvar agora. Conecte e tente de novo."
+        }
+    }
+    func salvarCorpo(_ row: ReadRow, today: String) -> Bool {
+        do {
+            let change = try History.bodyChange(row, consent: consentimento, today: today)
+            if gravar([change]) { Task { await atualizar() }; return true }
+        } catch { erro = "Confira a data, o peso (20 a 400 kg), a cintura (30 a 250 cm) e a permissão de saúde." }
+        return false
     }
     func comecar(_ ficha: ReadRow) {
         do { try recarregar() }
@@ -391,7 +435,7 @@ final class ContaStore {
         geracao = UUID(); tarefaSync?.cancel(); tarefaSync = nil
         descanso.atualizar(fim: nil)
         dono = nil; dados = ReadData(); atualizadoEm = nil; sincronizando = false
-        analises = [:]; analisando = []; analisesNaoGravadas = [:]
+        analises = [:]; consentimento = nil; analisando = []; analisesNaoGravadas = [:]
         pendentes = 0; rejeitadas = 0; sessaoAberta = nil; repetirSync = false
         defer { ocupado = false }
         do {
@@ -416,6 +460,7 @@ extension ContaStore {
         }
         store.catalogo = try JSONDecoder().decode([ReadRow].self, from: Data(contentsOf: url))
         store.carregando = false
+        store.consentimento = ReadRow(fields: ["saude": .object(["granted": .bool(true), "version": .string("2026-10-19")])])
         store.aviso = "Demonstração · dados fictícios em memória"
         let context = try WorkoutAnalysis.context(store.dados, sessionID: "demo-done", catalog: store.catalogo)
         let binding = try WorkoutAnalysis.binding(store.dados, sessionID: "demo-done")

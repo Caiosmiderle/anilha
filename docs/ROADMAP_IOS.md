@@ -4,6 +4,7 @@ Atualizado em 11/11/2026 pelo Claude, a partir do roadmap do Codex e das decisõ
 
 ## Decisões do Caio
 
+- **Quatro abas no iPhone, decidido em 12/11/2026:** Hoje, Plano (fichas, plano da semana e calendário), Histórico e Você. Histórico reúne Treinos, Progresso, Semanas e Corpo, na mesma ordem do PWA. Codex entrega `HistoricoView`; Claude integra as abas e implementa Hoje e Você depois, sem antecipar a mudança da `TabView` nesta entrega.
 - **App híbrido, decidido em 12/11/2026. No iPhone, nesta ordem**, calendário, chat do Waltér, criar e editar ficha, plano da semana, perfil de treino, detalhe do exercício com mídia.
 - **Só no site, com "Abrir no site" no iPhone**, amigos, grupos, mensagens, privacidade e seus dados, convites, créditos, admin, onboarding.
 - **Dois apps separados no mesmo iPhone.** O Anilha cuida da musculação. O CRUNNING (`Caiosmiderle/crunning`) cuida da corrida e já envia para o Strava.

@@ -86,13 +86,13 @@ public final class CacheLeitura {
         let row = try meta(dono)
         return Cursor(cursor: row.cursor, atualizadoEm: row.atualizadoEm)
     }
-    /// Version A skipped records while advancing its cursor. Replay once without dropping local work.
+    /// Replay newly supported tables (records in v1, body_logs in v2) without dropping local work.
     public func preparar(_ dono: String) throws {
         do {
             let row = try meta(dono)
-            if row.versaoTabelas < 1 {
-                row.cursorAntesReplay = row.cursor
-                row.cursor = 0; row.versaoTabelas = 1; try contexto.save()
+            if row.versaoTabelas < 2 {
+                row.cursorAntesReplay = max(row.cursorAntesReplay, row.cursor)
+                row.cursor = 0; row.versaoTabelas = 2; try contexto.save()
             }
         } catch { contexto.rollback(); throw error }
     }
@@ -122,7 +122,9 @@ public final class CacheLeitura {
             let rows = try contexto.fetch(FetchDescriptor<LinhaSync>(predicate: #Predicate { $0.dono == dono }))
             var index = Dictionary(uniqueKeysWithValues: rows.map { ($0.chave, $0) })
             let outbox = try saidas(dono)
+            let healthDenied = try metadados(dono)["consent"]?.object("saude").bool("granted") == false
             for change in page.rows where ReadSync.tables.contains(change.table) {
+                if healthDenied && change.table == "body_logs" { continue }
                 let key = "\(dono):\(change.table):\(change.row.id)"
                 if let pending = outbox.first(where: { $0.chave == key && !$0.rejeitada }) {
                     if let local = index[key],
@@ -164,7 +166,10 @@ public final class CacheLeitura {
             let exercises = beforeData.exercises(catalog: catalog)
             var written: [PushChange] = []
             for change in changes {
-                guard ["sessions", "session_items", "sets", "records", "routine_items"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
+                guard ["sessions", "session_items", "sets", "records", "routine_items", "body_logs"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
+                if change.table == "body_logs" {
+                    _ = try History.bodyChange(change.row, consent: metadados(dono)["consent"], today: LocalDay.today())
+                }
                 let ts = max(floor(now), meta.ultimoCarimbo + 1)
                 meta.ultimoCarimbo = ts
                 var row = change.row.changing(["user_id": .string(dono), "updated_at": .number(ts)])
@@ -265,6 +270,28 @@ public final class CacheLeitura {
     public func guardarAnalise(_ row: ReadRow, sessionID: String, dono: String) throws {
         do { try porMeta(row, nome: "analysis:\(sessionID)", dono: dono); try contexto.save() }
         catch { contexto.rollback(); throw error }
+    }
+    /// Same owner-scoped metadata as analyses, with the PWA consent payload unchanged.
+    public func guardarConsentimento(_ row: ReadRow, dono: String) throws {
+        do {
+            try porMeta(row, nome: "consent", dono: dono)
+            if row.object("saude").bool("granted") == false {
+                var removed: Set<String> = []
+                for entry in try contexto.fetch(FetchDescriptor<LinhaSync>(predicate: #Predicate { $0.dono == dono })) {
+                    let value = try JSONDecoder().decode(ReadRow.self, from: entry.dados)
+                    if entry.tabela == "body_logs" || entry.tabela == "pain_reports" || (entry.tabela == "day_overrides" && value.string("action") == "spare_joint") {
+                        removed.insert(entry.chave); contexto.delete(entry)
+                    } else if entry.tabela == "session_items" {
+                        entry.dados = try JSONEncoder().encode(value.changing(["pain_joint": .null]))
+                    } else if entry.tabela == "profiles" {
+                        let onboarding = value.object("onboarding").changing(["spare_joints": .array([])])
+                        entry.dados = try JSONEncoder().encode(value.changing(["onboarding": .object(onboarding.fields)]))
+                    }
+                }
+                for entry in try saidas(dono) where removed.contains(entry.chave) || entry.tabela == "body_logs" || entry.tabela == "pain_reports" { contexto.delete(entry) }
+            }
+            try contexto.save()
+        } catch { contexto.rollback(); throw error }
     }
     private func stable(_ value: JSONValue) -> JSONValue {
         switch value {

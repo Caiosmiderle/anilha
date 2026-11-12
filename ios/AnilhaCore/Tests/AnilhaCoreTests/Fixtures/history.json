@@ -1,0 +1,4945 @@
+{
+  "taxonomy": {
+    "muscles": {
+      "costas": "costas",
+      "lombar": "costas",
+      "trapezio": "ombros",
+      "peito": "peito",
+      "ombro_anterior": "ombros",
+      "ombro_lateral": "ombros",
+      "ombro_posterior": "ombros",
+      "biceps": "biceps",
+      "triceps": "triceps",
+      "antebraco": "biceps",
+      "quadriceps": "quadriceps",
+      "posterior_coxa": "posteriores",
+      "gluteos": "posteriores",
+      "adutores": "quadriceps",
+      "panturrilha": "panturrilha",
+      "abdomen": "core"
+    },
+    "labels": {
+      "costas": "Costas",
+      "peito": "Peito",
+      "ombros": "Ombros",
+      "biceps": "Bíceps",
+      "triceps": "Tríceps",
+      "quadriceps": "Quadríceps",
+      "posteriores": "Posteriores",
+      "panturrilha": "Panturrilha",
+      "core": "Abdômen"
+    }
+  },
+  "cases": [
+    {
+      "name": "empty",
+      "tables": {},
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 0,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 4,
+            "status": "sem_plano",
+            "pct": 0,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [],
+        "progress": [],
+        "volume": []
+      }
+    },
+    {
+      "name": "demo",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-11-09",
+            "updated_at": 1,
+            "gym_per_week": 3,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 3,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "em_andamento",
+            "pct": 0.75,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 20
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-09",
+                  "value": 25.3
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "demo pounds",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-11-09",
+            "updated_at": 1,
+            "gym_per_week": 3,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "lb",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 3,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "em_andamento",
+            "pct": 0.75,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 44.1
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 55.1
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-09",
+                  "value": 55.9
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 73.5
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "fulfilled",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-10-01",
+            "updated_at": 1,
+            "gym_per_week": 2,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          },
+          {
+            "id": "bike",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "activity": "bike"
+          },
+          {
+            "id": "old",
+            "local_date": "2026-11-02",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 2,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "cumprida",
+            "pct": 1,
+            "cardio": "Cardio"
+          },
+          {
+            "week_start": "2026-11-02",
+            "week_end": "2026-11-08",
+            "planned_gym": 2,
+            "planned_run": 1,
+            "done_gym": 0,
+            "done_run": 1,
+            "rest_days": 6,
+            "status": "parcial",
+            "pct": 0.3333333333333333,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-26",
+            "week_end": "2026-11-01",
+            "planned_gym": 2,
+            "planned_run": 1,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-19",
+            "week_end": "2026-10-25",
+            "planned_gym": 2,
+            "planned_run": 1,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-12",
+            "week_end": "2026-10-18",
+            "planned_gym": 2,
+            "planned_run": 1,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-05",
+            "week_end": "2026-10-11",
+            "planned_gym": 2,
+            "planned_run": 1,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-09-28",
+            "week_end": "2026-10-04",
+            "planned_gym": 2,
+            "planned_run": 1,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 20
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-09",
+                  "value": 25.3
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "excess",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-10-01",
+            "updated_at": 1,
+            "gym_per_week": 1,
+            "run_per_week": 0,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          },
+          {
+            "id": "bike",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "activity": "bike"
+          },
+          {
+            "id": "old",
+            "local_date": "2026-11-02",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 1,
+            "planned_run": 0,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "desvio",
+            "pct": 1,
+            "cardio": "Cardio"
+          },
+          {
+            "week_start": "2026-11-02",
+            "week_end": "2026-11-08",
+            "planned_gym": 1,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 1,
+            "rest_days": 6,
+            "status": "desvio",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-26",
+            "week_end": "2026-11-01",
+            "planned_gym": 1,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-19",
+            "week_end": "2026-10-25",
+            "planned_gym": 1,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-12",
+            "week_end": "2026-10-18",
+            "planned_gym": 1,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-05",
+            "week_end": "2026-10-11",
+            "planned_gym": 1,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-09-28",
+            "week_end": "2026-10-04",
+            "planned_gym": 1,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 20
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-09",
+                  "value": 25.3
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "partial",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-10-01",
+            "updated_at": 1,
+            "gym_per_week": 5,
+            "run_per_week": 2,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          },
+          {
+            "id": "bike",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "activity": "bike"
+          },
+          {
+            "id": "old",
+            "local_date": "2026-11-02",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 5,
+            "planned_run": 2,
+            "done_gym": 2,
+            "done_run": 2,
+            "rest_days": 2,
+            "status": "em_andamento",
+            "pct": 0.5714285714285714,
+            "cardio": "Cardio"
+          },
+          {
+            "week_start": "2026-11-02",
+            "week_end": "2026-11-08",
+            "planned_gym": 5,
+            "planned_run": 2,
+            "done_gym": 0,
+            "done_run": 1,
+            "rest_days": 6,
+            "status": "parcial",
+            "pct": 0.14285714285714285,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-26",
+            "week_end": "2026-11-01",
+            "planned_gym": 5,
+            "planned_run": 2,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-19",
+            "week_end": "2026-10-25",
+            "planned_gym": 5,
+            "planned_run": 2,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-12",
+            "week_end": "2026-10-18",
+            "planned_gym": 5,
+            "planned_run": 2,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-10-05",
+            "week_end": "2026-10-11",
+            "planned_gym": 5,
+            "planned_run": 2,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          },
+          {
+            "week_start": "2026-09-28",
+            "week_end": "2026-10-04",
+            "planned_gym": 5,
+            "planned_run": 2,
+            "done_gym": 0,
+            "done_run": 0,
+            "rest_days": 7,
+            "status": "parcial",
+            "pct": 0,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 20
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-09",
+                  "value": 25.3
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "no plan",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          },
+          {
+            "id": "bike",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "activity": "bike"
+          },
+          {
+            "id": "old",
+            "local_date": "2026-11-02",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 0,
+            "planned_run": 0,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "sem_plano",
+            "pct": 0,
+            "cardio": "Cardio"
+          },
+          {
+            "week_start": "2026-11-02",
+            "week_end": "2026-11-08",
+            "planned_gym": 0,
+            "planned_run": 0,
+            "done_gym": 0,
+            "done_run": 1,
+            "rest_days": 6,
+            "status": "sem_plano",
+            "pct": 0,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 20
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-09",
+                  "value": 25.3
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "deleted deload null pending",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-11-09",
+            "updated_at": 1,
+            "gym_per_week": 3,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps",
+            "deload": true
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps",
+            "deload": false
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps",
+            "deload": false
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000,
+            "deleted": true
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": null,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000,
+            "deleted": false
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000,
+            "deleted": false
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000,
+            "deleted": false
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000,
+            "deleted": false
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null,
+            "deleted": false
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 3,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "em_andamento",
+            "pct": 0.75,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 1,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 4
+          }
+        ]
+      }
+    },
+    {
+      "name": "plan begins midweek",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-11-11",
+            "updated_at": 1,
+            "gym_per_week": 3,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 3,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "em_andamento",
+            "pct": 0.75,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 20
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-09",
+                  "value": 25.3
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "unloaded time",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-11-09",
+            "updated_at": 1,
+            "gym_per_week": 3,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "prancha",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "prancha",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "prancha",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "prancha",
+            "kind": "work",
+            "position": 0,
+            "load_kg": null,
+            "reps": null,
+            "rir": 2,
+            "completed_at": 1794243700000,
+            "seconds": 20
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "prancha",
+            "kind": "work",
+            "position": 1,
+            "load_kg": null,
+            "reps": null,
+            "rir": 2,
+            "completed_at": 1794243800000,
+            "seconds": 25
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "prancha",
+            "kind": "work",
+            "position": 0,
+            "load_kg": null,
+            "reps": null,
+            "rir": 2,
+            "completed_at": 1794502900000,
+            "seconds": 30
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "prancha",
+            "kind": "work",
+            "position": 1,
+            "load_kg": null,
+            "reps": null,
+            "rir": 2,
+            "completed_at": 1794503000000,
+            "seconds": 35
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "prancha",
+            "kind": "work",
+            "position": 0,
+            "load_kg": null,
+            "reps": null,
+            "rir": 2,
+            "completed_at": 1794506500000,
+            "seconds": 40
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "prancha",
+            "kind": "work",
+            "position": 1,
+            "load_kg": null,
+            "reps": null,
+            "completed_at": null,
+            "seconds": 45
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 3,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "em_andamento",
+            "pct": 0.75,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "prancha"
+        ],
+        "progress": [
+          {
+            "id": "prancha",
+            "result": {
+              "count": 2,
+              "loaded": false,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 25
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 35
+                }
+              ],
+              "compare": [],
+              "max_load": null,
+              "last1rm": 0,
+              "last_volume": 0,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "core",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "unloaded reps",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-11-09",
+            "updated_at": 1,
+            "gym_per_week": 3,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-09",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "barra-fixa",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "barra-fixa",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "barra-fixa",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "barra-fixa",
+            "kind": "work",
+            "position": 0,
+            "load_kg": null,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000,
+            "seconds": null
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "barra-fixa",
+            "kind": "work",
+            "position": 1,
+            "load_kg": null,
+            "reps": 9,
+            "rir": 2,
+            "completed_at": 1794243800000,
+            "seconds": null
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "barra-fixa",
+            "kind": "work",
+            "position": 0,
+            "load_kg": null,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000,
+            "seconds": null
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "barra-fixa",
+            "kind": "work",
+            "position": 1,
+            "load_kg": null,
+            "reps": 11,
+            "rir": 2,
+            "completed_at": 1794503000000,
+            "seconds": null
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "barra-fixa",
+            "kind": "work",
+            "position": 0,
+            "load_kg": null,
+            "reps": 12,
+            "rir": 2,
+            "completed_at": 1794506500000,
+            "seconds": null
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "barra-fixa",
+            "kind": "work",
+            "position": 1,
+            "load_kg": null,
+            "reps": 13,
+            "completed_at": null,
+            "seconds": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 3,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 2,
+            "status": "em_andamento",
+            "pct": 0.75,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "barra-fixa"
+        ],
+        "progress": [
+          {
+            "id": "barra-fixa",
+            "result": {
+              "count": 2,
+              "loaded": false,
+              "main": [
+                {
+                  "day": "2026-11-09",
+                  "value": 9
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 11
+                }
+              ],
+              "compare": [],
+              "max_load": null,
+              "last1rm": 0,
+              "last_volume": 0,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "costas",
+            "value": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "same day warmup above Epley range",
+      "tables": {
+        "profiles": [
+          {
+            "id": "demo-profile",
+            "unit": "kg",
+            "return_mode": "off",
+            "onboarding": {
+              "goal": "hipertrofia"
+            }
+          }
+        ],
+        "body_logs": [
+          {
+            "id": "demo-body1",
+            "local_date": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 82
+          },
+          {
+            "id": "demo-body2",
+            "local_date": "2026-11-09",
+            "weight_kg": 80.2,
+            "waist_cm": 81.5
+          },
+          {
+            "id": "demo-body3",
+            "local_date": "2026-11-12",
+            "weight_kg": 80.4,
+            "waist_cm": 81
+          }
+        ],
+        "records": [
+          {
+            "id": "demo-record",
+            "exercise_id": "supino-reto-barra",
+            "exercise_name": "Supino reto com barra",
+            "kind": "carga",
+            "value": 25,
+            "unit": "kg",
+            "local_date": "2026-11-12"
+          }
+        ],
+        "routines": [
+          {
+            "id": "demo-routine",
+            "name": "Peito e tríceps",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "archived": false
+          },
+          {
+            "id": "demo-back",
+            "name": "Costas e bíceps",
+            "split_key": "costas_biceps",
+            "position": 1,
+            "archived": false
+          },
+          {
+            "id": "demo-legs",
+            "name": "Pernas",
+            "split_key": "perna",
+            "position": 2,
+            "archived": false
+          }
+        ],
+        "routine_items": [
+          {
+            "id": "demo-ri",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri2",
+            "routine_id": "demo-routine",
+            "exercise_id": "supino-inclinado-halteres",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ri3",
+            "routine_id": "demo-routine",
+            "exercise_id": "triceps-corda",
+            "position": 2,
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "warmup_sets": 0,
+            "rest_sec": 60
+          },
+          {
+            "id": "demo-rib",
+            "routine_id": "demo-back",
+            "exercise_id": "puxada-frente",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ril",
+            "routine_id": "demo-legs",
+            "exercise_id": "agachamento-livre",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "plans": [
+          {
+            "id": "demo-plan",
+            "active_from": "2026-11-09",
+            "updated_at": 1,
+            "gym_per_week": 3,
+            "run_per_week": 1,
+            "days": [
+              {
+                "weekday": 4,
+                "kind": "gym",
+                "split_key": "peito_triceps",
+                "time": "18:30"
+              }
+            ],
+            "rules": {
+              "no_legs_before_run": false
+            },
+            "params": {
+              "focus": "equilibrado"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "id": "demo-run",
+            "local_date": "2026-11-12",
+            "source": "crunning",
+            "run_type": "leve",
+            "distance_km": 5,
+            "duration_sec": 1800
+          }
+        ],
+        "external_plan_items": [
+          {
+            "id": "demo-run-plan",
+            "source": "crunning",
+            "kind": "corrida",
+            "local_date": "2026-11-14",
+            "status": "planejada",
+            "name": "Longão",
+            "run_type": "longo",
+            "distance_m": 12000,
+            "important": true
+          }
+        ],
+        "sessions": [
+          {
+            "id": "demo-prior",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794243600000,
+            "ended_at": 1794246000000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-done",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "done",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794502800000,
+            "ended_at": 1794505200000,
+            "split_key": "peito_triceps"
+          },
+          {
+            "id": "demo-active",
+            "routine_id": "demo-routine",
+            "title": "Peito e tríceps",
+            "status": "active",
+            "detail": "full",
+            "local_date": "2026-11-12",
+            "started_at": 1794506400000,
+            "split_key": "peito_triceps"
+          }
+        ],
+        "session_items": [
+          {
+            "id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "done",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          },
+          {
+            "id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "status": "pending",
+            "planned_sets": 2,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90
+          }
+        ],
+        "sets": [
+          {
+            "id": "demo-sp1",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "warmup",
+            "position": 0,
+            "load_kg": 20,
+            "reps": 8,
+            "rir": 2,
+            "completed_at": 1794243700000
+          },
+          {
+            "id": "demo-sp2",
+            "item_id": "demo-ip",
+            "session_id": "demo-prior",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 15,
+            "rir": 2,
+            "completed_at": 1794243800000
+          },
+          {
+            "id": "demo-sd1",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794502900000
+          },
+          {
+            "id": "demo-sd2",
+            "item_id": "demo-id",
+            "session_id": "demo-done",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 20,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794503000000
+          },
+          {
+            "id": "demo-sa1",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 0,
+            "load_kg": 25,
+            "reps": 10,
+            "rir": 2,
+            "completed_at": 1794506500000
+          },
+          {
+            "id": "demo-sa2",
+            "item_id": "demo-ia",
+            "session_id": "demo-active",
+            "exercise_id": "supino-reto-barra",
+            "kind": "work",
+            "position": 1,
+            "load_kg": 25,
+            "reps": 10,
+            "completed_at": null
+          }
+        ]
+      },
+      "unit": "kg",
+      "today": "2026-11-12",
+      "expected": {
+        "weeks": [
+          {
+            "week_start": "2026-11-09",
+            "week_end": "2026-11-15",
+            "planned_gym": 3,
+            "planned_run": 1,
+            "done_gym": 2,
+            "done_run": 1,
+            "rest_days": 3,
+            "status": "em_andamento",
+            "pct": 0.75,
+            "cardio": "Corrida"
+          }
+        ],
+        "options": [
+          "supino-reto-barra"
+        ],
+        "progress": [
+          {
+            "id": "supino-reto-barra",
+            "result": {
+              "count": 2,
+              "loaded": true,
+              "main": [
+                {
+                  "day": "2026-11-12",
+                  "value": 20
+                },
+                {
+                  "day": "2026-11-12",
+                  "value": 25
+                }
+              ],
+              "compare": [
+                {
+                  "day": "2026-11-12",
+                  "value": 33.3
+                }
+              ],
+              "max_load": 25,
+              "last1rm": 33.33333333333333,
+              "last_volume": 450,
+              "last_date": "2026-11-12"
+            }
+          }
+        ],
+        "volume": [
+          {
+            "group": "peito",
+            "value": 4
+          }
+        ]
+      }
+    }
+  ],
+  "bodyCases": [
+    {
+      "name": "empty",
+      "logs": [],
+      "goal": null,
+      "today": "2026-11-12",
+      "expected": {
+        "latest": null,
+        "weeks": [],
+        "rate_pct_week": null,
+        "waist_change_cm": null,
+        "advice": null
+      }
+    },
+    {
+      "name": "waist only",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-12",
+          "weight_kg": null,
+          "waist_cm": 80,
+          "deleted": false
+        }
+      ],
+      "goal": null,
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": null,
+          "waist_cm": 80
+        },
+        "weeks": [
+          {
+            "week": "2026-11-09",
+            "weight_kg": null,
+            "waist_cm": 80,
+            "count": 1
+          }
+        ],
+        "rate_pct_week": null,
+        "waist_change_cm": null,
+        "advice": "Com duas semanas de pesagens dá para ver o ritmo. Pese de manhã, no mesmo horário."
+      }
+    },
+    {
+      "name": "one week average",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-09",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 82,
+          "waist_cm": null,
+          "deleted": false
+        }
+      ],
+      "goal": "hipertrofia",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 82,
+          "waist_cm": null
+        },
+        "weeks": [
+          {
+            "week": "2026-11-09",
+            "weight_kg": 81,
+            "waist_cm": 80,
+            "count": 3
+          }
+        ],
+        "rate_pct_week": null,
+        "waist_change_cm": null,
+        "advice": "Com duas semanas de pesagens dá para ver o ritmo. Pese de manhã, no mesmo horário."
+      }
+    },
+    {
+      "name": "gain flat",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-02",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        }
+      ],
+      "goal": "hipertrofia",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 80,
+          "waist_cm": 80
+        },
+        "weeks": [
+          {
+            "week": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          }
+        ],
+        "rate_pct_week": 0,
+        "waist_change_cm": 0,
+        "advice": "Peso quase parado. Para ganhar massa, a referência é subir de 0,3% a 0,5% por semana: um pouco mais de comida ajuda."
+      }
+    },
+    {
+      "name": "gain normal",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-02",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 80.3,
+          "waist_cm": 81,
+          "deleted": false
+        }
+      ],
+      "goal": "hipertrofia",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 80.3,
+          "waist_cm": 81
+        },
+        "weeks": [
+          {
+            "week": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 80.3,
+            "waist_cm": 81,
+            "count": 2
+          }
+        ],
+        "rate_pct_week": 0.37,
+        "waist_change_cm": 1,
+        "advice": "No ritmo de quem está ganhando massa."
+      }
+    },
+    {
+      "name": "gain fast waist",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-02",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 82,
+          "waist_cm": 83,
+          "deleted": false
+        }
+      ],
+      "goal": "hipertrofia",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 82,
+          "waist_cm": 83
+        },
+        "weeks": [
+          {
+            "week": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 82,
+            "waist_cm": 83,
+            "count": 2
+          }
+        ],
+        "rate_pct_week": 2.5,
+        "waist_change_cm": 3,
+        "advice": "Subindo rápido: acima de 0,5% por semana costuma vir mais gordura que músculo. A cintura subiu 2 cm ou mais: vale segurar um pouco."
+      }
+    },
+    {
+      "name": "loss flat waist",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-02",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 80,
+          "waist_cm": 78,
+          "deleted": false
+        }
+      ],
+      "goal": "emagrecimento",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 80,
+          "waist_cm": 78
+        },
+        "weeks": [
+          {
+            "week": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 80,
+            "waist_cm": 78,
+            "count": 2
+          }
+        ],
+        "rate_pct_week": 0,
+        "waist_change_cm": -2,
+        "advice": "Peso quase parado. Para emagrecer sem perder músculo, a referência é cair de 0,5% a 1% por semana. A cintura caiu: o corpo está mudando mesmo com o peso parado."
+      }
+    },
+    {
+      "name": "loss normal",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-02",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 79.4,
+          "waist_cm": 80,
+          "deleted": false
+        }
+      ],
+      "goal": "emagrecimento",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 79.4,
+          "waist_cm": 80
+        },
+        "weeks": [
+          {
+            "week": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 79.4,
+            "waist_cm": 80,
+            "count": 2
+          }
+        ],
+        "rate_pct_week": -0.75,
+        "waist_change_cm": 0,
+        "advice": "No ritmo de quem emagrece mantendo o músculo."
+      }
+    },
+    {
+      "name": "loss fast",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-02",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 77,
+          "waist_cm": 80,
+          "deleted": false
+        }
+      ],
+      "goal": "emagrecimento",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 77,
+          "waist_cm": 80
+        },
+        "weeks": [
+          {
+            "week": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 77,
+            "waist_cm": 80,
+            "count": 2
+          }
+        ],
+        "rate_pct_week": -3.75,
+        "waist_change_cm": 0,
+        "advice": "Caindo rápido: acima de 1% por semana aumenta a perda de músculo. Vale comer um pouco mais."
+      }
+    },
+    {
+      "name": "no target",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-11-02",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-11-12",
+          "weight_kg": 81,
+          "waist_cm": 81,
+          "deleted": false
+        }
+      ],
+      "goal": "forca",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 81,
+          "waist_cm": 81
+        },
+        "weeks": [
+          {
+            "week": "2026-11-02",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 81,
+            "waist_cm": 81,
+            "count": 2
+          }
+        ],
+        "rate_pct_week": 1.25,
+        "waist_change_cm": 1,
+        "advice": null
+      }
+    },
+    {
+      "name": "old future tombstone gaps",
+      "logs": [
+        {
+          "id": "body-0",
+          "local_date": "2026-01-01",
+          "weight_kg": 70,
+          "waist_cm": 70,
+          "deleted": false
+        },
+        {
+          "id": "body-1",
+          "local_date": "2026-10-12",
+          "weight_kg": 80,
+          "waist_cm": 80,
+          "deleted": false
+        },
+        {
+          "id": "body-2",
+          "local_date": "2026-11-12",
+          "weight_kg": 81,
+          "waist_cm": null,
+          "deleted": false
+        },
+        {
+          "id": "body-3",
+          "local_date": "2026-11-13",
+          "weight_kg": 99,
+          "waist_cm": 99,
+          "deleted": false
+        },
+        {
+          "id": "body-4",
+          "local_date": "2026-11-09",
+          "weight_kg": 99,
+          "waist_cm": 99,
+          "deleted": true
+        }
+      ],
+      "goal": "hipertrofia",
+      "today": "2026-11-12",
+      "expected": {
+        "latest": {
+          "local_date": "2026-11-12",
+          "weight_kg": 81,
+          "waist_cm": null
+        },
+        "weeks": [
+          {
+            "week": "2025-12-29",
+            "weight_kg": 70,
+            "waist_cm": 70,
+            "count": 2
+          },
+          {
+            "week": "2026-10-12",
+            "weight_kg": 80,
+            "waist_cm": 80,
+            "count": 2
+          },
+          {
+            "week": "2026-11-09",
+            "weight_kg": 81,
+            "waist_cm": null,
+            "count": 1
+          }
+        ],
+        "rate_pct_week": 0.31,
+        "waist_change_cm": null,
+        "advice": "No ritmo de quem está ganhando massa."
+      }
+    }
+  ]
+}

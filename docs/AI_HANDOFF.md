@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS 0.8.0, Histórico, Codex, 12/11/2026
+
+- Branch `codex/ios-historico`, origem `116ddd4`, recebida limpa. Entrega local; Claude revisa e commita por decisão do Caio sobre `.git`.
+- `HistoricoView` com Treinos, Progresso, Semanas e Corpo, na ordem e com informações/vazios do PWA, Harbor e Swift Charts. Detalhe existente conserva Evolução e Análise.
+- Porta do motor TS com 12 vetores de progresso/semanas/volume e 11 de corpo; cinco métodos Swift novos preparados. Peso/cintura criam, corrigem e apagam pela fila da parte B, com consentimento persistido por conta e RPCs existentes.
+- `body_logs` incluída no pull/cache, replay versão 2 preservando pendências e negativa limpando saúde/fila. Sem mudança de esquema. Quatro abas registradas no roadmap; `TabView` intacta para o Claude integrar Hoje, Plano, Histórico e Você.
+- Versão **0.8.0**, demo das quatro partes e matriz claro/escuro, 40 PNGs normais ou 80 com fonte grande. Capturas Apple ainda não executadas.
+- Passaram os dois geradores `--check`, **45 testes TS do passo do CI**, lint, typecheck, build, Bash e diff. Swift tentado e ausente; CI Apple, paridade Swift, prints, aparelho e revisão do Claude **PENDENTES**. E2E não executados.
+- Parecer, fontes, limites, ações fora do escopo e roteiro em [REVISAO_CODEX_HISTORICO_2026-11-12.md](REVISAO_CODEX_HISTORICO_2026-11-12.md). Continuar do checkout local, sem commit/push do Codex.
+
 ## iOS 0.7.0, calendário integrado, Codex, 12/11/2026
 
 - Branch `codex/ios-calendario`, origem `814ea28`, recebida limpa. Entrega local para revisão e commit pelo Claude, conforme pedido do Caio sobre `.git`.

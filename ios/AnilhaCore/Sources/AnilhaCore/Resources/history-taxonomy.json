@@ -1,0 +1,31 @@
+{
+  "muscles": {
+    "costas": "costas",
+    "lombar": "costas",
+    "trapezio": "ombros",
+    "peito": "peito",
+    "ombro_anterior": "ombros",
+    "ombro_lateral": "ombros",
+    "ombro_posterior": "ombros",
+    "biceps": "biceps",
+    "triceps": "triceps",
+    "antebraco": "biceps",
+    "quadriceps": "quadriceps",
+    "posterior_coxa": "posteriores",
+    "gluteos": "posteriores",
+    "adutores": "quadriceps",
+    "panturrilha": "panturrilha",
+    "abdomen": "core"
+  },
+  "labels": {
+    "costas": "Costas",
+    "peito": "Peito",
+    "ombros": "Ombros",
+    "biceps": "Bíceps",
+    "triceps": "Tríceps",
+    "quadriceps": "Quadríceps",
+    "posteriores": "Posteriores",
+    "panturrilha": "Panturrilha",
+    "core": "Abdômen"
+  }
+}

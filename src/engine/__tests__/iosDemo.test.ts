@@ -79,6 +79,10 @@ describe('fixture pública da apresentação SwiftUI', () => {
       'proxima',
       'calendario',
       'calendario-dia',
+      'historico',
+      'historico-progresso',
+      'historico-semanas',
+      'historico-corpo',
     ]) {
       expect(screens).toContain(screen);
     }
