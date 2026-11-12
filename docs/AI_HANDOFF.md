@@ -1,5 +1,16 @@
 # Registro entre Codex e Claude
 
+## iOS 0.12.0, chat nativo do Waltér, Codex, 12/11/2026
+
+- Branch recebida limpa `codex/ios-chat`, base `d2f38d9`. Entrega só local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.
+- Hoje abre `ChatWalterView`, com Harbor, mensagens, respostas rápidas, teclado, última mensagem, carregamento, erro, cota e sem rede. Mesmo `{messages}`/loop de quatro rodadas da função `agente` existente, Haiku e limite compartilhado. Nenhum servidor alterado.
+- `AnilhaCore` com edição completa de ficha e substitutos. Contexto do PWA, frequência/retorno e saúde exclusivamente pelo consentimento `History.healthOn`. Conversa em memória por conta; limpeza/revogação invalida respostas pendentes e snapshots locais.
+- Cartões antes/depois, volume/avisos e Salvar/Recusar/Desfazer pela fila da parte B. Extraída a transformação de linhas compartilhada com a parte C; bindings e desfazer bloqueiam substituição de edições posteriores.
+- Gerar plano/criar ficha seguem pelo site com aviso explícito. Direções usam destinos do site; pedidos não atendidos ainda não são registrados pelo nativo na equipe, e a tela avisa. Sem tabela, coluna, RPC ou pacote novos. Versão **0.12.0**.
+- Passaram 111 testes TS em 14 arquivos, incluindo o passo do CI iOS e testes do agente; três repetidos após ampliar vetores de teto e mudança nula. Geradores `--check`, lint, typecheck, build, Bash e diff aprovados. 25 vetores de ferramentas, 12 contextos e 10 escritas, gerados do TS real.
+- Seis métodos Swift novos preparados. `swift test` tentado e ausente no Windows. CI Apple, Swift 6/iOS 26, iPhone e **print nativo ainda PENDENTES**. Demo `-demo chat` com proposta real local, matriz de 48/96 PNGs preparada; não confundir com captura executada. E2E/modelo remoto não executados.
+- Parecer, limitações e roteiro em [REVISAO_CODEX_CHAT_2026-11-12.md](REVISAO_CODEX_CHAT_2026-11-12.md). Claude deve revisar fila/conflitos, porta/avisos/substitutos, privacidade durante requisição, teclado/fonte grande e capturas. Sem commit, push ou publicação pelo Codex.
+
 ## iOS 0.11.0, memória das análises, Codex, 12/11/2026
 
 - Branch recebida limpa `codex/memoria-analise`, origem `493bde4`; entrega local, sem escrita em `.git`. Claude revisa e commita; revisão desta entrega **PENDENTE**.

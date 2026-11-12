@@ -36,6 +36,7 @@ on:
         'tests/e2e/calendario-integrado.spec.ts',
         'scripts/ios-calendar-source.ts',
         'scripts/ios-history-source.ts',
+        'scripts/ios-chat-source.ts',
         'src/screens/Calendar.tsx',
         'src/screens/SessionDetail.tsx',
         'src/styles/app.css',
@@ -100,7 +101,7 @@ jobs:
           node scripts/generate-ios.mjs --check
           node scripts/build-analysis.mjs --check
           node scripts/build-review.mjs --check
-          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/engine/__tests__/iosDemo.test.ts src/engine/__tests__/iosHistory.test.ts src/engine/__tests__/calendar.test.ts src/analysis/__tests__/analysis.test.ts src/analysis/__tests__/memory.test.ts src/analysis/__tests__/evolution.test.ts tests/db/analysis.test.ts src/review/__tests__/review.test.ts --maxWorkers=1 --no-file-parallelism
+          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/engine/__tests__/iosDemo.test.ts src/engine/__tests__/iosHistory.test.ts src/engine/__tests__/calendar.test.ts src/analysis/__tests__/analysis.test.ts src/analysis/__tests__/memory.test.ts src/analysis/__tests__/evolution.test.ts tests/db/analysis.test.ts src/review/__tests__/review.test.ts src/agent/__tests__/iosChat.test.ts --maxWorkers=1 --no-file-parallelism
 
       - name: Testar paridade, gravação e fila Swift
         working-directory: .

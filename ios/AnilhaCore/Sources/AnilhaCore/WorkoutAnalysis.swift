@@ -157,12 +157,16 @@ public enum WorkoutAnalysis {
                   whole(row, "target_max", 3600, min: row.number("target_min") ?? 1) != .null,
                   whole(row, "rest_sec", 600) != .null else { throw Failure.invalidAdjustment }
         }
+        return fichaChanges(routineID: routine.id, old: old, after: after, newID: newID)
+    }
+    /// Shared with the native chat. Preserves notes, warmups and row identity by exercise.
+    public static func fichaChanges(routineID: String, old: [ReadRow], after: [ReadRow], newID: () -> String = Workout.id) -> [PushChange] {
         var unused = old, changes: [PushChange] = []
         for (position, row) in after.enumerated() {
             let kept = unused.firstIndex { $0.string("exercise_id") == row.string("exercise_id") }
             var next: ReadRow
             if let kept { next = unused.remove(at: kept) }
-            else { next = ReadRow(fields: ["id": .string(newID()), "deleted": .bool(false), "routine_id": .string(routine.id), "warmup_sets": .number(0), "note": .null, "reason": .null]) }
+            else { next = ReadRow(fields: ["id": .string(newID()), "deleted": .bool(false), "routine_id": .string(routineID), "warmup_sets": .number(0), "note": .null, "reason": .null]) }
             for key in ["exercise_id", "sets", "target_min", "target_max", "rest_sec"] { next.fields[key] = row.fields[key] }
             next.fields["position"] = .number(Double(position))
             changes.append(PushChange("routine_items", next))

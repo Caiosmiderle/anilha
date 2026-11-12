@@ -141,6 +141,7 @@ struct DemoView: View {
         case "fichas": FichasView(conta: conta)
         case "plano": PlanoView(conta: conta, today: "2026-11-12")
         case "voce": VoceView(conta: conta, pedirSaida: {})
+        case "chat": ChatWalterView(conta: conta, demonstracao: true)
         case "ficha":
             if let ficha = conta.dados.routines.first { FichaView(conta: conta, ficha: ficha) }
         case "treino", "execucao", "descanso", "esforco": TreinoView(conta: conta, sessionID: "demo-active")

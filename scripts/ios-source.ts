@@ -19,6 +19,7 @@ export function iosArtifacts() {
     progression_hint: e.progression_hint,
     pattern: e.pattern,
     compound: e.compound,
+    joints: e.joints,
   }));
   const splits = Object.values(SPLITS).map((s) => ({
     id: s.key,

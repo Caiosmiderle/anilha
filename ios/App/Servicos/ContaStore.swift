@@ -41,6 +41,13 @@ final class ContaStore {
     private var cliente: SupabaseClient?
     private var geracao = UUID()
     private var tarefaSync: Task<Void, Never>?
+    private(set) var chatEntries: [ReadRow] = []
+    private var chatHistory: [ReadRow] = []
+    private var chatContext: String?
+    private var chatEpoch = UUID()
+    private(set) var chatStage: String?
+    private(set) var chatError: String?
+    var chatFull: Bool { chatHistory.count >= 32 }
 
     init() {
         _ = descanso
@@ -94,6 +101,7 @@ final class ContaStore {
             if let session = client.auth.currentSession {
                 dono = session.user.id.uuidString.lowercased()
                 try local.preparar(dono!)
+                try local.limparChat(dono!)
                 try recarregar()
                 atualizadoEm = try local.cursor(dono!).atualizadoEm
                 Task { await atualizar() }
@@ -260,7 +268,9 @@ final class ContaStore {
         guard let dono, let cache else { return }
         dados = try cache.ler(dono)
         analises = try cache.metadados(dono).merging(analisesNaoGravadas) { _, memory in memory }
+        let healthBefore = saudePermitida
         consentimento = analises["consent"]
+        if healthBefore && !saudePermitida { limparChat(); chatError = "A conversa foi limpa porque a permissão de saúde mudou." }
         pendentes = try cache.pendentes(dono); rejeitadas = try cache.rejeitadas(dono)
         descanso.atualizar(fim: avisosDescanso ? ativa.flatMap(Workout.restEnd) : nil)
     }
@@ -494,10 +504,95 @@ final class ContaStore {
         catch { erro = "Não deu para voltar: os dados podem ter mudado depois deste ajuste." }
     }
 
+    func limparChat() {
+        chatEpoch = UUID(); chatHistory = []; chatEntries = []; chatContext = nil; chatStage = nil; chatError = nil
+        if let dono, let cache {
+            do { try cache.limparChat(dono); analises = analises.filter { !$0.key.hasPrefix("chat:") } }
+            catch { chatError = "Não foi possível limpar as propostas guardadas. Tente novamente." }
+        }
+    }
+    func enviarChat(_ ask: String) async {
+        guard let owner = dono, let cliente, let cache, !limpezaPendente, chatStage == nil, !chatFull else { return }
+        guard online else { chatError = "Sem internet. Sua conversa continua neste iPhone. Conecte para enviar."; return }
+        let text = ask.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty, text.utf16.count <= 2000 else { return }
+        let epoch = geracao, turn = chatEpoch
+        chatStage = "Lendo seu pedido"; chatError = nil
+        defer { if chatEpoch == turn { chatStage = nil } }
+        do {
+            try recarregar()
+            guard chatEpoch == turn else { return }
+            let ctx = try AgentChat.context(dados, consent: consentimento, today: LocalDay.today())
+            let version = AgentChat.contextText(ctx, catalog: catalogo)
+            let result = try await AgentChat.run(history: chatHistory, ask: text, context: ctx, withContext: chatContext != version, catalog: catalogo,
+                stage: { [weak self] value in self?.chatStage = value }, call: { [weak self] messages in
+                    guard let self else { throw CancellationError() }
+                    try self.conferir(owner, epoch)
+                    guard self.chatEpoch == turn else { throw CancellationError() }
+                    let auth = try await cliente.auth.session
+                    try self.conferir(owner, epoch)
+                    guard self.chatEpoch == turn, auth.user.id.uuidString.lowercased() == owner else { throw ReadSync.Failure.accountChanged }
+                    var request = URLRequest(url: Configuracao.supabaseURL.appendingPathComponent("functions/v1/agente"))
+                    request.httpMethod = "POST"; request.timeoutInterval = 45
+                    request.setValue(Configuracao.supabaseKey, forHTTPHeaderField: "apikey")
+                    request.setValue("Bearer \(auth.accessToken)", forHTTPHeaderField: "Authorization")
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.httpBody = try JSONEncoder().encode(ReadRow(fields: ["messages": AgentChat.rows(messages)]))
+                    let config = URLSessionConfiguration.ephemeral; config.urlCache = nil
+                    let transport = URLSession(configuration: config)
+                    defer { transport.invalidateAndCancel() }
+                    let (bytes, response) = try await transport.data(for: request)
+                    try self.conferir(owner, epoch)
+                    guard self.chatEpoch == turn else { throw CancellationError() }
+                    let raw = try JSONDecoder().decode(ReadRow.self, from: bytes)
+                    guard let http = response as? HTTPURLResponse else { throw ReadSync.Failure.invalidPage }
+                    if http.statusCode == 429 { throw ChatFailure.message("Você chegou ao limite de hoje do Waltér. Amanhã tem mais.") }
+                    guard (200..<300).contains(http.statusCode) else { throw ChatFailure.message(AgentChat.displayText(raw.string("error") ?? "O Waltér não respondeu agora. Tente novamente.")) }
+                    return raw
+                })
+            try conferir(owner, epoch)
+            guard chatEpoch == turn else { return }
+            var cards: [ReadRow] = []
+            for proposal in result.proposals {
+                let id = Workout.id()
+                var card = proposal.changing(["id": .string(id)])
+                if proposal.string("kind") == "ficha" {
+                    // Bind to the context used for this turn, never silently to newer data.
+                    let current = try AgentChat.context(dados, consent: consentimento, today: LocalDay.today())
+                    if current != ctx { card.fields["unavailable"] = .bool(true) }
+                    else {
+                        do { try cache.guardarPropostaChat(proposal, id: id, routineID: proposal.object("before").id, dono: owner, today: LocalDay.today()) }
+                        catch { card.fields["unavailable"] = .bool(true); chatError = "A proposta chegou, mas não foi possível guardá-la para Salvar. Faça um novo pedido." }
+                    }
+                }
+                cards.append(card)
+            }
+            chatHistory = result.messages; chatContext = version
+            chatEntries += [ReadRow(fields: ["id": .string(Workout.id()), "role": .string("user"), "text": .string(AgentChat.displayText(text))]),
+                ReadRow(fields: ["id": .string(Workout.id()), "role": .string("assistant"), "text": .string(result.text), "cards": AgentChat.rows(cards)])]
+            try recarregar()
+        } catch {
+            guard geracao == epoch, dono == owner, chatEpoch == turn else { return }
+            if case ChatFailure.message(let message) = error { chatError = message }
+            else if (error as? URLError)?.code == .notConnectedToInternet { chatError = "Sem internet. Conecte e envie novamente." }
+            else { chatError = "Não foi possível concluir o pedido. Tente novamente. Tentativas enviadas contam no limite diário." }
+        }
+    }
+    func decidirChat(_ id: String, action: String) {
+        guard let dono, let cache, chatStage == nil, !limpezaPendente else { return }
+        do {
+            try cache.decidirChat(id, action: action, dono: dono, catalog: catalogo, today: LocalDay.today())
+            try recarregar(); chatContext = nil; chatError = nil
+            Task { await atualizar() }
+        } catch { chatError = "Não foi possível mudar a ficha. Ela pode ter mudado depois da proposta. Suas edições foram preservadas." }
+    }
+    private enum ChatFailure: Error { case message(String) }
+
     func sair() async {
         guard !ocupado else { return }
         ocupado = true; limpezaPendente = true; erro = nil
         geracao = UUID(); tarefaSync?.cancel(); tarefaSync = nil
+        limparChat()
         descanso.atualizar(fim: nil)
         dono = nil; dados = ReadData(); atualizadoEm = nil; sincronizando = false
         analises = [:]; consentimento = nil; analisando = []; analisesNaoGravadas = [:]; admin = false
@@ -546,6 +641,13 @@ extension ContaStore {
         store.analises["review:demo-routine"] = ReadRow(fields: ["routineID": .string("demo-routine"), "version": .object(RoutineReview.version(store.dados, routineID: "demo-routine").fields),
             "context": .object(reviewContext.fields), "binding": .object(reviewBinding.fields), "reply": .object(reviewReply.fields), "decisions": .array([.object(["status": .string("proposed")])]),
             "usage": .object(["model": .string("claude-sonnet-5-5"), "input_tokens": .number(2000), "output_tokens": .number(1000)])])
+        let chatContext = try AgentChat.context(store.dados, consent: store.consentimento, today: "2026-11-12")
+        let chatInput = ReadRow(fields: ["ficha_id": .string("demo-back"), "mudancas": .array([.object(["tipo": .string("descanso"), "exercicio_id": .string("puxada-frente"), "descanso_segundos": .number(120)])])])
+        let proposal = AgentChat.execute("editar_ficha", input: chatInput, context: chatContext, catalog: store.catalogo).object("proposal").changing(["id": .string("demo-chat")])
+        guard proposal.string("kind") == "ficha" else { throw WorkoutAnalysis.Failure.invalidAdjustment }
+        store.chatEntries = [ReadRow(fields: ["id": .string("demo-chat-user"), "role": .string("user"), "text": .string("Quero descansar dois minutos na puxada.")]),
+            ReadRow(fields: ["id": .string("demo-chat-answer"), "role": .string("assistant"), "text": .string("Revise o descanso da ficha. Só muda quando você salvar."), "cards": AgentChat.rows([proposal])])]
+        store.tinhaRede = true
         return store
     }
 }

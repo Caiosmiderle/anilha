@@ -17,6 +17,8 @@ Local-first: o aparelho é a fonte de verdade da interface e a nuvem é onde os 
 
 ## Camadas
 
+O chat nativo (`AgentChat` no AnilhaCore, `ContaStore` e `ChatWalterView`) usa o protocolo de `agente` existente e executa ferramentas no iPhone. Edição completa de ficha e substitutos têm vetores gerados pelo TS; gerar plano e criar ficha ainda encaminham ao site com aviso explícito. Contexto segue o PWA, com saúde condicionada a `History.healthOn`. Transcript em memória por conta, sem sync; propostas e undo usam metadados locais existentes, apagados ao limpar/reabrir ou revogar saúde. Salvar e desfazer usam a fila da parte B com conferência de binding/versão. Nenhum servidor novo.
+
 Análise e revisão recebem `memory` opcional com as últimas três análises locais da ficha, em ordem decrescente de sessão. A projeção pura usa somente avaliação, comentário gerado pela IA e operação/destino do ajuste, associando slots pelo catálogo sem enviar identificadores. A dica da última análise aparece no foco nativo, foco PWA e cartão PWA por até 21 dias, com conferência da linha e exercício atuais da ficha. Tudo permanece nos metadados existentes por conta, sem sync ou mudança no motor. Revisões já guardadas conservam o cache por versão da ficha.
 
 - `src/engine`: regras de treino sem React nem banco. Progressão, recomendação do dia, alertas de fadiga, gerador de plano e rotinas, ajuste do dia, entrada rápida, dor, modo retorno, aderência, reconhecimento, ranking e recordes. Testes em `src/engine/__tests__`.

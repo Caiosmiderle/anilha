@@ -16,7 +16,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "puxada-supinada",
@@ -34,7 +38,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "puxada-triangulo",
@@ -52,7 +60,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "barra-fixa",
@@ -70,7 +82,11 @@
     "bodyweight": true,
     "progression_hint": "descida mais lenta, depois carga extra no cinto",
     "pattern": "puxar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "remada-curvada",
@@ -90,7 +106,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "lombar",
+      "ombro"
+    ]
   },
   {
     "id": "remada-unilateral",
@@ -109,7 +129,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "remada-baixa",
@@ -128,7 +151,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "remada-cavalinho",
@@ -147,7 +174,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "lombar"
+    ]
   },
   {
     "id": "remada-maquina",
@@ -166,7 +196,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "puxar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "remada-invertida",
@@ -184,7 +217,10 @@
     "bodyweight": true,
     "progression_hint": "pés elevados e corpo mais horizontal",
     "pattern": "puxar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "pulldown-bracos-estendidos",
@@ -200,7 +236,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "pullover",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "pullover-halter",
@@ -218,7 +257,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "pullover",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "hiperextensao-lombar",
@@ -237,7 +280,10 @@
     "bodyweight": true,
     "progression_hint": "pausa de 2 s no topo, depois anilha no peito",
     "pattern": "extensao_lombar",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "lombar"
+    ]
   },
   {
     "id": "supino-reto-barra",
@@ -256,7 +302,12 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo",
+      "punho"
+    ]
   },
   {
     "id": "supino-reto-halteres",
@@ -275,7 +326,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "supino-inclinado-barra",
@@ -294,7 +349,12 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo",
+      "punho"
+    ]
   },
   {
     "id": "supino-inclinado-halteres",
@@ -313,7 +373,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "supino-declinado",
@@ -331,7 +395,12 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo",
+      "punho"
+    ]
   },
   {
     "id": "supino-maquina",
@@ -350,7 +419,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "supino-inclinado-maquina",
@@ -369,7 +442,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "crucifixo-halteres",
@@ -385,7 +462,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "crucifixo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "crucifixo-maquina",
@@ -401,7 +481,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "crucifixo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "crossover",
@@ -417,7 +500,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "crucifixo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "flexao-bracos",
@@ -436,7 +522,11 @@
     "bodyweight": true,
     "progression_hint": "pés elevados, descida mais lenta",
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "punho"
+    ]
   },
   {
     "id": "desenvolvimento-halteres-sentado",
@@ -455,7 +545,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "desenvolvimento-maquina",
@@ -474,7 +568,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "desenvolvimento-barra",
@@ -493,7 +591,12 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo",
+      "lombar"
+    ]
   },
   {
     "id": "desenvolvimento-arnold",
@@ -512,7 +615,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_vertical",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "elevacao-lateral",
@@ -528,7 +635,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "elevacao_lateral",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "elevacao-lateral-polia",
@@ -544,7 +654,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "elevacao_lateral",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "elevacao-lateral-maquina",
@@ -560,7 +673,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "elevacao_lateral",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "elevacao-frontal",
@@ -576,7 +692,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "elevacao_frontal",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "remada-alta",
@@ -593,7 +712,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "elevacao_lateral",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro",
+      "punho"
+    ]
   },
   {
     "id": "crucifixo-inverso",
@@ -611,7 +734,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "crucifixo_inverso",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "crucifixo-inverso-maquina",
@@ -629,7 +755,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "crucifixo_inverso",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "face-pull",
@@ -648,7 +777,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "crucifixo_inverso",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "encolhimento-halteres",
@@ -666,7 +798,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "encolhimento",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "punho"
+    ]
   },
   {
     "id": "encolhimento-barra",
@@ -684,7 +819,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "encolhimento",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "punho"
+    ]
   },
   {
     "id": "rosca-direta",
@@ -702,7 +840,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo",
+      "punho"
+    ]
   },
   {
     "id": "rosca-barra-w",
@@ -720,7 +862,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "rosca-alternada",
@@ -738,7 +883,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "rosca-martelo",
@@ -755,7 +903,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "rosca-scott",
@@ -771,7 +922,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "rosca-concentrada",
@@ -787,7 +941,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "rosca-polia",
@@ -803,7 +960,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "rosca-inclinada",
@@ -819,7 +979,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "rosca",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo",
+      "ombro"
+    ]
   },
   {
     "id": "triceps-polia",
@@ -835,7 +999,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "extensao_cotovelo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "triceps-corda",
@@ -851,7 +1018,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "extensao_cotovelo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "triceps-frances",
@@ -867,7 +1037,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "extensao_cotovelo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo",
+      "ombro"
+    ]
   },
   {
     "id": "triceps-testa",
@@ -883,7 +1057,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "extensao_cotovelo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "triceps-coice",
@@ -899,7 +1076,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "extensao_cotovelo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "triceps-maquina",
@@ -915,7 +1095,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "extensao_cotovelo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "cotovelo"
+    ]
   },
   {
     "id": "supino-fechado",
@@ -933,7 +1116,12 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "cotovelo",
+      "ombro",
+      "punho"
+    ]
   },
   {
     "id": "paralelas",
@@ -950,7 +1138,11 @@
     "bodyweight": true,
     "progression_hint": "descida mais lenta, depois carga extra no cinto",
     "pattern": "empurrar_horizontal",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "ombro",
+      "cotovelo"
+    ]
   },
   {
     "id": "mergulho-banco",
@@ -966,7 +1158,12 @@
     "bodyweight": true,
     "progression_hint": "pés elevados, depois anilha no colo",
     "pattern": "extensao_cotovelo",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro",
+      "cotovelo",
+      "punho"
+    ]
   },
   {
     "id": "agachamento-livre",
@@ -985,7 +1182,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "agachamento",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho",
+      "lombar"
+    ]
   },
   {
     "id": "agachamento-smith",
@@ -1002,7 +1203,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "agachamento",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "agachamento-goblet",
@@ -1019,7 +1223,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "agachamento",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "agachamento-sumo",
@@ -1038,7 +1245,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "agachamento",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "agachamento-bulgaro",
@@ -1055,7 +1265,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "avanco",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "afundo",
@@ -1072,7 +1285,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "avanco",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "passada",
@@ -1089,7 +1305,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "avanco",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "leg-press-45",
@@ -1106,7 +1325,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "agachamento",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "leg-press-horizontal",
@@ -1123,7 +1345,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "agachamento",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "hack-squat",
@@ -1141,7 +1366,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "agachamento",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "cadeira-extensora",
@@ -1157,7 +1385,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "extensao_joelho",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "mesa-flexora",
@@ -1173,7 +1404,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "flexao_joelho",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "cadeira-flexora",
@@ -1189,7 +1423,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "flexao_joelho",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "joelho"
+    ]
   },
   {
     "id": "stiff",
@@ -1208,7 +1445,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "dobradica",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "lombar"
+    ]
   },
   {
     "id": "stiff-halteres",
@@ -1227,7 +1467,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "dobradica",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "lombar"
+    ]
   },
   {
     "id": "levantamento-terra",
@@ -1248,7 +1491,11 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "dobradica",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "lombar",
+      "joelho"
+    ]
   },
   {
     "id": "elevacao-pelvica",
@@ -1266,7 +1513,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "dobradica",
-    "compound": true
+    "compound": true,
+    "joints": []
   },
   {
     "id": "swing-kettlebell",
@@ -1285,7 +1533,10 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "dobradica",
-    "compound": true
+    "compound": true,
+    "joints": [
+      "lombar"
+    ]
   },
   {
     "id": "cadeira-abdutora",
@@ -1301,7 +1552,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "abducao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "cadeira-adutora",
@@ -1317,7 +1569,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "aducao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "panturrilha-em-pe",
@@ -1333,7 +1586,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "panturrilha",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "panturrilha-sentado",
@@ -1349,7 +1603,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "panturrilha",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "panturrilha-leg-press",
@@ -1365,7 +1620,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "panturrilha",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "panturrilha-halter",
@@ -1381,7 +1637,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "panturrilha",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "prancha",
@@ -1397,7 +1654,8 @@
     "bodyweight": true,
     "progression_hint": "pés mais afastados do apoio ou um pé elevado",
     "pattern": "core_anti_extensao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "prancha-lateral",
@@ -1413,7 +1671,8 @@
     "bodyweight": true,
     "progression_hint": "perna de cima elevada",
     "pattern": "core_lateral",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "elevacao-pernas-cadeira",
@@ -1429,7 +1688,8 @@
     "bodyweight": true,
     "progression_hint": "pernas mais esticadas, descida mais lenta",
     "pattern": "core_quadril",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "elevacao-pernas-solo",
@@ -1445,7 +1705,10 @@
     "bodyweight": true,
     "progression_hint": "pernas esticadas, descida em 3 s",
     "pattern": "core_quadril",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "lombar"
+    ]
   },
   {
     "id": "elevacao-pernas-barra",
@@ -1461,7 +1724,10 @@
     "bodyweight": true,
     "progression_hint": "pernas esticadas até a altura do quadril",
     "pattern": "core_quadril",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "ombro"
+    ]
   },
   {
     "id": "abdominal-polia",
@@ -1477,7 +1743,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "core_flexao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "abdominal-supra",
@@ -1493,7 +1760,8 @@
     "bodyweight": true,
     "progression_hint": "descida mais lenta, depois anilha no peito",
     "pattern": "core_flexao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "abdominal-maquina",
@@ -1509,7 +1777,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "core_flexao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "abdominal-infra",
@@ -1525,7 +1794,10 @@
     "bodyweight": true,
     "progression_hint": "pernas mais esticadas",
     "pattern": "core_quadril",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "lombar"
+    ]
   },
   {
     "id": "abdominal-bicicleta",
@@ -1541,7 +1813,8 @@
     "bodyweight": true,
     "progression_hint": "ritmo mais lento",
     "pattern": "core_rotacao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "roda-abdominal",
@@ -1557,7 +1830,11 @@
     "bodyweight": true,
     "progression_hint": "rolar mais longe, depois em pé",
     "pattern": "core_anti_extensao",
-    "compound": false
+    "compound": false,
+    "joints": [
+      "lombar",
+      "ombro"
+    ]
   },
   {
     "id": "pallof-press",
@@ -1573,7 +1850,8 @@
     "bodyweight": false,
     "progression_hint": null,
     "pattern": "core_rotacao",
-    "compound": false
+    "compound": false,
+    "joints": []
   },
   {
     "id": "dead-bug",
@@ -1589,6 +1867,7 @@
     "bodyweight": true,
     "progression_hint": "braços e pernas mais longe do corpo",
     "pattern": "core_anti_extensao",
-    "compound": false
+    "compound": false,
+    "joints": []
   }
 ]
