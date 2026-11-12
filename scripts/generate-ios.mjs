@@ -106,7 +106,35 @@ const publicValue = (key) => {
   if (!value) throw new Error(`Missing public config: ${key}`);
   return JSON.stringify(value);
 };
+// "Como fazer" for the native catalog: same rule as howToFor in src/content/howto.ts (up to 4
+// tips and 2 errors, media only with frames or url, video only with a valid id that the weekly
+// check did not take down). src/content/__tests__/howtoIos.test.ts compares both.
+const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
+const howtoRaw = await readJson('src/content/howto.json');
+const mediaRaw = await readJson('src/content/media.json');
+const videoStatus = await readJson('src/content/video-status.json');
+const howtoIos = Object.fromEntries(
+  Object.entries(howtoRaw)
+    .filter(([, h]) => h.tips.length)
+    .map(([id, h]) => {
+      const m = mediaRaw[id];
+      const video = h.videoId.trim();
+      return [
+        id,
+        {
+          tips: h.tips.slice(0, 4),
+          errors: h.errors.slice(0, 2),
+          media: m && (m.url || m.frames?.length) ? m : null,
+          video:
+            video && /^[A-Za-z0-9_-]{11}$/.test(video) && videoStatus[video]?.ok !== false
+              ? { id: video, start: h.start, end: h.end }
+              : null,
+        },
+      ];
+    }),
+);
 const outputs = {
+  'ios/App/Recursos/howto.json': json(howtoIos),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/review.json': json(review).replace(
     /\u2014/g,
     '\\u2014',

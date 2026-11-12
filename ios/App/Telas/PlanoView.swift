@@ -29,6 +29,12 @@ struct PlanoView: View {
             }
         }
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationLink { ExerciciosView(conta: conta) } label: {
+                    Label("Exercícios", systemImage: "books.vertical")
+                }
+                .accessibilityHint("Abre o catálogo de exercícios")
+            }
             ToolbarItem(placement: .principal) {
                 Picker("Parte do plano", selection: $parte) {
                     ForEach(Parte.allCases) { p in Text(p.nome).tag(p.rawValue) }
