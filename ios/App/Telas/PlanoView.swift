@@ -6,20 +6,26 @@ import SwiftUI
 struct PlanoView: View {
     let conta: ContaStore
     let today: String
-    @AppStorage("anilha.planoParte") private var parte = Parte.fichas.rawValue
+    @AppStorage("anilha.planoParte") private var parte = Parte.semana.rawValue
 
     enum Parte: String, CaseIterable, Identifiable {
-        case fichas, calendario
+        case semana, fichas, calendario
         var id: String { rawValue }
-        var nome: String { self == .fichas ? "Fichas" : "Calendário" }
+        var nome: String {
+            switch self {
+            case .semana: "Semana"
+            case .fichas: "Fichas"
+            case .calendario: "Mês"
+            }
+        }
     }
 
     var body: some View {
         Group {
-            if parte == Parte.calendario.rawValue {
-                CalendarioView(conta: conta, today: today)
-            } else {
-                FichasView(conta: conta)
+            switch Parte(rawValue: parte) ?? .semana {
+            case .semana: SemanaPlanoView(conta: conta, today: today)
+            case .fichas: FichasView(conta: conta)
+            case .calendario: CalendarioView(conta: conta, today: today)
             }
         }
         .toolbar {
@@ -28,7 +34,7 @@ struct PlanoView: View {
                     ForEach(Parte.allCases) { p in Text(p.nome).tag(p.rawValue) }
                 }
                 .pickerStyle(.segmented)
-                .frame(maxWidth: 260)
+                .frame(maxWidth: 300)
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Link(destination: Site.url("/plano")) {

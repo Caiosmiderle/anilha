@@ -162,7 +162,7 @@ final class AnalysisTests: XCTestCase {
         try cache.gravar([PushChange("sets", row.changing(["load_kg": .number(25), "completed_at": .number(1000)]))], dono: "a")
         XCTAssertEqual(try cache.metadados("a")["analysis-plan:set"]?.number("load_kg"), 20)
         XCTAssertEqual(try cache.metadados("a")["analysis:session"], pending)
-        XCTAssertThrowsError(try cache.gravar([PushChange("sets", row.changing(["id": .string("rollback")])), PushChange("profiles", row)], dono: "a", metadata: ["analysis:rollback": pending]))
+        XCTAssertThrowsError(try cache.gravar([PushChange("sets", row.changing(["id": .string("rollback")])), PushChange("messages", row)], dono: "a", metadata: ["analysis:rollback": pending]))
         XCTAssertNil(try cache.metadados("a")["analysis-plan:rollback"])
         XCTAssertNil(try cache.metadados("a")["analysis:rollback"])
     }

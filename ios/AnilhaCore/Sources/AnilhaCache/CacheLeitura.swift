@@ -166,7 +166,8 @@ public final class CacheLeitura {
             let exercises = beforeData.exercises(catalog: catalog)
             var written: [PushChange] = []
             for change in changes {
-                guard ["sessions", "session_items", "sets", "records", "routine_items", "body_logs"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
+                // profiles: o modo retorno muda no iPhone, como no site (o resto do perfil fica igual).
+                guard ["sessions", "session_items", "sets", "records", "routine_items", "body_logs", "profiles"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
                 if change.table == "body_logs" {
                     _ = try History.bodyChange(change.row, consent: metadados(dono)["consent"], today: LocalDay.today())
                 }

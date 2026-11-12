@@ -52,8 +52,15 @@ struct VoceView: View {
                 }
             }
 
+            Section("Seu treino") {
+                NavigationLink {
+                    PerfilTreinoView(conta: conta, today: LocalDay.today())
+                } label: {
+                    Label("Perfil de treino", systemImage: "figure.strengthtraining.traditional")
+                }
+            }
+
             Section {
-                linkSite("Perfil de treino", icone: "figure.strengthtraining.traditional", caminho: "/voce/treino")
                 linkSite("Conexão com o CRUNNING", icone: "link", caminho: "/voce/conexoes/crunning")
                 linkSite("Amigos e grupos", icone: "person.2", caminho: "/amigos")
                 linkSite("Mensagens", icone: "bubble.left.and.bubble.right", caminho: "/mensagens")

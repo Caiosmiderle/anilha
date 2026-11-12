@@ -56,9 +56,20 @@ final class OutboxTests: XCTestCase {
         try cache.confirmar(second, dono: "a", rejeitadas: [])
         XCTAssertEqual(try cache.pendentes("a"), 0)
         // Validation failure rolls back both row and queue, including earlier changes in this transaction.
-        XCTAssertThrowsError(try cache.gravar([PushChange("sessions", row("rollback")), PushChange("profiles", row("bad"))], dono: "a", now: 102))
+        XCTAssertThrowsError(try cache.gravar([PushChange("sessions", row("rollback")), PushChange("messages", row("bad"))], dono: "a", now: 102))
         XCTAssertFalse(try cache.ler("a").active("sessions").contains { $0.id == "rollback" })
         XCTAssertEqual(try cache.pendentes("a"), 0)
+    }
+    @MainActor func testReturnModeWritesTheProfileThroughTheQueue() async throws {
+        let cache = try CacheLeitura(inMemory: true)
+        let profile = ReadRow(fields: ["id": .string("a"), "deleted": .bool(false), "return_mode": .string("auto"),
+                                       "onboarding": .object(["goal": .string("hipertrofia")])])
+        try cache.gravar([PushChange("profiles", profile.changing(["return_mode": .string("on"), "return_started_on": .string("2026-11-12")]))], dono: "a", now: 300)
+        let saved = try XCTUnwrap(cache.ler("a").active("profiles").first)
+        XCTAssertEqual(saved.string("return_mode"), "on")
+        // The rest of the profile goes back untouched.
+        XCTAssertEqual(saved.fields["onboarding"], .object(["goal": .string("hipertrofia")]))
+        XCTAssertEqual(try cache.lote("a").changes.first?.table, "profiles")
     }
     @MainActor func testPullConflictTieTombstoneHorizonDraftAndRejection() async throws {
         let cache = try CacheLeitura(inMemory: true)
