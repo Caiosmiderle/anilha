@@ -4,6 +4,8 @@ Atualizado em 11/11/2026 pelo Claude, a partir do roadmap do Codex e das decisõ
 
 ## Decisões do Caio
 
+- **Chat nativo, decidido em 12/11/2026, iOS 0.12.0:** Hoje abre a conversa SwiftUI do Waltér usando a função `agente` existente e ferramentas locais. Edição completa de ficha e substitutos nesta rodada; geração de plano e ficha nova ainda usam o site, com aviso explícito. Antes/depois, confirmação e desfazer pela mesma fila de sync. Conversa somente no aparelho, dados de saúde condicionados ao consentimento. Compilação e captura Apple pendentes nesta entrega local.
+
 - **Quatro abas no iPhone, decidido em 12/11/2026:** Hoje, Plano (fichas, plano da semana e calendário), Histórico e Você. Histórico reúne Treinos, Progresso, Semanas e Corpo, na mesma ordem do PWA. Codex entrega `HistoricoView`; Claude integra as abas e implementa Hoje e Você depois, sem antecipar a mudança da `TabView` nesta entrega.
 - **App híbrido, decidido em 12/11/2026. No iPhone, nesta ordem**, calendário, chat do Waltér, criar e editar ficha, plano da semana, perfil de treino, detalhe do exercício com mídia.
 - **Só no site, com "Abrir no site" no iPhone**, amigos, grupos, mensagens, privacidade e seus dados, convites, créditos, admin, onboarding.

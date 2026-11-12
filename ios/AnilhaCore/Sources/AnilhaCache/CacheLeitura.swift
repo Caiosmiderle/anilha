@@ -287,6 +287,54 @@ public final class CacheLeitura {
         do { try porMeta(row, nome: "review:\(routineID)", dono: dono); try contexto.save() }
         catch { contexto.rollback(); throw error }
     }
+    public func guardarPropostaChat(_ proposal: ReadRow, id: String, routineID: String, dono: String, today: String) throws {
+        let data = try ler(dono)
+        let current = try AgentChat.context(data, consent: metadados(dono)["consent"], today: today)
+        guard current.array("fichas").first(where: { $0.id == routineID }) == proposal.object("before") else { throw WorkoutAnalysis.Failure.conflict }
+        let binding = try AgentChat.binding(data, routineID: routineID, today: today)
+        do {
+            try porMeta(ReadRow(fields: ["status": .string("proposed"), "proposal": .object(proposal.fields), "binding": .object(binding.fields)]), nome: "chat:\(id)", dono: dono)
+            try contexto.save()
+        } catch { contexto.rollback(); throw error }
+    }
+    public func limparChat(_ dono: String) throws {
+        do {
+            for entry in try contexto.fetch(FetchDescriptor<AnaliseLocal>(predicate: #Predicate { $0.dono == dono })) where entry.nome.hasPrefix("chat:") { contexto.delete(entry) }
+            try contexto.save()
+        } catch { contexto.rollback(); throw error }
+    }
+    public func decidirChat(_ id: String, action: String, dono: String, catalog: [ReadRow], today: String) throws {
+        let key = "chat:\(id)", data = try ler(dono)
+        guard let saved = try metadados(dono)[key] else { throw WorkoutAnalysis.Failure.conflict }
+        if action == "undo" {
+            guard saved.string("status") == "saved", case .array(let before) = saved.fields["undoBefore"] else { throw WorkoutAnalysis.Failure.conflict }
+            let after = saved.array("undoAfter")
+            guard !after.isEmpty, after.count == before.count else { throw WorkoutAnalysis.Failure.conflict }
+            var changes: [PushChange] = []
+            for (i, entry) in after.enumerated() {
+                let row = entry.object("row"), table = entry.string("table") ?? ""
+                guard let current = data.tables[table]?.first(where: { $0.id == row.id }), stable(.object(current.fields)) == stable(.object(row.fields)) else { throw WorkoutAnalysis.Failure.conflict }
+                let old: ReadRow
+                if case .object(let fields) = before[i] { old = ReadRow(fields: fields) } else { old = row.changing(["deleted": .bool(true)]) }
+                changes.append(PushChange(table, old))
+            }
+            try gravar(changes, dono: dono, metadata: [key: saved.changing(["status": .string("undone")])])
+            return
+        }
+        guard saved.string("status") == "proposed" else { throw WorkoutAnalysis.Failure.conflict }
+        if action == "refuse" {
+            do { try porMeta(saved.changing(["status": .string("refused")]), nome: key, dono: dono); try contexto.save() }
+            catch { contexto.rollback(); throw error }
+            return
+        }
+        guard action == "apply" else { throw WorkoutAnalysis.Failure.invalidAdjustment }
+        let routineID = saved.object("proposal").object("before").id
+        guard stable(.object(try AgentChat.binding(data, routineID: routineID, today: today).fields)) == stable(saved.fields["binding"] ?? .null) else { throw WorkoutAnalysis.Failure.conflict }
+        let changes = try AgentChat.changes(saved.object("proposal"), binding: saved.object("binding"), catalog: catalog)
+        guard !changes.isEmpty else { throw WorkoutAnalysis.Failure.invalidAdjustment }
+        let before = changes.map { c in data.tables[c.table]?.first { $0.id == c.row.id }.map { JSONValue.object($0.fields) } ?? .null }
+        try gravar(changes, dono: dono, catalog: catalog, metadata: [key: saved.changing(["status": .string("saved"), "undoBefore": .array(before)])])
+    }
     public func decidirRevisao(routineID: String, index: Int, action: String, dono: String, catalog: [ReadRow], today: String) throws {
         let data = try ler(dono), key = "review:\(routineID)"
         func content(_ row: ReadRow) -> JSONValue {
@@ -337,6 +385,7 @@ public final class CacheLeitura {
         do {
             try porMeta(row, nome: "consent", dono: dono)
             if row.object("saude").bool("granted") == false {
+                for entry in try contexto.fetch(FetchDescriptor<AnaliseLocal>(predicate: #Predicate { $0.dono == dono })) where entry.nome.hasPrefix("chat:") { contexto.delete(entry) }
                 var removed: Set<String> = []
                 for entry in try contexto.fetch(FetchDescriptor<LinhaSync>(predicate: #Predicate { $0.dono == dono })) {
                     let value = try JSONDecoder().decode(ReadRow.self, from: entry.dados)

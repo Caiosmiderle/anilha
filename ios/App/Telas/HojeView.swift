@@ -100,13 +100,15 @@ struct HojeView: View {
                     PreviaFicha(conta: conta, ficha: ficha, titulo: ficha?.string("name") ?? nomeSplit(dia?.split_key))
                 }
                 .entradaAnilha(1)
-                Link(destination: Site.url("/plano/pedir")) {
+                NavigationLink {
+                    ChatWalterView(conta: conta)
+                } label: {
                     Label("Falar com o Waltér", systemImage: "bubble.left.and.text.bubble.right")
                         .font(.headline)
                         .frame(maxWidth: .infinity, minHeight: 50)
                 }
                 .buttonStyle(.glass)
-                .accessibilityHint("Abre a conversa com o Waltér no site, até o chat chegar ao app")
+                .accessibilityHint("Abre a conversa com o Waltér neste iPhone")
                 .entradaAnilha(2)
                 NavigationLink {
                     CalendarioView(conta: conta, today: today)
