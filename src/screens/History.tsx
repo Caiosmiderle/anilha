@@ -36,6 +36,7 @@ import { fmtDuration, fmtLoad, fmtNum, plural } from '../engine/format';
 import { CARDIO_ICON } from '../ui/cardioIcons';
 import { buildExerciseLogs } from '../engine/history';
 import { planForDay } from '../engine/recommend';
+import { useDuplicateRuns } from './DuplicateRuns';
 import { RETURN_VOLUME_CAP } from '../engine/returnMode';
 import { SPLITS, VOLUME_GROUP_LABEL } from '../engine/taxonomy';
 import type { ExerciseRow, RunRow, SessionRow, Unit, VolumeGroup } from '../engine/types';
@@ -89,7 +90,10 @@ export default function History() {
         onChange={(t) => setParams({ aba: t }, { replace: true })}
       />
       {tab === 'treinos' ? (
-        <Workouts />
+        <>
+          <DuplicateNotice />
+          <Workouts />
+        </>
       ) : tab === 'progresso' ? (
         <Progress />
       ) : tab === 'corpo' ? (
@@ -100,6 +104,26 @@ export default function History() {
         <Weeks />
       )}
     </>
+  );
+}
+
+/** Aviso só quando a mesma corrida chegou pelo CRUNNING e por arquivo importado. */
+function DuplicateNotice() {
+  const pairs = useDuplicateRuns();
+  if (!pairs?.length) return null;
+  return (
+    <Widget headless className="dup-notice">
+      <div className="dup-toast-row">
+        <span>
+          {pairs.length === 1
+            ? '1 corrida parece repetida (CRUNNING e importação).'
+            : `${pairs.length} corridas parecem repetidas (CRUNNING e importação).`}
+        </span>
+        <Link to="/historico/repetidas" className="hb-btn hb-btn-outline">
+          Revisar
+        </Link>
+      </div>
+    </Widget>
   );
 }
 

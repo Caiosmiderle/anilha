@@ -2764,3 +2764,15 @@ body {
 .calendar-agenda > p { margin: 12px 20px 16px; }
 
 .focus-hint { max-width: 34ch; font-size: 0.95rem; line-height: 1.45; color: var(--hb-text-muted, inherit); }
+
+/* Corridas repetidas (juntar com cópia e desfazer) */
+.dup-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.dup-run { display: flex; flex-direction: column; gap: 2px; padding: var(--space-3); border: 1px solid var(--line); border-radius: 12px; }
+.dup-run-label { font-size: 0.75rem; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.dup-run-meta { font-size: 0.8125rem; color: var(--ink-muted); }
+.dup-note { margin: var(--space-2) 0 0; font-size: 0.8125rem; color: var(--ink-muted); }
+.dup-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.dup-toast-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.dup-merged { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.dup-merged li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+@media (max-width: 380px) { .dup-pair { grid-template-columns: 1fr; } }
