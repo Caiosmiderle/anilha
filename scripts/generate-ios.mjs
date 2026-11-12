@@ -43,6 +43,19 @@ try {
   await sessionBundle.close();
 }
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
+const calendarBundle = await rolldown({
+  input: resolve(root, 'scripts/ios-calendar-source.ts'),
+  platform: 'node',
+});
+let calendar;
+try {
+  const { output } = await calendarBundle.generate({ format: 'esm' });
+  calendar = (
+    await import(`data:text/javascript;base64,${Buffer.from(output[0].code).toString('base64')}`)
+  ).calendarArtifacts();
+} finally {
+  await calendarBundle.close();
+}
 const analysisBundle = await rolldown({
   input: resolve(root, 'scripts/ios-analysis-source.ts'),
   platform: 'node',
@@ -68,6 +81,7 @@ const publicValue = (key) => {
   return JSON.stringify(value);
 };
 const outputs = {
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/calendar.json': json(calendar),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/analysis.json': json(analysis),
   'ios/AnilhaCore/Sources/AnilhaCore/Resources/analysis-rules.json': json(analysis.riskRules),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/training.json': json(training),

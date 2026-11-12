@@ -77,11 +77,14 @@ describe('fixture pública da apresentação SwiftUI', () => {
       'blackjack',
       'poker',
       'proxima',
+      'calendario',
+      'calendario-dia',
     ]) {
       expect(screens).toContain(screen);
     }
     expect(capture).toContain('for appearance in light dark');
-    expect(capture).toContain('for size in large accessibility3');
+    expect(capture).toContain('read -r -a sizes <<< "${CAPTURA_TAMANHOS:-large}"');
+    expect(capture).toContain('for size in "${sizes[@]}"');
   });
   it('mantém a cor das ações preenchidas no estilo compartilhado', () => {
     const app = readFileSync(new URL('../../../ios/App/AnilhaApp.swift', import.meta.url), 'utf8');

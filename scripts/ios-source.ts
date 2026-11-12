@@ -24,6 +24,7 @@ export function iosArtifacts() {
     id: s.key,
     name: s.label,
     legs: splitHasLegs(s.key),
+    pastel: s.pastel,
   }));
   const plans = [
     { id: 'old', active_from: '2026-10-01', updated_at: 10 },

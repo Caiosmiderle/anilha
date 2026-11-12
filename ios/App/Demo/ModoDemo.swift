@@ -36,6 +36,8 @@ enum ModoDemo {
             {"id":"demo-ril","routine_id":"demo-legs","exercise_id":"agachamento-livre","position":0,"sets":3,"target_min":8,"target_max":12,"warmup_sets":0,"rest_sec":90}
           ],
           "plans":[{"id":"demo-plan","active_from":"2026-11-09","updated_at":1,"days":[{"weekday":4,"kind":"gym","split_key":"peito_triceps","time":"18:30"}],"rules":{"no_legs_before_run":false},"params":{"focus":"equilibrado"}}],
+          "runs":[{"id":"demo-run","local_date":"2026-11-12","source":"crunning","run_type":"leve","distance_km":5,"duration_sec":1800}],
+          "external_plan_items":[{"id":"demo-run-plan","source":"crunning","kind":"corrida","local_date":"2026-11-14","status":"planejada","name":"Longão","run_type":"longo","distance_m":12000,"important":true}],
           "sessions":[
             {"id":"demo-prior","routine_id":"demo-routine","title":"Peito e tríceps","status":"done","detail":"full","local_date":"2026-11-09","started_at":1794243600000,"ended_at":1794246000000,"split_key":"peito_triceps"},
             {"id":"demo-done","routine_id":"demo-routine","title":"Peito e tríceps","status":"done","detail":"full","local_date":"2026-11-12","started_at":1794502800000,"ended_at":1794505200000,"split_key":"peito_triceps"},
@@ -141,6 +143,8 @@ struct DemoView: View {
             List { CartaoAnaliseTreino(conta: conta, sessionID: "demo-done", mostrarEvolucao: false) }
                 .scrollContentBackground(.hidden).background { FundoAnilha() }.navigationTitle("Treino concluído")
         case "historico": HistoricoView(conta: conta)
+        case "calendario": CalendarioView(conta: conta, today: "2026-11-12", diaInicial: "2026-11-01")
+        case "calendario-dia": CalendarioView(conta: conta, today: "2026-11-12")
         default:
             ContentUnavailableView("Tela de demonstração inválida", systemImage: "exclamationmark.triangle")
                 .task { fatalError("Argumento -demo inválido") }

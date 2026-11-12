@@ -119,6 +119,7 @@ public struct SplitInfo: Codable, Sendable {
     public let id: String
     public let name: String
     public let legs: Bool
+    public let pastel: String
 }
 
 public enum Planning {

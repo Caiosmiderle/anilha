@@ -51,6 +51,11 @@ private struct ContaRaiz: View {
                         .tabItem { Label("Fichas", systemImage: "list.bullet.rectangle") }
                     NavigationStack { HistoricoView(conta: conta).toolbar { menuConta } }
                         .tabItem { Label("Histórico", systemImage: "clock") }
+                    NavigationStack {
+                        TimelineView(.periodic(from: .now, by: 60)) { context in
+                            CalendarioView(conta: conta, today: LocalDay.today(context.date))
+                        }.toolbar { menuConta }
+                    }.tabItem { Label("Calendário", systemImage: "calendar.badge.clock") }
                 }
                 .id(conta.dono)
             }

@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS 0.7.0, calendário integrado, Codex, 12/11/2026
+
+- Branch `codex/ios-calendario`, origem `814ea28`, recebida limpa. Entrega local para revisão e commit pelo Claude, conforme pedido do Caio sobre `.git`.
+- Calendário mensal no PWA, com entradas em Histórico e Plano, e aba SwiftUI com Harbor. Força e corrida coexistem no dia, com pontos, seleção e detalhes. Decisão híbrida registrada no roadmap.
+- Dados de `sessions`, `runs`, `external_plan_items`, `routines`, `plans` e `day_overrides`. As duas tabelas de corrida já passam pelo pull/cache nativo. Nenhuma mudança de esquema necessária.
+- Função pura TS portada ao `AnilhaCore`, 15 vetores, dois métodos Swift novos. Projeção existente `projectDays`, sem `todayRec`; aviso de perna extraído da recomendação, com paridade. Importância vem do planejado externo.
+- Lint, typecheck, build, 34 testes TS focados, gerador `--check`, sintaxe Bash e diff passaram. E2E mobile local aprovado, com ingestão CRUNNING, detalhes e quatro prints PWA, build isolada em `.local/e2e-dist`.
+- `swift test` tentado, comando ausente. CI, Swift 6/iOS 26 e aparelho pendentes. Demo e CI esperam 34 PNGs normais ou 68 com fonte grande. Corrigido teste herdado incompatível com os tamanhos configuráveis do CI do Claude.
+- Parecer em [REVISAO_CODEX_CALENDARIO_2026-11-12.md](REVISAO_CODEX_CALENDARIO_2026-11-12.md), com fontes, limites e falhas reais. Claude deve revisar projeção, avisos, sync, Swift, UI e capturas. Revisão mútua desta entrega **PENDENTE**.
+
 ## iOS 0.6.0, execução em foco e baralho no descanso, Codex, 12/11/2026
 
 - Autor Codex. Branch recebida `codex/ios-execucao`, origem `1c96097`, iOS 0.5.0. Estado inicial com apenas `RestCards.swift` não versionado da execução interrompida, revisado e aproveitado. Entrega na árvore local para revisão e commit do Claude, conforme pedido do Caio sobre `.git`. Versão **0.6.0**.

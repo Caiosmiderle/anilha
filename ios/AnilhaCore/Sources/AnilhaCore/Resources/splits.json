@@ -2,111 +2,133 @@
   {
     "id": "costas_biceps",
     "name": "Costas e bíceps",
-    "legs": false
+    "legs": false,
+    "pastel": "sky"
   },
   {
     "id": "peito_triceps",
     "name": "Peito e tríceps",
-    "legs": false
+    "legs": false,
+    "pastel": "peach"
   },
   {
     "id": "perna",
     "name": "Perna",
-    "legs": true
+    "legs": true,
+    "pastel": "lime"
   },
   {
     "id": "ombro_abdomen",
     "name": "Ombro e abdômen",
-    "legs": false
+    "legs": false,
+    "pastel": "lavender"
   },
   {
     "id": "corpo_inteiro_a",
     "name": "Corpo inteiro A",
-    "legs": true
+    "legs": true,
+    "pastel": "neutral"
   },
   {
     "id": "corpo_inteiro_b",
     "name": "Corpo inteiro B",
-    "legs": true
+    "legs": true,
+    "pastel": "neutral"
   },
   {
     "id": "superior_a",
     "name": "Superior A",
-    "legs": false
+    "legs": false,
+    "pastel": "sky"
   },
   {
     "id": "superior_b",
     "name": "Superior B",
-    "legs": false
+    "legs": false,
+    "pastel": "sky"
   },
   {
     "id": "anterior",
     "name": "Anterior de coxa",
-    "legs": true
+    "legs": true,
+    "pastel": "lime"
   },
   {
     "id": "posterior",
     "name": "Posterior de coxa",
-    "legs": true
+    "legs": true,
+    "pastel": "lime"
   },
   {
     "id": "gluteos",
     "name": "Glúteos",
-    "legs": true
+    "legs": true,
+    "pastel": "lime"
   },
   {
     "id": "posterior_gluteos",
     "name": "Posterior e glúteos",
-    "legs": true
+    "legs": true,
+    "pastel": "lime"
   },
   {
     "id": "superiores",
     "name": "Parte de cima",
-    "legs": false
+    "legs": false,
+    "pastel": "sky"
   },
   {
     "id": "superiores_b",
     "name": "Parte de cima B",
-    "legs": false
+    "legs": false,
+    "pastel": "sky"
   },
   {
     "id": "inferior_a",
     "name": "Inferior A",
-    "legs": true
+    "legs": true,
+    "pastel": "lime"
   },
   {
     "id": "inferior_b",
     "name": "Inferior B",
-    "legs": true
+    "legs": true,
+    "pastel": "lime"
   },
   {
     "id": "empurrar",
     "name": "Empurrar",
-    "legs": false
+    "legs": false,
+    "pastel": "peach"
   },
   {
     "id": "puxar",
     "name": "Puxar",
-    "legs": false
+    "legs": false,
+    "pastel": "sky"
   },
   {
     "id": "peito",
     "name": "Peito",
-    "legs": false
+    "legs": false,
+    "pastel": "peach"
   },
   {
     "id": "costas",
     "name": "Costas",
-    "legs": false
+    "legs": false,
+    "pastel": "sky"
   },
   {
     "id": "bracos",
     "name": "Braços",
-    "legs": false
+    "legs": false,
+    "pastel": "pink"
   },
   {
     "id": "livre",
     "name": "Treino livre",
-    "legs": false
+    "legs": false,
+    "pastel": "neutral"
   }
 ]

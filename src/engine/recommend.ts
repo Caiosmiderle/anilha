@@ -139,6 +139,36 @@ export function runLegLoad(
 
 const HEAVY_RUN_LOAD = 8;
 
+/** The existing eve-of-run rule, also used to annotate the calendar's projection. */
+export function legsBeforeRunAlert(
+  input: Pick<RecommendInput, 'today' | 'plan' | 'overrides' | 'externalPlans'>,
+  split: SplitKey,
+): Alert | null {
+  if (!splitHasLegs(split) || !(input.plan?.rules.no_legs_before_run ?? true)) return null;
+  const tomorrow = addDays(input.today, 1);
+  const override = input.overrides?.find((o) => o.local_date === tomorrow);
+  const external = input.externalPlans?.find(
+    (p) =>
+      !p.deleted &&
+      p.source === 'crunning' &&
+      p.kind === 'corrida' &&
+      p.local_date === tomorrow &&
+      p.status === 'planejada' &&
+      p.important,
+  );
+  const run =
+    !!external ||
+    override?.action === 'run' ||
+    (planDayFor(input.plan, tomorrow)?.kind === 'run' && override?.action !== 'rest');
+  if (!run) return null;
+  return {
+    kind: 'legs_before_run',
+    text: external
+      ? `Corrida planejada no CRUNNING: ${external.name ?? 'corrida importante'}, amanhã (${tomorrow}). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino.`
+      : 'Corrida amanhã cedo, então perna fica para outro dia.',
+  };
+}
+
 function plannedCount(plan: PlanRow | null, split: SplitKey): number {
   if (!plan) return 1;
   const rotation = plan.rules.rotation;
@@ -354,7 +384,6 @@ export function recommendDay(input: RecommendInput): DayRecommendation {
   const plannedToday = planDayFor(plan, today);
   const tomorrow = addDays(today, 1);
   const overrideToday = overrides.find((o) => o.local_date === today) ?? null;
-  const overrideTomorrow = overrides.find((o) => o.local_date === tomorrow) ?? null;
   const externalRun = input.externalPlans?.find(
     (p) =>
       !p.deleted &&
@@ -364,11 +393,6 @@ export function recommendDay(input: RecommendInput): DayRecommendation {
       p.status === 'planejada' &&
       p.important,
   );
-  const tomorrowRun =
-    !!externalRun ||
-    overrideTomorrow?.action === 'run' ||
-    (planDayFor(plan, tomorrow)?.kind === 'run' && overrideTomorrow?.action !== 'rest');
-  const noLegsBeforeRun = plan?.rules.no_legs_before_run ?? true;
 
   const alerts = fatigueAlerts({ today, plan, sessions, runs });
   const loadAlerts = alerts.filter((a) => a.kind !== 'overlap');
@@ -492,14 +516,12 @@ export function recommendDay(input: RecommendInput): DayRecommendation {
     ];
   }
 
-  const legsBlockedByRun = tomorrowRun && noLegsBeforeRun;
   const heavyRun = heavyRunYesterday(today, runs);
   const blockedReasons: string[] = [];
   let filtered = candidates.filter((split) => {
-    if (legsBlockedByRun && splitHasLegs(split)) {
-      const reason = externalRun
-        ? `Corrida planejada no CRUNNING: ${externalRun.name ?? 'corrida importante'}, amanhã (${tomorrow}). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino.`
-        : 'Corrida amanhã cedo, então perna fica para outro dia.';
+    const legAlert = legsBeforeRunAlert(input, split);
+    if (legAlert) {
+      const reason = legAlert.text;
       blockedReasons.push(reason);
       if (externalRun && !alerts.some((a) => a.kind === 'legs_before_run'))
         alerts.push({ kind: 'legs_before_run', text: reason });

@@ -44,6 +44,9 @@ export default function Plan() {
       <header className="page-head">
         <div>
           <h1 className="page-title">Plano</h1>
+          <Link to="/historico/calendario" className="hb-btn-link">
+            Calendário
+          </Link>
           <p className="page-sub">
             {plan
               ? `Em vigor desde ${formatDDMM(plan.active_from)}`

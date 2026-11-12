@@ -72,6 +72,9 @@ export default function History() {
         <div>
           <h1 className="page-title">Histórico</h1>
           <p className="page-sub">O que foi feito, o que evoluiu e como andam as semanas.</p>
+          <Link to="/historico/calendario" className="hb-btn-link">
+            Calendário
+          </Link>
         </div>
       </header>
       <Segmented<Tab>

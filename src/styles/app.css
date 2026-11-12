@@ -2753,3 +2753,12 @@ body {
   color: var(--ink-muted-aa);
   overflow-wrap: anywhere;
 }
+/* Shared month layout with independent marks for both kinds of training. */
+.month-cal-day.calendar-cell { width: 100%; min-height: 48px; height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.calendar-dots { display: flex; gap: 4px; height: 9px; align-items: center; }
+.calendar-dot-strength, .calendar-dot-run { display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+.calendar-dot-strength { background: var(--brand-700); }
+.calendar-dot-run { background: var(--accent-orange); }
+.calendar-key { margin-inline-start: 8px; }
+.calendar-agenda > .section-title { padding: 16px 20px 0; }
+.calendar-agenda > p { margin: 12px 20px 16px; }

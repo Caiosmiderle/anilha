@@ -1,0 +1,6982 @@
+[
+  {
+    "name": "véspera importante",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-12",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": [
+          "Corrida planejada no CRUNNING: Longão, amanhã (2026-11-13). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "força e corrida no mesmo dia",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "session",
+          "local_date": "2026-11-12",
+          "started_at": 10,
+          "ended_at": 20,
+          "status": "done",
+          "split_key": "peito_triceps",
+          "title": "Peito e tríceps",
+          "routine_id": null,
+          "source": "summary",
+          "note": null,
+          "detail": "summary",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": []
+        }
+      ],
+      "runs": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "run",
+          "local_date": "2026-11-12",
+          "distance_km": 5,
+          "duration_sec": 1800,
+          "run_type": "leve",
+          "rpe": null,
+          "note": null,
+          "source": "crunning",
+          "external_id": "crunning:synthetic"
+        }
+      ],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": "session",
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "session:session",
+            "kind": "strength",
+            "status": "done",
+            "title": "Peito e tríceps"
+          },
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": "run",
+            "externalID": null,
+            "runType": "leve",
+            "distanceKm": 5,
+            "important": false,
+            "id": "run:run",
+            "kind": "run",
+            "status": "done",
+            "title": "Corrida"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "várias sessões, ordem, ativo e apagado",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "session",
+          "local_date": "2026-11-12",
+          "started_at": 10,
+          "ended_at": 20,
+          "status": "done",
+          "split_key": "peito_triceps",
+          "title": "Peito e tríceps",
+          "routine_id": null,
+          "source": "summary",
+          "note": null,
+          "detail": "summary",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": []
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "second",
+          "local_date": "2026-11-12",
+          "started_at": 30,
+          "ended_at": 20,
+          "status": "done",
+          "split_key": "peito_triceps",
+          "title": "Peito e tríceps",
+          "routine_id": null,
+          "source": "summary",
+          "note": null,
+          "detail": "summary",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": []
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "active",
+          "local_date": "2026-11-12",
+          "started_at": 10,
+          "ended_at": 20,
+          "status": "active",
+          "split_key": "peito_triceps",
+          "title": "Peito e tríceps",
+          "routine_id": null,
+          "source": "summary",
+          "note": null,
+          "detail": "summary",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": []
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": true,
+          "id": "deleted",
+          "local_date": "2026-11-12",
+          "started_at": 10,
+          "ended_at": 20,
+          "status": "done",
+          "split_key": "peito_triceps",
+          "title": "Peito e tríceps",
+          "routine_id": null,
+          "source": "summary",
+          "note": null,
+          "detail": "summary",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": []
+        }
+      ],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": "second",
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "session:second",
+            "kind": "strength",
+            "status": "done",
+            "title": "Peito e tríceps"
+          },
+          {
+            "split": "peito_triceps",
+            "sessionID": "session",
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "session:session",
+            "kind": "strength",
+            "status": "done",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "sem plano",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [],
+      "routines": [],
+      "sessions": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "session",
+          "local_date": "2026-11-12",
+          "started_at": 10,
+          "ended_at": 20,
+          "status": "done",
+          "split_key": "peito_triceps",
+          "title": "Peito e tríceps",
+          "routine_id": null,
+          "source": "summary",
+          "note": null,
+          "detail": "summary",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": []
+        }
+      ],
+      "runs": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "run",
+          "local_date": "2026-11-12",
+          "distance_km": 5,
+          "duration_sec": 1800,
+          "run_type": "leve",
+          "rpe": null,
+          "note": null,
+          "source": "crunning",
+          "external_id": "crunning:synthetic"
+        }
+      ],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": "session",
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "session:session",
+            "kind": "strength",
+            "status": "done",
+            "title": "Peito e tríceps"
+          },
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": "run",
+            "externalID": null,
+            "runType": "leve",
+            "distanceKm": 5,
+            "important": false,
+            "id": "run:run",
+            "kind": "run",
+            "status": "done",
+            "title": "Corrida"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "outro cardio e lápides",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": true,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "run",
+          "local_date": "2026-11-12",
+          "distance_km": 5,
+          "duration_sec": 1800,
+          "run_type": "leve",
+          "rpe": null,
+          "note": null,
+          "source": "crunning",
+          "external_id": "crunning:synthetic",
+          "activity": "bike"
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": true,
+          "id": "deleted",
+          "local_date": "2026-11-12",
+          "distance_km": 5,
+          "duration_sec": 1800,
+          "run_type": "leve",
+          "rpe": null,
+          "note": null,
+          "source": "crunning",
+          "external_id": "crunning:synthetic"
+        }
+      ],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": true,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "distância ausente, zero e status",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "run",
+          "local_date": "2026-11-12",
+          "distance_km": null,
+          "duration_sec": 1800,
+          "run_type": "leve",
+          "rpe": null,
+          "note": null,
+          "source": "crunning",
+          "external_id": "crunning:synthetic"
+        }
+      ],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 0,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "missed",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": null,
+          "duration_sec": null,
+          "important": true,
+          "status": "perdida"
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "done",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "feita"
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "invalid",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": null,
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": "run",
+            "externalID": null,
+            "runType": "leve",
+            "distanceKm": null,
+            "important": false,
+            "id": "run:run",
+            "kind": "run",
+            "status": "done",
+            "title": "Corrida"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 0,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "missed",
+            "runType": "longo",
+            "distanceKm": null,
+            "important": true,
+            "id": "external:missed",
+            "kind": "run",
+            "status": "missed",
+            "title": "Longão"
+          },
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "regra desligada",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": false,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-12",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "corrida sem importância",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": false,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-12",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": false,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "troca para descanso",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "override",
+          "local_date": "2026-11-12",
+          "action": "rest",
+          "value": null
+        }
+      ]
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "plano fixo e corrida local",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": "perna",
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "run",
+              "split_key": null,
+              "run_type": "leve",
+              "time": "06:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-12",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": [
+          "Corrida amanhã cedo, então perna fica para outro dia."
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": [
+          "Corrida amanhã cedo, então perna fica para outro dia."
+        ]
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": [
+          "Corrida amanhã cedo, então perna fica para outro dia."
+        ]
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "mês seguinte",
+    "input": {
+      "month": "2026-12",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-12-01",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-01",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-02",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-02",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-03",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-03",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-04",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-04",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-07",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-07",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-08",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-08",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-09",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-09",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-10",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-10",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-11",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-11",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-12",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-13",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-14",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-14",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-15",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-15",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-16",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-17",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-18",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-19",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-20",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-21",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-21",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-22",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-22",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-23",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-24",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-25",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-26",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-27",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-28",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-28",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-29",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-29",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-30",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-12-31",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-12-31",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "mês passado",
+    "input": {
+      "month": "2026-10",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "session",
+          "local_date": "2026-10-31",
+          "started_at": 10,
+          "ended_at": 20,
+          "status": "done",
+          "split_key": "peito_triceps",
+          "title": "Peito e tríceps",
+          "routine_id": null,
+          "source": "summary",
+          "note": null,
+          "detail": "summary",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": []
+        }
+      ],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-10-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-12",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-13",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-16",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-17",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-18",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-19",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-20",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-23",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-24",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-25",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-26",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-27",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-30",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-10-31",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": "session",
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "session:session",
+            "kind": "strength",
+            "status": "done",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "fevereiro bissexto",
+    "input": {
+      "month": "2028-02",
+      "today": "2028-02-28",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2028-02-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-12",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-13",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-16",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-17",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-18",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-19",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-20",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-23",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-24",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-25",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-26",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-27",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-28",
+        "today": true,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2028-02-28",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2028-02-29",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2028-02-29",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "ficha do plano e antiga",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "own",
+          "name": "Minha perna",
+          "split_key": "perna",
+          "position": 0,
+          "archived": false,
+          "reason": null,
+          "origin": "pessoa"
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "generated",
+          "name": "Perna do plano",
+          "split_key": "perna",
+          "position": 1,
+          "archived": false,
+          "reason": "5 exercícios, 15 séries de trabalho."
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "archived",
+          "name": "Arquivada",
+          "split_key": "perna",
+          "position": -1,
+          "archived": true,
+          "reason": null
+        }
+      ],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": "generated",
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-12",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna do plano"
+          }
+        ],
+        "warnings": [
+          "Corrida planejada no CRUNNING: Longão, amanhã (2026-11-13). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": "generated",
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna do plano"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": "generated",
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna do plano"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": "generated",
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna do plano"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": "generated",
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna do plano"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  {
+    "name": "mudança de plano e empate",
+    "input": {
+      "month": "2026-11",
+      "today": "2026-11-12",
+      "plans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": true,
+            "rotation": [
+              "perna",
+              "costas_biceps",
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 2,
+          "deleted": false,
+          "id": "next",
+          "active_from": "2026-11-16",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": false,
+            "rotation": [
+              "costas_biceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        },
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 3,
+          "deleted": false,
+          "id": "newest",
+          "active_from": "2026-11-16",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": false,
+            "rotation": [
+              "peito_triceps"
+            ]
+          },
+          "params": null,
+          "reasons": []
+        }
+      ],
+      "routines": [],
+      "sessions": [],
+      "runs": [],
+      "externalPlans": [
+        {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "external",
+          "source": "crunning",
+          "kind": "corrida",
+          "origin_id": "synthetic",
+          "local_date": "2026-11-13",
+          "run_type": "longo",
+          "source_type": null,
+          "name": "Longão",
+          "distance_m": 12000,
+          "duration_sec": null,
+          "important": true,
+          "status": "planejada"
+        }
+      ],
+      "overrides": []
+    },
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-02",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-03",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-04",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-05",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-06",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-07",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-08",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-09",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-10",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-11",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-12",
+        "today": true,
+        "events": [
+          {
+            "split": "perna",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-12",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Perna"
+          }
+        ],
+        "warnings": [
+          "Corrida planejada no CRUNNING: Longão, amanhã (2026-11-13). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "today": false,
+        "events": [
+          {
+            "split": null,
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": "external",
+            "runType": "longo",
+            "distanceKm": 12,
+            "important": true,
+            "id": "external:external",
+            "kind": "run",
+            "status": "planned",
+            "title": "Longão"
+          },
+          {
+            "split": "costas_biceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-13",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Costas e bíceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-14",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-15",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-16",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-16",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-17",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-17",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-18",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-18",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-19",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-19",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-20",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-20",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-21",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-22",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-23",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-23",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-24",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-24",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-25",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-25",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-26",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-26",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-27",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-27",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-28",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-29",
+        "today": false,
+        "events": [],
+        "warnings": []
+      },
+      {
+        "date": "2026-11-30",
+        "today": false,
+        "events": [
+          {
+            "split": "peito_triceps",
+            "sessionID": null,
+            "routineID": null,
+            "runID": null,
+            "externalID": null,
+            "runType": null,
+            "distanceKm": null,
+            "important": false,
+            "id": "strength:2026-11-30",
+            "kind": "strength",
+            "status": "planned",
+            "title": "Peito e tríceps"
+          }
+        ],
+        "warnings": []
+      }
+    ]
+  }
+]

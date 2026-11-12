@@ -51,6 +51,10 @@ const History = lazyScreen(
   () => import('../screens/History'),
   (m) => m.default,
 );
+const Calendar = lazyScreen(
+  () => import('../screens/Calendar'),
+  (m) => m.default,
+);
 const SessionDetail = lazyScreen(
   () => import('../screens/SessionDetail'),
   (m) => m.default,
@@ -409,6 +413,7 @@ const router = createBrowserRouter([
       { path: '/plano/fichas-prontas', element: <ReadyRoutines /> },
       { path: '/plano/pedir', element: <AgentChat /> },
       { path: '/historico', element: <History /> },
+      { path: '/historico/calendario', element: <Calendar /> },
       { path: '/historico/treino/:id', element: <SessionDetail /> },
       { path: '/exercicios', element: <Library /> },
       { path: '/exercicios/:id', element: <ExerciseDetail /> },

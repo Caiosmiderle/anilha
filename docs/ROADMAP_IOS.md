@@ -4,6 +4,8 @@ Atualizado em 11/11/2026 pelo Claude, a partir do roadmap do Codex e das decisõ
 
 ## Decisões do Caio
 
+- **App híbrido, decidido em 12/11/2026. No iPhone, nesta ordem**, calendário, chat do Waltér, criar e editar ficha, plano da semana, perfil de treino, detalhe do exercício com mídia.
+- **Só no site, com "Abrir no site" no iPhone**, amigos, grupos, mensagens, privacidade e seus dados, convites, créditos, admin, onboarding.
 - **Dois apps separados no mesmo iPhone.** O Anilha cuida da musculação. O CRUNNING (`Caiosmiderle/crunning`) cuida da corrida e já envia para o Strava.
 - **Anilha nativo em SwiftUI**, com a identidade do Anilha (marca, paleta, Harbor UI). A referência do CRUNNING é a qualidade da interação: a passagem do treino de hoje para a execução, a clareza da tela durante o treino e a análise depois.
 - **Preservar** conta, histórico, fichas, IDs dos exercícios e regras. O PWA continua funcionando durante a transição. Ampliar o catálogo de máquinas e melhorar a busca e o cadastro de exercícios.
