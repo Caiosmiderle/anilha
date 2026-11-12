@@ -16,7 +16,8 @@ on:
         type: boolean
         default: false
   push:
-    branches: ['claude/ios-*', 'codex/ios-*']
+    # Any Claude or Codex branch (revisao-ficha, memoria-analise and missao did not match ios-*).
+    branches: ['claude/**', 'codex/**']
     paths:
       [
         'ios/**',
