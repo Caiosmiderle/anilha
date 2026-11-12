@@ -196,8 +196,9 @@ struct HojeView: View {
             rotulo += ", " + (e.kind == "strength" ? "força " : "corrida ") + (e.status == "done" ? "feita" : "prevista")
         }
         return VStack(spacing: 6) {
-            marca(forca, cor: Tema.marcaForte, icone: "dumbbell")
-            marca(corrida, cor: Tema.laranja, icone: "figure.run")
+            // Cheio usa o azul de ação (texto branco AA nos dois modos); vazado, o azul forte.
+            marca(forca, cor: Tema.marcaForte, cheio: Tema.acao, icone: "dumbbell")
+            marca(corrida, cor: Tema.laranja, cheio: Tema.laranja, icone: "figure.run")
             Text(String(Int(dia.date.suffix(2)) ?? 0))
                 .font(.caption2.weight(.semibold)).monospacedDigit()
                 .foregroundStyle(dia.today ? Tema.marcaForte : Tema.tinta)
@@ -212,14 +213,14 @@ struct HojeView: View {
         .accessibilityLabel(rotulo + (dia.today ? ", hoje" : ""))
     }
 
-    private func marca(_ eventos: [CalendarEvent], cor: Color, icone: String) -> some View {
+    private func marca(_ eventos: [CalendarEvent], cor: Color, cheio: Color, icone: String) -> some View {
         let feito = eventos.contains { $0.status == "done" }
         return Image(systemName: icone)
             .font(.system(size: 11, weight: .semibold))
             .foregroundStyle(feito ? Tema.sobreMarca : cor)
             .frame(width: 24, height: 24)
             .background {
-                Circle().fill(feito ? cor : Color.clear)
+                Circle().fill(feito ? cheio : Color.clear)
                 Circle().stroke(cor.opacity(eventos.isEmpty ? 0 : 0.8), lineWidth: 1.5)
             }
             .opacity(eventos.isEmpty ? 0.12 : 1)

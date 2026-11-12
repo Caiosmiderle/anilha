@@ -1,11 +1,12 @@
 import Foundation
 
-public enum CardSuit: Int, CaseIterable, Sendable {
+public enum CardSuit: Int, CaseIterable, Sendable, Codable {
     case hearts, diamonds, clubs, spades
     public var name: String { ["copas", "ouros", "paus", "espadas"][rawValue] }
+    public var red: Bool { self == .hearts || self == .diamonds }
 }
 
-public struct PlayingCard: Equatable, Hashable, Sendable, Identifiable {
+public struct PlayingCard: Equatable, Hashable, Sendable, Identifiable, Codable {
     public let rank: Int
     public let suit: CardSuit
     public var id: Int { suit.rawValue * 13 + rank - 1 }
@@ -13,6 +14,17 @@ public struct PlayingCard: Equatable, Hashable, Sendable, Identifiable {
         precondition((1...13).contains(rank))
         self.rank = rank
         self.suit = suit
+    }
+    private enum CodingKeys: String, CodingKey { case rank, suit }
+    /// The saved table is local data: a corrupted card fails to load instead of crashing.
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        let rank = try c.decode(Int.self, forKey: .rank)
+        guard (1...13).contains(rank) else {
+            throw DecodingError.dataCorruptedError(forKey: .rank, in: c, debugDescription: "rank")
+        }
+        self.rank = rank
+        suit = try c.decode(CardSuit.self, forKey: .suit)
     }
     public var value: String {
         switch rank {
@@ -29,7 +41,7 @@ public struct PlayingCard: Equatable, Hashable, Sendable, Identifiable {
     }
 }
 
-public struct CardDeck: Sendable {
+public struct CardDeck: Sendable, Codable, Equatable {
     public private(set) var cards: [PlayingCard]
     public init<R: RandomNumberGenerator>(using generator: inout R) {
         cards = CardSuit.allCases.flatMap { suit in (1...13).map { PlayingCard(rank: $0, suit: suit) } }
@@ -57,11 +69,11 @@ public struct BlackjackScore: Equatable, Sendable {
     }
 }
 
-public enum BlackjackResult: String, Sendable {
+public enum BlackjackResult: String, Sendable, Codable {
     case win = "Você venceu", loss = "A banca venceu", tie = "Empate"
 }
 
-public struct BlackjackHand: Sendable {
+public struct BlackjackHand: Sendable, Codable, Equatable {
     public private(set) var player: [PlayingCard] = []
     public private(set) var dealer: [PlayingCard] = []
     public private(set) var result: BlackjackResult?
@@ -91,6 +103,12 @@ public struct BlackjackHand: Sendable {
         if BlackjackScore(player).total > 21 { result = .loss }
         else if BlackjackScore(player).total == 21 { stand() }
     }
+    /// Double down: exactly one more card on the first two, then the dealer plays (unless bust).
+    public mutating func doubleDown() {
+        guard result == nil, player.count == 2 else { return }
+        hit()
+        if result == nil { stand() }
+    }
     public mutating func stand() {
         guard result == nil else { return }
         while Self.dealerShouldHit(dealer), let card = deck.draw() { dealer.append(card) }
@@ -106,7 +124,7 @@ public struct BlackjackHand: Sendable {
     }
 }
 
-public enum PokerRank: Int, CaseIterable, Sendable {
+public enum PokerRank: Int, CaseIterable, Sendable, Codable {
     case highCard, pair, twoPair, three, straight, flush, fullHouse, four, straightFlush, royalFlush
     public var name: String {
         ["Carta alta", "Par", "Dois pares", "Trinca", "Sequência", "Flush", "Full house", "Quadra", "Straight flush", "Royal flush"][rawValue]
@@ -131,7 +149,7 @@ public enum PokerRank: Int, CaseIterable, Sendable {
     }
 }
 
-public struct DrawPokerHand: Sendable {
+public struct DrawPokerHand: Sendable, Codable, Equatable {
     public private(set) var cards: [PlayingCard] = []
     public private(set) var held: Set<Int> = []
     public private(set) var result: PokerRank?
@@ -154,17 +172,18 @@ public struct DrawPokerHand: Sendable {
     }
 }
 
-public enum RestCardGame: String, CaseIterable, Sendable {
+public enum RestCardGame: String, CaseIterable, Sendable, Codable {
     case blackjack = "Blackjack", poker = "Poker"
 }
 
-/// Ephemeral presentation state. No training row or synchronization metadata is changed.
+/// When the table is visible, tied to the rest deadline. The hands themselves live in
+/// `MesaDescanso`, saved on the device: when the rest ends the table only closes, and the next
+/// rest resumes exactly where it stopped. No training row or sync metadata is changed.
 public struct RestGameState: Sendable {
     public private(set) var deadline: Double?
     public private(set) var startedAt: Double?
+    /// The game on screen, or nil when the table is closed.
     public private(set) var game: RestCardGame?
-    public private(set) var blackjack: BlackjackHand?
-    public private(set) var poker: DrawPokerHand?
     public private(set) var ready = false
     public init() {}
     public func remaining(now: Double) -> Int { max(0, Int(ceil(((deadline ?? now) - now) / 1000))) }
@@ -185,39 +204,155 @@ public struct RestGameState: Sendable {
         } else { ready = false }
         return false
     }
-    public mutating func open(_ game: RestCardGame, deck: CardDeck, now: Double) {
+    public mutating func open(_ game: RestCardGame, now: Double) {
         guard allow(now) else { return }
-        close()
         self.game = game
-        switch game {
-        case .blackjack: blackjack = BlackjackHand(deck: deck)
-        case .poker: poker = DrawPokerHand(deck: deck)
-        }
     }
-    public mutating func close() {
-        game = nil
-        blackjack = nil
-        poker = nil
-    }
-    public mutating func hit(now: Double) {
-        guard allow(now) else { return }
-        blackjack?.hit()
-    }
-    public mutating func stand(now: Double) {
-        guard allow(now) else { return }
-        blackjack?.stand()
-    }
-    public mutating func hold(_ index: Int, now: Double) {
-        guard allow(now) else { return }
-        poker?.toggle(index)
-    }
-    public mutating func exchange(now: Double) {
-        guard allow(now) else { return }
-        poker?.exchange()
-    }
-    private mutating func allow(_ now: Double) -> Bool {
+    public mutating func show(_ game: RestCardGame) { if self.game != nil { self.game = game } }
+    public mutating func close() { game = nil }
+    /// A move counts only while resting: after the deadline the table closes instead.
+    public mutating func allow(_ now: Double) -> Bool {
         if remaining(now: now) > 0 { return true }
         _ = update(startedAt: startedAt, end: deadline, now: now)
         return false
+    }
+}
+
+/// One finished round, for the table history.
+public struct RodadaMesa: Codable, Sendable, Equatable {
+    public let jogo: RestCardGame
+    public let resultado: String
+    /// Chips won (positive) or lost (negative) in the round.
+    public let saldo: Int
+    public let quando: Double
+}
+
+/// The rest table: chips, the current bet, one hand of each game and the history. Fictional
+/// chips only, never money. Saved on the device after every move.
+public struct MesaDescanso: Codable, Sendable, Equatable {
+    public static let fichasIniciais = 1000
+    public static let valoresFicha = [10, 25, 50, 100]
+    public static let historicoMaximo = 30
+    /// Return per chip bet (bet included): pair pays back the bet, high card loses it.
+    public static let tabelaPoker: [PokerRank: Int] = [
+        .highCard: 0, .pair: 1, .twoPair: 2, .three: 3, .straight: 4, .flush: 6,
+        .fullHouse: 9, .four: 25, .straightFlush: 50, .royalFlush: 250,
+    ]
+
+    public private(set) var fichas = MesaDescanso.fichasIniciais
+    public private(set) var aposta = 50
+    public var jogo: RestCardGame = .blackjack
+    public private(set) var blackjack: BlackjackHand?
+    public private(set) var apostaBlackjack = 0
+    public private(set) var poker: DrawPokerHand?
+    public private(set) var apostaPoker = 0
+    public private(set) var historico: [RodadaMesa] = []
+    /// Chips won or lost in the last settled round of each game, for the result banner.
+    public private(set) var saldoBlackjack: Int?
+    public private(set) var saldoPoker: Int?
+
+    public init() {}
+
+    public func emAndamento(_ jogo: RestCardGame) -> Bool {
+        switch jogo {
+        case .blackjack: blackjack != nil && blackjack?.result == nil
+        case .poker: poker != nil && poker?.result == nil
+        }
+    }
+    public var podeDistribuir: Bool { fichas >= aposta && aposta > 0 }
+    public var precisaRecarregar: Bool {
+        fichas < Self.valoresFicha[0] && !emAndamento(.blackjack) && !emAndamento(.poker)
+    }
+    public var podeDobrar: Bool {
+        guard let hand = blackjack, hand.result == nil, hand.player.count == 2 else { return false }
+        return fichas >= apostaBlackjack
+    }
+
+    public mutating func definirAposta(_ valor: Int) {
+        aposta = min(max(valor, Self.valoresFicha[0]), max(Self.valoresFicha[0], fichas))
+    }
+    public mutating func somarFicha(_ valor: Int) { definirAposta(aposta + valor) }
+    public mutating func limparAposta() { aposta = Self.valoresFicha[0] }
+
+    /// Takes the bet and deals a new hand of `jogo`. Refuses while that game has a hand in play.
+    @discardableResult
+    public mutating func distribuir(_ jogo: RestCardGame, deck: CardDeck, agora: Double) -> Bool {
+        guard !emAndamento(jogo), podeDistribuir else { return false }
+        self.jogo = jogo
+        fichas -= aposta
+        switch jogo {
+        case .blackjack:
+            blackjack = BlackjackHand(deck: deck)
+            apostaBlackjack = aposta
+            saldoBlackjack = nil
+            liquidarBlackjack(agora)
+        case .poker:
+            poker = DrawPokerHand(deck: deck)
+            apostaPoker = aposta
+            saldoPoker = nil
+        }
+        return true
+    }
+    public mutating func pedir(agora: Double) {
+        guard emAndamento(.blackjack) else { return }
+        blackjack?.hit()
+        liquidarBlackjack(agora)
+    }
+    public mutating func parar(agora: Double) {
+        guard emAndamento(.blackjack) else { return }
+        blackjack?.stand()
+        liquidarBlackjack(agora)
+    }
+    public mutating func dobrar(agora: Double) {
+        guard podeDobrar else { return }
+        fichas -= apostaBlackjack
+        apostaBlackjack *= 2
+        blackjack?.doubleDown()
+        liquidarBlackjack(agora)
+    }
+    public mutating func segurar(_ indice: Int) {
+        guard emAndamento(.poker) else { return }
+        poker?.toggle(indice)
+    }
+    public mutating func trocar(agora: Double) {
+        guard emAndamento(.poker) else { return }
+        poker?.exchange()
+        guard let rank = poker?.result else { return }
+        let retorno = apostaPoker * (Self.tabelaPoker[rank] ?? 0)
+        fichas += retorno
+        saldoPoker = retorno - apostaPoker
+        registrar(.poker, rank.name, saldo: retorno - apostaPoker, agora: agora)
+    }
+    /// Fictional chips: when they run out, the table refills.
+    public mutating func recarregar(agora: Double) {
+        guard precisaRecarregar else { return }
+        let antes = fichas
+        fichas = Self.fichasIniciais
+        definirAposta(aposta)
+        registrar(jogo, "Recarga de fichas", saldo: fichas - antes, agora: agora)
+    }
+
+    /// Chips returned for a finished hand, bet included: natural pays 3 to 2, win 1 to 1, tie
+    /// returns the bet.
+    public static func retornoBlackjack(_ hand: BlackjackHand, aposta: Int) -> Int {
+        switch hand.result {
+        case .some(.win): BlackjackScore(hand.player).natural ? aposta + aposta * 3 / 2 : aposta * 2
+        case .some(.tie): aposta
+        default: 0
+        }
+    }
+
+    private mutating func liquidarBlackjack(_ agora: Double) {
+        guard let hand = blackjack, let result = hand.result, saldoBlackjack == nil else { return }
+        let retorno = Self.retornoBlackjack(hand, aposta: apostaBlackjack)
+        fichas += retorno
+        saldoBlackjack = retorno - apostaBlackjack
+        let nome = result == .win && BlackjackScore(hand.player).natural ? "Blackjack" : result.rawValue
+        registrar(.blackjack, nome, saldo: retorno - apostaBlackjack, agora: agora)
+    }
+    private mutating func registrar(_ jogo: RestCardGame, _ resultado: String, saldo: Int, agora: Double) {
+        historico.insert(RodadaMesa(jogo: jogo, resultado: resultado, saldo: saldo, quando: agora), at: 0)
+        if historico.count > Self.historicoMaximo { historico.removeLast(historico.count - Self.historicoMaximo) }
+        definirAposta(aposta)
     }
 }

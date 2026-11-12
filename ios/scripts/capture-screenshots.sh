@@ -70,6 +70,10 @@ read -r -a sizes <<< "${CAPTURA_TAMANHOS:-large}"
 bundle=io.github.caiosmiderle.anilha
 printf 'appearance,size,screen,result\n' > "$out/manifest.csv"
 failures=0
+# The first launch after install is slow (the first print came out blank): warm up once.
+xcrun simctl launch "$device" "$bundle" -demo hoje -demo-size large || true
+sleep 10
+xcrun simctl terminate "$device" "$bundle" || true
 for appearance in light dark; do
   xcrun simctl ui "$device" appearance "$appearance"
   for size in "${sizes[@]}"; do
@@ -89,4 +93,47 @@ for appearance in light dark; do
     done
   done
 done
+
+# The rest card table on the smallest iPhone available (narrow screen check), light and dark.
+small=$(python3 - "$out/devices.json" <<'PY'
+import json, re, sys
+devices = json.load(open(sys.argv[1]))['devices']
+choices = []
+for runtime, entries in devices.items():
+    match = re.search(r'iOS-(\d+)', runtime)
+    if not match or int(match.group(1)) < 26:
+        continue
+    for entry in entries:
+        name = entry['name']
+        if not entry.get('isAvailable') or not name.startswith('iPhone'):
+            continue
+        rank = 0 if re.search(r'\b(SE|mini|\d+e)\b', name) else 1 if not re.search(r'Plus|Max|Pro', name) else 2
+        choices.append((rank, name, entry['udid']))
+print(min(choices)[-1] if choices else '')
+PY
+)
+if [[ -n "$small" && "$small" != "$device" ]]; then
+  printf 'Tela pequena %s\n' "$small"
+  xcrun simctl shutdown "$device" || true
+  if xcrun simctl boot "$small" && xcrun simctl bootstatus "$small" -b; then
+    xcrun simctl install "$small" "$RUNNER_TEMP/anilha-simulator/Build/Products/Debug-iphonesimulator/Anilha.app"
+    xcrun simctl launch "$small" "$bundle" -demo hoje -demo-size large || true
+    sleep 10
+    for appearance in light dark; do
+      xcrun simctl ui "$small" appearance "$appearance"
+      for screen in blackjack poker; do
+        xcrun simctl terminate "$small" "$bundle" || true
+        if xcrun simctl launch "$small" "$bundle" -demo "$screen" -demo-size large && sleep 3 && \
+           xcrun simctl io "$small" screenshot "$out/$screen-$appearance-pequena.png"; then
+          printf '%s,pequena,%s,captured\n' "$appearance" "$screen" >> "$out/manifest.csv"
+        else
+          echo "::warning::Falha na captura pequena $screen $appearance"
+        fi
+      done
+    done
+    xcrun simctl shutdown "$small" || true
+  else
+    echo "::warning::Simulador pequeno não ligou; prints de tela pequena ficam de fora"
+  fi
+fi
 test "$failures" -eq 0

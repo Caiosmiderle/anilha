@@ -426,27 +426,29 @@ struct ExecucaoTreino: View {
             ajustar = false
         }
     }
+    /// Abre a mesa por cima do treino. A mão continua a da mesa salva (`MesaDescansoStore`).
     private func abrirJogo(_ game: RestCardGame, demonstracao: Bool = false) {
-        atualizarDescanso(now: Date.now.timeIntervalSince1970 * 1000)
-        var generator = SystemRandomNumberGenerator()
-        var deck = CardDeck(using: &generator)
+        let now = Date.now.timeIntervalSince1970 * 1000
+        atualizarDescanso(now: now)
         #if DEBUG
         if demonstracao {
+            // Prints do CI: mesa fixa em memória, com uma mão de cada jogo no meio.
             let cards = [PlayingCard(rank: 8, suit: .hearts), PlayingCard(rank: 6, suit: .clubs),
                          PlayingCard(rank: 8, suit: .spades), PlayingCard(rank: 9, suit: .diamonds),
                          PlayingCard(rank: 13, suit: .hearts), PlayingCard(rank: 2, suit: .clubs),
                          PlayingCard(rank: 3, suit: .spades), PlayingCard(rank: 4, suit: .diamonds),
                          PlayingCard(rank: 5, suit: .hearts), PlayingCard(rank: 10, suit: .clubs)]
-            deck = CardDeck(cards: cards)
+            var demo = MesaDescanso()
+            demo.definirAposta(50)
+            demo.distribuir(.poker, deck: CardDeck(cards: cards), agora: now)
+            demo.segurar(0)
+            demo.segurar(2)
+            demo.distribuir(.blackjack, deck: CardDeck(cards: cards), agora: now)
+            demo.jogo = game
+            MesaDescansoStore.shared.usarDemonstracao(demo)
         }
         #endif
-        jogos.open(game, deck: deck, now: Date.now.timeIntervalSince1970 * 1000)
-        #if DEBUG
-        if demonstracao, game == .poker {
-            jogos.hold(0, now: Date.now.timeIntervalSince1970 * 1000)
-            jogos.hold(2, now: Date.now.timeIntervalSince1970 * 1000)
-        }
-        #endif
+        jogos.open(game, now: now)
     }
 }
 

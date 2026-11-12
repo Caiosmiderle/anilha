@@ -156,36 +156,33 @@ final class RestCardsTests: XCTestCase {
             XCTAssertNotNil(hand.result)
         }
     }
-    func testRestDeadlineIsAbsoluteAndEndsGameExactlyOnce() {
+    func testRestDeadlineIsAbsoluteAndClosesTableExactlyOnce() {
         var state = RestGameState()
         XCTAssertFalse(state.update(startedAt: 1000, end: 91000, now: 1000))
-        state.open(.blackjack, deck: deck(), now: 2000)
-        XCTAssertNotNil(state.blackjack)
+        state.open(.blackjack, now: 2000)
+        XCTAssertEqual(state.game, .blackjack)
         XCTAssertEqual(state.remaining(now: 90001), 1)
         XCTAssertTrue(state.update(startedAt: 1000, end: 91000, now: 91000))
         XCTAssertTrue(state.ready)
         XCTAssertNil(state.game)
-        XCTAssertNil(state.blackjack)
         XCTAssertFalse(state.update(startedAt: 1000, end: 91000, now: 99999))
-        state.open(.poker, deck: deck(), now: 100000)
+        state.open(.poker, now: 100000)
         XCTAssertNil(state.game)
     }
-    func testSuspensionExpiryDiscardsUnfinishedPokerWithoutResult() {
+    func testMovesAfterDeadlineAreRefusedAndCloseTheTable() {
         var state = RestGameState()
         state.update(startedAt: 1000, end: 91000, now: 2000)
-        state.open(.poker, deck: deck(), now: 3000)
-        state.hold(1, now: 4000)
-        XCTAssertNil(state.poker?.result)
-        // A tap after returning from lock must check the wall clock before exchanging.
-        state.exchange(now: 120000)
-        XCTAssertNil(state.poker)
+        state.open(.poker, now: 3000)
+        XCTAssertTrue(state.allow(4000))
+        // A tap after returning from lock must check the wall clock before playing.
+        XCTAssertFalse(state.allow(120000))
         XCTAssertNil(state.game)
         XCTAssertTrue(state.ready)
     }
     func testSkipShorteningExtensionAndNextRest() {
         var state = RestGameState()
         state.update(startedAt: 1000, end: 91000, now: 1000)
-        state.open(.poker, deck: deck(), now: 2000)
+        state.open(.poker, now: 2000)
         XCTAssertFalse(state.update(startedAt: 1000, end: 106000, now: 3000))
         XCTAssertNotNil(state.game)
         XCTAssertEqual(state.remaining(now: 3000), 103)
@@ -193,7 +190,7 @@ final class RestCardsTests: XCTestCase {
         XCTAssertNil(state.game)
         XCTAssertFalse(state.update(startedAt: 5000, end: 95000, now: 5000))
         XCTAssertFalse(state.ready)
-        state.open(.blackjack, deck: deck(), now: 5000)
+        state.open(.blackjack, now: 5000)
         XCTAssertTrue(state.update(startedAt: nil, end: nil, now: 6000))
         XCTAssertTrue(state.ready)
         XCTAssertNil(state.game)
@@ -204,39 +201,144 @@ final class RestCardsTests: XCTestCase {
         XCTAssertFalse(state.update(startedAt: 1000, end: 91000, now: 100000))
         XCTAssertTrue(state.ready)
         state.update(startedAt: 101000, end: 191000, now: 101000)
-        state.open(.poker, deck: deck(), now: 102000)
+        state.open(.poker, now: 102000)
         XCTAssertFalse(state.update(startedAt: 103000, end: 193000, now: 103000))
         XCTAssertNil(state.game)
         XCTAssertFalse(state.ready)
-    }
-    func testExpiredBlackjackActionsAndManualClose() {
-        var state = RestGameState()
-        state.update(startedAt: 0, end: 90000, now: 0)
-        state.open(.blackjack, deck: deck(), now: 1000)
-        state.hit(now: 90000)
-        XCTAssertNil(state.blackjack)
-        state.stand(now: 91000)
-        XCTAssertNil(state.blackjack)
-        state.update(startedAt: 100000, end: 190000, now: 100000)
-        state.open(.poker, deck: deck(), now: 101000)
-        state.open(.blackjack, deck: deck(), now: 190000)
-        XCTAssertNil(state.game)
-        XCTAssertTrue(state.ready)
-        state.update(startedAt: 200000, end: 290000, now: 200000)
-        state.open(.poker, deck: deck(), now: 201000)
-        state.close()
-        XCTAssertNil(state.game)
-        XCTAssertFalse(state.ready)
-        XCTAssertEqual(state.remaining(now: 201000), 89)
     }
     func testRestStateConsumesExistingWorkoutDeadline() {
         let session = ReadRow(fields: ["status": .string("active"), "rest_started_at": .number(1000), "rest_duration_sec": .number(90)])
         var state = RestGameState()
         state.update(startedAt: session.number("rest_started_at"), end: Workout.restEnd(session), now: 1000)
-        state.open(.poker, deck: deck(), now: 2000)
+        state.open(.poker, now: 2000)
         let skipped = session.changing(["rest_started_at": .null, "rest_duration_sec": .null])
         XCTAssertTrue(state.update(startedAt: skipped.number("rest_started_at"), end: Workout.restEnd(skipped), now: 3000))
         XCTAssertNil(state.game)
         XCTAssertEqual(session.number("rest_duration_sec"), 90)
+    }
+
+    // MARK: Mesa (fichas, apostas e retomada)
+
+    func testBlackjackBetPaysOneToOneAndNaturalThreeToTwo() {
+        var mesa = MesaDescanso()
+        mesa.definirAposta(100)
+        // Player 10+8, dealer 10+6, dealer draws 9 and busts.
+        XCTAssertTrue(mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([10, 10, 8, 6, 9])), agora: 1))
+        XCTAssertEqual(mesa.fichas, 900)
+        mesa.parar(agora: 2)
+        XCTAssertEqual(mesa.blackjack?.result, .win)
+        XCTAssertEqual(mesa.fichas, 1100)
+        XCTAssertEqual(mesa.saldoBlackjack, 100)
+        // Natural (A + K against 9 + 8) pays 3 to 2 at once.
+        XCTAssertTrue(mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([1, 9, 13, 8, 2])), agora: 3))
+        XCTAssertEqual(mesa.blackjack?.result, .win)
+        XCTAssertEqual(mesa.fichas, 1100 + 150)
+        XCTAssertEqual(mesa.historico.first?.resultado, "Blackjack")
+        XCTAssertEqual(mesa.historico.first?.saldo, 150)
+    }
+    func testTieReturnsBetLossKeepsItAndSettlesOnce() {
+        var mesa = MesaDescanso()
+        mesa.definirAposta(50)
+        mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([10, 10, 8, 8, 2])), agora: 1)
+        mesa.parar(agora: 2)
+        XCTAssertEqual(mesa.blackjack?.result, .tie)
+        XCTAssertEqual(mesa.fichas, 1000)
+        mesa.parar(agora: 3)
+        mesa.pedir(agora: 3)
+        XCTAssertEqual(mesa.fichas, 1000)
+        XCTAssertEqual(mesa.historico.count, 1)
+        mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([10, 10, 7, 9, 2])), agora: 4)
+        mesa.parar(agora: 5)
+        XCTAssertEqual(mesa.blackjack?.result, .loss)
+        XCTAssertEqual(mesa.fichas, 950)
+        XCTAssertEqual(mesa.saldoBlackjack, -50)
+    }
+    func testDoubleDownTakesOneCardDoublesBetAndStands() {
+        var mesa = MesaDescanso()
+        mesa.definirAposta(100)
+        // Player 6+5 = 11, double draws a 10 = 21; dealer 10+7 stands.
+        mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([6, 10, 5, 7, 10])), agora: 1)
+        XCTAssertTrue(mesa.podeDobrar)
+        mesa.dobrar(agora: 2)
+        XCTAssertEqual(mesa.blackjack?.player.count, 3)
+        XCTAssertEqual(mesa.blackjack?.result, .win)
+        XCTAssertEqual(mesa.fichas, 1000 - 200 + 400)
+        XCTAssertFalse(mesa.podeDobrar)
+    }
+    func testCannotDealOverAHandInPlayOrBetMoreThanChips() {
+        var mesa = MesaDescanso()
+        mesa.definirAposta(5000)
+        XCTAssertEqual(mesa.aposta, 1000)
+        mesa.definirAposta(1)
+        XCTAssertEqual(mesa.aposta, 10)
+        mesa.distribuir(.poker, deck: deck(), agora: 1)
+        XCTAssertFalse(mesa.distribuir(.poker, deck: deck(), agora: 2))
+        // The other game has its own hand.
+        XCTAssertTrue(mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([10, 10, 8, 6, 9])), agora: 3))
+        XCTAssertTrue(mesa.emAndamento(.poker))
+    }
+    func testPokerPaysByTableAndPairReturnsTheBet() {
+        var mesa = MesaDescanso()
+        mesa.definirAposta(20)
+        // Hold the pair of 2s, draw three more 2s are impossible: draw 2, 9 and K for a three of a kind.
+        let ordered = [PlayingCard(rank: 2, suit: .hearts), PlayingCard(rank: 2, suit: .spades), PlayingCard(rank: 7, suit: .clubs),
+                       PlayingCard(rank: 9, suit: .diamonds), PlayingCard(rank: 12, suit: .clubs),
+                       PlayingCard(rank: 2, suit: .clubs), PlayingCard(rank: 4, suit: .hearts), PlayingCard(rank: 13, suit: .spades),
+                       PlayingCard(rank: 5, suit: .diamonds), PlayingCard(rank: 6, suit: .diamonds)]
+        mesa.distribuir(.poker, deck: CardDeck(cards: ordered), agora: 1)
+        XCTAssertEqual(mesa.fichas, 980)
+        mesa.segurar(0)
+        mesa.segurar(1)
+        mesa.trocar(agora: 2)
+        XCTAssertEqual(mesa.poker?.result, .three)
+        XCTAssertEqual(mesa.fichas, 980 + 20 * 3)
+        XCTAssertEqual(mesa.saldoPoker, 40)
+        XCTAssertEqual(MesaDescanso.tabelaPoker[.pair], 1)
+        XCTAssertEqual(MesaDescanso.tabelaPoker[.highCard], 0)
+        XCTAssertEqual(Set(MesaDescanso.tabelaPoker.keys), Set(PokerRank.allCases))
+    }
+    func testRefillOnlyWhenOutOfChipsAndNoHandInPlay() {
+        var mesa = MesaDescanso()
+        mesa.definirAposta(1000)
+        mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([10, 10, 7, 9, 2])), agora: 1)
+        XCTAssertEqual(mesa.fichas, 0)
+        XCTAssertFalse(mesa.precisaRecarregar)
+        mesa.parar(agora: 2)
+        XCTAssertEqual(mesa.fichas, 0)
+        XCTAssertTrue(mesa.precisaRecarregar)
+        XCTAssertFalse(mesa.podeDistribuir)
+        mesa.recarregar(agora: 3)
+        XCTAssertEqual(mesa.fichas, MesaDescanso.fichasIniciais)
+        XCTAssertEqual(mesa.historico.first?.resultado, "Recarga de fichas")
+    }
+    func testTableSurvivesSaveAndResumesTheSameHand() throws {
+        var mesa = MesaDescanso()
+        mesa.distribuir(.poker, deck: deck(), agora: 1)
+        mesa.segurar(3)
+        mesa.distribuir(.blackjack, deck: deck(), agora: 2)
+        let dados = try JSONEncoder().encode(mesa)
+        var volta = try JSONDecoder().decode(MesaDescanso.self, from: dados)
+        XCTAssertEqual(volta, mesa)
+        XCTAssertEqual(volta.poker?.held, [3])
+        // The hidden deck comes back too: the next card is the same one.
+        var original = mesa
+        original.trocar(agora: 3)
+        volta.trocar(agora: 3)
+        XCTAssertEqual(volta.poker?.cards, original.poker?.cards)
+        XCTAssertEqual(volta.fichas, original.fichas)
+    }
+    func testHistoryKeepsTheLatestThirty() {
+        var mesa = MesaDescanso()
+        mesa.definirAposta(10)
+        for i in 0..<35 {
+            mesa.distribuir(.blackjack, deck: CardDeck(cards: cards([10, 10, 8, 8, 2])), agora: Double(i))
+            mesa.parar(agora: Double(i))
+        }
+        XCTAssertEqual(mesa.historico.count, MesaDescanso.historicoMaximo)
+        XCTAssertEqual(mesa.historico.first?.quando, 34)
+    }
+    func testCorruptedSavedCardFailsToLoad() {
+        let ruim = Data(#"{"rank":14,"suit":0}"#.utf8)
+        XCTAssertThrowsError(try JSONDecoder().decode(PlayingCard.self, from: ruim))
     }
 }
