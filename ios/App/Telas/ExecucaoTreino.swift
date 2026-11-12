@@ -199,6 +199,7 @@ struct ExecucaoTreino: View {
                             .accessibilityLabel("A fazer, \(what ?? "anotar a série")")
                         Text("\(setLine) · \(done) \(done == 1 ? "série feita" : "séries feitas")").font(.subheadline).foregroundStyle(Tema.tintaSuave)
                         if let dica { Text("Waltér: \(dica)").font(.subheadline).foregroundStyle(Tema.tintaSuave).accessibilityIdentifier("focus-hint") }
+                        if let item { sugestao(item, exercise: exercise) }
                     } else {
                         Text("Tudo feito").font(.title2)
                         Text("\(done)").font(.system(size: tamanhoPrincipal, weight: .bold, design: .rounded))
@@ -274,19 +275,26 @@ struct ExecucaoTreino: View {
         }
     }
 
-    private func sugestao(_ item: ReadRow, exercise: ReadRow) -> some View {
-        let suggestion = Workout.suggestion(conta.dados, exercise: exercise, plan: item, today: session.string("local_date") ?? LocalDay.today(), exclude: session.id)
-        return VStack(alignment: .leading, spacing: 6) {
-            Text(textoSugestao(suggestion.kind)).font(.subheadline).foregroundStyle(Tema.marcaForte)
-            if suggestion.kind == "reps_first", let load = suggestion.load_kg {
-                let up = Progression.nextLoad(load, increment: exercise.number("increment_kg") ?? 2.5, unit: lb ? "lb" : "kg")
-                Text("Busque \(Int(Progression.repsBeforeJump(load, up: up, floor: suggestion.target_min))) repetições em todas antes de subir.").font(.footnote)
-            }
-            if suggestion.missing_effort { Text("Faltou o esforço da última série. Progrida com cautela.").font(.footnote) }
-            if Workout.returning(conta.dados, today: session.string("local_date") ?? LocalDay.today()) {
-                Text("Modo retorno: pare com 2 a 3 repetições na reserva.").font(.footnote)
-            }
-        }.padding(12).frame(maxWidth: .infinity, alignment: .leading).background(Tema.marcaFundo, in: RoundedRectangle(cornerRadius: 12))
+    @ViewBuilder private func sugestao(_ item: ReadRow, exercise: ReadRow) -> some View {
+        if !conta.sugestaoIgnorada(sessionID: session.id, itemID: item.id) {
+            let suggestion = Workout.suggestion(conta.dados, exercise: exercise, plan: item, today: session.string("local_date") ?? LocalDay.today(), exclude: session.id)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(textoSugestao(suggestion.kind)).font(.subheadline).foregroundStyle(Tema.marcaForte)
+                Button("Ignorar") {
+                    if conta.ignorarSugestao(sessionID: session.id, itemID: item.id), let next {
+                        rascunho = conta.rascunhoSalvo(next.id)
+                    }
+                }.frame(minWidth: 44, minHeight: 44).accessibilityLabel("Ignorar sugestão")
+                if suggestion.kind == "reps_first", let load = suggestion.load_kg {
+                    let up = Progression.nextLoad(load, increment: exercise.number("increment_kg") ?? 2.5, unit: lb ? "lb" : "kg")
+                    Text("Busque \(Int(Progression.repsBeforeJump(load, up: up, floor: suggestion.target_min))) repetições em todas antes de subir.").font(.footnote)
+                }
+                if suggestion.missing_effort { Text("Faltou o esforço da última série. Progrida com cautela.").font(.footnote) }
+                if Workout.returning(conta.dados, today: session.string("local_date") ?? LocalDay.today()) {
+                    Text("Modo retorno: pare com 2 a 3 repetições na reserva.").font(.footnote)
+                }
+            }.padding(12).frame(maxWidth: .infinity, alignment: .leading).background(Tema.marcaFundo, in: RoundedRectangle(cornerRadius: 12))
+        }
     }
 
     private func linhaSerie(_ set: ReadRow) -> some View {

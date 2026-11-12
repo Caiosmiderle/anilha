@@ -168,6 +168,7 @@ public enum WorkoutAnalysis {
             if let kept { next = unused.remove(at: kept) }
             else { next = ReadRow(fields: ["id": .string(newID()), "deleted": .bool(false), "routine_id": .string(routineID), "warmup_sets": .number(0), "note": .null, "reason": .null]) }
             for key in ["exercise_id", "sets", "target_min", "target_max", "rest_sec"] { next.fields[key] = row.fields[key] }
+            for key in ["note", "warmup_sets", "superset"] where row.fields[key] != nil { next.fields[key] = row.fields[key] }
             next.fields["position"] = .number(Double(position))
             changes.append(PushChange("routine_items", next))
         }

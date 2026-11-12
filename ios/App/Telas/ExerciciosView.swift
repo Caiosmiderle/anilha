@@ -72,6 +72,8 @@ enum Catalogo {
 /// Catálogo: busca, filtro por grupo e por máquinas, e criar exercício próprio.
 struct ExerciciosView: View {
     let conta: ContaStore
+    var excluir: Set<String> = []
+    var aoEscolher: ((ReadRow) -> Void)? = nil
     @State private var busca = ""
     @State private var grupo = "todos"
     @State private var soMaquinas = false
@@ -81,6 +83,7 @@ struct ExerciciosView: View {
         let termo = busca.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: Locale(identifier: "pt_BR"))
         return conta.dados.exercises(catalog: conta.catalogo).values
             .filter { $0.bool("archived") != true }
+            .filter { !excluir.contains($0.id) }
             .filter { grupo == "todos" || $0.string("primary_group") == grupo }
             .filter { !soMaquinas || ["maquina", "polia"].contains($0.string("equipment") ?? "") }
             .filter {
@@ -103,15 +106,11 @@ struct ExerciciosView: View {
             }
             Section("\(lista.count) exercícios") {
                 ForEach(lista) { ex in
-                    NavigationLink { ExercicioView(conta: conta, exercicioID: ex.id) } label: {
-                        HStack(spacing: 12) {
-                            DiscoExercicio(grupo: ex.string("primary_group"))
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(ex.string("name") ?? "Exercício").font(.body.weight(.medium))
-                                Text(Catalogo.nomeEquipamento(ex.string("equipment"))
-                                     + (ex.string("id")?.hasPrefix("custom-") == true ? " · seu" : ""))
-                                    .font(.caption).foregroundStyle(Tema.tintaSuave)
-                            }
+                    Group {
+                        if let aoEscolher {
+                            Button { aoEscolher(ex) } label: { linha(ex) }.buttonStyle(.plain)
+                        } else {
+                            NavigationLink { ExercicioView(conta: conta, exercicioID: ex.id) } label: { linha(ex) }
                         }
                     }
                 }
@@ -120,13 +119,25 @@ struct ExerciciosView: View {
         .scrollContentBackground(.hidden)
         .background { FundoAnilha() }
         .searchable(text: $busca, prompt: "Buscar exercício")
-        .navigationTitle("Exercícios").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(aoEscolher == nil ? "Exercícios" : "Adicionar exercício").navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button { criando = true } label: { Label("Criar exercício", systemImage: "plus") }
             }
         }
         .sheet(isPresented: $criando) { CriarExercicioView(conta: conta) }
+    }
+    private func linha(_ ex: ReadRow) -> some View {
+        HStack(spacing: 12) {
+            DiscoExercicio(grupo: ex.string("primary_group"))
+            VStack(alignment: .leading, spacing: 2) {
+                Text(ex.string("name") ?? "Exercício").font(.body.weight(.medium))
+                Text(Catalogo.nomeEquipamento(ex.string("equipment"))
+                     + (ex.string("id")?.hasPrefix("custom-") == true ? " · seu" : ""))
+                    .font(.caption).foregroundStyle(Tema.tintaSuave)
+            }
+        }
+        .frame(minHeight: 44)
     }
 }
 

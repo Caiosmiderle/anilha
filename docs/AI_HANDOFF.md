@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS 0.16.0, ficha manual e Ignorar, Codex, 12/11/2026
+
+- Branch `codex/ios-ficha`, recebida limpa em `e39602b`, com chat `4dfa9f2`. Entrega local para revisão e commit do Claude. Revisão desta entrega **PENDENTE**.
+- Nova ficha e Editar nativos, catálogo compartilhado com próprios, campos/padrões do PWA, mover/remover, desfazer pares separados e exclusão confirmada por lápides. `WorkoutAnalysis.fichaChanges` compartilhada e `routines` liberada na fila atômica. Snapshot de abertura preservado e conferido antes de salvar/apagar.
+- Ignorar em foco e lista, alvo de 44 pt e acessibilidade pedida, persistido só no aparelho por conta/sessão. Restaura séries pendentes de `increase`/`decrease` com histórico e invalida seus rascunhos na mesma transação. Outros tipos guardam só o estado ignorado. Corrigida borda de `lastTimeFill` com cargas mais curtas que os valores.
+- Avisos de volume reutilizam a porta existente, incluindo frequência e mudança de divisão. Aviso específico de frequência sem porta identificada **PENDENTE**. `nova_ficha` pelo chat continua no site.
+- Demo `ficha-nova`, `ficha-editar` e sugestão na execução. Duas telas adicionadas à matriz anterior. Versão **0.16.0**. Vetores `routines.json` com 36 padrões, 7 escritas, 1 exclusão, 14 restaurações e 4 cenários da fila.
+- Passaram 71 testes TS do CI iOS em 13 arquivos, dois novos repetidos após ampliar vetores, lint, typecheck, build, três geradores `--check`, Bash e diff. Falhas iniciais do gerador/typecheck corrigidas. Swift tentado e ausente neste Windows. Quatro métodos novos, CI Apple, capturas, iPhone e sync real **PENDENTES**. E2E não executado.
+- Parecer em [REVISAO_CODEX_FICHA_2026-11-12.md](REVISAO_CODEX_FICHA_2026-11-12.md). Claude deve revisar atomicidade, snapshots, pares, paridade, persistência/rascunhos e acessibilidade antes de commitar. Continuar desta árvore local e base `e39602b`.
+
 ## iOS 0.12.0, chat nativo do Waltér, Codex, 12/11/2026
 
 - Branch recebida limpa `codex/ios-chat`, base `d2f38d9`. Entrega só local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.

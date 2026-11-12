@@ -147,6 +147,9 @@ struct DemoView: View {
         case "chat": ChatWalterView(conta: conta, demonstracao: true)
         case "ficha":
             if let ficha = conta.dados.routines.first { FichaView(conta: conta, ficha: ficha) }
+        case "ficha-nova": EditarFichaView(conta: conta)
+        case "ficha-editar":
+            if let ficha = conta.dados.routines.first { EditarFichaView(conta: conta, ficha: ficha) }
         case "treino", "execucao", "descanso", "esforco": TreinoView(conta: conta, sessionID: "demo-active")
         case "treino-lista": TreinoView(conta: conta, sessionID: "demo-active", focoInicial: false)
         case "blackjack": TreinoView(conta: conta, sessionID: "demo-active", jogoInicial: .blackjack)

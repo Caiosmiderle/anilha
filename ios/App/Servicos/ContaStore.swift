@@ -330,6 +330,37 @@ final class ContaStore {
         do { return try cache.rascunho(dono, set: setID) }
         catch { erro = "Não foi possível ler o rascunho desta série."; return nil }
     }
+    func salvarFicha(_ row: ReadRow, original: ReadRow?, antigos: [ReadRow], items: [ReadRow]) -> Bool {
+        guard let dono, let cache, !limpezaPendente else { return false }
+        do {
+            try cache.salvarFicha(row, original: original, oldItems: antigos, after: items, dono: dono,
+                                  catalog: Array(dados.exercises(catalog: catalogo).values))
+            try recarregar(); erro = nil
+            Task { await atualizar() }
+            return true
+        } catch { erro = "Não foi possível salvar. Confira os campos e reabra a ficha se ela mudou em outro aparelho."; return false }
+    }
+    func apagarFicha(_ original: ReadRow, antigos: [ReadRow]) -> Bool {
+        guard let dono, let cache, !limpezaPendente else { return false }
+        do {
+            try cache.apagarFicha(original, oldItems: antigos, dono: dono)
+            try recarregar(); erro = nil
+            Task { await atualizar() }
+            return true
+        } catch { erro = "Não foi possível apagar. Reabra a ficha e tente novamente."; return false }
+    }
+    func sugestaoIgnorada(sessionID: String, itemID: String) -> Bool {
+        analises["dismissed:\(sessionID)"]?.bool(itemID) == true
+    }
+    func ignorarSugestao(sessionID: String, itemID: String) -> Bool {
+        guard let dono, let cache, !limpezaPendente else { return false }
+        do {
+            try cache.ignorarSugestao(sessionID: sessionID, itemID: itemID, dono: dono, catalog: catalogo)
+            try recarregar(); erro = nil
+            Task { await atualizar() }
+            return true
+        } catch { erro = "Não foi possível ignorar a sugestão. Tente novamente."; return false }
+    }
     func guardarRascunho(_ row: ReadRow) {
         guard let dono, let cache else { return }
         do { try cache.guardarRascunho(row, dono: dono) }
