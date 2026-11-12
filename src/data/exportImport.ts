@@ -46,12 +46,20 @@ export async function exportJson(email: string): Promise<Blob> {
 }
 
 /** What only the server keeps: consent history and messages. Null when offline. */
-async function serverRecords(): Promise<{ consents: unknown; messages: unknown } | null> {
+async function serverRecords(): Promise<{
+  consents: unknown;
+  messages: unknown;
+  crunning: unknown;
+} | null> {
   if (!backendConfigured() || !navigator.onLine) return null;
   try {
     const { rpc } = await import('../sync/client');
-    const [consents, messages] = await Promise.all([rpc('consent_history'), rpc('my_tickets')]);
-    return { consents, messages };
+    const [consents, messages, crunning] = await Promise.all([
+      rpc('consent_history'),
+      rpc('my_tickets'),
+      rpc('crunning_token_state'),
+    ]);
+    return { consents, messages, crunning };
   } catch {
     return null;
   }
@@ -194,6 +202,7 @@ async function importJson(text: string): Promise<ImportResult> {
   const health = healthOn();
   const changes: Change[] = [];
   for (const t of SYNCED_TABLES) {
+    if (t === 'external_plan_items') continue; // Integration snapshots are read only.
     const rows = data.tables[t];
     if (!Array.isArray(rows)) continue;
     for (const raw of rows) {

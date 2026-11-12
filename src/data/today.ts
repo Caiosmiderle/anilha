@@ -20,6 +20,7 @@ import type {
 } from '../engine/types';
 import {
   useCurrentPlan,
+  useExternalPlanItems,
   useExercises,
   useHistorySummaries,
   useOverrides,
@@ -101,6 +102,7 @@ export interface TodayData {
 export function useTodayData(today: string): TodayData {
   const { plan, loaded: planLoaded } = useCurrentPlan(today);
   const history = useHistorySummaries();
+  const externalPlans = useExternalPlanItems();
   const overrides = useOverrides();
   const routines = useRoutines();
   const routineItems = useRoutineItems();
@@ -124,6 +126,7 @@ export function useTodayData(today: string): TodayData {
       plan,
       sessions: history.sessions,
       runs: history.runs,
+      externalPlans,
       overrides: overrides.map((o) => ({
         local_date: o.local_date,
         action: o.action,
@@ -144,5 +147,16 @@ export function useTodayData(today: string): TodayData {
       adjusted,
       hasPlan: plan !== null,
     };
-  }, [planLoaded, history, profile, today, plan, overrides, routines, routineItems, library]);
+  }, [
+    planLoaded,
+    history,
+    profile,
+    today,
+    plan,
+    overrides,
+    routines,
+    routineItems,
+    library,
+    externalPlans,
+  ]);
 }

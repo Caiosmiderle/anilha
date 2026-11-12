@@ -491,6 +491,7 @@ function RunListRow({
         <span className="hb-list-main">
           <span className="hb-list-title" style={{ display: 'block' }}>
             {cardioName(run)}
+            {run.source === 'crunning' ? ' do CRUNNING' : ''}
           </span>
           <span className="hb-list-sub">
             {[

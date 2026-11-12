@@ -1103,7 +1103,11 @@ export interface RunInput {
 
 export async function saveRun(input: RunInput): Promise<{ milestones: RecordRow[] }> {
   const id = input.id ?? newId();
+  const ownerDb = db();
+  const existing = input.id ? await ownerDb.runs.get(input.id) : undefined;
+  if (db() !== ownerDb) throw new Error('A conta mudou. Tente novamente.');
   await save('runs', {
+    ...existing,
     id,
     deleted: false,
     local_date: input.local_date,
@@ -1113,8 +1117,13 @@ export async function saveRun(input: RunInput): Promise<{ milestones: RecordRow[
     run_type: input.run_type,
     rpe: input.rpe,
     note: input.note,
-    source: input.external_id ? 'import' : 'manual',
+    source: existing?.source ?? (input.external_id ? 'import' : 'manual'),
     external_id: input.external_id ?? null,
+    started_at:
+      existing?.started_at ??
+      (input.external_id && Number.isFinite(Date.parse(input.external_id))
+        ? Date.parse(input.external_id)
+        : null),
   });
   const runs = await runsForMilestones();
   const events = runMilestones(runs).filter((m) => m.run_id === id);

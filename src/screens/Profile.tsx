@@ -152,6 +152,13 @@ function ProfileForm({ profile, email }: { profile: ProfileRow; email: string })
           </MenuGroup>
 
           <MenuGroup title="Conta">
+            <MenuRow
+              to="/voce/conexoes"
+              icon={Globe}
+              pastel="mint"
+              title="Conexões"
+              sub="CRUNNING"
+            />
             <button type="button" className="hb-list-row" onClick={() => setEditingName(true)}>
               <Disc small icon={UserRound} pastel="sky" />
               <span className="hb-list-main">
