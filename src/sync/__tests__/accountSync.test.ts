@@ -86,7 +86,7 @@ describe('sincronização vinculada à conta', () => {
     expect(await b.meta.count()).toBe(0);
     expect(accountRpc).toHaveBeenCalledTimes(1);
     await syncNow();
-    expect(accountRpc).toHaveBeenLastCalledWith(ownerB, 'sync_pull', { since: 0, max_rows: 500 });
+    expect(accountRpc).toHaveBeenCalledWith(ownerB, 'sync_pull', { since: 0, max_rows: 500 });
     expect((await b.meta.get('initial_pull_done'))?.value).toBe(true);
   });
 

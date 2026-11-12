@@ -9,6 +9,7 @@ import type { ExerciseRow, SessionItemRow, SessionRow, SetRow } from '../engine/
 import { effortLabel } from '../engine/taxonomy';
 import { backendConfigured } from '../lib/env';
 import { healthOn } from '../sync/consent';
+import { syncedKey, syncPayload } from '../sync/analysisSync';
 import { SYNCED_TABLES, type SyncedTable } from './db';
 import { db, newId, saveMany, uid, type Change } from './store';
 
@@ -34,12 +35,17 @@ export async function exportJson(email: string): Promise<Blob> {
     if (t === 'exercises') rows = rows.filter((r) => !r.builtin || r.updated_at > 0);
     tables[t] = rows;
   }
+  // Workout analyses and ficha reviews (also kept on the server to follow the account).
+  const analyses = (await d.meta.toArray())
+    .filter((e) => syncedKey(e.key))
+    .map((e) => ({ key: e.key, ...syncPayload(e.value as Record<string, unknown>) }));
   const payload = {
     app: 'anilha',
     version: 1,
     exported_at: new Date().toISOString(),
     account: { id: uid(), email },
     tables,
+    analyses,
     server: await serverRecords(),
   };
   return new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });

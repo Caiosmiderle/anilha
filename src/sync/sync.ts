@@ -3,6 +3,7 @@ import { getMeta, setMeta, SYNCED_TABLES, type AnilhaDB, type SyncedTable } from
 import { currentStore, onAccountChange, onLocalWrite, type CurrentStore } from '../data/store';
 import { backendConfigured } from '../lib/env';
 import { AccountChangedError, accountRpc, getClient, rpc } from './client';
+import { syncAnalysesFor } from './analysisSync';
 
 export type SyncState = 'idle' | 'syncing' | 'offline' | 'error' | 'signed_out';
 
@@ -201,6 +202,13 @@ export function syncNow(): Promise<void> {
       setSnapshot({ state: 'syncing' });
       await push(owner);
       await pull(owner);
+      // Analyses and reviews ride along; their failure never marks the main sync as failed.
+      try {
+        await syncAnalysesFor(owner, () => assertOwner(owner));
+      } catch (err) {
+        if (err instanceof AccountChangedError) throw err;
+        console.warn('[sync análises]', err);
+      }
       await refreshPending(owner);
       assertOwner(owner);
       setSnapshot({ state: 'idle', lastSyncedAt: Date.now() });
