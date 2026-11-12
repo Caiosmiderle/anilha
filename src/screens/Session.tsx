@@ -1,3 +1,4 @@
+import { useAnalysisHints } from '../analysis/useHints';
 import {
   Bandage,
   Check,
@@ -146,6 +147,7 @@ function ActiveSession({ session }: { session: SessionRow }) {
   const profile = useProfile();
   const unit: Unit = profile?.unit ?? 'kg';
   const items = useItems(session.id);
+  const hints = useAnalysisHints(session, items, today);
   const sets = useSets(session.id);
   const exMap = useExerciseMap();
   const allSessions = useSessions();
@@ -368,6 +370,7 @@ function ActiveSession({ session }: { session: SessionRow }) {
         {items.map((it) => (
           <ItemCard
             key={it.id}
+            hint={hints[it.id] ?? null}
             item={it}
             ex={exMap.get(it.exercise_id)}
             original={it.original_exercise_id ? exMap.get(it.original_exercise_id) : undefined}
@@ -506,6 +509,7 @@ function ActiveSession({ session }: { session: SessionRow }) {
       {focus ? (
         <FocusMode
           session={session}
+          hint={activeItem ? (hints[activeItem.id] ?? null) : null}
           set={active ?? undefined}
           draft={activeDraft}
           ex={activeItem ? exMap.get(activeItem.exercise_id) : undefined}
@@ -601,6 +605,7 @@ function Elapsed({ startedAt, doneWork }: { startedAt: number; doneWork: number 
 }
 
 function ItemCard({
+  hint,
   item,
   ex,
   original,
@@ -621,6 +626,7 @@ function ItemCard({
   onDismiss,
   onUnskip,
 }: {
+  hint: string | null;
   item: SessionItemRow;
   ex: ExerciseRow | undefined;
   original: ExerciseRow | undefined;
@@ -686,6 +692,11 @@ function ItemCard({
         />
       </div>
       <div className="hb-widget-body stack-sm">
+        {hint ? (
+          <p className="t-regular t-muted" data-testid="exercise-hint">
+            Waltér: {hint}
+          </p>
+        ) : null}
         {skipped ? (
           <div className="row">
             <span className="t-regular t-muted" style={{ flex: 1 }}>

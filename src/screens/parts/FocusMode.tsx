@@ -29,6 +29,7 @@ function useNow(ms: number): number {
  */
 export function FocusMode({
   session,
+  hint,
   set,
   draft,
   ex,
@@ -44,6 +45,7 @@ export function FocusMode({
   onExit,
 }: {
   session: SessionRow;
+  hint?: string | null;
   set: SetRow | undefined;
   /** What the editor holds for this set, typed but not saved: shown and saved as is. */
   draft?: SetDraft;
@@ -131,6 +133,11 @@ export function FocusMode({
             <span className="focus-sub">
               {setLine} · {doneWork} {doneWork === 1 ? 'série feita' : 'séries feitas'}
             </span>
+            {hint ? (
+              <span className="focus-hint" data-testid="focus-hint">
+                Waltér: {hint}
+              </span>
+            ) : null}
           </>
         ) : (
           <>

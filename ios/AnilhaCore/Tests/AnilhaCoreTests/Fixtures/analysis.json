@@ -2122,6 +2122,1557 @@
       "level": "iniciante"
     }
   ],
+  "memory": [
+    {
+      "name": "zero",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": []
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [],
+      "hint": null
+    },
+    {
+      "name": "one",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": "Mantenha o controle na descida."
+    },
+    {
+      "name": "three",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "saved",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          },
+          {
+            "status": "refused",
+            "binding": {
+              "session": {
+                "id": "session-3",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-03",
+                "started_at": 3
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          },
+          {
+            "status": "undone",
+            "binding": {
+              "session": {
+                "id": "session-2",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-02",
+                "started_at": 2
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 9,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "recusado"
+          }
+        },
+        {
+          "days_ago": 10,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "desfeito"
+          }
+        },
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "aplicado"
+          }
+        }
+      ],
+      "hint": "Mantenha o controle na descida."
+    },
+    {
+      "name": "limit",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          },
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-4",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-04",
+                "started_at": 4
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          },
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-3",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-03",
+                "started_at": 3
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          },
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-2",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-02",
+                "started_at": 2
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 8,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        },
+        {
+          "days_ago": 9,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        },
+        {
+          "days_ago": 10,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": "Mantenha o controle na descida."
+    },
+    {
+      "name": "changed",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "agachamento-livre"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "agachamento-livre"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": null,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": null,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": null
+    },
+    {
+      "name": "custom",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "private-custom"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": null,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": null,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": null
+    },
+    {
+      "name": "ambiguous",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          },
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": null,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": null,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": null
+    },
+    {
+      "name": "day21",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-22",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 21,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": "Mantenha o controle na descida."
+    },
+    {
+      "name": "expired",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-23",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 22,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": null
+    },
+    {
+      "name": "future",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 1,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [],
+      "hint": null
+    },
+    {
+      "name": "otherRoutine",
+      "input": {
+        "routineID": "another",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [],
+      "hint": null
+    },
+    {
+      "name": "recreatedRow",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "new-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": null
+    },
+    {
+      "name": "pendingMetadata",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "pending"
+          },
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": "Mantenha o controle na descida."
+    },
+    {
+      "name": "latestOnly",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Mantenha o controle na descida."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          },
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-3",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-03",
+                "started_at": 3
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 9,
+          "avaliacao": "abaixo",
+          "items": [],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        },
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Mantenha o controle na descida."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": null
+    },
+    {
+      "name": "noNumbersInHint",
+      "input": {
+        "routineID": "routine",
+        "date": "2026-11-12",
+        "before": 10,
+        "items": [
+          {
+            "id": "routine-item",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra"
+          }
+        ],
+        "analyses": [
+          {
+            "status": "proposed",
+            "binding": {
+              "session": {
+                "id": "session-1",
+                "status": "done",
+                "routine_id": "routine",
+                "local_date": "2026-11-01",
+                "started_at": 1
+              },
+              "items": [
+                {
+                  "exercise_id": "supino-reto-barra",
+                  "note": "private-note-canary"
+                }
+              ],
+              "routineItems": [
+                {
+                  "id": "routine-item",
+                  "routine_id": "routine",
+                  "exercise_id": "supino-reto-barra"
+                }
+              ]
+            },
+            "reply": {
+              "avaliacao": "abaixo",
+              "summary": "Treino concluído.",
+              "points": [],
+              "proximaVez": [
+                {
+                  "slot": 0,
+                  "comentario": "Faça 20 repetições."
+                }
+              ],
+              "adjustment": {
+                "operation": "series",
+                "slot": 0,
+                "sets": 2,
+                "min": null,
+                "max": null,
+                "replacement": null
+              }
+            }
+          }
+        ]
+      },
+      "routineItems": [
+        {
+          "id": "routine-item",
+          "routine_id": "routine",
+          "exercise_id": "supino-reto-barra"
+        }
+      ],
+      "exercise": "supino-reto-barra",
+      "expected": [
+        {
+          "days_ago": 11,
+          "avaliacao": "abaixo",
+          "items": [
+            {
+              "slot": 0,
+              "comentario": "Faça 20 repetições."
+            }
+          ],
+          "adjustment": {
+            "slot": 0,
+            "operation": "series",
+            "status": "pendente"
+          }
+        }
+      ],
+      "hint": null
+    }
+  ],
   "contexts": [
     {
       "input": {
@@ -3353,6 +4904,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [
@@ -4821,6 +6373,7 @@
         "rules": {}
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [
@@ -6365,6 +7918,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [
@@ -8045,6 +9599,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [
@@ -9463,6 +11018,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [
@@ -10379,6 +11935,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -11063,6 +12620,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -11677,6 +13235,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -12319,6 +13878,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -12919,6 +14479,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -13598,6 +15159,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -14276,6 +15838,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -14946,6 +16509,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -15630,6 +17194,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -16314,6 +17879,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -16998,6 +18564,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -17682,6 +19249,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -18366,6 +19934,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],
@@ -19072,6 +20641,7 @@
         }
       },
       "expected": {
+        "memory": [],
         "version": 1,
         "running": {
           "done": [],

@@ -1,3 +1,5 @@
+import { buildMemory } from '../analysis/memory';
+import type { LocalRow } from '../analysis/context';
 import { EXERCISES } from '../engine/exercises';
 import { buildAgentContext, type LiveInput } from '../agent/live';
 import { weekRisks } from '../engine/risks';
@@ -9,6 +11,7 @@ import { projectDays } from '../engine/weekView';
 import { legsBeforeRunAlert } from '../engine/recommend';
 import type { DayOverrideRow, ExternalPlanItemRow, RunRow, SessionRow } from '../engine/types';
 export interface ReviewInput extends LiveInput {
+  analyses?: LocalRow[];
   today: string;
   sessions: SessionRow[];
   runs: RunRow[];
@@ -39,6 +42,13 @@ export function buildReviewContext(
   const runs = input.runs.filter((r) => !r.deleted);
   const overrides = input.overrides.filter((o) => !o.deleted);
   return {
+    memory: buildMemory({
+      routineID,
+      date: input.today,
+      before: Number.MAX_SAFE_INTEGER,
+      items: items as unknown as LocalRow[],
+      analyses: input.analyses ?? [],
+    }),
     version: 1,
     split: routine.split_key,
     days: input.plan?.gym_per_week ?? input.params.gym_days,

@@ -1,3 +1,4 @@
+import { buildMemory } from './memory';
 import { EXERCISES } from '../engine/exercises';
 import { diffDays } from '../engine/dates';
 import { runningContext } from './running';
@@ -12,6 +13,7 @@ import {
 
 export type LocalRow = Record<string, unknown>;
 export interface AnalysisInput {
+  analyses?: LocalRow[];
   sessionID: string;
   tables: Record<string, LocalRow[]>;
   /** Local-only first-write snapshots, keyed by set ID and item ID. */
@@ -113,6 +115,13 @@ export function buildAnalysisContext(input: AnalysisInput): AnalysisContext {
             items: items(s),
           }));
   return {
+    memory: buildMemory({
+      routineID: typeof session.routine_id === 'string' ? session.routine_id : null,
+      date,
+      before: Number(session.started_at),
+      items: ordered(active('session_items').filter((i) => i.session_id === session.id)),
+      analyses: input.analyses ?? [],
+    }),
     version: 1,
     running: runningContext(input.tables, date, 2),
     week: plan ? Math.floor(diffDays(String(plan.active_from), date) / 7) + 1 : null,

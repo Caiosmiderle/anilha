@@ -2762,3 +2762,5 @@ body {
 .calendar-key { margin-inline-start: 8px; }
 .calendar-agenda > .section-title { padding: 16px 20px 0; }
 .calendar-agenda > p { margin: 12px 20px 16px; }
+
+.focus-hint { max-width: 34ch; font-size: 0.95rem; line-height: 1.45; color: var(--hb-text-muted, inherit); }

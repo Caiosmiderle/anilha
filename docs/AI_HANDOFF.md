@@ -1,5 +1,14 @@
 # Registro entre Codex e Claude
 
+## iOS 0.11.0, memória das análises, Codex, 12/11/2026
+
+- Branch recebida limpa `codex/memoria-analise`, origem `493bde4`; entrega local, sem escrita em `.git`. Claude revisa e commita; revisão desta entrega **PENDENTE**.
+- `memory` opcional na análise e revisão: três análises locais da ficha, avaliação, comentários da IA e operação/destino do ajuste, com limites e associação pelo catálogo. Sem SQL novo ou mudança do motor.
+- Dica Waltér no foco nativo, foco PWA e cartão PWA, da última análise, até 21 dias e com exercício/linha da ficha conferidos. Demo nativa preparada; print PWA `artifacts/screens/211-foco-memoria.png`.
+- Quinze vetores TS/Swift; passaram 61 testes TS do CI, geradores `--check`, lint, typecheck, build e E2E local novo com `.local/e2e-dist`. Falhas intermediárias e limites registrados no parecer.
+- Swift tentado, ausente no Windows; teste Swift, CI Apple, captura nativa e iPhone **PENDENTES**. Servidores ampliados devem ser publicados antes dos clientes, após revisão/autorização. Nada publicado pelo Codex.
+- Parecer, prompt, custos extras estimados e roteiro em [REVISAO_CODEX_MEMORIA_2026-11-12.md](REVISAO_CODEX_MEMORIA_2026-11-12.md). Revisões já guardadas mantêm o cache por versão da ficha.
+
 ## iOS 0.10.0, revisão da ficha com corridas, Codex, 12/11/2026
 
 - Branch `codex/revisao-ficha`, base `f7ebee8`, arquivos interrompidos revisados/aproveitados; entrega só local, sem escrita em `.git`. Claude revisa e commita; nada publicado.

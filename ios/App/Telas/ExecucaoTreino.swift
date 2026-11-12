@@ -38,6 +38,17 @@ struct ExecucaoTreino: View {
     }
     private var item: ReadRow? { items.first { $0.id == next?.string("item_id") } }
     private var exercise: ReadRow? { exercises[next?.string("exercise_id") ?? ""] }
+    private var dica: String? {
+        guard let exercise else { return nil }
+        let input = AnalysisMemory.input(routineID: session.string("routine_id"), date: dataDica, before: session.number("started_at") ?? 0, items: items, analyses: conta.analises.filter { $0.key.hasPrefix("analysis:") }.map(\.value))
+        return AnalysisMemory.hint(input, exercise: exercise.id, routineItems: conta.dados.active("routine_items"), catalog: conta.catalogo)
+    }
+    private var dataDica: String {
+        #if DEBUG
+        if ModoDemo.solicitado { return session.string("local_date") ?? LocalDay.today() }
+        #endif
+        return LocalDay.today()
+    }
     private var lb: Bool { conta.dados.active("profiles").first?.string("unit") == "lb" }
     private var time: Bool { exercise?.string("measure") == "time" }
     private var done: Int { allSets.filter { $0.string("kind") == "work" && $0.number("completed_at") != nil }.count }
@@ -187,6 +198,7 @@ struct ExecucaoTreino: View {
                             .lineLimit(2).minimumScaleFactor(0.3).monospacedDigit()
                             .accessibilityLabel("A fazer, \(what ?? "anotar a série")")
                         Text("\(setLine) · \(done) \(done == 1 ? "série feita" : "séries feitas")").font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                        if let dica { Text("Waltér: \(dica)").font(.subheadline).foregroundStyle(Tema.tintaSuave).accessibilityIdentifier("focus-hint") }
                     } else {
                         Text("Tudo feito").font(.title2)
                         Text("\(done)").font(.system(size: tamanhoPrincipal, weight: .bold, design: .rounded))

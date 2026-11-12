@@ -329,6 +329,7 @@
       },
       "routineID": "routine",
       "expected": {
+        "memory": [],
         "version": 1,
         "split": "peito_triceps",
         "days": 5,
@@ -828,6 +829,7 @@
       },
       "routineID": "routine",
       "expected": {
+        "memory": [],
         "version": 1,
         "split": "peito_triceps",
         "days": 3,
@@ -1088,6 +1090,7 @@
       },
       "routineID": "routine",
       "expected": {
+        "memory": [],
         "version": 1,
         "split": "peito_triceps",
         "days": 5,
@@ -1592,6 +1595,7 @@
       },
       "routineID": "routine",
       "expected": {
+        "memory": [],
         "version": 1,
         "split": "peito_triceps",
         "days": 5,
@@ -2137,6 +2141,7 @@
       },
       "routineID": "routine",
       "expected": {
+        "memory": [],
         "version": 1,
         "split": "peito_triceps",
         "days": 5,
@@ -2703,6 +2708,7 @@
       },
       "routineID": "routine",
       "expected": {
+        "memory": [],
         "version": 1,
         "split": "perna",
         "days": 5,

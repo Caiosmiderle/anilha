@@ -8,6 +8,7 @@ import {
 import { analysisCases, replyCases } from '../../scripts/ios-analysis-source';
 import { handleReview, type ReviewDependencies } from '../../supabase/functions/revisao-ficha/core';
 import { reviewCases, reviewReply } from '../../scripts/ios-review-source';
+import { memoryCases } from '../../scripts/ios-memory-source';
 let db: PGlite;
 const user = '00000000-0000-4000-8000-000000000081';
 const claims = { sub: user, role: 'authenticated' as const };
@@ -48,6 +49,40 @@ afterAll(async () => {
   await db?.close();
 });
 describe('função de análise com modelo simulado e RPCs reais locais', () => {
+  it('os dois servidores aceitam clientes antigos e memória válida, bloqueando texto fora do contrato', async () => {
+    const memory = memoryCases().find((v) => v.name === 'three')!.expected;
+    const analysisDeps: AnalysisDependencies = {
+      ...deps,
+      begin: async () => ({}),
+      end: async () => {},
+    };
+    const reviewDeps: ReviewDependencies = {
+      ...analysisDeps,
+      authorize: async () => ({}),
+      model: async () => ({
+        stop: 'tool_use',
+        input: 100,
+        output: 100,
+        content: [{ type: 'tool_use', name: 'responder_revisao', input: reviewReply }],
+      }),
+    };
+    const a = analysisCases()[0]!.expected,
+      b = reviewCases()[0]!.expected;
+    const { memory: _a, ...oldA } = a,
+      { memory: _b, ...oldB } = b;
+    for (const context of [oldA, { ...a, memory }])
+      expect((await handleAnalysis(req({ context }), analysisDeps)).status).toBe(200);
+    for (const context of [oldB, { ...b, memory }])
+      expect((await handleReview(req({ context }), reviewDeps)).status).toBe(200);
+    const invalid = [{ ...memory[0], note: 'private-canary' }];
+    expect(
+      (await handleAnalysis(req({ context: { ...a, memory: invalid } }), analysisDeps)).status,
+    ).toBe(400);
+    expect(
+      (await handleReview(req({ context: { ...b, memory: invalid } }), reviewDeps)).status,
+    ).toBe(400);
+    model.mockClear();
+  });
   it('exige credencial e valida contexto antes de pagar ou contar uso', async () => {
     expect((await handleAnalysis(req(undefined, ''), deps)).status).toBe(401);
     expect(

@@ -1,3 +1,4 @@
+import { memoryCases } from './ios-memory-source';
 import 'fake-indexeddb/auto';
 import { buildAnalysisContext, numericSet, type AnalysisInput } from '../src/analysis/context';
 import { parseReply, type AnalysisAdjustment } from '../src/analysis/contract';
@@ -349,6 +350,7 @@ export async function analysisArtifacts() {
           }
     return {
       catalog: EXERCISES,
+      memory: memoryCases(),
       contexts: [
         ...analysisCases(),
         ...evolutionCases().map((v) => ({

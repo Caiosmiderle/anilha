@@ -95,7 +95,7 @@ struct CartaoAnaliseTreino: View {
                         rodape
                     } else {
                         Text("Conta no limite diário do Waltér.").font(.caption).foregroundStyle(Tema.tintaSuave)
-                        Text("Vão só os números do treino e os nomes dos exercícios, sem notas ou dados de saúde.").font(.footnote)
+                        Text("Vão só os números do treino, nomes do catálogo e conclusões anteriores do Waltér, sem notas ou dados de saúde.").font(.footnote)
                         if !conta.online { Text("Sem internet. Conecte para analisar.").font(.footnote) }
                         if state.waiting { Text("A análise aguarda conexão. Ela começa sozinha quando a rede voltar.").font(.footnote) }
                         if state.interrupted { Text("A tentativa anterior foi interrompida. Tentar novamente pode contar outra chamada no limite diário.").font(.footnote) }

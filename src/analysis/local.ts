@@ -52,12 +52,21 @@ export async function analysisInput(d: AnilhaDB, sessionID: string): Promise<Ana
     tables[table] = await d.table(table).toArray();
   const planned: NonNullable<AnalysisInput['planned']> = {},
     rules: NonNullable<AnalysisInput['rules']> = {};
-  for (const entry of await d.meta.toArray()) {
+  const metadata = await d.meta.toArray();
+  for (const entry of metadata) {
     if (entry.key.startsWith('analysis-plan:'))
       planned[entry.key.slice(14)] = entry.value as (typeof planned)[string];
     if (entry.key.startsWith('analysis-rule:')) rules[entry.key.slice(14)] = String(entry.value);
   }
-  return { sessionID, tables, planned, rules };
+  return {
+    sessionID,
+    tables,
+    planned,
+    rules,
+    analyses: metadata
+      .filter((e) => e.key.startsWith('analysis:'))
+      .map((e) => e.value as unknown as Record<string, unknown>),
+  };
 }
 export async function analysisBinding(d: AnilhaDB, id: string): Promise<AnalysisBinding> {
   const session = await d.sessions.get(id);

@@ -28,7 +28,7 @@ public enum WorkoutAnalysis {
         return ReadRow(fields: ["kind": .string(row.string("kind") == "warmup" ? "warmup" : "work"), "load_kg": jsonNumber(load),
             "reps": whole(row, "reps", 500), "seconds": whole(row, "seconds", 7200), "rir": whole(row, "rir", 10)])
     }
-    public static func context(_ data: ReadData, sessionID: String, catalog: [ReadRow], planned: [String: ReadRow] = [:], appliedRules: [String: String] = [:]) throws -> ReadRow {
+    public static func context(_ data: ReadData, sessionID: String, catalog: [ReadRow], planned: [String: ReadRow] = [:], appliedRules: [String: String] = [:], analyses: [ReadRow] = []) throws -> ReadRow {
         guard let session = data.active("sessions").first(where: { $0.id == sessionID }), session.string("status") == "done", session.string("detail") == "full", let date = session.string("local_date") else { throw Failure.invalidSession }
         // Only built-in names; custom exercise names can contain arbitrary personal text.
         let names = Dictionary(uniqueKeysWithValues: catalog.map { ($0.id, $0.string("name") ?? "Exercício personalizado") })
@@ -65,7 +65,8 @@ public enum WorkoutAnalysis {
         }.sorted { ($0.number("started_at") ?? 0) == ($1.number("started_at") ?? 0) ? $0.id < $1.id : ($0.number("started_at") ?? 0) > ($1.number("started_at") ?? 0) }.prefix(3).map {
             ReadRow(fields: ["days_ago": .number(Double(max(0, LocalDay.distance($0.string("local_date") ?? date, date)))), "deload": .bool($0.bool("deload") == true), "items": rows(items($0))])
         }
-        return ReadRow(fields: ["version": .number(1), "week": plan.map { .number(floor(Double(LocalDay.distance($0.string("active_from") ?? date, date)) / 7) + 1) } ?? .null,
+        let memoryInput = AnalysisMemory.input(routineID: session.string("routine_id"), date: date, before: session.number("started_at") ?? 0, items: Workout.items(data, sessionID), analyses: analyses)
+        return ReadRow(fields: ["memory": rows(AnalysisMemory.build(memoryInput, catalog: catalog)), "version": .number(1), "week": plan.map { .number(floor(Double(LocalDay.distance($0.string("active_from") ?? date, date)) / 7) + 1) } ?? .null,
             "focus": .array(allowedFocus), "deload": .bool(session.bool("deload") == true), "items": rows(items(session)), "previous": rows(previous), "running": .object(RunningContext.build(data, date: date, window: 2).fields)])
     }
     public static func validAdjustment(_ a: ReadRow, slots: Int, catalog: [ReadRow]) -> Bool {

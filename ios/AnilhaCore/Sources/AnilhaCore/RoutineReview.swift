@@ -17,7 +17,7 @@ public enum RoutineReview {
         return ReadRow(fields: ["routine": routine.map { .object(WorkoutAnalysis.withoutSequence($0).fields) } ?? .null,
             "items": rows(data.items(routineID).map(WorkoutAnalysis.withoutSequence))])
     }
-    public static func context(_ data: ReadData, routineID: String, today: String, catalog: [ReadRow]) throws -> ReadRow {
+    public static func context(_ data: ReadData, routineID: String, today: String, catalog: [ReadRow], analyses: [ReadRow] = []) throws -> ReadRow {
         let b = try binding(data, routineID: routineID, today: today), routine = b.object("routine"), plan = b.object("plan")
         let names = Dictionary(uniqueKeysWithValues: catalog.map { ($0.id, $0.string("name") ?? "Exercício personalizado") })
         var pairs: [String: Int] = [:]
@@ -47,7 +47,8 @@ public enum RoutineReview {
             }
         }
         let metrics = WorkoutAnalysis.reviewMetrics(b)
-        return ReadRow(fields: ["version": .number(1), "split": routine.fields["split_key"] ?? .string(""), "days": plan.fields["gym_per_week"] ?? p.fields["gym_days"] ?? .number(0),
+        let memoryInput = AnalysisMemory.input(routineID: routineID, date: today, before: 9007199254740991, items: data.items(routineID), analyses: analyses)
+        return ReadRow(fields: ["memory": rows(AnalysisMemory.build(memoryInput, catalog: catalog)), "version": .number(1), "split": routine.fields["split_key"] ?? .string(""), "days": plan.fields["gym_per_week"] ?? p.fields["gym_days"] ?? .number(0),
             "focus": .array(allowed), "deload": .bool(profile?.string("deload_week") == History.weekStart(today)), "items": rows(items), "volume": metrics.fields["volume"]!, "warnings": metrics.fields["warnings"]!,
             "running": .object(RunningContext.build(data, date: today, window: 14).fields), "schedule": rows(schedule)])
     }

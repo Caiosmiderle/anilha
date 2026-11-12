@@ -6,6 +6,7 @@ import { buildAnalysisContext, type AnalysisInput } from '../../analysis/context
 import { parseReply, validContext } from '../../analysis/contract';
 import { EXERCISES } from '../exercises';
 import { SPLITS } from '../taxonomy';
+import { exerciseHint } from '../../analysis/memory';
 
 const source = readFileSync(
   new URL('../../../ios/App/Demo/ModoDemo.swift', import.meta.url),
@@ -17,6 +18,18 @@ const tables: AnalysisInput['tables'] = JSON.parse(
 const reply = JSON.parse(source.match(/static let resposta = #"""\s*([\s\S]*?)\s*"""#/)![1]!);
 
 describe('fixture pública da apresentação SwiftUI', () => {
+  it('prepara a dica real da última análise no foco nativo de demonstração', () => {
+    const session = tables.sessions!.find(s => s.id === 'demo-active')!;
+    const done = tables.sessions!.find(s => s.id === 'demo-done')!;
+    const hint = exerciseHint({ routineID: String(session.routine_id), date: String(session.local_date), before: Number(session.started_at),
+      items: tables.session_items!.filter(i => i.session_id === session.id),
+      analyses: [{ status: 'proposed', reply, binding: { session: done, items: tables.session_items!.filter(i => i.session_id === done.id), routineItems: tables.routine_items } }] },
+      'supino-reto-barra', tables.routine_items!);
+    expect(hint).toBe(reply.proximaVez[0].comentario);
+    const focus = readFileSync(new URL('../../../ios/App/Telas/ExecucaoTreino.swift', import.meta.url), 'utf8');
+    expect(focus).toContain('AnalysisMemory.hint');
+    expect(focus).toContain('accessibilityIdentifier("focus-hint")');
+  });
   it('usa exercícios e divisões reais do catálogo com dados fictícios mínimos', () => {
     for (const item of tables.routine_items!) {
       expect(EXERCISES.some((e) => e.id === item.exercise_id)).toBe(true);

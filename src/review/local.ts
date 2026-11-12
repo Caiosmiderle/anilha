@@ -41,6 +41,9 @@ export async function reviewInput(d: AnilhaDB, today: string): Promise<ReviewInp
   const params = profile?.onboarding ?? plan?.params;
   if (!params) throw new Error('Crie um plano antes de revisar.');
   return {
+    analyses: (await d.meta.toArray())
+      .filter((e) => e.key.startsWith('analysis:'))
+      .map((e) => e.value as unknown as Record<string, unknown>),
     today,
     params,
     plan,

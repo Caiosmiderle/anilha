@@ -15,6 +15,15 @@ final class AnalysisTests: XCTestCase {
             }
         }
     }
+    func testMemoryAndFocusHintParity() throws {
+        let f = try fixture()
+        for v in f.array("memory") {
+            let input = v.object("input")
+            XCTAssertEqual(AnalysisMemory.build(input, catalog: f.array("catalog")), v.array("expected"), v.string("name") ?? "")
+            XCTAssertEqual(AnalysisMemory.hint(input, exercise: v.string("exercise") ?? "", routineItems: v.array("routineItems"), catalog: f.array("catalog")), v.string("hint"), v.string("name") ?? "")
+        }
+        XCTAssertEqual(f.array("memory").count, 15)
+    }
     func testContextParityAndForbiddenData() throws {
         let f = try fixture()
         for v in f.array("contexts") {

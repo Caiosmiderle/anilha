@@ -365,7 +365,7 @@ final class ContaStore {
             try recarregar()
             let planned = analises.filter { $0.key.hasPrefix("analysis-plan:") }.reduce(into: [String: ReadRow]()) { $0[String($1.key.dropFirst(14))] = $1.value }
             let rules = analises.filter { $0.key.hasPrefix("analysis-rule:") }.reduce(into: [String: String]()) { $0[String($1.key.dropFirst(14))] = $1.value.string("rule") }
-            let context = try WorkoutAnalysis.context(dados, sessionID: id, catalog: catalogo, planned: planned, appliedRules: rules)
+            let context = try WorkoutAnalysis.context(dados, sessionID: id, catalog: catalogo, planned: planned, appliedRules: rules, analyses: analises.filter { $0.key.hasPrefix("analysis:") }.map(\.value))
             let binding = try WorkoutAnalysis.binding(dados, sessionID: id)
             let auth = try await cliente.auth.session
             try conferir(owner, epoch)
@@ -444,7 +444,7 @@ final class ContaStore {
                 try cache.guardarRevisao(saved, routineID: id, dono: owner)
                 analisesNaoGravadas.removeValue(forKey: key); try recarregar(); return
             }
-            let context = try RoutineReview.context(dados, routineID: id, today: today, catalog: catalogo)
+            let context = try RoutineReview.context(dados, routineID: id, today: today, catalog: catalogo, analyses: analises.filter { $0.key.hasPrefix("analysis:") }.map(\.value))
             let binding = try RoutineReview.binding(dados, routineID: id, today: today)
             let auth = try await cliente.auth.session
             try conferir(owner, epoch)

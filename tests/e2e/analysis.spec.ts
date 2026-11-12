@@ -24,6 +24,60 @@ async function completed(page: Page) {
   return page.getByTestId('analysis-card');
 }
 
+test('memória da análise recusada chega ao próximo treino e mostra dica no foco', async ({
+  page,
+}) => {
+  const card = await completed(page);
+  await card.getByRole('button', { name: 'Analisar este treino' }).click();
+  await expect(card).toContainText('Na próxima vez');
+  await card.getByRole('button', { name: 'Recusar', exact: true }).click();
+  await expect(card).toContainText('Ajuste recusado.');
+  await page.goto('/');
+  await page
+    .getByRole('button', { name: /Escolher outro|Registrar treino|Treinar academia/ })
+    .first()
+    .click();
+  await page
+    .getByRole('button', { name: /^Ficha A: Peito e tríceps/ })
+    .first()
+    .click();
+  await page.waitForURL(/\/treino\//);
+  await expect(page.getByTestId('exercise-hint')).toHaveText(
+    'Waltér: Mantenha o controle das séries.',
+  );
+  await page.getByRole('button', { name: /modo foco/i }).click();
+  await expect(page.getByTestId('focus-hint')).toHaveText(
+    'Waltér: Mantenha o controle das séries.',
+  );
+  await expect(page.getByRole('region', { name: 'Modo foco' })).toContainText('Série');
+  await shot(page, '211-foco-memoria');
+  await page.getByRole('button', { name: 'Sair do modo foco' }).click();
+  await page.getByTestId('set-editor').getByRole('button', { name: 'Digitar' }).click();
+  await page.getByLabel('Do jeito que você fala').fill('20kg 10 10');
+  await page.getByRole('dialog').getByRole('button', { name: 'Salvar séries' }).click();
+  await page.getByRole('button', { name: 'Opções do treino' }).click();
+  await page.getByRole('menuitem', { name: /Encerrar treino/ }).click();
+  await page.getByRole('dialog').getByRole('button', { name: 'Encerrar treino' }).click();
+  await page.waitForURL(/\/historico\/treino\//);
+  const request = page.waitForRequest((r) => r.url().includes('/functions/v1/analise-treino'));
+  await page
+    .getByTestId('analysis-card')
+    .getByRole('button', { name: 'Analisar este treino' })
+    .click();
+  const body = (await request).postDataJSON();
+  expect(body.context.memory).toHaveLength(1);
+  expect(body.context.memory[0].adjustment).toEqual({
+    slot: 0,
+    operation: 'series',
+    status: 'recusado',
+  });
+  expect(body.context.memory[0].items[0]).toEqual({
+    slot: 0,
+    comentario: 'Mantenha o controle das séries.',
+  });
+  await expect(page.getByTestId('analysis-card')).toContainText('Você concluiu a sessão.');
+});
+
 test('análise usa contexto mínimo, ajusta, salva na fila, reabre sem cobrar e desfaz', async ({
   page,
 }) => {

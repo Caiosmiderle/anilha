@@ -309,7 +309,7 @@ export function AnalysisCard({ sessionID }: { sessionID: string }) {
           ) : (
             <>
               <p>
-                Vão só os números do treino e os nomes dos exercícios, sem notas ou dados de saúde.
+                Vão só os números do treino, nomes do catálogo e conclusões anteriores do Waltér, sem notas ou dados de saúde.
               </p>
               {!online ? <p>Sem internet. Conecte para analisar.</p> : null}
               <Button
