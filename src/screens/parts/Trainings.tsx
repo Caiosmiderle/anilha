@@ -15,6 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAccount } from '../../app/account';
 import { useExerciseMap, useRoutineItems, useToday } from '../../data/hooks';
 import { newId, save, saveMany } from '../../data/store';
+import { blankRoutine, deleteRoutineChanges } from '../../data/routineEditing';
 import { routineOrigin } from '../../engine/routines';
 import { fichaLetter, SPLITS } from '../../engine/taxonomy';
 import { fichasFileName, fichasFor, fichasXlsx } from '../../lib/fichasSheet';
@@ -64,16 +65,7 @@ export function Trainings({ plan }: { plan: PlanRow | null }) {
 
   async function create() {
     const id = newId();
-    await save('routines', {
-      id,
-      deleted: false,
-      name: 'Novo treino',
-      split_key: 'livre',
-      position: active.length,
-      reason: null,
-      archived: false,
-      origin: 'pessoa',
-    });
+    await save('routines', blankRoutine(id, active.length));
     navigate(`/plano/rotina/${id}`);
   }
 
@@ -96,13 +88,7 @@ export function Trainings({ plan }: { plan: PlanRow | null }) {
 
   /** Gone for good, on every device. Workouts done with it stay in the history. */
   async function remove(list: RoutineRow[]) {
-    const ids = new Set(list.map((r) => r.id));
-    await saveMany([
-      ...list.map((r) => ({ table: 'routines' as const, row: { ...r, deleted: true } })),
-      ...items
-        .filter((i) => ids.has(i.routine_id))
-        .map((i) => ({ table: 'routine_items' as const, row: { ...i, deleted: true } })),
-    ]);
+    await saveMany(deleteRoutineChanges(list, items));
     setToDelete(null);
     toast.show(
       list.length === 1 ? `${list[0]?.name} excluído` : `${list.length} treinos excluídos`,

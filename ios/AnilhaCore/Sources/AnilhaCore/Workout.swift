@@ -11,6 +11,16 @@ public struct PushPayload: Codable, Sendable {
 }
 
 public enum Workout {
+    /// setValues.lastTimeUpdates. Index counts completed work sets as in the PWA.
+    public static func lastTimeUpdates(_ suggestion: LoadSuggestion, itemSets: [ReadRow], measure: String) -> [ReadRow] {
+        itemSets.filter { $0.string("kind") == "work" }.enumerated().compactMap { index, set in
+            guard set.number("completed_at") == nil else { return nil }
+            let last = suggestion.last(index)
+            return ReadRow(fields: ["id": .string(set.id), "load_kg": last.fields["load_kg"] ?? .null,
+                "reps": measure == "time" ? .null : last.fields["value"] ?? .null,
+                "seconds": measure == "time" ? last.fields["value"] ?? .null : .null])
+        }
+    }
     /// screens/parts/setValues.ts, shared one-tap/editor fallback and unit rounding.
     public static func editorStart(_ set: ReadRow, itemSets: [ReadRow], exercise: ReadRow, unit: String) -> ReadRow {
         let done = itemSets.filter { $0.number("completed_at") != nil }

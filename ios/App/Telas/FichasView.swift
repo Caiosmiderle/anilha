@@ -3,6 +3,7 @@ import SwiftUI
 
 struct FichasView: View {
     let conta: ContaStore
+    @State private var criando = false
     var body: some View {
         let exercicios = conta.dados.exercises(catalog: conta.catalogo)
         List {
@@ -10,7 +11,7 @@ struct FichasView: View {
                 .listRowBackground(Color.clear).listRowSeparator(.hidden).entradaAnilha(0)
             StatusSyncView(conta: conta).listRowBackground(Color.clear)
             if conta.dados.routines.isEmpty {
-                Text("Nenhuma ficha ativa disponível. Crie suas fichas no PWA e puxe para atualizar.")
+                Text("Nenhuma ficha ativa disponível. Toque em Nova ficha para criar seu treino.")
                     .foregroundStyle(Tema.tintaSuave)
             }
             ForEach(conta.dados.routines) { ficha in
@@ -32,12 +33,15 @@ struct FichasView: View {
         }
         .scrollContentBackground(.hidden).background { FundoAnilha() }
         .navigationTitle("Fichas").navigationBarTitleDisplayMode(.inline).refreshable { await conta.atualizar() }
+        .toolbar { ToolbarItem(placement: .primaryAction) { Button("Nova ficha", systemImage: "plus") { criando = true } } }
+        .sheet(isPresented: $criando) { NavigationStack { EditarFichaView(conta: conta) } }
     }
 }
 
 struct FichaView: View {
     let conta: ContaStore
     let ficha: ReadRow
+    @State private var editando = false
     private var atual: ReadRow? { conta.dados.routines.first { $0.id == ficha.id } }
     private var exercicios: [String: ReadRow] { conta.dados.exercises(catalog: conta.catalogo) }
 
@@ -81,6 +85,8 @@ struct FichaView: View {
         }
         .scrollContentBackground(.hidden).background { FundoAnilha() }
         .navigationTitle("Ficha").navigationBarTitleDisplayMode(.inline)
+        .toolbar { ToolbarItem(placement: .primaryAction) { Button("Editar") { editando = true }.disabled(atual == nil) } }
+        .sheet(isPresented: $editando) { if let atual { NavigationStack { EditarFichaView(conta: conta, ficha: atual) } } }
         .task { await conta.conferirAdmin() }
         .refreshable { await conta.atualizar() }
     }

@@ -29,11 +29,15 @@ public struct LoadSuggestion: Codable, Equatable, Sendable {
 
     public func last(_ index: Int) -> ReadRow {
         guard let based_on else { return ReadRow(fields: ["load_kg": .null, "value": .null]) }
-        func at(_ key: String, _ index: Int) -> JSONValue {
-            guard case .array(let values) = based_on.fields[key], !values.isEmpty else { return .null }
-            return values[min(index, values.count - 1)]
+        let count: Int
+        if case .array(let values) = based_on.fields["values"] { count = values.count }
+        else { count = 0 }
+        let at = min(index, count - 1)
+        func value(_ key: String) -> JSONValue {
+            guard case .array(let values) = based_on.fields[key], values.indices.contains(at) else { return .null }
+            return values[at]
         }
-        return ReadRow(fields: ["load_kg": at("loads", index), "value": at("values", index)])
+        return ReadRow(fields: ["load_kg": value("loads"), "value": value("values")])
     }
     public func prefill(_ index: Int) -> ReadRow {
         guard let based_on else { return last(index) }

@@ -101,6 +101,12 @@ try {
   const { output } = await chatBundle.generate({ format: 'esm' });
   chat = await (await import('data:text/javascript;base64,' + Buffer.from(output[0].code).toString('base64'))).chatArtifacts();
 } finally { await chatBundle.close(); }
+const routineBundle = await rolldown({ input: resolve(root, 'scripts/ios-routine-source.ts'), platform: 'node' });
+let routines;
+try {
+  const { output } = await routineBundle.generate({ format: 'esm' });
+  routines = await (await import('data:text/javascript;base64,' + Buffer.from(output[0].code).toString('base64'))).routineArtifacts();
+} finally { await routineBundle.close(); }
 const env = await readFile(resolve(root, '.env.production'), 'utf8');
 if (!/^VITE_SUPABASE_ANON_KEY=sb_publishable_[A-Za-z0-9_-]+\s*$/m.test(env)) {
   throw new Error(
@@ -140,6 +146,7 @@ const howtoIos = Object.fromEntries(
     }),
 );
 const outputs = {
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/routines.json': json(routines),
   'ios/App/Recursos/howto.json': json(howtoIos),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/chat.json': json(chat),
   'ios/AnilhaCore/Sources/AnilhaCore/Resources/chat-places.json': json(chat.places),

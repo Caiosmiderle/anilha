@@ -156,7 +156,7 @@ public final class CacheLeitura {
     public func rejeitadas(_ dono: String) throws -> Int { try saidas(dono).filter(\.rejeitada).count }
     public func gravar(_ changes: [PushChange], dono: String, now: Double = Date.now.timeIntervalSince1970 * 1000,
                        catalog: [ReadRow] = [], metadata: [String: ReadRow] = [:]) throws {
-        guard !changes.isEmpty else { return }
+        guard !changes.isEmpty || !metadata.isEmpty else { return }
         do {
             let rows = try contexto.fetch(FetchDescriptor<LinhaSync>(predicate: #Predicate { $0.dono == dono }))
             var index = Dictionary(uniqueKeysWithValues: rows.map { ($0.chave, $0) })
@@ -167,7 +167,7 @@ public final class CacheLeitura {
             var written: [PushChange] = []
             for change in changes {
                 // profiles: modo retorno; exercises: exercício próprio criado no iPhone. Como no site.
-                guard ["sessions", "session_items", "sets", "records", "routine_items", "body_logs", "profiles", "exercises"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
+                guard ["sessions", "session_items", "sets", "records", "routines", "routine_items", "body_logs", "profiles", "exercises"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
                 if change.table == "body_logs" {
                     _ = try History.bodyChange(change.row, consent: metadados(dono)["consent"], today: LocalDay.today())
                 }
@@ -227,6 +227,41 @@ public final class CacheLeitura {
             changes.append(PushChange(entry.tabela, row)); stamps[entry.chave] = entry.carimbo
         }
         return Envio(changes: changes, carimbos: stamps)
+    }
+    /// Check the snapshot immediately before the atomic write, including items removed remotely.
+    public func salvarFicha(_ routine: ReadRow, original: ReadRow?, oldItems: [ReadRow], after: [ReadRow], dono: String, catalog: [ReadRow]) throws {
+        let data = try ler(dono)
+        let current = data.tables["routines"]?.first { $0.id == routine.id }
+        guard current.map({ stable(.object($0.fields)) }) == original.map({ stable(.object($0.fields)) }),
+              stable(.array(data.items(routine.id).map { .object($0.fields) })) == stable(.array(oldItems.map { .object($0.fields) })) else { throw RoutineEditing.Failure.conflict }
+        let changes = try RoutineEditing.changes(routine: routine, old: oldItems, after: after, catalog: catalog)
+        try gravar(changes, dono: dono, catalog: catalog)
+    }
+    public func apagarFicha(_ original: ReadRow, oldItems: [ReadRow], dono: String) throws {
+        let data = try ler(dono)
+        guard let current = data.routines.first(where: { $0.id == original.id }),
+              stable(.object(current.fields)) == stable(.object(original.fields)),
+              stable(.array(data.items(original.id).map { .object($0.fields) })) == stable(.array(oldItems.map { .object($0.fields) })) else { throw RoutineEditing.Failure.conflict }
+        try gravar(RoutineEditing.deleteChanges(current, items: oldItems), dono: dono)
+    }
+    public func ignorarSugestao(sessionID: String, itemID: String, dono: String, catalog: [ReadRow]) throws {
+        let data = try ler(dono)
+        guard let session = data.active("sessions").first(where: { $0.id == sessionID && $0.string("status") == "active" }),
+              let item = Workout.items(data, sessionID).first(where: { $0.id == itemID }),
+              let exercise = data.exercises(catalog: catalog)[item.string("exercise_id") ?? ""] else { throw ReadSync.Failure.invalidPage }
+        let key = "dismissed:\(sessionID)"
+        let state = try metadados(dono)[key] ?? ReadRow(fields: [:])
+        if state.bool(itemID) == true { return }
+        let suggestion = Workout.suggestion(data, exercise: exercise, plan: item, today: session.string("local_date") ?? LocalDay.today(), exclude: sessionID)
+        let sets = Workout.sets(data, itemID)
+        var changes: [PushChange] = []
+        if suggestion.based_on != nil && ["increase", "decrease"].contains(suggestion.kind) {
+            changes = Workout.lastTimeUpdates(suggestion, itemSets: sets, measure: exercise.string("measure") ?? "weight_reps").compactMap { update in
+                sets.first { $0.id == update.id }.map { PushChange("sets", $0.changing(update.fields)) }
+            }
+        }
+        // Metadata, restored sets, outbox and draft invalidation commit together.
+        try gravar(changes, dono: dono, catalog: catalog, metadata: [key: state.changing([itemID: .bool(true)])])
     }
     public func confirmar(_ envio: Envio, dono: String, rejeitadas: Set<String>) throws {
         do {
