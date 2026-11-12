@@ -160,7 +160,9 @@ public enum WorkoutAnalysis {
         return fichaChanges(routineID: routine.id, old: old, after: after, newID: newID)
     }
     /// Shared with the native chat. Preserves notes, warmups and row identity by exercise.
-    public static func fichaChanges(routineID: String, old: [ReadRow], after: [ReadRow], newID: () -> String = Workout.id) -> [PushChange] {
+    /// `explicitExtras`: the manual editor sends note, warm-up and bi-set for every line. Analysis and
+    /// chat do not (as on the site, a new line starts clean), so they keep the default.
+    public static func fichaChanges(routineID: String, old: [ReadRow], after: [ReadRow], explicitExtras: Bool = false, newID: () -> String = Workout.id) -> [PushChange] {
         var unused = old, changes: [PushChange] = []
         for (position, row) in after.enumerated() {
             let kept = unused.firstIndex { $0.string("exercise_id") == row.string("exercise_id") }
@@ -168,7 +170,7 @@ public enum WorkoutAnalysis {
             if let kept { next = unused.remove(at: kept) }
             else { next = ReadRow(fields: ["id": .string(newID()), "deleted": .bool(false), "routine_id": .string(routineID), "warmup_sets": .number(0), "note": .null, "reason": .null]) }
             for key in ["exercise_id", "sets", "target_min", "target_max", "rest_sec"] { next.fields[key] = row.fields[key] }
-            for key in ["note", "warmup_sets", "superset"] where row.fields[key] != nil { next.fields[key] = row.fields[key] }
+            if explicitExtras { for key in ["note", "warmup_sets", "superset"] where row.fields[key] != nil { next.fields[key] = row.fields[key] } }
             next.fields["position"] = .number(Double(position))
             changes.append(PushChange("routine_items", next))
         }

@@ -58,7 +58,7 @@ public enum RoutineEditing {
             return row.changing(["target_min": .number(min(lo, hi)), "target_max": .number(max(lo, hi))])
         }
         return [PushChange("routines", routine.changing(["name": .string(name)]))]
-            + WorkoutAnalysis.fichaChanges(routineID: routine.id, old: old, after: normalized, newID: newID)
+            + WorkoutAnalysis.fichaChanges(routineID: routine.id, old: old, after: normalized, explicitExtras: true, newID: newID)
     }
 
     public static func deleteChanges(_ routine: ReadRow, items: [ReadRow]) -> [PushChange] {
