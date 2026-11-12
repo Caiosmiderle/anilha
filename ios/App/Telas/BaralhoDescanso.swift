@@ -57,7 +57,7 @@ struct BaralhoDescanso: View {
                 }
                 Spacer()
                 HStack(spacing: 6) {
-                    FichaView(valor: nil, tamanho: 22)
+                    FichaCassino(valor: nil, tamanho: 22)
                     Text("\(mesa.fichas)").font(.title3.bold()).monospacedDigit()
                         .contentTransition(.numericText(value: Double(mesa.fichas)))
                         .animation(.snappy, value: mesa.fichas)
@@ -222,6 +222,15 @@ struct BaralhoDescanso: View {
 
     // MARK: Aposta
 
+    private func botaoFicha(_ valor: Int) -> some View {
+        let passa: Bool = mesa.aposta + valor > mesa.fichas
+        return Button { loja.mesa.somarFicha(valor) } label: { FichaCassino(valor: valor, tamanho: 46) }
+            .buttonStyle(.plain)
+            .disabled(passa)
+            .opacity(passa ? 0.4 : 1)
+            .accessibilityLabel("Somar \(valor) à aposta")
+    }
+
     private func barraAposta(_ jogo: RestCardGame) -> some View {
         VStack(spacing: 12) {
             if mesa.precisaRecarregar {
@@ -234,13 +243,7 @@ struct BaralhoDescanso: View {
                 .buttonStyle(.principalAnilha).controlSize(.large)
             } else {
                 HStack(spacing: 10) {
-                    ForEach(MesaDescanso.valoresFicha, id: \.self) { valor in
-                        Button { loja.mesa.somarFicha(valor) } label: { FichaView(valor: valor, tamanho: 46) }
-                            .buttonStyle(.plain)
-                            .disabled(mesa.aposta + valor > mesa.fichas)
-                            .opacity(mesa.aposta + valor > mesa.fichas ? 0.4 : 1)
-                            .accessibilityLabel("Somar \(valor) à aposta")
-                    }
+                    ForEach(MesaDescanso.valoresFicha, id: \.self) { valor in botaoFicha(valor) }
                     Button("Limpar") { loja.mesa.limparAposta() }
                         .font(.footnote.weight(.semibold)).frame(minWidth: 44, minHeight: 44)
                         .foregroundStyle(FeltroMesa.texto)
@@ -338,7 +341,7 @@ struct FeltroMesa: View {
 }
 
 /// Ficha de cassino desenhada: borda com listras e o valor no meio. Sem valor, é o ícone de saldo.
-struct FichaView: View {
+struct FichaCassino: View {
     let valor: Int?
     let tamanho: CGFloat
 
@@ -370,11 +373,12 @@ struct FichaView: View {
 /// A aposta em jogo, como uma pilha de fichas no centro da mesa.
 private struct MonteAposta: View {
     let valor: Int
+    private var pilha: Int { min(4, max(1, valor / 25)) }
     var body: some View {
         HStack(spacing: 10) {
             ZStack {
-                ForEach(0..<min(4, max(1, valor / 25)), id: \.self) { i in
-                    FichaView(valor: nil, tamanho: 34).offset(y: CGFloat(-i * 4))
+                ForEach(0..<pilha, id: \.self) { (i: Int) in
+                    FichaCassino(valor: nil, tamanho: 34).offset(y: CGFloat(i) * -4)
                 }
             }
             .frame(height: 46)
