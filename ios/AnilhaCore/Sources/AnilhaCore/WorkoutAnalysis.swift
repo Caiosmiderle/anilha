@@ -109,9 +109,14 @@ public enum WorkoutAnalysis {
               whole(raw, "input_tokens", 10000000) != .null, whole(raw, "output_tokens", 10000000) != .null else { return nil }
         return raw
     }
+    /// Same price table as `estimatedCost` in src/analysis/contract.ts (USD per million tokens).
+    static let prices: [String: (input: Double, output: Double)] = [
+        "claude-haiku-5-5": (0.10, 0.50),
+        "claude-opus-5-5": (4, 20),
+    ]
     public static func estimatedCost(_ usage: ReadRow) -> Double? {
-        guard Self.usage(usage) != nil, usage.string("model") == "claude-haiku-5-5" else { return nil }
-        return ((usage.number("input_tokens") ?? 0) * 0.10 + (usage.number("output_tokens") ?? 0) * 0.50) / 1000000
+        guard Self.usage(usage) != nil, let price = prices[usage.string("model") ?? ""] else { return nil }
+        return ((usage.number("input_tokens") ?? 0) * price.input + (usage.number("output_tokens") ?? 0) * price.output) / 1000000
     }
     /// Local-only binding, never serialized into the HTTP context.
     public static func binding(_ data: ReadData, sessionID: String) throws -> ReadRow {

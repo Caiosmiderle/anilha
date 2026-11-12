@@ -74,11 +74,18 @@ export function parseUsage(x: unknown): AnalysisUsage | null {
     ? (x as unknown as AnalysisUsage)
     : null;
 }
-/** Same local price row as scripts/agente-avaliar.ts, USD per million, without cache. */
+/**
+ * USD per million tokens (input, output), without cache: Haiku 5.5 as in scripts/agente-avaliar.ts;
+ * Opus 5.5 (owner's analysis) from Anthropic's price list in November 2026. Thinking is billed
+ * as output and already counted in output_tokens.
+ */
+const PRICES: Record<string, [number, number]> = {
+  'claude-haiku-5-5': [0.1, 0.5],
+  'claude-opus-5-5': [4, 20],
+};
 export function estimatedCost(usage: AnalysisUsage): number | null {
-  return usage.model === 'claude-haiku-5-5'
-    ? (usage.input_tokens * 0.1 + usage.output_tokens * 0.5) / 1000000
-    : null;
+  const price = PRICES[usage.model];
+  return price ? (usage.input_tokens * price[0] + usage.output_tokens * price[1]) / 1000000 : null;
 }
 const record = (x: unknown): x is Record<string, unknown> =>
   !!x && typeof x === 'object' && !Array.isArray(x);

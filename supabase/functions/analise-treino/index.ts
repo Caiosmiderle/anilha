@@ -7,12 +7,20 @@ const clientFor = (auth: string) =>
     global: { headers: { Authorization: auth } },
     auth: { persistSession: false },
   });
-Deno.serve((req) =>
-  handleAnalysis(req, {
+// Admins (public.admins, today only the owner) get Opus 5.5, like the CRUNNING analysis; everyone
+// else stays on Haiku 5.5. Opus 5.5 rejects a forced tool_choice, so it gets `auto` with the
+// single tool and the system prompt asking for it; the reply is validated the same way.
+const HAIKU = 'claude-haiku-5-5';
+const OPUS = 'claude-opus-5-5';
+Deno.serve((req) => {
+  let premium = false;
+  return handleAnalysis(req, {
     async begin(auth) {
       const client = clientFor(auth);
       const { data, error } = await client.auth.getUser();
       if (error || !data.user) return { status: 401, error: 'Entre na sua conta.' };
+      const admin = await client.rpc('is_admin');
+      premium = !admin.error && admin.data === true;
       const begin = await client.rpc('agent_begin_turn');
       if (!begin.error) return {};
       return {
@@ -34,14 +42,17 @@ Deno.serve((req) =>
       const client = new Anthropic({
         apiKey: Deno.env.get('ANTHROPIC_API_KEY'),
         maxRetries: 0,
-        timeout: 40000,
+        timeout: premium ? 120000 : 40000,
       });
       const res = await client.messages.create({
-        model: 'claude-haiku-5-5',
-        max_tokens: 1200,
+        model: premium ? OPUS : HAIKU,
+        // Opus thinks before answering (it cannot be turned off): room for thinking plus the reply.
+        max_tokens: premium ? 8000 : 1200,
         system,
         tools: [{ ...(tool as Anthropic.Tool), strict: true }],
-        tool_choice: { type: 'tool', name: 'responder_analise', disable_parallel_tool_use: true },
+        tool_choice: premium
+          ? { type: 'auto', disable_parallel_tool_use: true }
+          : { type: 'tool', name: 'responder_analise', disable_parallel_tool_use: true },
         messages: [{ role: 'user', content: JSON.stringify(context) }],
       });
       return {
@@ -55,5 +66,5 @@ Deno.serve((req) =>
         stop: res.stop_reason ?? '',
       };
     },
-  }),
-);
+  });
+});
