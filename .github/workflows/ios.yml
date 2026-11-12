@@ -1,0 +1,114 @@
+# Compila o Anilha para iPhone num Mac do GitHub e publica o .ipa NÃO assinado.
+# A assinatura acontece no PC do Caio, pelo Sideloadly, com o mesmo Apple ID do CRUNNING.
+# Roda quando pedido (aba Actions > iOS > Run workflow, a partir da main) ou a cada push numa
+# branch claude/ios-* ou codex/ios-* que mexa no app. Repositório público: minutos grátis.
+name: iOS
+
+on:
+  workflow_dispatch:
+    inputs:
+      publicar_release:
+        description: "Publicar o .ipa também como Release (link fixo para baixar)"
+        type: boolean
+        default: true
+  push:
+    branches: ["claude/ios-*", "codex/ios-*"]
+    paths: ["ios/**", "public/icon-512.png", ".github/workflows/ios.yml"]
+
+permissions:
+  contents: write   # necessário para criar a Release
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: ios
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v6
+
+      - name: Escolher o Xcode estável mais novo
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_[0-9]*.app | grep -viE 'beta|rc|release_candidate' | sort -V | tail -1)
+          echo "Usando $XCODE"
+          sudo xcode-select -s "$XCODE"
+          xcodebuild -version
+
+      - name: Gerar o ícone 1024 a partir do ícone do PWA
+        run: |
+          sips -z 1024 1024 ../public/icon-512.png --out App/Recursos/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png
+          sips -g pixelWidth -g pixelHeight App/Recursos/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png
+
+      - name: Instalar o XcodeGen
+        run: brew install xcodegen
+
+      - name: Gerar o projeto do Xcode
+        run: xcodegen generate
+
+      - name: Compilar (archive sem assinatura)
+        run: |
+          set -o pipefail
+          build_status=0
+          xcodebuild archive \
+            -project Anilha.xcodeproj \
+            -scheme Anilha \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Anilha.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CURRENT_PROJECT_VERSION=${{ github.run_number }} \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            > "$RUNNER_TEMP/xcodebuild.log" 2>&1 || build_status=$?
+          echo "Erros e avisos do compilador (sem repetição):"
+          grep -E 'error:|warning:' "$RUNNER_TEMP/xcodebuild.log" | sed "s|$GITHUB_WORKSPACE/||" | sort -u || echo "nenhum"
+          grep -E '\*\* (ARCHIVE|BUILD) (SUCCEEDED|FAILED) \*\*' "$RUNNER_TEMP/xcodebuild.log" || true
+          test "$build_status" -eq 0
+          test -d "$RUNNER_TEMP/Anilha.xcarchive/Products/Applications/Anilha.app"
+
+      - name: Guardar o log do Xcode se falhar
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: xcodebuild-log-${{ github.run_number }}
+          path: ${{ runner.temp }}/xcodebuild.log
+          retention-days: 7
+
+      - name: Empacotar o .ipa
+        run: |
+          mkdir -p "$RUNNER_TEMP/ipa/Payload"
+          cp -R "$RUNNER_TEMP/Anilha.xcarchive/Products/Applications/Anilha.app" "$RUNNER_TEMP/ipa/Payload/"
+          (cd "$RUNNER_TEMP/ipa" && zip -qry "$GITHUB_WORKSPACE/Anilha.ipa" Payload)
+          ls -lh "$GITHUB_WORKSPACE/Anilha.ipa"
+          (cd "$GITHUB_WORKSPACE" && shasum -a 256 Anilha.ipa | tee Anilha.ipa.sha256)
+
+      - name: Guardar o .ipa como artefato
+        uses: actions/upload-artifact@v6
+        with:
+          name: Anilha-ios-build-${{ github.run_number }}
+          path: |
+            Anilha.ipa
+            Anilha.ipa.sha256
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Publicar a Release
+        if: github.event_name == 'push' || inputs.publicar_release
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="ios-build-${{ github.run_number }}"
+          gh release create "$TAG" Anilha.ipa Anilha.ipa.sha256 \
+            --target "$GITHUB_SHA" \
+            --title "Anilha iOS $TAG" \
+            --notes "Build ${{ github.run_number }} (commit ${GITHUB_SHA::7}). .ipa NÃO assinado: instale pelo Sideloadly com o mesmo Apple ID do CRUNNING." \
+            --prerelease

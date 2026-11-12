@@ -1,0 +1,53 @@
+# Projeto do Xcode do Anilha para iPhone, gerado pelo XcodeGen (o .xcodeproj não é versionado).
+# Gerar: cd ios && xcodegen generate   (o CI faz isso; no Windows não é preciso rodar nada)
+name: Anilha
+
+options:
+  bundleIdPrefix: io.github.caiosmiderle
+  deploymentTarget:
+    iOS: "26.0"
+  developmentLanguage: pt-BR
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"     # o CI troca pelo número do build
+    GENERATE_INFOPLIST_FILE: "YES"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: "YES"
+    DEAD_CODE_STRIPPING: "YES"
+    SWIFT_EMIT_LOC_STRINGS: "YES"
+    LOCALIZATION_PREFERS_STRING_CATALOGS: "YES"
+
+targets:
+  Anilha:
+    type: application
+    platform: iOS
+    sources:
+      - App
+    settings:
+      base:
+        PRODUCT_NAME: Anilha
+        # Sem extensão nesta prova: cada extensão gasta um App ID a mais na conta gratuita.
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.caiosmiderle.anilha
+        TARGETED_DEVICE_FAMILY: "1"   # só iPhone
+        INFOPLIST_FILE: Suporte/App-Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: Anilha
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.healthcare-fitness
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: "YES"
+        INFOPLIST_KEY_UILaunchScreen_Generation: "YES"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+
+schemes:
+  Anilha:
+    build:
+      targets:
+        Anilha: all
+    run:
+      config: Debug
+    archive:
+      config: Release
