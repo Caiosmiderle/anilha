@@ -31,6 +31,18 @@ struct HojeView: View {
                 CabecalhoAnilha(titulo: "Hoje", selo: dataHoje, icone: "calendar")
                     .entradaAnilha(0)
                 StatusSyncView(conta: conta)
+                if let ativa = conta.ativa {
+                    VStack(alignment: .leading, spacing: 12) {
+                        SeloAnilha(texto: "Treino em andamento", icone: "dumbbell")
+                        Text(ativa.string("title") ?? "Seu treino").font(.largeTitle.bold())
+                        TimelineView(.periodic(from: .now, by: 1)) { context in
+                            Text(relogioTreino((context.date.timeIntervalSince1970 * 1000 - (ativa.number("started_at") ?? 0)) / 1000))
+                                .font(.title.monospacedDigit()).accessibilityLabel("Tempo de treino")
+                        }
+                        Button("Continuar treino") { conta.sessaoAberta = ativa.id }
+                            .buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large)
+                    }.padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).destaqueAnilha()
+                }
                 VStack(alignment: .leading, spacing: Tema.Espaco.e3) {
                     Label("Planejado no Anilha", systemImage: "calendar").font(.subheadline.weight(.semibold)).foregroundStyle(Tema.marcaForte)
                     if let dia {
@@ -60,14 +72,12 @@ struct HojeView: View {
                         Text("Crie ou ajuste seu plano no PWA e puxe para atualizar.")
                             .font(.subheadline).foregroundStyle(Tema.tintaSuave)
                     }
-                    if let ativa = conta.ativa {
-                        Button("Continuar treino") { conta.sessaoAberta = ativa.id }.buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44)
-                    } else if let ficha {
-                        Button("Começar treino") { conta.comecar(ficha) }.buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44)
+                    if conta.ativa == nil, let ficha {
+                        Button("Começar treino") { conta.comecar(ficha) }.buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large).frame(minHeight: 44)
                     }
                     if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
                 }
-                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).destaqueAnilha().entradaAnilha(1)
+                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao().entradaAnilha(1)
                 if !externos.isEmpty {
                     Text("Agenda do CRUNNING").font(.headline)
                     ForEach(externos) { row in

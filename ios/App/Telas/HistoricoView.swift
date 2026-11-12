@@ -61,10 +61,20 @@ struct HistoricoLinha: View {
             DiscoExercicio(icone: entry.corrida ? "figure.run" : "dumbbell")
             VStack(alignment: .leading, spacing: 5) {
                 Text(entry.title).font(.headline)
-                Text(entry.date).font(.subheadline).monospacedDigit().foregroundStyle(Tema.tintaSuave)
+                Text(dataCurta(entry.date)).font(.subheadline).monospacedDigit().foregroundStyle(Tema.tintaSuave)
                 Text(entry.detail).font(.subheadline).foregroundStyle(Tema.tintaSuave)
             }
         }
         .padding(.vertical, 10).frame(minHeight: 44).accessibilityElement(children: .combine)
     }
+}
+
+func dataCurta(_ dia: String) -> String {
+    if dia == LocalDay.today() { return "hoje" }
+    let formato = DateFormatter()
+    formato.locale = Locale(identifier: "pt_BR")
+    formato.dateFormat = "yyyy-MM-dd"
+    guard let data = formato.date(from: dia) else { return dia }
+    formato.dateFormat = "EEE, dd/MM"
+    return formato.string(from: data)
 }

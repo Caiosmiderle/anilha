@@ -60,10 +60,9 @@ private struct ContaRaiz: View {
                              set: { conta.sessaoAberta = $0?.id })) { session in
             NavigationStack {
                 TreinoView(conta: conta, sessionID: session.id)
-                    .toolbar { Button("Minimizar") { conta.sessaoAberta = nil } }
             }
         }
-        .foregroundStyle(Tema.tinta)
+        .environment(\.locale, Locale(identifier: "pt_BR"))
         .task { await conta.abrir() }
         .onChange(of: fase) { _, fase in
             if fase == .active {

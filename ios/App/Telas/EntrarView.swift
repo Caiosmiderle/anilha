@@ -32,7 +32,7 @@ struct EntrarView: View {
                         Button("Entrar") {
                             Task { await conta.verificar(emailLimpo, codigo: codigo); codigo = "" }
                         }
-                        .buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).disabled(codigo.count != 6 || conta.ocupado)
+                        .buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).disabled(codigo.count != 6 || conta.ocupado)
                         TimelineView(.periodic(from: .now, by: 1)) { context in
                             Button("Enviar outro código") { Task { await enviar() } }
                                 .disabled(context.date < reenviarEm || conta.ocupado)
@@ -45,7 +45,7 @@ struct EntrarView: View {
                             .textFieldStyle(.roundedBorder).frame(minHeight: 44)
                             .disabled(conta.ocupado)
                         Button("Receber código") { Task { await enviar() } }
-                            .buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).disabled(!emailValido || conta.ocupado)
+                            .buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).disabled(!emailValido || conta.ocupado)
                     }
                     if conta.ocupado { ProgressView().accessibilityLabel("Aguarde") }
                     if let erro = conta.erro { Text(erro).foregroundStyle(Tema.perigo).accessibilityAddTraits(.updatesFrequently) }

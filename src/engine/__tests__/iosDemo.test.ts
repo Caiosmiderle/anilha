@@ -59,4 +59,39 @@ describe('fixture pública da apresentação SwiftUI', () => {
     expect(source).toContain('.allowsHitTesting(false)');
     expect(source).not.toMatch(/await conta\.|CacheLeitura\(|ChaveiroSessao\(|SupabaseClient\(/);
   });
+  it('prepara foco, lista, esforço e cartas na matriz de captura', () => {
+    const capture = readFileSync(
+      new URL('../../../ios/scripts/capture-screenshots.sh', import.meta.url),
+      'utf8',
+    );
+    const screens = capture.match(/for screen in ([^;]+);/)![1]!.split(' ');
+    const cases = [...source.matchAll(/case ([^:\n]+):/g)].flatMap((match) =>
+      [...match[1]!.matchAll(/"([^"]+)"/g)].map((value) => value[1]),
+    );
+    for (const screen of screens) expect(cases).toContain(screen);
+    for (const screen of [
+      'treino',
+      'treino-lista',
+      'descanso',
+      'esforco',
+      'blackjack',
+      'poker',
+      'proxima',
+    ]) {
+      expect(screens).toContain(screen);
+    }
+    expect(capture).toContain('for appearance in light dark');
+    expect(capture).toContain('for size in large accessibility3');
+  });
+  it('mantém a cor das ações preenchidas no estilo compartilhado', () => {
+    const app = readFileSync(new URL('../../../ios/App/AnilhaApp.swift', import.meta.url), 'utf8');
+    const components = readFileSync(
+      new URL('../../../ios/App/Design/Componentes.swift', import.meta.url),
+      'utf8',
+    );
+    expect(app).not.toContain('.foregroundStyle(Tema.tinta)');
+    expect(source).not.toContain('.foregroundStyle(Tema.tinta)');
+    expect(components).toContain('configuration.label.foregroundStyle(Tema.sobreMarca)');
+    expect(components).toContain('.buttonStyle(.glassProminent)');
+  });
 });

@@ -100,7 +100,7 @@ struct CartaoAnaliseTreino: View {
                         if state.waiting { Text("A análise aguarda conexão. Ela começa sozinha quando a rede voltar.").font(.footnote) }
                         if state.interrupted { Text("A tentativa anterior foi interrompida. Tentar novamente pode contar outra chamada no limite diário.").font(.footnote) }
                         if let error = saved.string("error") { Text(error).font(.footnote).foregroundStyle(Tema.tintaSuave) }
-                        Button("Analisar agora") { Task { await conta.analisar(sessionID) } }.buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).disabled(!state.canAnalyze)
+                        Button("Analisar agora") { Task { await conta.analisar(sessionID) } }.buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large).disabled(!state.canAnalyze)
                     }
                     if let erro { Text(erro).font(.footnote).foregroundStyle(Tema.perigo) }
                 }.padding(.vertical, 8).fixedSize(horizontal: false, vertical: true)
@@ -109,7 +109,7 @@ struct CartaoAnaliseTreino: View {
         }
     }
     @ViewBuilder private var actions: some View {
-        Button("Salvar") { conta.salvarAjuste(saved, id: sessionID) }.buttonStyle(.glassProminent).tint(Tema.acao)
+        Button("Salvar") { conta.salvarAjuste(saved, id: sessionID) }.buttonStyle(.principalAnilha).tint(Tema.acao)
         Button("Ajustar") { draft = adjustment; editando = true }
         Button("Recusar") { _ = conta.guardarAnalise(saved.changing(["status": .string("refused")]), id: sessionID) }
     }
@@ -137,7 +137,7 @@ struct CartaoAnaliseTreino: View {
     }
     @ViewBuilder private var rodape: some View {
         if let usage = WorkoutAnalysis.usage(saved.object("usage")) {
-            let custo = WorkoutAnalysis.estimatedCost(usage).map { " · est. US$ \($0.formatted(.number.precision(.fractionLength(7))))" } ?? ""
+            let custo = WorkoutAnalysis.estimatedCost(usage).map { " · est. US$ \($0.formatted(.number.locale(Locale(identifier: "pt_BR")).precision(.fractionLength(7))))" } ?? ""
             Text("\(usage.string("model") ?? "") · \(Int(usage.number("input_tokens") ?? 0))/\(Int(usage.number("output_tokens") ?? 0)) tokens\(custo)")
                 .font(.caption2).foregroundStyle(Tema.tintaSuave)
                 .accessibilityLabel("Modelo \(usage.string("model") ?? ""), \(Int(usage.number("input_tokens") ?? 0)) tokens de entrada e \(Int(usage.number("output_tokens") ?? 0)) de saída\(custo.replacingOccurrences(of: "est.", with: "custo estimado"))")

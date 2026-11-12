@@ -409,8 +409,8 @@ final class ContaStore {
 #if DEBUG
 extension ContaStore {
     /// Memory-only presentation fixture. Never call abrir, atualizar or a write from this root.
-    static func demonstracao(descanso: Bool) throws -> ContaStore {
-        let store = ContaStore(dadosDemonstracao: try ModoDemo.dados(descanso: descanso))
+    static func demonstracao(descanso: Bool, pronto: Bool = false) throws -> ContaStore {
+        let store = ContaStore(dadosDemonstracao: try ModoDemo.dados(descanso: descanso, pronto: pronto))
         guard let url = Bundle.main.url(forResource: "exercises", withExtension: "json") else {
             throw WorkoutAnalysis.Failure.invalidSession
         }

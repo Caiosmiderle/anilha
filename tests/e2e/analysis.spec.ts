@@ -46,7 +46,7 @@ test('análise usa contexto mínimo, ajusta, salva na fila, reabre sem cobrar e 
   await expect(card).toContainText('Boa execução');
   await expect(card).toContainText('Na próxima vez');
   await expect(card.getByTestId('analysis-usage')).toContainText('1000/150 tokens');
-  await expect(card.getByTestId('analysis-usage')).toContainText('0.0001750');
+  await expect(card.getByTestId('analysis-usage')).toContainText('0,0001750');
   expect(calls).toBe(1);
   expect(body).toBeDefined();
   expect(Object.keys(body!)).toEqual(['context']);
@@ -267,6 +267,7 @@ test('evolução offline compara outra ficha e o cartão mantém números do mot
   await expect(card).not.toContainText('999');
   await expect(card).not.toContainText('99 repetições');
   await expect(card.getByTestId('analysis-usage')).toContainText('2345/210 tokens');
+  await expect(card.getByTestId('analysis-usage')).toContainText('0,0003395');
   await expect(card.getByTestId('analysis-usage').locator('.hb-sr')).toContainText(
     '2345 tokens de entrada + 210 de saída',
   );

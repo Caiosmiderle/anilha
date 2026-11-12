@@ -18,7 +18,7 @@ enum ModoDemo {
     {"avaliacao":"boa","summary":"Você manteve a execução e avançou no supino.","points":["As séries de trabalho ficaram dentro da faixa."],"proximaVez":[{"slot":0,"comentario":"Mantenha o controle na descida e registre o esforço."}],"adjustment":{"operation":"series","slot":0,"sets":3,"min":null,"max":null,"replacement":null}}
     """#
 
-    static func dados(descanso: Bool) throws -> ReadData {
+    static func dados(descanso: Bool, pronto: Bool = false) throws -> ReadData {
         // Fixed, fictional input. The normal engine calculates evolution and preview from it.
         let json = #"""
         {
@@ -57,10 +57,41 @@ enum ModoDemo {
         }
         """#
         var tables = try JSONDecoder().decode([String: [ReadRow]].self, from: Data(json.utf8))
-        if descanso, let index = tables["sessions"]?.firstIndex(where: { $0.id == "demo-active" }) {
-            tables["sessions"]?[index].fields["rest_started_at"] = .number(Date.now.timeIntervalSince1970 * 1000)
-            tables["sessions"]?[index].fields["rest_duration_sec"] = .number(90)
+        let now = Date.now.timeIntervalSince1970 * 1000
+        if let index = tables["sessions"]?.firstIndex(where: { $0.id == "demo-active" }) {
+            tables["sessions"]?[index].fields["started_at"] = .number(now - 734000)
+            if descanso {
+                tables["sessions"]?[index].fields["rest_started_at"] = .number(now - (pronto ? 91000 : 12000))
+                tables["sessions"]?[index].fields["rest_duration_sec"] = .number(90)
+            }
         }
+        if !descanso {
+            if let index = tables["sets"]?.firstIndex(where: { $0.id == "demo-sa1" }) {
+                tables["sets"]?[index].fields["completed_at"] = .null
+            }
+            let warmups = (0..<2).map { index in
+                ReadRow(fields: ["id": .string("demo-w\(index)"), "item_id": .string("demo-ia"), "session_id": .string("demo-active"),
+                                 "exercise_id": .string("supino-reto-barra"), "kind": .string("warmup"),
+                                 "position": .number(Double(index)), "load_kg": .number(index == 0 ? 10 : 20), "reps": .number(6)])
+            }
+            for index in tables["sets", default: []].indices {
+                if tables["sets"]?[index].string("item_id") == "demo-ia" {
+                    tables["sets"]?[index].fields["position"] = .number((tables["sets"]?[index].number("position") ?? 0) + 2)
+                }
+            }
+            if let index = tables["session_items"]?.firstIndex(where: { $0.id == "demo-ia" }) {
+                tables["session_items"]?[index].fields["warmup_sets"] = .number(2)
+            }
+            tables["sets", default: []].append(contentsOf: warmups)
+        }
+        tables["session_items", default: []].append(ReadRow(fields: ["id": .string("demo-ia2"), "session_id": .string("demo-active"),
+            "exercise_id": .string("triceps-corda"), "position": .number(1), "status": .string("pending"),
+            "planned_sets": .number(3), "target_min": .number(10), "target_max": .number(15), "rest_sec": .number(60)]))
+        tables["sets", default: []].append(contentsOf: (0..<3).map { index in
+            ReadRow(fields: ["id": .string("demo-tr\(index)"), "item_id": .string("demo-ia2"), "session_id": .string("demo-active"),
+                "exercise_id": .string("triceps-corda"), "position": .number(Double(index)), "kind": .string("work"),
+                "load_kg": .number(10), "reps": .number(12)])
+        })
         return ReadData(tables: tables)
     }
 }
@@ -70,7 +101,9 @@ struct DemoView: View {
     @State private var resultado: Result<ContaStore, Error>
     init(tela: String) {
         self.tela = tela
-        _resultado = State(initialValue: Result { try ContaStore.demonstracao(descanso: tela == "descanso") })
+        _resultado = State(initialValue: Result {
+            try ContaStore.demonstracao(descanso: ["descanso", "blackjack", "poker", "proxima", "esforco"].contains(tela), pronto: tela == "proxima")
+        })
     }
     var body: some View {
         NavigationStack {
@@ -82,7 +115,7 @@ struct DemoView: View {
                 conteudo(conta)
             }
         }
-        .tint(Tema.acao).foregroundStyle(Tema.tinta)
+        .tint(Tema.acao)
         .environment(\.locale, Locale(identifier: "pt_BR"))
         .dynamicTypeSize(ModoDemo.textoGrande ? .accessibility3 : .large)
         // Presentation-only. No login, refresh, save, notifications or analysis requests.
@@ -95,12 +128,15 @@ struct DemoView: View {
         case "fichas": FichasView(conta: conta)
         case "ficha":
             if let ficha = conta.dados.routines.first { FichaView(conta: conta, ficha: ficha) }
-        case "treino": TreinoView(conta: conta, sessionID: "demo-active", ancoraInicial: "demo-sa2")
-        case "descanso": TreinoView(conta: conta, sessionID: "demo-active", ancoraInicial: "descanso")
+        case "treino", "execucao", "descanso", "esforco": TreinoView(conta: conta, sessionID: "demo-active")
+        case "treino-lista": TreinoView(conta: conta, sessionID: "demo-active", focoInicial: false)
+        case "blackjack": TreinoView(conta: conta, sessionID: "demo-active", jogoInicial: .blackjack)
+        case "poker": TreinoView(conta: conta, sessionID: "demo-active", jogoInicial: .poker)
+        case "proxima": TreinoView(conta: conta, sessionID: "demo-active")
         case "resumo": TreinoView(conta: conta, sessionID: "demo-done")
         case "evolucao":
             List { EvolucaoTreino(conta: conta, sessionID: "demo-done") }
-                .scrollContentBackground(.hidden).background { FundoAnilha() }.navigationTitle("Evolução")
+                .scrollContentBackground(.hidden).background { FundoAnilha() }.navigationTitle("Treino concluído")
         case "analise":
             List { CartaoAnaliseTreino(conta: conta, sessionID: "demo-done", mostrarEvolucao: false) }
                 .scrollContentBackground(.hidden).background { FundoAnilha() }.navigationTitle("Treino concluído")

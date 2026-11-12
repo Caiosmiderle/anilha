@@ -294,14 +294,14 @@ export function AnalysisCard({ sessionID }: { sessionID: string }) {
                     {saved.usage.output_tokens} de saída
                     {estimatedCost(saved.usage) == null
                       ? ''
-                      : ` · Custo estimado US$ ${estimatedCost(saved.usage)!.toFixed(7)}`}
+                      : ` · Custo estimado US$ ${estimatedCost(saved.usage)!.toLocaleString('pt-BR', { minimumFractionDigits: 7, maximumFractionDigits: 7 })}`}
                   </span>
                   <span aria-hidden="true">
                     {saved.usage.model} · {saved.usage.input_tokens}/{saved.usage.output_tokens}{' '}
                     tokens
                     {estimatedCost(saved.usage) == null
                       ? ''
-                      : ` · est. US$ ${estimatedCost(saved.usage)!.toFixed(7)}`}
+                      : ` · est. US$ ${estimatedCost(saved.usage)!.toLocaleString('pt-BR', { minimumFractionDigits: 7, maximumFractionDigits: 7 })}`}
                   </span>
                 </p>
               ) : null}

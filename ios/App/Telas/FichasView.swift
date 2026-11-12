@@ -74,7 +74,7 @@ struct FichaView: View {
                     }
                 }
                 Button(conta.ativa == nil ? "Começar treino" : "Continuar treino") { if let atual { conta.comecar(atual) } }
-                    .buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).listRowBackground(Tema.fundo)
+                    .buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).listRowBackground(Tema.fundo)
                 if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
             }
         }

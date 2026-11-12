@@ -62,7 +62,7 @@ failures=0
 for appearance in light dark; do
   xcrun simctl ui "$device" appearance "$appearance"
   for size in large accessibility3; do
-    for screen in entrar hoje fichas ficha treino descanso resumo evolucao analise historico; do
+    for screen in entrar hoje fichas ficha treino treino-lista descanso esforco blackjack poker proxima resumo evolucao analise historico; do
       xcrun simctl terminate "$device" "$bundle" || true
       if xcrun simctl launch "$device" "$bundle" -demo "$screen" -demo-size "$size"; then
         sleep 3

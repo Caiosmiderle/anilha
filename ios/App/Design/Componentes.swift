@@ -1,5 +1,18 @@
 import SwiftUI
 
+/// Keep the semantic foreground on filled actions in one shared style.
+struct BotaoPrincipalAnilha: PrimitiveButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button(role: configuration.role) { configuration.trigger() } label: {
+            configuration.label.foregroundStyle(Tema.sobreMarca)
+        }.buttonStyle(.glassProminent).tint(Tema.acao)
+    }
+}
+
+extension PrimitiveButtonStyle where Self == BotaoPrincipalAnilha {
+    static var principalAnilha: BotaoPrincipalAnilha { BotaoPrincipalAnilha() }
+}
+
 struct FundoAnilha: View {
     var body: some View {
         LinearGradient(colors: [Tema.marcaFundo, Tema.fundo, Tema.fundo],
