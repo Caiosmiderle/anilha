@@ -317,6 +317,8 @@ export async function startLocalSupabase(opts: Options = {}): Promise<LocalSupab
                   name: 'responder_analise',
                   input: {
                     summary: 'Você concluiu a sessão. Compare o ritmo das séries na próxima vez.',
+                    avaliacao: 'boa',
+                    proximaVez: [{ slot: 0, comentario: 'Mantenha o controle das séries.' }],
                     points: ['O aquecimento faz parte do planejado.'],
                     adjustment: {
                       operation: 'series',

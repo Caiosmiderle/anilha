@@ -5,7 +5,13 @@ import { planForDay } from '../engine/recommend';
 import { EXERCISES } from '../engine/exercises';
 import { getClient } from '../sync/client';
 import { buildAnalysisContext, type AnalysisInput } from './context';
-import { parseReply, type AnalysisContext, type AnalysisReply } from './contract';
+import {
+  parseReply,
+  parseUsage,
+  type AnalysisUsage,
+  type AnalysisContext,
+  type AnalysisReply,
+} from './contract';
 import { analysisProposal, type AnalysisBinding } from './proposal';
 
 export interface SavedAnalysis {
@@ -13,6 +19,7 @@ export interface SavedAnalysis {
   binding: AnalysisBinding;
   reply: AnalysisReply;
   status: 'proposed' | 'saved' | 'refused' | 'undone';
+  usage?: AnalysisUsage;
   undo?: UndoSnapshot;
 }
 const key = (id: string) => `analysis:${id}`;
@@ -30,7 +37,16 @@ const stable = (value: unknown) =>
   });
 export async function analysisInput(d: AnilhaDB, sessionID: string): Promise<AnalysisInput> {
   const tables: AnalysisInput['tables'] = {};
-  for (const table of ['sessions', 'session_items', 'sets', 'plans'])
+  for (const table of [
+    'sessions',
+    'session_items',
+    'sets',
+    'plans',
+    'routines',
+    'routine_items',
+    'profiles',
+    'exercises',
+  ])
     tables[table] = await d.table(table).toArray();
   const planned: NonNullable<AnalysisInput['planned']> = {},
     rules: NonNullable<AnalysisInput['rules']> = {};
@@ -113,6 +129,7 @@ export async function requestAnalysis(id: string): Promise<SavedAnalysis> {
         owner.db.routines,
         owner.db.routine_items,
         owner.db.profiles,
+        owner.db.exercises,
         owner.db.meta,
       ],
       async () => ({
@@ -141,13 +158,20 @@ export async function requestAnalysis(id: string): Promise<SavedAnalysis> {
       }
       throw new Error(message);
     }
+    const { usage: rawUsage, ...rawReply } = data;
     const reply = parseReply(
-      data,
+      rawReply,
       context.items.length,
       EXERCISES.map((e) => e.id),
     );
     if (!reply) throw new Error('Resposta de análise inválida.');
-    const saved: SavedAnalysis = { context, binding, reply, status: 'proposed' };
+    const saved: SavedAnalysis = {
+      context,
+      binding,
+      reply,
+      status: 'proposed',
+      usage: parseUsage(rawUsage) ?? undefined,
+    };
     return persist(saved);
   })();
   inFlight.set(flightKey, task);

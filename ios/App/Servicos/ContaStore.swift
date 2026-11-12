@@ -334,8 +334,11 @@ final class ContaStore {
                 try cache.guardarAnalise(ReadRow(fields: ["status": .string("failed"), "error": .string("Você chegou ao limite de hoje do Waltér. Amanhã tem mais.")]), sessionID: id, dono: owner)
                 try recarregar(); return
             }
-            guard (200..<300).contains(http.statusCode), let reply = WorkoutAnalysis.parseReply(try JSONDecoder().decode(ReadRow.self, from: bytes), slots: context.array("items").count, catalog: catalogo) else { throw ReadSync.Failure.invalidPage }
-            let saved = ReadRow(fields: ["status": .string("proposed"), "reply": .object(reply.fields), "context": .object(context.fields), "binding": .object(binding.fields)])
+            var responseRow = try JSONDecoder().decode(ReadRow.self, from: bytes)
+            let usage = WorkoutAnalysis.usage(responseRow.object("usage"))
+            responseRow.fields.removeValue(forKey: "usage")
+            guard (200..<300).contains(http.statusCode), let reply = WorkoutAnalysis.parseReply(responseRow, slots: context.array("items").count, catalog: catalogo) else { throw ReadSync.Failure.invalidPage }
+            let saved = ReadRow(fields: ["status": .string("proposed"), "reply": .object(reply.fields), "context": .object(context.fields), "binding": .object(binding.fields), "usage": usage.map { .object($0.fields) } ?? .null])
             // Keep an in-memory copy if the disk is temporarily unavailable; do not call the model again.
             analisesNaoGravadas["analysis:\(id)"] = saved
             analises["analysis:\(id)"] = saved

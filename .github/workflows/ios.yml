@@ -22,6 +22,7 @@ on:
         'supabase/functions/analise-treino/**',
         'scripts/build-analysis.mjs',
         'scripts/ios-analysis-source.ts',
+        'scripts/ios-evolution-source.ts',
         'tests/e2e/analysis.spec.ts',
         'scripts/ios-source.ts',
         'scripts/ios-training-source.ts',
@@ -82,7 +83,7 @@ jobs:
           node scripts/generate-ios.mjs
           node scripts/generate-ios.mjs --check
           node scripts/build-analysis.mjs --check
-          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/analysis/__tests__/analysis.test.ts tests/db/analysis.test.ts --maxWorkers=1 --no-file-parallelism
+          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/analysis/__tests__/analysis.test.ts src/analysis/__tests__/evolution.test.ts tests/db/analysis.test.ts --maxWorkers=1 --no-file-parallelism
 
       - name: Testar paridade, gravação e fila Swift
         working-directory: .

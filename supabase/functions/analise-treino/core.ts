@@ -20,6 +20,7 @@ export interface AnalysisDependencies {
     input: number;
     output: number;
     stop: string;
+    model?: string;
   }>;
 }
 const CORS = {
@@ -56,10 +57,22 @@ export async function handleAnalysis(req: Request, deps: AnalysisDependencies): 
     const tools = result.content.filter((b) => b.type === 'tool_use');
     const reply =
       result.stop === 'tool_use' && tools.length === 1 && tools[0]?.name === 'responder_analise'
-        ? parseReply(tools[0].input, (context as { items: unknown[] }).items.length, CATALOG_IDS)
+        ? parseReply(
+            tools[0].input,
+            (context as { items: unknown[] }).items.length,
+            CATALOG_IDS,
+            false,
+          )
         : null;
     if (!reply) return json({ error: 'O Waltér não concluiu a análise. Tente novamente.' }, 502);
-    return json(reply);
+    return json({
+      ...reply,
+      usage: {
+        model: result.model ?? 'claude-haiku-5-5',
+        input_tokens: result.input,
+        output_tokens: result.output,
+      },
+    });
   } catch {
     // No SDK errors, request payloads or model content in logs.
     return json({ error: 'O Waltér não respondeu agora. Tente novamente mais tarde.' }, 502);

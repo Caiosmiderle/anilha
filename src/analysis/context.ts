@@ -1,5 +1,6 @@
 import { EXERCISES } from '../engine/exercises';
 import { diffDays } from '../engine/dates';
+import { exerciseHistory, exerciseNext } from './evolution';
 import {
   FOCUS,
   RULES,
@@ -83,6 +84,8 @@ export function buildAnalysisContext(input: AnalysisInput): AnalysisContext {
         rule: RULES.includes(rule as AnalysisItem['rule'])
           ? (rule as AnalysisItem['rule'])
           : 'unknown',
+        history: s.id === session.id ? exerciseHistory(input, String(i.exercise_id)) : [],
+        next: s.id === session.id ? exerciseNext(input, i) : null,
       };
     });
   const previous =

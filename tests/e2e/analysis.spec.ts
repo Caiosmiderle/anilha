@@ -43,6 +43,12 @@ test('análise usa contexto mínimo, ajusta, salva na fila, reabre sem cobrar e 
   );
   await card.getByRole('button', { name: 'Analisar este treino' }).click();
   await expect(card).toContainText('Você concluiu a sessão.');
+  await expect(card).toContainText('Boa execução');
+  await expect(card).toContainText('Na próxima vez');
+  await expect(card.getByTestId('analysis-usage')).toContainText(
+    '1000 tokens de entrada + 150 de saída',
+  );
+  await expect(card.getByTestId('analysis-usage')).toContainText('0.0001750');
   expect(calls).toBe(1);
   expect(body).toBeDefined();
   expect(Object.keys(body!)).toEqual(['context']);
@@ -105,6 +111,8 @@ test('offline, erro do limite, recusa e cache da resposta sem nova chamada', asy
 }) => {
   const card = await completed(page);
   await context.setOffline(true);
+  await expect(page.getByTestId('evolution-card')).toContainText('20 kg x 10 rep');
+  await expect(page.getByTestId('evolution-card')).toContainText('Primeira vez');
   await expect(card).toContainText('Sem internet');
   await expect(card.getByRole('button', { name: 'Analisar este treino' })).toBeDisabled();
   await context.setOffline(false);
@@ -153,4 +161,115 @@ test('operação fora da lista mantém só a narrativa no cartão', async ({ pag
   await expect(card).toContainText('Sessão concluída com dados sintéticos.');
   await expect(card.getByRole('button', { name: 'Salvar', exact: true })).toHaveCount(0);
   await expect(card.getByRole('button', { name: 'Ajustar', exact: true })).toHaveCount(0);
+  await page.reload();
+  await expect(page.getByTestId('analysis-card')).toContainText(
+    'Sessão concluída com dados sintéticos.',
+  );
+  await expect(page.getByTestId('analysis-card')).not.toContainText('Na próxima vez');
+});
+
+test('evolução offline compara outra ficha e o cartão mantém números do motor diante de comentário conflitante', async ({
+  page,
+  context,
+}) => {
+  await completed(page);
+  // Seed a fictitious earlier workout in a different routine and a heavier current set.
+  await page.evaluate(async () => {
+    const user = JSON.parse(localStorage.getItem('anilha:user')!).id;
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open(`anilha-${user}`);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    const read = async (table: string) =>
+      new Promise<Record<string, unknown>[]>((resolve, reject) => {
+        const request = db.transaction(table).objectStore(table).getAll();
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    const sessions = await read('sessions'),
+      items = await read('session_items'),
+      sets = await read('sets');
+    const session = sessions.find((s) => s.id === location.pathname.split('/').at(-1))!;
+    const done = sets.filter(
+      (s) =>
+        s.session_id === session.id && !s.deleted && s.completed_at != null && s.kind === 'work',
+    );
+    const item = items.find((i) => i.id === done[0]!.item_id)!;
+    const date = new Date(`${String(session.local_date)}T12:00:00Z`);
+    date.setUTCDate(date.getUTCDate() - 3);
+    const transaction = db.transaction(['sessions', 'session_items', 'sets'], 'readwrite');
+    transaction
+      .objectStore('sessions')
+      .put({
+        ...session,
+        id: 'synthetic-prior',
+        routine_id: 'other-routine',
+        local_date: date.toISOString().slice(0, 10),
+        started_at: Number(session.started_at) - 259200000,
+      });
+    transaction
+      .objectStore('session_items')
+      .put({ ...item, id: 'synthetic-prior-item', session_id: 'synthetic-prior' });
+    for (const [index, set] of done.entries())
+      transaction
+        .objectStore('sets')
+        .put({
+          ...set,
+          id: `synthetic-prior-set-${index}`,
+          session_id: 'synthetic-prior',
+          item_id: 'synthetic-prior-item',
+          exercise_id: item.exercise_id,
+          load_kg: 20,
+          reps: 8,
+          completed_at: Number(session.started_at) - 259200000 + index,
+        });
+    transaction.objectStore('sets').put({ ...done[0], load_kg: 25 });
+    await new Promise<void>((resolve, reject) => {
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error);
+    });
+    db.close();
+  });
+  await page.reload();
+  const evolution = page.getByTestId('evolution-card');
+  await expect(evolution).toContainText('Última vez há 3 dias');
+  await expect(evolution).toContainText('Recorde pessoal de carga');
+  await expect(evolution).toContainText('Recorde pessoal de repetições');
+  await context.setOffline(true);
+  await expect(evolution).toContainText('25 kg x 10 rep');
+  await context.setOffline(false);
+  let engineSets: { load_kg: number | null; reps: number | null }[] = [];
+  await page.route('**/functions/v1/analise-treino', async (route) => {
+    engineSets = route.request().postDataJSON().context.items[0].next.sets;
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        avaliacao: 'aceitavel',
+        summary: 'Execução sintética.',
+        points: [],
+        adjustment: null,
+        proximaVez: [{ slot: 0, comentario: 'Use 999 kg e faça 99 repetições.' }],
+        usage: { model: 'claude-haiku-5-5', input_tokens: 2345, output_tokens: 210 },
+      }),
+    });
+  });
+  const card = page.getByTestId('analysis-card');
+  await card.getByRole('button', { name: 'Analisar este treino' }).click();
+  await expect(card).toContainText('Execução aceitável');
+  expect(engineSets.length).toBeGreaterThan(0);
+  await expect(card.getByRole('region', { name: 'Na próxima vez' })).toContainText(
+    `${engineSets[0]!.load_kg} kg x ${engineSets[0]!.reps} rep`,
+  );
+  await expect(card).not.toContainText('999');
+  await expect(card).not.toContainText('99 repetições');
+  await expect(card.getByTestId('analysis-usage')).toContainText(
+    '2345 tokens de entrada + 210 de saída',
+  );
+  await context.setOffline(true);
+  await page.reload();
+  await expect(page.getByTestId('evolution-card')).toContainText('Recorde pessoal de carga');
+  await expect(page.getByTestId('analysis-card')).toContainText('Execução aceitável');
+  await shot(page, '209-evolucao-local', true);
 });

@@ -9,6 +9,7 @@ import { EXERCISES } from '../src/engine/exercises';
 import { FOCUS_GROUPS, volumeGroupOf } from '../src/engine/generator';
 import { VOLUME_GROUP_LABEL } from '../src/engine/taxonomy';
 import { VOLUME_SOURCE, MAINTENANCE_SOURCE } from '../src/engine/risks';
+import { evolutionCases } from './ios-evolution-source';
 import type {
   OnboardingParams,
   RoutineItemRow,
@@ -165,21 +166,39 @@ export function replyCases() {
     [base, base],
   ];
   const raw = adjustments.map((adjustment) => ({
+    avaliacao: 'boa',
+    proximaVez: [{ slot: 0, comentario: 'Siga a previsão do motor com controle.' }],
     summary: 'Sessão sintética concluída.',
     points: ['Compare as séries de trabalho.'],
     adjustment,
   }));
-  return [...raw, { ...raw[0]!, summary: '' }, { ...raw[0]!, points: ['a', 'b', 'c', 'd'] }].map(
-    (input) => ({
+  const cases: Record<string, unknown>[] = [
+    ...raw,
+    { ...raw[0]!, summary: '' },
+    { ...raw[0]!, points: ['a', 'b', 'c', 'd'] },
+    { summary: raw[0]!.summary, points: raw[0]!.points, adjustment: null },
+    { ...raw[0]!, avaliacao: 'excelente' },
+    { ...raw[0]!, proximaVez: [{ slot: 2, comentario: 'Controle.' }] },
+    {
+      ...raw[0]!,
+      proximaVez: [
+        { slot: 0, comentario: 'Controle.' },
+        { slot: 0, comentario: 'Repita.' },
+      ],
+    },
+    { ...raw[0]!, proximaVez: [{ slot: 0, comentario: 'a'.repeat(181) }] },
+    { ...raw[0]!, proximaVez: [{ slot: 0, comentario: 'Controle.', load_kg: 200 }] },
+    { ...raw[0]!, extra: 'recusado' },
+  ];
+  return cases.map((input) => ({
+    input,
+    slots: 2,
+    expected: parseReply(
       input,
-      slots: 2,
-      expected: parseReply(
-        input,
-        2,
-        EXERCISES.map((e) => e.id),
-      ),
-    }),
-  );
+      2,
+      EXERCISES.map((e) => e.id),
+    ),
+  }));
 }
 export function syntheticBinding(): AnalysisBinding {
   const common = { user_id: 'synthetic-owner', updated_at: 100, deleted: false };
@@ -307,7 +326,14 @@ export async function analysisArtifacts() {
           }
     return {
       catalog: EXERCISES,
-      contexts: analysisCases(),
+      contexts: [
+        ...analysisCases(),
+        ...evolutionCases().map((v) => ({
+          input: v.input,
+          expected: buildAnalysisContext(v.input),
+        })),
+      ],
+      evolution: evolutionCases(),
       replies: replyCases(),
       changes,
       risks,

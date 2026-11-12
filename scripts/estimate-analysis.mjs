@@ -18,7 +18,11 @@ const expand = (items) =>
   Array.from({ length: 8 }, (_, slot) => ({ ...items[slot % items.length], slot }));
 const typical = {
   ...small,
-  items: expand(small.items),
+  items: expand(
+    fixture.contexts.find((c) =>
+      c.expected.items.some((i) => i.history.length === 5 && i.next !== null),
+    ).expected.items,
+  ),
   previous: small.previous.map((p) => ({ ...p, items: expand(p.items) })),
 };
 for (const [scenario, context] of [
@@ -30,7 +34,7 @@ for (const [scenario, context] of [
     JSON.stringify(analysisTool(CATALOG_IDS)).length +
     JSON.stringify(context).length;
   const estimatedInputTokens = Math.ceil(characters / 4);
-  const estimatedOutputTokens = 300;
+  const estimatedOutputTokens = 500;
   console.log(
     JSON.stringify({
       scenario,

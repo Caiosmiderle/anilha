@@ -63,7 +63,10 @@ describe('função de análise com modelo simulado e RPCs reais locais', () => {
     await callRpc(db, claims, 'agent_begin_turn', {}); // chat call
     const response = await handleAnalysis(req(), deps);
     expect(response.status).toBe(200);
-    expect(await response.json()).toEqual(replyCases()[1]!.expected);
+    expect(await response.json()).toEqual({
+      ...replyCases()[1]!.expected,
+      usage: { model: 'claude-haiku-5-5', input_tokens: 1000, output_tokens: 150 },
+    });
     expect(
       (
         await db.query<{ messages: number; input_tokens: number; output_tokens: number }>(

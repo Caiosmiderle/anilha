@@ -11,11 +11,18 @@ import {
   undoAnalysisAdjustment,
   updateAnalysis,
   type SavedAnalysis,
+  analysisInput,
 } from './local';
-import type { AnalysisAdjustment } from './contract';
+import { estimatedCost, type AnalysisAdjustment } from './contract';
+import { buildEvolution } from './evolution';
+import { EvolutionCard, analysisSetText } from './EvolutionCard';
 
 export function AnalysisCard({ sessionID }: { sessionID: string }) {
   const { db } = useAccount();
+  const evolution = useLiveQuery(
+    async () => buildEvolution(await analysisInput(db, sessionID)),
+    [db, sessionID],
+  );
   const saved = useLiveQuery(
     async () => (await db.meta.get(`analysis:${sessionID}`))?.value as SavedAnalysis | undefined,
     [db, sessionID],
@@ -66,190 +73,243 @@ export function AnalysisCard({ sessionID }: { sessionID: string }) {
       : '';
   };
   return (
-    <Widget title="Análise do Waltér" sub="Conta no limite diário do Waltér.">
-      <div className="stack-sm" data-testid="analysis-card" aria-busy={busy}>
-        {saved ? (
-          <>
-            <p className="t-regular">{saved.reply.summary}</p>
-            {saved.reply.points.length ? (
-              <ul>
-                {saved.reply.points.map((p, n) => (
-                  <li key={n}>{p}</li>
-                ))}
-              </ul>
-            ) : null}
-            {proposal && changed >= 0 ? (
-              <div className="hb-advice hb-advice-brand">
-                <div>
-                  <p>
-                    <strong>Antes:</strong> {line('before')}
+    <>
+      {evolution?.length ? <EvolutionCard rows={evolution} /> : null}
+      <Widget title="Análise do Waltér" sub="Conta no limite diário do Waltér.">
+        <div className="stack-sm" data-testid="analysis-card" aria-busy={busy}>
+          {saved ? (
+            <>
+              {saved.reply.avaliacao ? (
+                <span className={`analysis-rating analysis-rating-${saved.reply.avaliacao}`}>
+                  {
+                    {
+                      boa: 'Boa execução',
+                      aceitavel: 'Execução aceitável',
+                      abaixo: 'Abaixo do planejado',
+                    }[saved.reply.avaliacao]
+                  }
+                </span>
+              ) : null}
+              <p className="t-regular">{saved.reply.summary}</p>
+              {saved.reply.points.length ? (
+                <ul>
+                  {saved.reply.points.map((p, n) => (
+                    <li key={n}>{p}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {saved.reply.proximaVez ? (
+                <section className="stack-sm" aria-label="Na próxima vez">
+                  <h3>Na próxima vez</h3>
+                  <p className="t-small">
+                    Prévia calculada ao analisar, com a ficha disponível e a semana do dia
+                    analisado. A data e mudanças na ficha podem mudar os valores.
                   </p>
-                  <p>
-                    <strong>Depois:</strong> {line('after')}
-                  </p>
-                  {proposal.kind === 'ficha'
-                    ? proposal.risks.map((r) => (
-                        <p key={r.text}>
-                          {r.text} Fonte: {r.source}
+                  {saved.context.items
+                    .filter(
+                      (item) =>
+                        item.next || saved.reply.proximaVez?.some((p) => p.slot === item.slot),
+                    )
+                    .map((item) => (
+                      <div key={item.slot}>
+                        <strong>{item.exercise}</strong>
+                        <p>
+                          {item.next
+                            ? item.next.sets.map(analysisSetText).join(' · ')
+                            : 'Sem previsão do motor.'}
                         </p>
-                      ))
-                    : null}
-                </div>
-              </div>
-            ) : saved.reply.adjustment ? (
-              <p>O ajuste não pode ser aplicado à ficha atual. A análise foi preservada.</p>
-            ) : null}
-            {saved.status === 'proposed' && proposal ? (
-              <>
-                {editing && draft ? (
-                  <form
-                    className="stack-sm"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      void run(async () => {
-                        const next = { ...saved, reply: { ...saved.reply, adjustment: draft } };
-                        if (!analysisProposal(draft, saved.binding))
-                          throw new Error('Parâmetros fora da faixa permitida.');
-                        await updateAnalysis(sessionID, next);
-                        setEditing(false);
-                      });
-                    }}
-                  >
-                    {draft.operation === 'series' ? (
-                      <label>
-                        Séries
-                        <input
-                          aria-label="Séries do ajuste"
-                          type="number"
-                          min={1}
-                          max={12}
-                          required
-                          value={draft.sets ?? ''}
-                          onChange={(e) =>
-                            setDraft({ ...draft, sets: e.currentTarget.valueAsNumber })
-                          }
-                        />
-                      </label>
-                    ) : null}
-                    {draft.operation === 'repeticoes' ? (
-                      <>
-                        <label>
-                          Mínimo
-                          <input
-                            aria-label="Mínimo do ajuste"
-                            type="number"
-                            min={1}
-                            max={3600}
-                            required
-                            value={draft.min ?? ''}
-                            onChange={(e) =>
-                              setDraft({ ...draft, min: e.currentTarget.valueAsNumber })
-                            }
-                          />
-                        </label>
-                        <label>
-                          Máximo
-                          <input
-                            aria-label="Máximo do ajuste"
-                            type="number"
-                            min={draft.min ?? 1}
-                            max={3600}
-                            required
-                            value={draft.max ?? ''}
-                            onChange={(e) =>
-                              setDraft({ ...draft, max: e.currentTarget.valueAsNumber })
-                            }
-                          />
-                        </label>
-                      </>
-                    ) : null}
-                    {draft.operation === 'trocar' ? (
-                      <label>
-                        Exercício
-                        <select
-                          aria-label="Exercício do ajuste"
-                          value={draft.replacement ?? ''}
-                          onChange={(e) =>
-                            setDraft({ ...draft, replacement: e.currentTarget.value })
-                          }
-                        >
-                          {EXERCISES.map((ex) => (
-                            <option key={ex.id} value={ex.id}>
-                              {ex.name}
-                            </option>
+                        {saved.reply.proximaVez
+                          ?.filter((p) => p.slot === item.slot && !/[\p{N}]/u.test(p.comentario))
+                          .map((p) => (
+                            <p key={p.slot}>{p.comentario}</p>
                           ))}
-                        </select>
-                      </label>
-                    ) : null}
-                    <Button type="submit" disabled={busy}>
-                      Revisar ajuste
-                    </Button>
-                    <Button disabled={busy} onClick={() => setEditing(false)}>
-                      Cancelar
-                    </Button>
-                  </form>
-                ) : (
-                  <div className="row-wrap" style={{ gap: 8 }}>
-                    <Button
-                      variant="primary"
-                      disabled={busy}
-                      onClick={() => void run(() => saveAnalysisAdjustment(sessionID, saved))}
-                    >
-                      Salvar
-                    </Button>
-                    <Button
-                      disabled={busy}
-                      onClick={() => {
-                        setDraft(saved.reply.adjustment);
-                        setEditing(true);
+                      </div>
+                    ))}
+                </section>
+              ) : null}
+              {proposal && changed >= 0 ? (
+                <div className="hb-advice hb-advice-brand">
+                  <div>
+                    <h3>O que ajustar</h3>
+                    <p>
+                      <strong>Antes:</strong> {line('before')}
+                    </p>
+                    <p>
+                      <strong>Depois:</strong> {line('after')}
+                    </p>
+                    {proposal.kind === 'ficha'
+                      ? proposal.risks.map((r) => (
+                          <p key={r.text}>
+                            {r.text} Fonte: {r.source}
+                          </p>
+                        ))
+                      : null}
+                  </div>
+                </div>
+              ) : saved.reply.adjustment ? (
+                <p>O ajuste não pode ser aplicado à ficha atual. A análise foi preservada.</p>
+              ) : null}
+              {saved.status === 'proposed' && proposal ? (
+                <>
+                  {editing && draft ? (
+                    <form
+                      className="stack-sm"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        void run(async () => {
+                          const next = { ...saved, reply: { ...saved.reply, adjustment: draft } };
+                          if (!analysisProposal(draft, saved.binding))
+                            throw new Error('Parâmetros fora da faixa permitida.');
+                          await updateAnalysis(sessionID, next);
+                          setEditing(false);
+                        });
                       }}
                     >
-                      Ajustar
-                    </Button>
+                      {draft.operation === 'series' ? (
+                        <label>
+                          Séries
+                          <input
+                            aria-label="Séries do ajuste"
+                            type="number"
+                            min={1}
+                            max={12}
+                            required
+                            value={draft.sets ?? ''}
+                            onChange={(e) =>
+                              setDraft({ ...draft, sets: e.currentTarget.valueAsNumber })
+                            }
+                          />
+                        </label>
+                      ) : null}
+                      {draft.operation === 'repeticoes' ? (
+                        <>
+                          <label>
+                            Mínimo
+                            <input
+                              aria-label="Mínimo do ajuste"
+                              type="number"
+                              min={1}
+                              max={3600}
+                              required
+                              value={draft.min ?? ''}
+                              onChange={(e) =>
+                                setDraft({ ...draft, min: e.currentTarget.valueAsNumber })
+                              }
+                            />
+                          </label>
+                          <label>
+                            Máximo
+                            <input
+                              aria-label="Máximo do ajuste"
+                              type="number"
+                              min={draft.min ?? 1}
+                              max={3600}
+                              required
+                              value={draft.max ?? ''}
+                              onChange={(e) =>
+                                setDraft({ ...draft, max: e.currentTarget.valueAsNumber })
+                              }
+                            />
+                          </label>
+                        </>
+                      ) : null}
+                      {draft.operation === 'trocar' ? (
+                        <label>
+                          Exercício
+                          <select
+                            aria-label="Exercício do ajuste"
+                            value={draft.replacement ?? ''}
+                            onChange={(e) =>
+                              setDraft({ ...draft, replacement: e.currentTarget.value })
+                            }
+                          >
+                            {EXERCISES.map((ex) => (
+                              <option key={ex.id} value={ex.id}>
+                                {ex.name}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      ) : null}
+                      <Button type="submit" disabled={busy}>
+                        Revisar ajuste
+                      </Button>
+                      <Button disabled={busy} onClick={() => setEditing(false)}>
+                        Cancelar
+                      </Button>
+                    </form>
+                  ) : (
+                    <div className="row-wrap" style={{ gap: 8 }}>
+                      <Button
+                        variant="primary"
+                        disabled={busy}
+                        onClick={() => void run(() => saveAnalysisAdjustment(sessionID, saved))}
+                      >
+                        Salvar
+                      </Button>
+                      <Button
+                        disabled={busy}
+                        onClick={() => {
+                          setDraft(saved.reply.adjustment);
+                          setEditing(true);
+                        }}
+                      >
+                        Ajustar
+                      </Button>
+                      <Button
+                        disabled={busy}
+                        onClick={() =>
+                          void run(() => updateAnalysis(sessionID, { ...saved, status: 'refused' }))
+                        }
+                      >
+                        Recusar
+                      </Button>
+                    </div>
+                  )}
+                </>
+              ) : null}
+              {saved.status === 'saved' ? (
+                <>
+                  <p>Salvo. O ajuste será usado na próxima vez.</p>
+                  {saved.undo ? (
                     <Button
                       disabled={busy}
-                      onClick={() =>
-                        void run(() => updateAnalysis(sessionID, { ...saved, status: 'refused' }))
-                      }
+                      onClick={() => void run(() => undoAnalysisAdjustment(sessionID, saved))}
                     >
-                      Recusar
+                      Voltar ao anterior
                     </Button>
-                  </div>
-                )}
-              </>
-            ) : null}
-            {saved.status === 'saved' ? (
-              <>
-                <p>Salvo. O ajuste será usado na próxima vez.</p>
-                {saved.undo ? (
-                  <Button
-                    disabled={busy}
-                    onClick={() => void run(() => undoAnalysisAdjustment(sessionID, saved))}
-                  >
-                    Voltar ao anterior
-                  </Button>
-                ) : null}
-              </>
-            ) : null}
-            {saved.status === 'refused' ? <p>Ajuste recusado. A ficha foi preservada.</p> : null}
-            {saved.status === 'undone' ? <p>Desfeito: voltou como estava.</p> : null}
-          </>
-        ) : (
-          <>
-            <p>
-              Vão só os números do treino e os nomes dos exercícios, sem notas ou dados de saúde.
-            </p>
-            {!online ? <p>Sem internet. Conecte para analisar.</p> : null}
-            <Button
-              disabled={busy || !online}
-              onClick={() => void run(() => requestAnalysis(sessionID))}
-            >
-              {busy ? 'Analisando...' : 'Analisar este treino'}
-            </Button>
-          </>
-        )}
-        {error ? <p role="alert">{error}</p> : null}
-      </div>
-    </Widget>
+                  ) : null}
+                </>
+              ) : null}
+              {saved.status === 'refused' ? <p>Ajuste recusado. A ficha foi preservada.</p> : null}
+              {saved.status === 'undone' ? <p>Desfeito: voltou como estava.</p> : null}
+              {saved.usage ? (
+                <p className="t-small" data-testid="analysis-usage">
+                  {saved.usage.model} · {saved.usage.input_tokens} tokens de entrada +{' '}
+                  {saved.usage.output_tokens} de saída
+                  {estimatedCost(saved.usage) == null
+                    ? ''
+                    : ` · Custo estimado US$ ${estimatedCost(saved.usage)!.toFixed(7)}`}
+                </p>
+              ) : null}
+            </>
+          ) : (
+            <>
+              <p>
+                Vão só os números do treino e os nomes dos exercícios, sem notas ou dados de saúde.
+              </p>
+              {!online ? <p>Sem internet. Conecte para analisar.</p> : null}
+              <Button
+                disabled={busy || !online}
+                onClick={() => void run(() => requestAnalysis(sessionID))}
+              >
+                {busy ? 'Analisando...' : 'Analisar este treino'}
+              </Button>
+            </>
+          )}
+          {error ? <p role="alert">{error}</p> : null}
+        </div>
+      </Widget>
+    </>
   );
 }

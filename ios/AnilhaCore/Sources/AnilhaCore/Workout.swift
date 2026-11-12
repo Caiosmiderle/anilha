@@ -38,9 +38,9 @@ public enum Workout {
     public static func sets(_ data: ReadData, _ item: String) -> [ReadRow] {
         ordered(data.active("sets").filter { $0.string("item_id") == item })
     }
-    public static func logs(_ data: ReadData, exercise: String, exclude: String? = nil) -> [ReadRow] {
+    public static func logs(_ data: ReadData, exercise: String, exclude: String? = nil, includeDeload: Bool = false) -> [ReadRow] {
         let sessions = Dictionary(uniqueKeysWithValues: data.active("sessions").filter {
-            $0.string("status") == "done" && $0.bool("deload") != true && $0.id != exclude
+            $0.string("status") == "done" && (includeDeload || $0.bool("deload") != true) && $0.id != exclude
         }.map { ($0.id, $0) })
         let items = Dictionary(uniqueKeysWithValues: data.active("session_items").map { ($0.id, $0) })
         let sets = data.active("sets").filter { $0.string("exercise_id") == exercise && $0.number("completed_at") != nil }.sorted {

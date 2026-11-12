@@ -45,6 +45,7 @@ Deno.serve((req) =>
         messages: [{ role: 'user', content: JSON.stringify(context) }],
       });
       return {
+        model: res.model,
         content: res.content,
         input:
           res.usage.input_tokens +

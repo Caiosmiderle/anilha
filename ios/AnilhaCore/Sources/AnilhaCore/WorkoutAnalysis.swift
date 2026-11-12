@@ -55,7 +55,9 @@ public enum WorkoutAnalysis {
                     "planned_sets": item.fields["planned_sets"] ?? .number(0), "target_min": item.fields["target_min"] ?? .number(0), "target_max": item.fields["target_max"] ?? .number(0), "warmup_sets": item.fields["warmup_sets"] ?? .number(0),
                     "planned": rows(sets.compactMap { planned[$0.id].map(numericSet) }),
                     "done": rows(sets.filter { !$0.deleted && $0.number("completed_at") != nil }.map(numericSet)),
-                    "rule": .string(rules.contains(rule) ? rule : "unknown")])
+                    "rule": .string(rules.contains(rule) ? rule : "unknown"),
+                    "history": rows(s.id == session.id ? WorkoutEvolution.history(data, session: session, exercise: data.exercises(catalog: catalog)[item.string("exercise_id") ?? ""] ?? ReadRow(fields: ["id": item.fields["exercise_id"] ?? .string("")])) : []),
+                    "next": s.id == session.id ? WorkoutEvolution.next(data, session: session, item: item, catalog: catalog).map { .object($0.fields) } ?? .null : .null])
             }
         }
         let previous: [ReadRow] = session.string("routine_id") == nil ? [] : data.active("sessions").filter {
@@ -77,15 +79,39 @@ public enum WorkoutAnalysis {
         default: return false
         }
     }
-    public static func parseReply(_ raw: ReadRow, slots: Int, catalog: [ReadRow]) -> ReadRow? {
+    public static func parseReply(_ raw: ReadRow, slots: Int, catalog: [ReadRow], allowLegacy: Bool = true) -> ReadRow? {
         func validText(_ s: String?, max: Int) -> Bool {
             guard let s, !s.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, s.utf16.count <= max else { return false }
             return s.range(of: "[\\x{2013}\\x{2014}\\p{Extended_Pictographic}]", options: .regularExpression) == nil
         }
-        guard validText(raw.string("summary"), max: 600), case .array(let points) = raw.fields["points"], points.count <= 3,
+        let modern = raw.fields["avaliacao"] != nil || raw.fields["proximaVez"] != nil
+        let keys = modern ? ["avaliacao", "proximaVez", "summary", "points", "adjustment"] : allowLegacy ? ["summary", "points", "adjustment"] : []
+        guard Set(raw.fields.keys) == Set(keys), validText(raw.string("summary"), max: 600), case .array(let points) = raw.fields["points"], points.count <= 3,
               points.allSatisfy({ if case .string(let s) = $0 { return validText(s, max: 300) }; return false }) else { return nil }
         let a = raw.object("adjustment")
-        return ReadRow(fields: ["summary": raw.fields["summary"]!, "points": .array(points), "adjustment": validAdjustment(a, slots: slots, catalog: catalog) ? .object(a.fields) : .null])
+        var reply = ReadRow(fields: ["summary": raw.fields["summary"]!, "points": .array(points), "adjustment": validAdjustment(a, slots: slots, catalog: catalog) ? .object(a.fields) : .null])
+        if modern {
+            guard ["boa", "aceitavel", "abaixo"].contains(raw.string("avaliacao") ?? ""), case .array(let values) = raw.fields["proximaVez"] else { return nil }
+            let comments = raw.array("proximaVez")
+            guard values.count == comments.count, comments.count <= slots, Set(comments.compactMap { $0.number("slot") }).count == comments.count,
+                  comments.allSatisfy({ row in
+                      guard let slot = row.number("slot") else { return false }
+                      return Set(row.fields.keys) == Set(["slot", "comentario"]) && slot == floor(slot) && slot >= 0 && slot < Double(slots) && validText(row.string("comentario"), max: 180)
+                  }) else { return nil }
+            reply.fields["avaliacao"] = raw.fields["avaliacao"]
+            reply.fields["proximaVez"] = raw.fields["proximaVez"]
+        }
+        return reply
+    }
+    public static func usage(_ raw: ReadRow) -> ReadRow? {
+        guard Set(raw.fields.keys) == Set(["model", "input_tokens", "output_tokens"]), let model = raw.string("model"),
+              model.range(of: "^[a-z0-9.-]{1,100}$", options: .regularExpression) != nil,
+              whole(raw, "input_tokens", 10000000) != .null, whole(raw, "output_tokens", 10000000) != .null else { return nil }
+        return raw
+    }
+    public static func estimatedCost(_ usage: ReadRow) -> Double? {
+        guard Self.usage(usage) != nil, usage.string("model") == "claude-haiku-5-5" else { return nil }
+        return ((usage.number("input_tokens") ?? 0) * 0.10 + (usage.number("output_tokens") ?? 0) * 0.50) / 1000000
     }
     /// Local-only binding, never serialized into the HTTP context.
     public static func binding(_ data: ReadData, sessionID: String) throws -> ReadRow {

@@ -42,6 +42,43 @@ final class AnalysisTests: XCTestCase {
             XCTAssertNil(WorkoutAnalysis.parseReply(raw, slots: 1, catalog: f.array("catalog")))
         }
     }
+    func testEvolutionAndNextParity() throws {
+        let f = try fixture()
+        for vector in f.array("evolution") {
+            let input = vector.object("input"), data = ReadData(tables: tables(input.object("tables")))
+            let id = input.string("sessionID") ?? ""
+            XCTAssertEqual(WorkoutEvolution.build(data, sessionID: id, catalog: f.array("catalog")), vector.array("expected"), vector.string("name") ?? "")
+            let session = try XCTUnwrap(data.active("sessions").first { $0.id == id })
+            let item = try XCTUnwrap(Workout.items(data, id).first)
+            let next = WorkoutEvolution.next(data, session: session, item: item, catalog: f.array("catalog"))
+            if vector.fields["next"] == .null { XCTAssertNil(next) }
+            else { XCTAssertEqual(next, vector.object("next")) }
+        }
+    }
+    func testNextMatchesActualWorkoutOpening() throws {
+        let f = try fixture()
+        for vector in f.array("evolution") where ["records", "timed", "first", "deload", "pounds", "lower", "equal", "increase", "decrease", "customTimed"].contains(vector.string("name") ?? "") {
+            let input = vector.object("input")
+            var data = ReadData(tables: tables(input.object("tables")))
+            let session = try XCTUnwrap(data.active("sessions").first { $0.id == input.string("sessionID") })
+            data.tables["sessions"] = data.active("sessions").filter { ($0.number("started_at") ?? 0) <= (session.number("started_at") ?? 0) }
+            let routine = try XCTUnwrap(data.active("routines").first)
+            let changes = Workout.start(data, routine: routine, catalog: f.array("catalog"), today: session.string("local_date") ?? "", now: 90000)
+            let actual = changes.filter { $0.table == "sets" && $0.row.string("kind") == "work" }.map { change in
+                ReadRow(fields: ["load_kg": change.row.fields["load_kg"] ?? .null, "reps": change.row.fields["reps"] ?? .null, "seconds": change.row.fields["seconds"] ?? .null])
+            }
+            XCTAssertEqual(actual, vector.object("next").array("sets"), vector.string("name") ?? "")
+        }
+    }
+    func testUsageAndLegacyResponses() throws {
+        let usage = ReadRow(fields: ["model": .string("claude-haiku-5-5"), "input_tokens": .number(1000), "output_tokens": .number(150)])
+        XCTAssertEqual(WorkoutAnalysis.estimatedCost(usage) ?? 0, 0.000175, accuracy: 0.000000001)
+        XCTAssertNil(WorkoutAnalysis.estimatedCost(usage.changing(["model": .string("unknown")])))
+        XCTAssertNil(WorkoutAnalysis.usage(usage.changing(["input_tokens": .number(-1)])))
+        let legacy = ReadRow(fields: ["summary": .string("Treino concluído."), "points": .array([]), "adjustment": .null])
+        XCTAssertEqual(WorkoutAnalysis.parseReply(legacy, slots: 1, catalog: []), legacy)
+        XCTAssertNil(WorkoutAnalysis.parseReply(legacy, slots: 1, catalog: [], allowLegacy: false))
+    }
     func testEditsMatchRealWalterToolAndApply() throws {
         let f = try fixture()
         for v in f.array("changes") {
