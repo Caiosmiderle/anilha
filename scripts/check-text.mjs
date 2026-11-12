@@ -15,6 +15,8 @@ const SKIP_DIRS = new Set([
   '.local',
   'artifacts',
   '.hyperframes',
+  '.build',
+  '.swiftpm',
 ]);
 // Not our text: the user's own brief and references, and the notes a video tool generates.
 const SKIP_PATHS = [
@@ -36,6 +38,7 @@ const EXTS = new Set([
   '.mjs',
   '.js',
   '.webmanifest',
+  '.swift',
 ]);
 const SKIP_FILES = new Set(['package-lock.json']);
 

@@ -1,3 +1,6 @@
 # Gerados no CI (xcodegen e sips): não versionar.
 Anilha.xcodeproj/
 App/Recursos/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png
+# Swift Package Manager build products. Keep fixtures and generated sources versioned.
+**/.build/
+**/.swiftpm/

@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS etapa 3A, login e consulta, Codex, 12/11/2026
+
+- Autor Codex. Branch recebida `codex/ios-login`, base `fec24fc`, checkout inicialmente limpo. Intenção: entrar por código e consultar dados reais/offline, sem gravação de treino. Por instrução expressa do Caio: sem criar branch ou escrever em `.git`; Claude revisa e commita. Tudo só neste checkout, sem produção, publicação ou push.
+- Entrega: Supabase Swift **2.55.6 exata**, confirmada na release oficial; OTP `.email`; sessão no Keychain com checagem de persistência e saída local offline que sela o armazenamento do cliente antigo. Configuração gerada da `.env.production`, somente URL e chave publicável. Pull com token fixado por chamada, paginação, cursor atômico, lápides, isolamento por conta e recuperação por `horizon` uma vez por ciclo. SwiftData das onze tabelas pedidas, sem outbox ou `sync_push`.
+- Hoje com plano/rotação e planejado separado do realizado; Fichas com prescrição e carga anterior; histórico curto com origem CRUNNING; começar desligado. Catálogo de **92 exercícios** e taxonomia gerados do TS; **15 vetores de plano e 44 de projeção** para paridade Swift. Pacote local com produtos `AnilhaCore` e `AnilhaCache` e testes SwiftData em memória. CI gera os recursos e roda testes TS/Swift antes de archive.
+- Revisão estática da prova do Claude: faixas com meia-risca estavam fora do alcance do verificador, agora estendido a Swift; URL completa deixava parâmetros visíveis, agora só confirmação genérica. Nenhum vazamento real observado. O relato anterior de instalação vem do Caio, não de uma nova execução do Codex.
+- Validações reais: gerador e `--check`, lint, typecheck, build e **53 testes TS em 5 arquivos** passaram. `git diff --check` passou. `swift test --package-path ios/AnilhaCore` não iniciou: `swift` ausente no Windows. **11 métodos Swift escritos, não executados**. Sem login real, runtime Apple, UI visual, CI ou validação de produção nesta intervenção.
+- Parecer completo, fontes oficiais, comandos e roteiro: [REVISAO_CODEX_IOS_LOGIN_2026-11-12.md](REVISAO_CODEX_IOS_LOGIN_2026-11-12.md). Claude deve revisar compilação/concorrência, Keychain, cache/cursor, saída durante refresh, paridade e telas; obter prova no CI e no aparelho. Revisão do Claude desta entrega: **PENDENTE**.
+- Limites: Hoje é agenda/rotação, não o recomendador completo de fadiga. Reconstrução após lápides purgadas pode deixar cache parcial se a rede cair; novo pull retoma. Saída apaga a sessão local, sem prometer revogação remota ou afetar o PWA. Parte B, conflitos e escrita continuam pendentes. Dependências transitivas do SPM ainda precisam da resolução real no Mac; nenhum lockfile foi inventado.
+
 ## Troca com o CRUNNING publicada, Claude, 12/11/2026
 
 - Revisão do Claude das correções do Codex (lápide mínima, limites, versão no GET): **aprovada**. Conferi o código e os 4 testes novos; 787 testes passando no relato do Codex.

@@ -1,138 +1,135 @@
+import AnilhaCore
 import SwiftUI
 
-/// Exercício de uma ficha de exemplo (dados fictícios, só para a prova de visual).
-struct ExercicioExemplo: Identifiable {
-    let id: String
-    let nome: String
-    let series: Int
-    let repeticoes: String
-    let carga: String
-}
-
-/// "Hoje" de exemplo: a ficha do dia no visual do Anilha.
 struct HojeView: View {
-    @Binding var linkAberto: URL?
+    let conta: ContaStore
+    var today: String
 
-    static let ficha: [ExercicioExemplo] = [
-        ExercicioExemplo(id: "supino-reto", nome: "Supino reto", series: 3, repeticoes: "8–10", carga: "40 kg"),
-        ExercicioExemplo(id: "remada-baixa", nome: "Remada baixa", series: 3, repeticoes: "10–12", carga: "45 kg"),
-        ExercicioExemplo(id: "desenvolvimento", nome: "Desenvolvimento com halteres", series: 3, repeticoes: "8–10", carga: "14 kg"),
-        ExercicioExemplo(id: "puxada-frontal", nome: "Puxada frontal", series: 3, repeticoes: "10–12", carga: "50 kg"),
-        ExercicioExemplo(id: "triceps-corda", nome: "Tríceps na corda", series: 2, repeticoes: "12–15", carga: "20 kg"),
-    ]
+    private var dia: DayView? { conta.dados.plannedToday(today) }
+    private var ficha: ReadRow? {
+        guard let split = dia?.split_key else { return nil }
+        return conta.dados.routines.first { $0.string("split_key") == split }
+    }
+    private var externos: [ReadRow] {
+        conta.dados.active("external_plan_items").filter {
+            $0.string("local_date") == today && $0.string("source") == "crunning"
+        }
+    }
+    private var feitos: [HistoryEntry] { HistoryEntry.entries(conta.dados).filter { $0.date == today && $0.concluido } }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Tema.Espaco.e4) {
-                cabecalho
-                if let linkAberto { avisoLink(linkAberto) }
-                cartaoFicha
-                Text("Prova de instalação: ficha de exemplo, sem conta nem sincronização. As próximas etapas trazem a conta, as fichas reais e o treino.")
-                    .font(.footnote)
-                    .foregroundStyle(Tema.tintaSuave)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .padding(.horizontal, Tema.Espaco.e5)
-            .padding(.bottom, Tema.Espaco.e8)
-        }
-        .background(Tema.fundo.ignoresSafeArea())
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    SobreView()
-                } label: {
-                    Image(systemName: "info.circle")
+                Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
+                    .font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                StatusSyncView(conta: conta)
+                VStack(alignment: .leading, spacing: Tema.Espaco.e3) {
+                    Text("Planejado no Anilha").font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                    if let dia {
+                        if dia.kind == "gym" {
+                            Text(ficha?.string("name") ?? nomeSplit(dia.split_key)).font(.title2.bold())
+                            if let ficha {
+                                NavigationLink {
+                                    FichaView(conta: conta, ficha: ficha)
+                                } label: { Label("Ver exercícios", systemImage: "list.bullet") }
+                                .buttonStyle(.bordered)
+                            } else {
+                                Text("Esta ficha não está disponível. Confira as fichas no PWA.")
+                                    .foregroundStyle(Tema.tintaSuave)
+                            }
+                        } else if dia.kind == "run" {
+                            Label("Corrida \(nomeCorrida(dia.run_type))", systemImage: "figure.run")
+                                .font(.title2.bold())
+                        } else {
+                            Text("Descanso planejado").font(.title2.bold())
+                        }
+                        if let time = dia.time { Text("Horário: \(time)").font(.subheadline) }
+                    } else {
+                        Text(conta.sincronizando ? "Buscando seu plano..." : "Nenhum plano disponível.")
+                        Text("Crie ou ajuste seu plano no PWA e puxe para atualizar.")
+                            .font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                    }
+                    ComecarIndisponivel()
                 }
-                .accessibilityLabel("Sobre o app")
-            }
-        }
-    }
-
-    private var cabecalho: some View {
-        VStack(alignment: .leading, spacing: Tema.Espaco.e1) {
-            Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)).capitalizedPrimeiraLetra)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(Tema.tintaSuave)
-            Text("Hoje")
-                .font(.largeTitle.weight(.bold))
-                .foregroundStyle(Tema.tintaForte)
-        }
-        .padding(.top, Tema.Espaco.e2)
-    }
-
-    private func avisoLink(_ url: URL) -> some View {
-        Label("Aberto pelo link \(url.absoluteString)", systemImage: "link")
-            .font(.subheadline.weight(.medium))
-            .foregroundStyle(Tema.marcaForte)
-            .padding(Tema.Espaco.e3)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Tema.marcaFundo, in: RoundedRectangle(cornerRadius: Tema.Raio.lg, style: .continuous))
-    }
-
-    private var cartaoFicha: some View {
-        VStack(alignment: .leading, spacing: Tema.Espaco.e3) {
-            HStack(alignment: .firstTextBaseline) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Treino de hoje")
-                        .font(.footnote.weight(.semibold))
-                        .foregroundStyle(Tema.tintaSuave)
-                    Text("Ficha A · Superior")
-                        .font(.title2.weight(.semibold))
-                        .foregroundStyle(Tema.tintaForte)
-                }
-                Spacer()
-                Text("≈ 45 min")
-                    .font(.footnote.weight(.semibold))
-                    .monospacedDigit()
-                    .foregroundStyle(Tema.tintaSuave)
-            }
-            VStack(spacing: 0) {
-                ForEach(Self.ficha) { e in
-                    linha(e)
-                    if e.id != Self.ficha.last?.id {
-                        Divider().overlay(Tema.linha)
+                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao()
+                if !externos.isEmpty {
+                    Text("Agenda do CRUNNING").font(.headline)
+                    ForEach(externos) { row in
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(row.string("name") ?? "Corrida \(nomeCorrida(row.string("run_type")))").font(.headline)
+                            Text(statusExterno(row.string("status"))).foregroundStyle(Tema.marcaForte)
+                            Text(detalheCorrida(row, metros: true)).font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                        }
+                        .padding(Tema.Espaco.e4).frame(maxWidth: .infinity, alignment: .leading).cartao()
                     }
                 }
+                Text("Feito hoje").font(.headline)
+                if feitos.isEmpty {
+                    Text("Nenhum treino registrado hoje.").foregroundStyle(Tema.tintaSuave)
+                } else {
+                    ForEach(feitos) { entry in HistoricoLinha(entry: entry) }
+                }
+                Text("Você está consultando seu plano. As sugestões de ajuste e o registro do treino chegam nas próximas etapas.")
+                    .font(.footnote).foregroundStyle(Tema.tintaSuave)
             }
-            Button {
-            } label: {
-                Text("Começar treino")
-                    .font(.headline)
-                    .foregroundStyle(Tema.sobreMarca)
-                    .frame(maxWidth: .infinity, minHeight: 50)
-                    .background(Tema.marca, in: Capsule())
-            }
-            .buttonStyle(.plain)
-            .disabled(true)
-            .opacity(0.5)
-            .accessibilityHint("Disponível nas próximas etapas")
+            .padding(Tema.Espaco.e5)
         }
-        .padding(Tema.Espaco.e5)
-        .cartao()
-    }
-
-    private func linha(_ e: ExercicioExemplo) -> some View {
-        HStack(spacing: Tema.Espaco.e3) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(e.nome)
-                    .font(.body.weight(.medium))
-                    .foregroundStyle(Tema.tinta)
-                Text("\(e.series) × \(e.repeticoes)")
-                    .font(.footnote)
-                    .monospacedDigit()
-                    .foregroundStyle(Tema.tintaSuave)
-            }
-            Spacer()
-            Text(e.carga)
-                .font(.subheadline.weight(.semibold))
-                .monospacedDigit()
-                .foregroundStyle(Tema.tintaForte)
-        }
-        .padding(.vertical, Tema.Espaco.e3)
-        .accessibilityElement(children: .combine)
+        .background(Tema.fundo)
+        .navigationTitle("Hoje")
+        .refreshable { await conta.atualizar() }
     }
 }
 
-extension String {
-    var capitalizedPrimeiraLetra: String { prefix(1).uppercased() + dropFirst() }
+struct StatusSyncView: View {
+    let conta: ContaStore
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if conta.sincronizando { ProgressView().accessibilityLabel("Atualizando dados") }
+            Text(conta.aviso).font(.footnote)
+            if let date = conta.atualizadoEm {
+                Text("Última atualização: \(date.formatted(date: .abbreviated, time: .shortened))").font(.caption)
+            }
+        }
+        .foregroundStyle(Tema.tintaSuave).accessibilityElement(children: .combine)
+    }
+}
+
+struct ComecarIndisponivel: View {
+    var body: some View {
+        VStack(spacing: 6) {
+            Button("Começar treino") {}.buttonStyle(.borderedProminent).disabled(true)
+            Text("na próxima versão").font(.footnote).foregroundStyle(Tema.tintaSuave)
+        }
+        .frame(maxWidth: .infinity).accessibilityElement(children: .combine)
+    }
+}
+
+func nomeSplit(_ key: String?) -> String {
+    Planning.splits.first { $0.id == key }?.name ?? "Treino de força"
+}
+func nomeCorrida(_ key: String?) -> String {
+    switch key {
+    case "longo": "longa"
+    case "intervalado": "de qualidade"
+    case "leve": "leve"
+    default: "com tipo não informado"
+    }
+}
+func statusExterno(_ key: String?) -> String {
+    switch key {
+    case "planejada": "Planejado, do CRUNNING"
+    case "feita": "Marcado como feito na agenda, do CRUNNING"
+    case "perdida": "Não realizado, do CRUNNING"
+    default: "Status não informado, do CRUNNING"
+    }
+}
+func detalheCorrida(_ row: ReadRow, metros: Bool = false) -> String {
+    var parts: [String] = []
+    if let distance = row.number(metros ? "distance_m" : "distance_km") {
+        parts.append("\((metros ? distance / 1000 : distance).formatted(.number.precision(.fractionLength(0...2)))) km")
+    }
+    if let seconds = row.number("duration_sec") {
+        parts.append("\((seconds / 60).formatted(.number.precision(.fractionLength(0...1)))) min")
+    }
+    return parts.isEmpty ? "Distância e duração não informadas" : parts.joined(separator: " · ")
 }

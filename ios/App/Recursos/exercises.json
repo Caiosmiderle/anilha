@@ -1,0 +1,1226 @@
+[
+  {
+    "id": "puxada-frente",
+    "name": "Puxada frente na polia",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "ombro_posterior"
+    ],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "puxada-supinada",
+    "name": "Puxada supinada na polia",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "puxada-triangulo",
+    "name": "Puxada com triângulo",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "barra-fixa",
+    "name": "Barra fixa",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": "barra_fixa",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "remada-curvada",
+    "name": "Remada curvada com barra",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "ombro_posterior",
+      "lombar"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "remada-unilateral",
+    "name": "Remada unilateral com halter",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "ombro_posterior"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "remada-baixa",
+    "name": "Remada baixa na polia",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "ombro_posterior"
+    ],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "remada-cavalinho",
+    "name": "Remada cavalinho",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "lombar"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "remada-maquina",
+    "name": "Remada na máquina",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "ombro_posterior"
+    ],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "remada-invertida",
+    "name": "Remada invertida",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": "barra_fixa",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "pulldown-bracos-estendidos",
+    "name": "Pulldown com braços estendidos",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "pullover-halter",
+    "name": "Pullover com halter",
+    "primary_group": "costas",
+    "muscles": [
+      "costas"
+    ],
+    "secondary_muscles": [
+      "peito"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "hiperextensao-lombar",
+    "name": "Hiperextensão lombar",
+    "primary_group": "costas",
+    "muscles": [
+      "lombar"
+    ],
+    "secondary_muscles": [
+      "gluteos",
+      "posterior_coxa"
+    ],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "supino-reto-barra",
+    "name": "Supino reto com barra",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "ombro_anterior"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "supino-reto-halteres",
+    "name": "Supino reto com halteres",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "ombro_anterior"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "supino-inclinado-barra",
+    "name": "Supino inclinado com barra",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "ombro_anterior",
+      "triceps"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "supino-inclinado-halteres",
+    "name": "Supino inclinado com halteres",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "ombro_anterior",
+      "triceps"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "supino-declinado",
+    "name": "Supino declinado com barra",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "supino-maquina",
+    "name": "Supino na máquina",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "ombro_anterior"
+    ],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "supino-inclinado-maquina",
+    "name": "Supino inclinado na máquina",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "ombro_anterior",
+      "triceps"
+    ],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "crucifixo-halteres",
+    "name": "Crucifixo com halteres",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "crucifixo-maquina",
+    "name": "Crucifixo na máquina",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "crossover",
+    "name": "Crossover na polia",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "flexao-bracos",
+    "name": "Flexão de braços",
+    "primary_group": "peito",
+    "muscles": [
+      "peito"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "ombro_anterior"
+    ],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "desenvolvimento-halteres-sentado",
+    "name": "Desenvolvimento com halteres sentado",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_anterior",
+      "ombro_lateral"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "desenvolvimento-maquina",
+    "name": "Desenvolvimento na máquina",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_anterior",
+      "ombro_lateral"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "desenvolvimento-barra",
+    "name": "Desenvolvimento militar com barra",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_anterior",
+      "ombro_lateral"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "desenvolvimento-arnold",
+    "name": "Desenvolvimento Arnold",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_anterior",
+      "ombro_lateral"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "elevacao-lateral",
+    "name": "Elevação lateral com halteres",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_lateral"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "elevacao-lateral-polia",
+    "name": "Elevação lateral na polia",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_lateral"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "elevacao-lateral-maquina",
+    "name": "Elevação lateral na máquina",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_lateral"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "elevacao-frontal",
+    "name": "Elevação frontal com halteres",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_anterior"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "remada-alta",
+    "name": "Remada alta com barra",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_lateral",
+      "trapezio"
+    ],
+    "secondary_muscles": [],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "crucifixo-inverso",
+    "name": "Crucifixo inverso com halteres",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_posterior"
+    ],
+    "secondary_muscles": [
+      "costas"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "crucifixo-inverso-maquina",
+    "name": "Crucifixo inverso na máquina",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_posterior"
+    ],
+    "secondary_muscles": [
+      "costas"
+    ],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "face-pull",
+    "name": "Face pull na polia",
+    "primary_group": "ombros",
+    "muscles": [
+      "ombro_posterior"
+    ],
+    "secondary_muscles": [
+      "trapezio",
+      "costas"
+    ],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "encolhimento-halteres",
+    "name": "Encolhimento com halteres",
+    "primary_group": "ombros",
+    "muscles": [
+      "trapezio"
+    ],
+    "secondary_muscles": [
+      "antebraco"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "encolhimento-barra",
+    "name": "Encolhimento com barra",
+    "primary_group": "ombros",
+    "muscles": [
+      "trapezio"
+    ],
+    "secondary_muscles": [
+      "antebraco"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "rosca-direta",
+    "name": "Rosca direta com barra",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "antebraco"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "rosca-barra-w",
+    "name": "Rosca com barra W",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "antebraco"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "rosca-alternada",
+    "name": "Rosca alternada com halteres",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "antebraco"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "rosca-martelo",
+    "name": "Rosca martelo",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps",
+      "antebraco"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "rosca-scott",
+    "name": "Rosca Scott",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "rosca-concentrada",
+    "name": "Rosca concentrada",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "rosca-polia",
+    "name": "Rosca na polia",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "rosca-inclinada",
+    "name": "Rosca inclinada com halteres",
+    "primary_group": "bracos",
+    "muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "triceps-polia",
+    "name": "Tríceps na polia com barra",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "triceps-corda",
+    "name": "Tríceps na polia com corda",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "triceps-frances",
+    "name": "Tríceps francês com halter",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "triceps-testa",
+    "name": "Tríceps testa com barra W",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "triceps-coice",
+    "name": "Tríceps coice com halter",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "triceps-maquina",
+    "name": "Tríceps na máquina",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "supino-fechado",
+    "name": "Supino fechado",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "peito"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "paralelas",
+    "name": "Paralelas",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps",
+      "peito"
+    ],
+    "secondary_muscles": [],
+    "equipment": "barra_fixa",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "mergulho-banco",
+    "name": "Mergulho no banco",
+    "primary_group": "bracos",
+    "muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "agachamento-livre",
+    "name": "Agachamento livre com barra",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "lombar"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "agachamento-smith",
+    "name": "Agachamento no Smith",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "agachamento-goblet",
+    "name": "Agachamento goblet",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "agachamento-sumo",
+    "name": "Agachamento sumô com halter",
+    "primary_group": "pernas",
+    "muscles": [
+      "gluteos",
+      "adutores"
+    ],
+    "secondary_muscles": [
+      "quadriceps"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "agachamento-bulgaro",
+    "name": "Agachamento búlgaro",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "afundo",
+    "name": "Afundo com halteres",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "passada",
+    "name": "Passada com halteres",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "leg-press-45",
+    "name": "Leg press 45",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 5
+  },
+  {
+    "id": "leg-press-horizontal",
+    "name": "Leg press horizontal",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 5
+  },
+  {
+    "id": "hack-squat",
+    "name": "Hack squat",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "gluteos"
+    ],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 5
+  },
+  {
+    "id": "cadeira-extensora",
+    "name": "Cadeira extensora",
+    "primary_group": "pernas",
+    "muscles": [
+      "quadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "mesa-flexora",
+    "name": "Mesa flexora",
+    "primary_group": "pernas",
+    "muscles": [
+      "posterior_coxa"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "cadeira-flexora",
+    "name": "Cadeira flexora",
+    "primary_group": "pernas",
+    "muscles": [
+      "posterior_coxa"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "stiff",
+    "name": "Stiff com barra",
+    "primary_group": "pernas",
+    "muscles": [
+      "posterior_coxa",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "lombar"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "stiff-halteres",
+    "name": "Stiff com halteres",
+    "primary_group": "pernas",
+    "muscles": [
+      "posterior_coxa",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "lombar"
+    ],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "levantamento-terra",
+    "name": "Levantamento terra",
+    "primary_group": "pernas",
+    "muscles": [
+      "gluteos",
+      "posterior_coxa"
+    ],
+    "secondary_muscles": [
+      "lombar",
+      "costas",
+      "trapezio"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "elevacao-pelvica",
+    "name": "Elevação pélvica com barra",
+    "primary_group": "pernas",
+    "muscles": [
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "posterior_coxa"
+    ],
+    "equipment": "barra",
+    "measure": "weight_reps",
+    "increment_kg": 5
+  },
+  {
+    "id": "swing-kettlebell",
+    "name": "Swing com kettlebell",
+    "primary_group": "pernas",
+    "muscles": [
+      "gluteos",
+      "posterior_coxa"
+    ],
+    "secondary_muscles": [
+      "lombar"
+    ],
+    "equipment": "kettlebell",
+    "measure": "weight_reps",
+    "increment_kg": 4
+  },
+  {
+    "id": "cadeira-abdutora",
+    "name": "Cadeira abdutora",
+    "primary_group": "pernas",
+    "muscles": [
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "cadeira-adutora",
+    "name": "Cadeira adutora",
+    "primary_group": "pernas",
+    "muscles": [
+      "adutores"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "panturrilha-em-pe",
+    "name": "Panturrilha em pé na máquina",
+    "primary_group": "pernas",
+    "muscles": [
+      "panturrilha"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 5
+  },
+  {
+    "id": "panturrilha-sentado",
+    "name": "Panturrilha sentado",
+    "primary_group": "pernas",
+    "muscles": [
+      "panturrilha"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "panturrilha-leg-press",
+    "name": "Panturrilha no leg press",
+    "primary_group": "pernas",
+    "muscles": [
+      "panturrilha"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 5
+  },
+  {
+    "id": "panturrilha-halter",
+    "name": "Panturrilha unilateral com halter",
+    "primary_group": "pernas",
+    "muscles": [
+      "panturrilha"
+    ],
+    "secondary_muscles": [],
+    "equipment": "halteres",
+    "measure": "weight_reps",
+    "increment_kg": 2
+  },
+  {
+    "id": "prancha",
+    "name": "Prancha",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "time",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "prancha-lateral",
+    "name": "Prancha lateral",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "time",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "elevacao-pernas-cadeira",
+    "name": "Elevação de pernas na cadeira",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "elevacao-pernas-solo",
+    "name": "Elevação de pernas deitado",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "elevacao-pernas-barra",
+    "name": "Elevação de pernas na barra fixa",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "barra_fixa",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "abdominal-polia",
+    "name": "Abdominal na polia",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "abdominal-supra",
+    "name": "Abdominal supra",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "abdominal-maquina",
+    "name": "Abdominal na máquina",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "maquina",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "abdominal-infra",
+    "name": "Abdominal infra",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "abdominal-bicicleta",
+    "name": "Abdominal bicicleta",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "roda-abdominal",
+    "name": "Roda abdominal",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "pallof-press",
+    "name": "Pallof press na polia",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "polia",
+    "measure": "weight_reps",
+    "increment_kg": 2.5
+  },
+  {
+    "id": "dead-bug",
+    "name": "Dead bug",
+    "primary_group": "core",
+    "muscles": [
+      "abdomen"
+    ],
+    "secondary_muscles": [],
+    "equipment": "peso_corporal",
+    "measure": "reps",
+    "increment_kg": 2.5
+  }
+]

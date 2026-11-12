@@ -12,7 +12,8 @@ options:
 settings:
   base:
     SWIFT_VERSION: "6.0"
-    MARKETING_VERSION: "0.1.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MARKETING_VERSION: "0.2.0"
     CURRENT_PROJECT_VERSION: "1"     # o CI troca pelo número do build
     GENERATE_INFOPLIST_FILE: "YES"
     CODE_SIGN_STYLE: Automatic
@@ -21,12 +22,26 @@ settings:
     SWIFT_EMIT_LOC_STRINGS: "YES"
     LOCALIZATION_PREFERS_STRING_CATALOGS: "YES"
 
+packages:
+  Supabase:
+    url: https://github.com/supabase/supabase-swift.git
+    exactVersion: 2.55.6
+  AnilhaCore:
+    path: AnilhaCore
+
 targets:
   Anilha:
     type: application
     platform: iOS
     sources:
       - App
+    dependencies:
+      - package: Supabase
+        product: Supabase
+      - package: AnilhaCore
+        product: AnilhaCore
+      - package: AnilhaCore
+        product: AnilhaCache
     settings:
       base:
         PRODUCT_NAME: Anilha

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "costas_biceps",
+    "name": "Costas e bíceps",
+    "legs": false
+  },
+  {
+    "id": "peito_triceps",
+    "name": "Peito e tríceps",
+    "legs": false
+  },
+  {
+    "id": "perna",
+    "name": "Perna",
+    "legs": true
+  },
+  {
+    "id": "ombro_abdomen",
+    "name": "Ombro e abdômen",
+    "legs": false
+  },
+  {
+    "id": "corpo_inteiro_a",
+    "name": "Corpo inteiro A",
+    "legs": true
+  },
+  {
+    "id": "corpo_inteiro_b",
+    "name": "Corpo inteiro B",
+    "legs": true
+  },
+  {
+    "id": "superior_a",
+    "name": "Superior A",
+    "legs": false
+  },
+  {
+    "id": "superior_b",
+    "name": "Superior B",
+    "legs": false
+  },
+  {
+    "id": "anterior",
+    "name": "Anterior de coxa",
+    "legs": true
+  },
+  {
+    "id": "posterior",
+    "name": "Posterior de coxa",
+    "legs": true
+  },
+  {
+    "id": "gluteos",
+    "name": "Glúteos",
+    "legs": true
+  },
+  {
+    "id": "posterior_gluteos",
+    "name": "Posterior e glúteos",
+    "legs": true
+  },
+  {
+    "id": "superiores",
+    "name": "Parte de cima",
+    "legs": false
+  },
+  {
+    "id": "superiores_b",
+    "name": "Parte de cima B",
+    "legs": false
+  },
+  {
+    "id": "inferior_a",
+    "name": "Inferior A",
+    "legs": true
+  },
+  {
+    "id": "inferior_b",
+    "name": "Inferior B",
+    "legs": true
+  },
+  {
+    "id": "empurrar",
+    "name": "Empurrar",
+    "legs": false
+  },
+  {
+    "id": "puxar",
+    "name": "Puxar",
+    "legs": false
+  },
+  {
+    "id": "peito",
+    "name": "Peito",
+    "legs": false
+  },
+  {
+    "id": "costas",
+    "name": "Costas",
+    "legs": false
+  },
+  {
+    "id": "bracos",
+    "name": "Braços",
+    "legs": false
+  },
+  {
+    "id": "livre",
+    "name": "Treino livre",
+    "legs": false
+  }
+]

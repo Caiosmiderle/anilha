@@ -1,0 +1,287 @@
+[
+  {
+    "day": "2026-09-01",
+    "plans": [
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      }
+    ],
+    "expected": null
+  },
+  {
+    "day": "2026-09-01",
+    "plans": [
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      }
+    ],
+    "expected": null
+  },
+  {
+    "day": "2026-09-01",
+    "plans": [],
+    "expected": null
+  },
+  {
+    "day": "2026-11-09",
+    "plans": [
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      }
+    ],
+    "expected": "tie"
+  },
+  {
+    "day": "2026-11-09",
+    "plans": [
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      }
+    ],
+    "expected": "tie"
+  },
+  {
+    "day": "2026-11-09",
+    "plans": [],
+    "expected": null
+  },
+  {
+    "day": "2026-11-15",
+    "plans": [
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      }
+    ],
+    "expected": "tie"
+  },
+  {
+    "day": "2026-11-15",
+    "plans": [
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      }
+    ],
+    "expected": "tie"
+  },
+  {
+    "day": "2026-11-15",
+    "plans": [],
+    "expected": null
+  },
+  {
+    "day": "2026-11-16",
+    "plans": [
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      }
+    ],
+    "expected": "future"
+  },
+  {
+    "day": "2026-11-16",
+    "plans": [
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      }
+    ],
+    "expected": "future"
+  },
+  {
+    "day": "2026-11-16",
+    "plans": [],
+    "expected": null
+  },
+  {
+    "day": "2027-01-01",
+    "plans": [
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      }
+    ],
+    "expected": "future"
+  },
+  {
+    "day": "2027-01-01",
+    "plans": [
+      {
+        "id": "future",
+        "active_from": "2026-11-16",
+        "updated_at": 40
+      },
+      {
+        "id": "tie",
+        "active_from": "2026-11-15",
+        "updated_at": 30
+      },
+      {
+        "id": "week",
+        "active_from": "2026-11-15",
+        "updated_at": 20
+      },
+      {
+        "id": "old",
+        "active_from": "2026-10-01",
+        "updated_at": 10
+      }
+    ],
+    "expected": "future"
+  },
+  {
+    "day": "2027-01-01",
+    "plans": [],
+    "expected": null
+  }
+]

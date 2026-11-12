@@ -1,0 +1,7272 @@
+[
+  {
+    "name": "rotation",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "fixed",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": false
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "empty rotation",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": []
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "no days",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": null,
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "past and future",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-08",
+    "count": 16,
+    "expected": [
+      {
+        "date": "2026-11-08",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "passou"
+      },
+      {
+        "date": "2026-11-09",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "passou"
+      },
+      {
+        "date": "2026-11-10",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "passou"
+      },
+      {
+        "date": "2026-11-11",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "passou"
+      },
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "window after today",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-18",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-24",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-25",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-26",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-27",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "history and tie",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [
+        {
+          "local_date": "2026-11-10",
+          "split_key": "perna"
+        },
+        {
+          "local_date": "2026-11-10",
+          "split_key": "costas_biceps"
+        },
+        {
+          "local_date": "2026-11-20",
+          "split_key": "peito_triceps"
+        }
+      ],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "done today and run",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [
+        {
+          "local_date": "2026-11-12",
+          "split_key": "perna"
+        }
+      ],
+      "runs": [
+        {
+          "local_date": "2026-11-12",
+          "run_type": "longo"
+        }
+      ],
+      "overrides": []
+    },
+    "from": "2026-11-10",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-10",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "passou"
+      },
+      {
+        "date": "2026-11-11",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "passou"
+      },
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "feito"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "run today",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [
+        {
+          "local_date": "2026-11-12",
+          "run_type": "intervalado"
+        }
+      ],
+      "overrides": []
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "intervalado",
+        "state": "feito"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "overrides",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [
+        {
+          "local_date": "2026-11-12",
+          "action": "rest"
+        },
+        {
+          "local_date": "2026-11-13",
+          "action": "run"
+        },
+        {
+          "local_date": "2026-11-14",
+          "action": "time"
+        }
+      ]
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "todayRec gym",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": "longo"
+      }
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "future todayRec gym",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null
+      }
+    },
+    "from": "2026-11-16",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-24",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-25",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "todayRec run",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "run",
+        "split_key": "peito_triceps",
+        "run_type": "longo"
+      }
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "longo",
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "future todayRec run",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "run",
+        "split_key": "peito_triceps",
+        "run_type": null
+      }
+    },
+    "from": "2026-11-16",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-24",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-25",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "todayRec rest",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "rest",
+        "split_key": "peito_triceps",
+        "run_type": "longo"
+      }
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "future todayRec rest",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "rest",
+        "split_key": "peito_triceps",
+        "run_type": null
+      }
+    },
+    "from": "2026-11-16",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-24",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-25",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "todayRec light",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "light",
+        "split_key": "peito_triceps",
+        "run_type": "longo"
+      }
+    },
+    "from": "2026-11-12",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "light",
+        "split_key": null,
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "future todayRec light",
+    "input": {
+      "today": "2026-11-12",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": [],
+      "todayRec": {
+        "kind": "light",
+        "split_key": "peito_triceps",
+        "run_type": null
+      }
+    },
+    "from": "2026-11-16",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-24",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-25",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "calendar 2028-02-28",
+    "input": {
+      "today": "2028-02-28",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2028-02-28",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2028-02-28",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2028-02-29",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-01",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-02",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-03",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-04",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-05",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-06",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-07",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2028-03-08",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "calendar 2026-12-31",
+    "input": {
+      "today": "2026-12-31",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-12-31",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-12-31",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2027-01-01",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-02",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-03",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-04",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-05",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-06",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-07",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-08",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2027-01-09",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "calendar 2026-03-07",
+    "input": {
+      "today": "2026-03-07",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-03-07",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-03-07",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-03-08",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-09",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-10",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-11",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-12",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-13",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-03-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "calendar 2026-11-01",
+    "input": {
+      "today": "2026-11-01",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps",
+            "peito_triceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-01",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-01",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-02",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-03",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-04",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-05",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-06",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-07",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-08",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-09",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-10",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs costas_biceps",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "costas_biceps",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs peito_triceps",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "peito_triceps",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito_triceps",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs perna",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "perna",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "perna",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs ombro_abdomen",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "ombro_abdomen",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "ombro_abdomen",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "ombro_abdomen",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "ombro_abdomen",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "ombro_abdomen",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs corpo_inteiro_a",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "corpo_inteiro_a",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "corpo_inteiro_a",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "corpo_inteiro_a",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "corpo_inteiro_a",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs corpo_inteiro_b",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "corpo_inteiro_b",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "corpo_inteiro_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "corpo_inteiro_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "corpo_inteiro_b",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs superior_a",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "superior_a",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_a",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_a",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_a",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_a",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs superior_b",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "superior_b",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_b",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superior_b",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs anterior",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "anterior",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "anterior",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "anterior",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "anterior",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs posterior",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "posterior",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "posterior",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "posterior",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "posterior",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs gluteos",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "gluteos",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "gluteos",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "gluteos",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "gluteos",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs posterior_gluteos",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "posterior_gluteos",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "posterior_gluteos",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "posterior_gluteos",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "posterior_gluteos",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs superiores",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "superiores",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs superiores_b",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "superiores_b",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores_b",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "superiores_b",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs inferior_a",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "inferior_a",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "inferior_a",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "inferior_a",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "inferior_a",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs inferior_b",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "inferior_b",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "inferior_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "inferior_b",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "inferior_b",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs empurrar",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "empurrar",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "empurrar",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "empurrar",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "empurrar",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "empurrar",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs puxar",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "puxar",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "puxar",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "puxar",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "puxar",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "puxar",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs peito",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "peito",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "peito",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs costas",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "costas",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs bracos",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "bracos",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "bracos",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "bracos",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "bracos",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "bracos",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  },
+  {
+    "name": "legs livre",
+    "input": {
+      "today": "2026-11-14",
+      "plan": {
+        "days": [
+          {
+            "weekday": 0,
+            "kind": "gym",
+            "split_key": "perna",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 1,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 2,
+            "kind": "rest",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 3,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 4,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 5,
+            "kind": "gym",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          },
+          {
+            "weekday": 6,
+            "kind": "run",
+            "split_key": "costas_biceps",
+            "run_type": null,
+            "time": "18:00"
+          }
+        ],
+        "rules": {
+          "no_legs_before_run": true,
+          "rotation": [
+            "livre",
+            "costas_biceps"
+          ]
+        }
+      },
+      "sessions": [],
+      "runs": [],
+      "overrides": []
+    },
+    "from": "2026-11-14",
+    "count": 10,
+    "expected": [
+      {
+        "date": "2026-11-14",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "livre",
+        "run_type": null,
+        "state": "hoje"
+      },
+      {
+        "date": "2026-11-15",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-16",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-17",
+        "weekday": 1,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "livre",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-18",
+        "weekday": 2,
+        "time": "18:00",
+        "kind": "rest",
+        "split_key": null,
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-19",
+        "weekday": 3,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-20",
+        "weekday": 4,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "livre",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-21",
+        "weekday": 5,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "costas_biceps",
+        "run_type": null,
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-22",
+        "weekday": 6,
+        "time": "18:00",
+        "kind": "run",
+        "split_key": null,
+        "run_type": "leve",
+        "state": "por_vir"
+      },
+      {
+        "date": "2026-11-23",
+        "weekday": 0,
+        "time": "18:00",
+        "kind": "gym",
+        "split_key": "livre",
+        "run_type": null,
+        "state": "por_vir"
+      }
+    ]
+  }
+]
