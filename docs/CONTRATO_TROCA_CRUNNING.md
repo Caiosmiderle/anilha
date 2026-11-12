@@ -1,6 +1,6 @@
 # Contrato da troca entre Anilha e CRUNNING, versão 1
 
-Autor: Claude, 12/11/2026. Fonte de verdade para os dois lados.
+Autor: Claude, 12/11/2026 (esclarecimentos de 12/11 depois da revisão do Codex, sem mudar a versão: só tornam explícito o que estava ambíguo). Fonte de verdade para os dois lados.
 - O Codex implementa o lado Anilha (banco, Edge Function, tela do token, uso nas regras).
 - O Claude implementa o lado CRUNNING (`Caiosmiderle/crunning`).
 
@@ -28,7 +28,7 @@ Mudança de contrato exige nova versão e atualização deste arquivo.
 
 ## Transporte
 
-- Edge Function `troca-crunning` no Supabase do Anilha. JSON em UTF-8. Toda requisição e resposta tem `"versao": 1`. Versão desconhecida responde `400 {"erro":"versao"}`.
+- Edge Function `troca-crunning` no Supabase do Anilha. JSON em UTF-8. Toda requisição com corpo e toda resposta de sucesso têm `"versao": 1`. O `GET` aceita `?versao=1`; sem o parâmetro, vale 1. Versão desconhecida responde `400 {"erro":"versao"}`. As respostas de erro seguem os exemplos, sem `versao`.
 - Unidades sempre em metros e segundos. Datas e horas em ISO 8601 com fuso. `data_local` é `YYYY-MM-DD` no fuso do aparelho.
 - **`null` é desconhecido, nunca zero.** Campo desconhecido no corpo é ignorado, para versões futuras conviverem.
 - **Idempotência:**
@@ -79,11 +79,24 @@ Ela sincroniza para o PWA e para o app nativo pelo `sync_pull` como qualquer cor
 - o Anilha mostra a sugestão de juntar e o Caio escolhe;
 - a do CRUNNING é a canônica.
 
+**Lápide:** leva só `origem_id`, `atualizado_em` e `"apagado": true`, porque o CRUNNING já não tem os dados da corrida apagada.
+- Se a corrida existe no Anilha e a lápide é mais nova, ela fica apagada (`deleted`) e conta em `aceitos`.
+- Se não existe, ou a lápide é mais velha, nada muda e conta em `ignorados`.
+- Os outros campos, se vierem, são ignorados.
+
+**Limites** (os de `runs`):
+- distância de 5 m a 300 km;
+- duração em movimento até 172.800 s (48 h).
+
+Fora disso, o item é rejeitado com o motivo `campos`.
+
 Resposta: `200 {"versao":1,"aceitos":n,"ignorados":n,"rejeitados":[{"origem_id":"…","motivo":"…"}]}`. Item inválido não derruba os outros.
 
 ### `PUT /planejados/corrida`: treinos de corrida planejados (CRUNNING → Anilha)
 
-Corpo: `{"versao":1,"de":"YYYY-MM-DD","ate":"YYYY-MM-DD","itens":[…]}`. A janela vai de hoje até 14 dias, com até 30 itens. **Substitui** tudo da origem CRUNNING nessa janela: o que não veio vira apagado.
+Corpo: `{"versao":1,"de":"YYYY-MM-DD","ate":"YYYY-MM-DD","itens":[…]}`. A janela tem 14 datas: `de` é hoje no fuso do aparelho e `ate` é `de` + 13 dias. Vão até 30 itens. **Substitui** tudo da origem CRUNNING nessa janela: o que não veio vira apagado.
+
+O CRUNNING manda um retrato por vez, em série, e não reenvia retrato velho de uma fila. O Anilha ordena os retratos pela chegada. Um campo `gerado_em` fica para uma versão futura, se precisar.
 
 | Campo | Tipo | Regra |
 | --- | --- | --- |

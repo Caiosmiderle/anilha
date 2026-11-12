@@ -15,6 +15,10 @@ import { DeleteAccountSheet } from './parts/DeleteAccountSheet';
  * plain words. Legal bases are left to the policy, under legal review.
  */
 const KEPT: [string, string][] = [
+  [
+    'Conexão com o CRUNNING',
+    'Resumos feitos e planejados para coordenar corrida e força. Revogar não apaga o histórico recebido.',
+  ],
   ['E-mail', 'Para entrar na conta e responder o que você pedir.'],
   [
     'Nome e sobrenome',

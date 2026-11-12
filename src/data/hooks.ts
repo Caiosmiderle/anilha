@@ -25,6 +25,13 @@ import { completedSetsInWeek } from './weekSets';
 
 const EMPTY: never[] = [];
 
+export function useExternalPlanItems() {
+  const { db } = useAccount();
+  return (
+    useLiveQuery(() => db.external_plan_items.filter((r) => !r.deleted).toArray(), [db]) ?? EMPTY
+  );
+}
+
 /** Local calendar day, refreshed when the app comes back to the foreground. */
 export function useToday(): string {
   const [today, setToday] = useState(() => toLocalDate());

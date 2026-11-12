@@ -337,8 +337,28 @@ export interface RunRow extends SyncedRow {
   run_type: RunType;
   rpe: number | null;
   note: string | null;
-  source: 'manual' | 'import';
+  source: 'manual' | 'import' | 'crunning';
   external_id: string | null;
+  started_at?: number | null;
+  strava_id?: string | null;
+  source_type?: string | null;
+  treadmill?: boolean | null;
+  external_planned?: { semana: number; dia: number } | null;
+  crunning_updated_at?: string | null;
+}
+
+export interface ExternalPlanItemRow extends SyncedRow {
+  source: 'crunning' | null;
+  kind: 'corrida' | null;
+  origin_id: string | null;
+  local_date: string | null;
+  run_type: RunType | null;
+  source_type: string | null;
+  name: string | null;
+  distance_m: number | null;
+  duration_sec: number | null;
+  important: boolean | null;
+  status: 'planejada' | 'feita' | 'perdida' | null;
 }
 
 export interface PainRow extends SyncedRow {

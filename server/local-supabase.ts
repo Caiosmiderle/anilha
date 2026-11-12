@@ -13,6 +13,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { callRpc, createUser, openDatabase, type Claims } from './pg';
 import { seedDemo } from './seed';
+import { handleCrunning } from '../supabase/functions/troca-crunning/core';
 
 const JWT_SECRET = 'anilha-local-dev-secret-never-used-in-production';
 const ACCESS_TTL = 3600;
@@ -146,7 +147,7 @@ export async function startLocalSupabase(opts: Options = {}): Promise<LocalSupab
       return;
     }
     const url = new URL(req.url ?? '/', 'http://localhost');
-    const body = req.method === 'POST' ? await readJson(req) : {};
+    const body = req.method === 'POST' || req.method === 'PUT' ? await readJson(req) : {};
     const send = (status: number, data: unknown) => {
       res.writeHead(status, { 'Content-Type': 'application/json' });
       res.end(data === undefined ? '' : JSON.stringify(data));
@@ -155,6 +156,28 @@ export async function startLocalSupabase(opts: Options = {}): Promise<LocalSupab
       send(status, { code: status, error_code: code, msg });
 
     log(req.method, url.pathname);
+
+    if (url.pathname.startsWith('/functions/v1/troca-crunning/')) {
+      const request = new Request(`http://127.0.0.1${req.url}`, {
+        method: req.method,
+        headers: {
+          authorization: req.headers.authorization ?? '',
+          'content-type': 'application/json',
+        },
+        ...(req.method === 'POST' || req.method === 'PUT' ? { body: JSON.stringify(body) } : {}),
+      });
+      const response = await handleCrunning(request, async (hash, operation, payload) =>
+        db.transaction(async (tx) => {
+          await tx.exec('set local role service_role');
+          const result = await tx.query<{ value: Record<string, unknown> }>(
+            'select public.crunning_exchange($1,$2,$3::jsonb) as value',
+            [hash, operation, JSON.stringify(payload)],
+          );
+          return result.rows[0]!.value;
+        }),
+      );
+      return send(response.status, await response.json());
+    }
 
     if (url.pathname === '/auth/v1/otp' && req.method === 'POST') {
       const email = String(body.email ?? '')

@@ -12,6 +12,7 @@ import {
 import { cardioLegLoad, cardioTitle, countedCardio } from './cardio';
 import type {
   CardioKind,
+  ExternalPlanItemRow,
   Muscle,
   OverrideAction,
   PlanDay,
@@ -84,6 +85,7 @@ export interface RecommendInput {
   sessions: SessionSummary[];
   runs: RunSummary[];
   overrides?: OverrideSummary[];
+  externalPlans?: ExternalPlanItemRow[];
 }
 
 /** Plan that governs the week containing `day`: the latest one active by the end of that week. */
@@ -353,7 +355,17 @@ export function recommendDay(input: RecommendInput): DayRecommendation {
   const tomorrow = addDays(today, 1);
   const overrideToday = overrides.find((o) => o.local_date === today) ?? null;
   const overrideTomorrow = overrides.find((o) => o.local_date === tomorrow) ?? null;
+  const externalRun = input.externalPlans?.find(
+    (p) =>
+      !p.deleted &&
+      p.source === 'crunning' &&
+      p.kind === 'corrida' &&
+      p.local_date === tomorrow &&
+      p.status === 'planejada' &&
+      p.important,
+  );
   const tomorrowRun =
+    !!externalRun ||
     overrideTomorrow?.action === 'run' ||
     (planDayFor(plan, tomorrow)?.kind === 'run' && overrideTomorrow?.action !== 'rest');
   const noLegsBeforeRun = plan?.rules.no_legs_before_run ?? true;
@@ -485,7 +497,12 @@ export function recommendDay(input: RecommendInput): DayRecommendation {
   const blockedReasons: string[] = [];
   let filtered = candidates.filter((split) => {
     if (legsBlockedByRun && splitHasLegs(split)) {
-      blockedReasons.push('Corrida amanhã cedo, então perna fica para outro dia.');
+      const reason = externalRun
+        ? `Corrida planejada no CRUNNING: ${externalRun.name ?? 'corrida importante'}, amanhã (${tomorrow}). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino.`
+        : 'Corrida amanhã cedo, então perna fica para outro dia.';
+      blockedReasons.push(reason);
+      if (externalRun && !alerts.some((a) => a.kind === 'legs_before_run'))
+        alerts.push({ kind: 'legs_before_run', text: reason });
       return false;
     }
     if (daysSinceSplit(today, sessions, split) <= 2) return false;
@@ -495,7 +512,7 @@ export function recommendDay(input: RecommendInput): DayRecommendation {
     const withoutLegs = filtered.filter((s) => !splitHasLegs(s));
     if (withoutLegs.length < filtered.length) {
       blockedReasons.push(
-        `${cardioTitle({ ...heavyRun, duration_sec: heavyRun.duration_sec ?? 0 })} ontem pesa nas pernas, então perna fica para depois.`,
+        `${cardioTitle({ ...heavyRun, duration_sec: heavyRun.duration_sec ?? 0 })} feita ontem (${heavyRun.local_date}) pesa nas pernas, então perna fica para depois.`,
       );
       alerts.push({
         kind: 'run_legs',

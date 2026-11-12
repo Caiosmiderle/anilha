@@ -103,6 +103,14 @@ const Profile = lazyScreen(
   () => import('../screens/Profile'),
   (m) => m.default,
 );
+const Connections = lazyScreen(
+  () => import('../screens/Connections'),
+  (m) => m.default,
+);
+const CrunningConnection = lazyScreen(
+  () => import('../screens/CrunningConnection'),
+  (m) => m.default,
+);
 const TrainingProfile = lazyScreen(
   () => import('../screens/TrainingProfile'),
   (m) => m.default,
@@ -410,6 +418,8 @@ const router = createBrowserRouter([
       { path: '/amigos/grupo/:id', element: <Group /> },
       { path: '/convite/:code', element: <Invite /> },
       { path: '/voce', element: <Profile /> },
+      { path: '/voce/conexoes', element: <Connections /> },
+      { path: '/voce/conexoes/crunning', element: <CrunningConnection /> },
       { path: '/voce/treino', element: <TrainingProfile /> },
       { path: '/voce/dados', element: <YourData /> },
       { path: '/voce/privacidade', element: <Privacy /> },

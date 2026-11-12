@@ -1,0 +1,3 @@
+# The personal integration token is verified by crunning_exchange, not Supabase Auth.
+[functions.troca-crunning]
+verify_jwt = false

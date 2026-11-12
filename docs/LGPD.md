@@ -4,6 +4,12 @@ Registro do que o app faz para cumprir a Lei Geral de Proteção de Dados (Lei n
 
 Textos públicos: [Política de privacidade](../public/privacidade/index.html) (`/privacidade/`) e [Termos de uso](../public/termos/index.html) (`/termos/`).
 
+## Conexão com o CRUNNING
+
+Base legal: **a definir**, para revisão jurídica do Caio. A conexão é opcional e usa token pessoal revogável, guardado somente como SHA-256. Troca resumos de corridas e sessões de força feitas e planejadas para coordenar a semana. Não troca rota, GPS, coordenadas, ritmo ponto a ponto, amostras de batimento, dor, texto livre, nome ou e-mail. O nome curto do treino previsto no contrato identifica a atividade.
+
+Corridas e planejados recebidos entram na exportação de Seus dados e no apagamento da conta por cascata. Revogar o token corta o acesso, mas não apaga o que já chegou. Metadados de criação, último uso e revogação ficam na conta, sem disponibilizar o hash ao cliente. Nenhuma versão dos termos foi alterada nesta implementação local.
+
 ## Papéis
 
 - **Controlador**: Caio Smiderle, pessoa física.

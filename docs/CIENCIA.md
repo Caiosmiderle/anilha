@@ -56,3 +56,6 @@ provas" como objetivo principal.
 Toda regra nova do motor entra nesta tabela com a fonte, ou com "prática de treinador" quando
 não houver estudo. Os testes em `src/engine/__tests__/evidence.test.ts`, `race.test.ts` e
 `running.test.ts` prendem os números.
+## Corridas planejadas no CRUNNING
+
+A regra existente `no_legs_before_run` também considera uma corrida importante planejada no CRUNNING para o dia seguinte, sem contar o planejado como realizado. Evitar perna pesada nessa véspera e sugerir outra ficha é prática de treinador, não um limiar fisiológico validado. Reutiliza `legs_before_run`, identifica a atividade e exige a escolha da pessoa ao iniciar; não muda o plano salvo.

@@ -1,4 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
+import type { ExternalPlanItemRow } from '../engine/types';
 import { EXERCISES } from '../engine/exercises';
 import type {
   BodyLogRow,
@@ -30,6 +31,7 @@ export interface MetaEntry {
 }
 
 export const SYNCED_TABLES = [
+  'external_plan_items',
   'profiles',
   'exercises',
   'plans',
@@ -48,6 +50,7 @@ export const SYNCED_TABLES = [
 export type SyncedTable = (typeof SYNCED_TABLES)[number];
 
 export interface RowByTable {
+  external_plan_items: ExternalPlanItemRow;
   profiles: ProfileRow;
   exercises: ExerciseRow;
   plans: PlanRow;
@@ -64,6 +67,7 @@ export interface RowByTable {
 }
 
 export type AnilhaDB = Dexie & {
+  external_plan_items: EntityTable<ExternalPlanItemRow, 'id'>;
   profiles: EntityTable<ProfileRow, 'id'>;
   exercises: EntityTable<ExerciseRow, 'id'>;
   plans: EntityTable<PlanRow, 'id'>;
@@ -108,6 +112,9 @@ export function openDb(userId: string): AnilhaDB {
   // older version skipped were already behind the cursor.
   db.version(2)
     .stores({ body_logs: 'id, local_date' })
+    .upgrade((tx) => tx.table('meta').delete('cursor'));
+  db.version(3)
+    .stores({ external_plan_items: 'id, local_date' })
     .upgrade((tx) => tx.table('meta').delete('cursor'));
   return db;
 }
