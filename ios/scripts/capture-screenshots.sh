@@ -48,20 +48,31 @@ PY
 printf 'Simulador selecionado %s\n' "$device"
 # The GitHub job owns this runner. Only one booted device makes the screenshot alias unambiguous.
 xcrun simctl shutdown all
-xcrun simctl boot "$device"
-xcrun simctl bootstatus "$device" -b
+# Start booting now so the first boot (data migration) overlaps the Debug build.
+xcrun simctl boot "$device" || true
 xcodebuild build -project Anilha.xcodeproj -scheme Anilha -configuration Debug \
   -destination "platform=iOS Simulator,id=$device" \
   -derivedDataPath "$RUNNER_TEMP/anilha-simulator" \
   CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO \
   > "$out/xcodebuild-simulator.log" 2>&1
+# Build 7 saw a first boot end with status -1 after 5 min. Retry once on a freshly erased device.
+booted=0
+for attempt in 1 2; do
+  if xcrun simctl bootstatus "$device" -b; then booted=1; break; fi
+  echo "::warning::Simulador não ligou na tentativa $attempt; apagando e tentando de novo"
+  xcrun simctl shutdown "$device" || true
+  xcrun simctl erase "$device" || true
+done
+test "$booted" -eq 1
 xcrun simctl install "$device" "$RUNNER_TEMP/anilha-simulator/Build/Products/Debug-iphonesimulator/Anilha.app"
+# Default: normal text size only. Large text (accessibility3) on demand, before closing a version.
+read -r -a sizes <<< "${CAPTURA_TAMANHOS:-large}"
 bundle=io.github.caiosmiderle.anilha
 printf 'appearance,size,screen,result\n' > "$out/manifest.csv"
 failures=0
 for appearance in light dark; do
   xcrun simctl ui "$device" appearance "$appearance"
-  for size in large accessibility3; do
+  for size in "${sizes[@]}"; do
     for screen in entrar hoje fichas ficha treino treino-lista descanso esforco blackjack poker proxima resumo evolucao analise historico; do
       xcrun simctl terminate "$device" "$bundle" || true
       if xcrun simctl launch "$device" "$bundle" -demo "$screen" -demo-size "$size"; then
