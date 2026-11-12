@@ -38,7 +38,9 @@ export default defineConfig({
       timeout: 120_000,
     },
     {
-      command: 'npx vite build --mode e2e && npx vite preview --mode e2e --port 4173 --strictPort',
+      // Isolate the local API build from normal builds writing to dist.
+      command:
+        'npx vite build --mode e2e --outDir .local/e2e-dist && npx vite preview --mode e2e --outDir .local/e2e-dist --port 4173 --strictPort',
       url: WEB,
       reuseExistingServer: false,
       timeout: 240_000,

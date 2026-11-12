@@ -37,6 +37,8 @@ struct HistoricoView: View {
     private var entries: [HistoryEntry] { Array(HistoryEntry.entries(conta.dados).prefix(20)) }
     var body: some View {
         List {
+            CabecalhoAnilha(titulo: "Histórico", selo: "Seus registros", icone: "clock")
+                .listRowBackground(Color.clear).listRowSeparator(.hidden).entradaAnilha(0)
             StatusSyncView(conta: conta).listRowBackground(Tema.fundo)
             if entries.isEmpty { Text("Nenhum treino baixado ainda.").foregroundStyle(Tema.tintaSuave) }
             ForEach(entries) { entry in
@@ -47,19 +49,22 @@ struct HistoricoView: View {
                 }
             }
         }
-        .scrollContentBackground(.hidden).background(Tema.fundo)
-        .navigationTitle("Histórico").refreshable { await conta.atualizar() }
+        .scrollContentBackground(.hidden).background { FundoAnilha() }
+        .navigationTitle("Histórico").navigationBarTitleDisplayMode(.inline).refreshable { await conta.atualizar() }
     }
 }
 
 struct HistoricoLinha: View {
     let entry: HistoryEntry
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Label(entry.title, systemImage: entry.corrida ? "figure.run" : "dumbbell").font(.headline)
-            Text(entry.date).font(.subheadline).monospacedDigit().foregroundStyle(Tema.tintaSuave)
-            Text(entry.detail).font(.subheadline).foregroundStyle(Tema.tintaSuave)
+        HStack(alignment: .top, spacing: 12) {
+            DiscoExercicio(icone: entry.corrida ? "figure.run" : "dumbbell")
+            VStack(alignment: .leading, spacing: 5) {
+                Text(entry.title).font(.headline)
+                Text(entry.date).font(.subheadline).monospacedDigit().foregroundStyle(Tema.tintaSuave)
+                Text(entry.detail).font(.subheadline).foregroundStyle(Tema.tintaSuave)
+            }
         }
-        .padding(.vertical, 8).accessibilityElement(children: .combine)
+        .padding(.vertical, 10).frame(minHeight: 44).accessibilityElement(children: .combine)
     }
 }

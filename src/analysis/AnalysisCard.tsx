@@ -75,7 +75,11 @@ export function AnalysisCard({ sessionID }: { sessionID: string }) {
   return (
     <>
       {evolution?.length ? <EvolutionCard rows={evolution} /> : null}
-      <Widget title="Análise do Waltér" sub="Conta no limite diário do Waltér.">
+      <Widget
+        title="Análise do Waltér"
+        sub={saved ? undefined : 'Conta no limite diário do Waltér.'}
+        className="analysis-widget"
+      >
         <div className="stack-sm" data-testid="analysis-card" aria-busy={busy}>
           {saved ? (
             <>
@@ -99,11 +103,11 @@ export function AnalysisCard({ sessionID }: { sessionID: string }) {
                 </ul>
               ) : null}
               {saved.reply.proximaVez ? (
-                <section className="stack-sm" aria-label="Na próxima vez">
+                <section className="stack-sm analysis-next" aria-label="Na próxima vez">
                   <h3>Na próxima vez</h3>
                   <p className="t-small">
-                    Prévia calculada ao analisar, com a ficha disponível e a semana do dia
-                    analisado. A data e mudanças na ficha podem mudar os valores.
+                    Prévia da análise, com a ficha e a semana daquele dia. Data e ficha podem mudar
+                    os valores.
                   </p>
                   {saved.context.items
                     .filter(
@@ -284,12 +288,21 @@ export function AnalysisCard({ sessionID }: { sessionID: string }) {
               {saved.status === 'refused' ? <p>Ajuste recusado. A ficha foi preservada.</p> : null}
               {saved.status === 'undone' ? <p>Desfeito: voltou como estava.</p> : null}
               {saved.usage ? (
-                <p className="t-small" data-testid="analysis-usage">
-                  {saved.usage.model} · {saved.usage.input_tokens} tokens de entrada +{' '}
-                  {saved.usage.output_tokens} de saída
-                  {estimatedCost(saved.usage) == null
-                    ? ''
-                    : ` · Custo estimado US$ ${estimatedCost(saved.usage)!.toFixed(7)}`}
+                <p className="analysis-usage" data-testid="analysis-usage">
+                  <span className="hb-sr">
+                    {saved.usage.model} · {saved.usage.input_tokens} tokens de entrada +{' '}
+                    {saved.usage.output_tokens} de saída
+                    {estimatedCost(saved.usage) == null
+                      ? ''
+                      : ` · Custo estimado US$ ${estimatedCost(saved.usage)!.toFixed(7)}`}
+                  </span>
+                  <span aria-hidden="true">
+                    {saved.usage.model} · {saved.usage.input_tokens}/{saved.usage.output_tokens}{' '}
+                    tokens
+                    {estimatedCost(saved.usage) == null
+                      ? ''
+                      : ` · est. US$ ${estimatedCost(saved.usage)!.toFixed(7)}`}
+                  </span>
                 </p>
               ) : null}
             </>

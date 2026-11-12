@@ -24,16 +24,27 @@ final class ContaStore {
     private(set) var analisando: Set<String> = []
     private var analisesNaoGravadas: [String: ReadRow] = [:]
     var sessaoAberta: String?
-    private let descanso = DescansoLocal()
+    @ObservationIgnored private lazy var descanso = DescansoLocal()
     private var repetirSync = false
     private var monitor: NWPathMonitor?
     private var tinhaRede = false
     var online: Bool { tinhaRede }
     private var cache: CacheLeitura?
-    private var chaveiro = ChaveiroSessao()
+    @ObservationIgnored private lazy var chaveiro = ChaveiroSessao()
     private var cliente: SupabaseClient?
     private var geracao = UUID()
     private var tarefaSync: Task<Void, Never>?
+
+    init() {
+        _ = descanso
+        _ = chaveiro
+    }
+
+    #if DEBUG
+    private init(dadosDemonstracao: ReadData) {
+        dados = dadosDemonstracao
+    }
+    #endif
 
     private func novoCliente() -> SupabaseClient {
         let config = URLSessionConfiguration.ephemeral
@@ -394,3 +405,31 @@ final class ContaStore {
         } catch { erro = "Não foi possível limpar a sessão. Desbloqueie o iPhone e tente sair novamente." }
     }
 }
+
+#if DEBUG
+extension ContaStore {
+    /// Memory-only presentation fixture. Never call abrir, atualizar or a write from this root.
+    static func demonstracao(descanso: Bool) throws -> ContaStore {
+        let store = ContaStore(dadosDemonstracao: try ModoDemo.dados(descanso: descanso))
+        guard let url = Bundle.main.url(forResource: "exercises", withExtension: "json") else {
+            throw WorkoutAnalysis.Failure.invalidSession
+        }
+        store.catalogo = try JSONDecoder().decode([ReadRow].self, from: Data(contentsOf: url))
+        store.carregando = false
+        store.aviso = "Demonstração · dados fictícios em memória"
+        let context = try WorkoutAnalysis.context(store.dados, sessionID: "demo-done", catalog: store.catalogo)
+        let binding = try WorkoutAnalysis.binding(store.dados, sessionID: "demo-done")
+        let reply = try JSONDecoder().decode(ReadRow.self, from: Data(ModoDemo.resposta.utf8))
+        guard WorkoutAnalysis.parseReply(reply, slots: context.array("items").count, catalog: store.catalogo) != nil else {
+            throw WorkoutAnalysis.Failure.invalidAdjustment
+        }
+        _ = try WorkoutAnalysis.changes(reply.object("adjustment"), binding: binding, catalog: store.catalogo)
+        store.analises["analysis:demo-done"] = ReadRow(fields: [
+            "status": .string("proposed"), "reply": .object(reply.fields),
+            "context": .object(context.fields), "binding": .object(binding.fields),
+            "usage": .object(["model": .string("claude-haiku-5-5"), "input_tokens": .number(2345), "output_tokens": .number(210)])
+        ])
+        return store
+    }
+}
+#endif

@@ -45,9 +45,7 @@ test('análise usa contexto mínimo, ajusta, salva na fila, reabre sem cobrar e 
   await expect(card).toContainText('Você concluiu a sessão.');
   await expect(card).toContainText('Boa execução');
   await expect(card).toContainText('Na próxima vez');
-  await expect(card.getByTestId('analysis-usage')).toContainText(
-    '1000 tokens de entrada + 150 de saída',
-  );
+  await expect(card.getByTestId('analysis-usage')).toContainText('1000/150 tokens');
   await expect(card.getByTestId('analysis-usage')).toContainText('0.0001750');
   expect(calls).toBe(1);
   expect(body).toBeDefined();
@@ -68,6 +66,13 @@ test('análise usa contexto mínimo, ajusta, salva na fila, reabre sem cobrar e 
     expect(sent).not.toContain(forbidden);
   await expect(card).toContainText('Antes:');
   await expect(card).toContainText('Depois:');
+  await expect(page.getByTestId('next-time')).toHaveCount(0);
+  await expect(page.locator('.hb-toast')).toHaveCount(0);
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await shot(page, '208-analise-walter-proposta', true);
+  await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+  await shot(page, '208-analise-walter-proposta-escuro', true);
+  await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'));
   await card.getByRole('button', { name: 'Ajustar', exact: true }).click();
   await card.getByLabel('Séries do ajuste').fill('4');
   await card.getByRole('button', { name: 'Revisar ajuste' }).click();
@@ -166,6 +171,7 @@ test('operação fora da lista mantém só a narrativa no cartão', async ({ pag
     'Sessão concluída com dados sintéticos.',
   );
   await expect(page.getByTestId('analysis-card')).not.toContainText('Na próxima vez');
+  await expect(page.getByTestId('next-time')).toHaveCount(1);
 });
 
 test('evolução offline compara outra ficha e o cartão mantém números do motor diante de comentário conflitante', async ({
@@ -199,31 +205,27 @@ test('evolução offline compara outra ficha e o cartão mantém números do mot
     const date = new Date(`${String(session.local_date)}T12:00:00Z`);
     date.setUTCDate(date.getUTCDate() - 3);
     const transaction = db.transaction(['sessions', 'session_items', 'sets'], 'readwrite');
-    transaction
-      .objectStore('sessions')
-      .put({
-        ...session,
-        id: 'synthetic-prior',
-        routine_id: 'other-routine',
-        local_date: date.toISOString().slice(0, 10),
-        started_at: Number(session.started_at) - 259200000,
-      });
+    transaction.objectStore('sessions').put({
+      ...session,
+      id: 'synthetic-prior',
+      routine_id: 'other-routine',
+      local_date: date.toISOString().slice(0, 10),
+      started_at: Number(session.started_at) - 259200000,
+    });
     transaction
       .objectStore('session_items')
       .put({ ...item, id: 'synthetic-prior-item', session_id: 'synthetic-prior' });
     for (const [index, set] of done.entries())
-      transaction
-        .objectStore('sets')
-        .put({
-          ...set,
-          id: `synthetic-prior-set-${index}`,
-          session_id: 'synthetic-prior',
-          item_id: 'synthetic-prior-item',
-          exercise_id: item.exercise_id,
-          load_kg: 20,
-          reps: 8,
-          completed_at: Number(session.started_at) - 259200000 + index,
-        });
+      transaction.objectStore('sets').put({
+        ...set,
+        id: `synthetic-prior-set-${index}`,
+        session_id: 'synthetic-prior',
+        item_id: 'synthetic-prior-item',
+        exercise_id: item.exercise_id,
+        load_kg: 20,
+        reps: 8,
+        completed_at: Number(session.started_at) - 259200000 + index,
+      });
     transaction.objectStore('sets').put({ ...done[0], load_kg: 25 });
     await new Promise<void>((resolve, reject) => {
       transaction.oncomplete = () => resolve();
@@ -264,12 +266,22 @@ test('evolução offline compara outra ficha e o cartão mantém números do mot
   );
   await expect(card).not.toContainText('999');
   await expect(card).not.toContainText('99 repetições');
-  await expect(card.getByTestId('analysis-usage')).toContainText(
+  await expect(card.getByTestId('analysis-usage')).toContainText('2345/210 tokens');
+  await expect(card.getByTestId('analysis-usage').locator('.hb-sr')).toContainText(
     '2345 tokens de entrada + 210 de saída',
   );
   await context.setOffline(true);
   await page.reload();
   await expect(page.getByTestId('evolution-card')).toContainText('Recorde pessoal de carga');
   await expect(page.getByTestId('analysis-card')).toContainText('Execução aceitável');
+  await page.evaluate(() => window.scrollTo(0, 0));
   await shot(page, '209-evolucao-local', true);
+  await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+  await shot(page, '209-evolucao-local-escuro', true);
+  await page.evaluate(() => {
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.style.fontSize = '200%';
+  });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await shot(page, '209-evolucao-local-texto-grande', true);
 });

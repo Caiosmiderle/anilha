@@ -15,6 +15,9 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { useAccount } from '../app/account';
+import type { SavedAnalysis } from '../analysis/local';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   useAllItems,
@@ -47,6 +50,19 @@ import { AnalysisCard } from '../analysis/AnalysisCard';
 /** One finished session: what was planned, swapped, skipped, done, and what comes next time. */
 export default function SessionDetail() {
   const { id } = useParams();
+  const { db } = useAccount();
+  const analysis = useLiveQuery(
+    async () => (await db.meta.get(`analysis:${id}`))?.value as SavedAnalysis | undefined,
+    [db, id],
+  );
+  // Only hide a duplicate when this exercise has a numeric preview in the saved card.
+  const previewItemIDs = new Set(
+    analysis?.reply.proximaVez
+      ? analysis.context.items
+          .filter((item) => item.next)
+          .map((item) => analysis.binding.items[item.slot]?.id)
+      : [],
+  );
   const session = useSession(id);
   const items = useItems(id);
   const sets = useSets(id);
@@ -190,7 +206,7 @@ export default function SessionDetail() {
             pastel={GROUP_PASTEL[exMap.get(it.exercise_id)?.primary_group ?? 'core']}
             ex={exMap.get(it.exercise_id)}
             unit={unit}
-            next={next.get(it.id) ?? null}
+            next={previewItemIDs.has(it.id) ? null : (next.get(it.id) ?? null)}
             editable={session.status === 'done'}
             onEditSet={(s) => setEditing(s.id)}
             onAddSet={async () => {

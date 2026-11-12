@@ -10,6 +10,8 @@ async function settle(page: Page) {
 }
 
 test.beforeEach(async ({ page }) => {
+  // Keep the October fixture inside its manual return window for reproducible screenshots.
+  await page.clock.setFixedTime(new Date('2026-10-22T12:00:00-03:00'));
   // Stable screenshots: no sheet or card animations mid-capture.
   await page.emulateMedia({ reducedMotion: 'reduce' });
 });

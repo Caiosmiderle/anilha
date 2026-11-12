@@ -11,18 +11,32 @@ enum Tema {
     static let sutil = cor(0xF4F4F5, 0x222327)        // --bg-subtle
     static let tinta = cor(0x262626, 0xE6E6E8)        // --ink
     static let tintaForte = cor(0x141413, 0xF7F7F8)   // --ink-strong
-    static let tintaSuave = cor(0x757577, 0xA1A1A8)   // --ink-muted
+    static let tintaSuave = cor(0x626263, 0xA1A1A8)   // --ink-muted-aa
     static let tintaApagada = cor(0xB4B4B6, 0x64656B) // --ink-subtle
     static let linha = Color(uiColor: UIColor { $0.userInterfaceStyle == .dark
         ? UIColor(white: 1, alpha: 0.08) : UIColor(white: 0, alpha: 0.08) }) // --line
     static let marca = cor(0x0099FF, 0x0099FF)        // --brand-500
     static let marcaForte = cor(0x006BB3, 0x8FD0FF)   // --brand-700
+    static let acao = cor(0x006BB3, 0x006BB3)        // --brand-deep, texto branco AA
+    static let positivo = marcaForte
     static let marcaFundo = cor(0xE3F2FD, 0x0D2A40)   // --brand-50
     static let sobreMarca = Color.white               // --ink-on-brand
     static let perigo = cor(0xE0322D, 0xFF6B63)       // --danger
     static let violeta = cor(0x8E5CFF, 0x8E5CFF)      // --accent-violet
     static let laranja = cor(0xFA7315, 0xFA7315)      // --accent-orange
     static let verdeAgua = cor(0x0BB7BD, 0x0BB7BD)    // --accent-teal
+
+    // GROUP_PASTEL de src/engine/taxonomy.ts e tons escuros de extensions.css.
+    static func grupo(_ nome: String?) -> Color {
+        switch nome {
+        case "costas": cor(0xBAE3FD, 0x1C3A4E)
+        case "peito": cor(0xF8D6B0, 0x4A3322)
+        case "pernas": cor(0xE8F0A4, 0x3A421A)
+        case "ombros": cor(0xDBD4FD, 0x302A4F)
+        case "bracos": cor(0xF4D0E7, 0x47283B)
+        default: sutil
+        }
+    }
 
     // MARK: Espaço e raio (px do CSS = pt aqui)
 

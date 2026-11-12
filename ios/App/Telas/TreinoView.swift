@@ -4,11 +4,13 @@ import SwiftUI
 struct TreinoView: View {
     let conta: ContaStore
     let sessionID: String
+    var ancoraInicial: String? = nil
     @Environment(\.dismiss) private var dismiss
     @State private var confirmarFim = false
     @State private var trocar: ReadRow?
     @State private var busca = ""
     @State private var avisoNotificacao: String?
+    @ScaledMetric(relativeTo: .largeTitle) private var tamanhoRelogio: CGFloat = 64
     private var session: ReadRow? { conta.dados.active("sessions").first { $0.id == sessionID } }
     private var items: [ReadRow] { Workout.items(conta.dados, sessionID) }
     private var exercises: [String: ReadRow] { conta.dados.exercises(catalog: conta.catalogo) }
@@ -23,39 +25,49 @@ struct TreinoView: View {
                 if let session {
                     if session.string("status") == "active" {
                         Section {
-                            let done = allSets.filter { $0.number("completed_at") != nil }.count
-                            ProgressView(value: Double(done), total: Double(max(1, allSets.count)))
-                            Text("\(done) de \(allSets.count) séries registradas").font(.subheadline)
-                            if let next {
-                                Button("Ir para a próxima série") { if let itemID = next.string("item_id") { withAnimation { proxy.scrollTo(itemID, anchor: .top) } } }
-                            }
-                            Button("Ativar aviso de descanso") {
-                                Task { avisoNotificacao = await conta.permitirAvisos() ? "Aviso local ativado para os descansos." : "Aviso desativado. Confira as permissões do iPhone e a preferência de descanso no PWA." }
-                            }
-                            if let avisoNotificacao { Text(avisoNotificacao).font(.footnote) }
-                        }
+                            VStack(alignment: .leading, spacing: 12) {
+                                SeloAnilha(texto: "Em andamento", icone: "dumbbell")
+                                let done = allSets.filter { $0.number("completed_at") != nil }.count
+                                ProgressView(value: Double(done), total: Double(max(1, allSets.count)))
+                                Text("\(done) de \(allSets.count)").font(.largeTitle.bold()).monospacedDigit()
+                                    .accessibilityLabel("\(done) de \(allSets.count) séries registradas")
+                                Text("séries registradas").font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                                if let next {
+                                    Button("Ir para a próxima série") { if let itemID = next.string("item_id") { withAnimation { proxy.scrollTo(itemID, anchor: .top) } } }
+                                }
+                                Button("Ativar aviso de descanso") {
+                                    Task { avisoNotificacao = await conta.permitirAvisos() ? "Aviso local ativado para os descansos." : "Aviso desativado. Confira as permissões do iPhone e a preferência de descanso no PWA." }
+                                }
+                                if let avisoNotificacao { Text(avisoNotificacao).font(.footnote) }
+                            }.padding(.vertical, 8).buttonStyle(.glass).controlSize(.large)
+                        }.listRowBackground(Tema.superficie).entradaAnilha(0)
                         if let end = Workout.restEnd(session) {
                             Section("Descanso") {
-                                TimelineView(.periodic(from: .now, by: 1)) { context in
-                                    let seconds = max(0, Int(ceil(end / 1000 - context.date.timeIntervalSince1970)))
-                                    Text(seconds == 0 ? "Pronto para continuar" : String(format: "%02d:%02d", seconds / 60, seconds % 60))
-                                        .font(.system(size: 48, weight: .bold, design: .rounded)).monospacedDigit()
-                                        .accessibilityLabel("Descanso: \(seconds) segundos")
-                                }
-                                HStack {
-                                    Button("Mais 30 s") {
-                                        _ = conta.gravar([PushChange("sessions", session.changing(["rest_duration_sec": .number(min(900, (session.number("rest_duration_sec") ?? 90) + 30))]))])
+                                VStack(alignment: .leading, spacing: 16) {
+                                    Label("Recupere o fôlego", systemImage: "timer").font(.headline).foregroundStyle(Tema.marcaForte)
+                                    TimelineView(.periodic(from: .now, by: 1)) { context in
+                                        let seconds = max(0, Int(ceil(end / 1000 - context.date.timeIntervalSince1970)))
+                                        Text(seconds == 0 ? "Pronto para continuar" : String(format: "%02d:%02d", seconds / 60, seconds % 60))
+                                            .font(.system(size: tamanhoRelogio, weight: .bold, design: .rounded)).monospacedDigit()
+                                            .lineLimit(1).minimumScaleFactor(0.4).contentTransition(.numericText(countsDown: true))
+                                            .accessibilityLabel("Descanso: \(seconds) segundos")
                                     }
-                                    Spacer()
-                                    Button("Pular descanso") { _ = conta.gravar([PushChange("sessions", session.changing(["rest_started_at": .null, "rest_duration_sec": .null]))]) }
-                                }.buttonStyle(.bordered)
-                            }.listRowBackground(Tema.superficie)
+                                    ViewThatFits(in: .horizontal) {
+                                        HStack { controlesDescanso(session) }
+                                        VStack(alignment: .leading) { controlesDescanso(session) }
+                                    }.buttonStyle(.glass).controlSize(.large)
+                                }.padding(.vertical, 12)
+                            }.id("descanso").listRowBackground(Tema.marcaFundo)
                         }
                     } else {
                         Section("Treino concluído") {
-                            Text("Planejado e feito por exercício").font(.headline)
-                            Text("Salvo neste iPhone. O estado do envio aparece acima.").font(.footnote)
-                        }
+                            VStack(alignment: .leading, spacing: 10) {
+                                SeloAnilha(texto: "Treino concluído", icone: "checkmark.circle.fill")
+                                Text("Seu treino, registrado").font(.title.bold())
+                                Text("Planejado e feito por exercício").font(.subheadline)
+                                Text("Salvo neste iPhone. O estado do envio aparece acima.").font(.footnote).foregroundStyle(Tema.tintaSuave)
+                            }.padding(.vertical, 10)
+                        }.listRowBackground(Tema.superficie)
                         CartaoAnaliseTreino(conta: conta, sessionID: sessionID)
                     }
                     ForEach(items) { item in
@@ -88,6 +100,7 @@ struct TreinoView: View {
                                     ForEach(Array(sets.enumerated()), id: \.element.id) { index, set in
                                         SerieTreinoView(conta: conta, set: set, item: item, exercise: exercise,
                                             anterior: s.last(max(0, index - Int(item.number("warmup_sets") ?? 0))), proxima: next?.id == set.id)
+                                            .id(set.id)
                                     }
                                 }
                                 Menu("Exercício") {
@@ -103,18 +116,30 @@ struct TreinoView: View {
                                 }
                             }
                         } header: {
-                            Text(exercise?.string("name") ?? "Exercício indisponível")
+                            HStack(alignment: .top, spacing: 10) {
+                                DiscoExercicio(grupo: exercise?.string("primary_group"))
+                                Text(exercise?.string("name") ?? "Exercício indisponível")
+                                    .font(.headline).foregroundStyle(Tema.tinta)
+                            }.textCase(nil)
                         }.id(item.id).listRowBackground(Tema.superficie)
                     }
                     if session.string("status") == "active" {
-                        Button("Concluir treino") { confirmarFim = true }.buttonStyle(.borderedProminent)
+                        Button("Concluir treino") { confirmarFim = true }.buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large)
                             .frame(maxWidth: .infinity).listRowBackground(Tema.fundo)
-                    } else { Button("Voltar") { dismiss() } }
+                    } else { Button("Voltar") { dismiss() }.buttonStyle(.glass).controlSize(.large) }
                 } else { Text("Sessão indisponível. Atualize os dados.") }
             }
-            .scrollContentBackground(.hidden).background(Tema.fundo)
+            .scrollContentBackground(.hidden).background { FundoAnilha() }
             .scrollDismissesKeyboard(.interactively)
             .navigationTitle(session?.string("title") ?? "Treino")
+            .navigationBarTitleDisplayMode(.inline)
+            .task {
+                if let ancoraInicial {
+                    // Let List register the rows before positioning the presentation fixture.
+                    try? await Task.sleep(for: .milliseconds(350))
+                    proxy.scrollTo(ancoraInicial, anchor: .top)
+                }
+            }
             .refreshable { await conta.atualizar() }
             .confirmationDialog("Concluir e guardar o que foi feito?", isPresented: $confirmarFim, titleVisibility: .visible) {
                 Button("Concluir treino") {
@@ -139,6 +164,14 @@ struct TreinoView: View {
                     .toolbar { Button("Cancelar") { trocar = nil } }
                 }
             }
+        }
+    }
+    @ViewBuilder private func controlesDescanso(_ session: ReadRow) -> some View {
+        Button("Mais 30 s") {
+            _ = conta.gravar([PushChange("sessions", session.changing(["rest_duration_sec": .number(min(900, (session.number("rest_duration_sec") ?? 90) + 30))]))])
+        }
+        Button("Pular descanso") {
+            _ = conta.gravar([PushChange("sessions", session.changing(["rest_started_at": .null, "rest_duration_sec": .null]))])
         }
     }
 }
@@ -166,6 +199,10 @@ private struct SerieTreinoView: View {
     }
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            if proxima {
+                Text(exercise.string("name") ?? "Exercício").font(.title2.bold())
+                    .fixedSize(horizontal: false, vertical: true)
+            }
             HStack {
                 Text("\(set.string("kind") == "warmup" ? "Aquecimento" : "Série") \(Int(set.number("position") ?? 0) + 1)").font(.headline)
                 Spacer()
@@ -190,14 +227,16 @@ private struct SerieTreinoView: View {
                 if weighted {
                     let load = Binding<Double>(get: { (current.number("load_kg") ?? 0) * (lb ? Progression.lbPerKg : 1) }, set: { binding("load_kg").wrappedValue = $0 / (lb ? Progression.lbPerKg : 1) })
                     let step = lb ? max(2.5, Progression.round((exercise.number("increment_kg") ?? 2.5) * Progression.lbPerKg / 2.5) * 2.5) : exercise.number("increment_kg") ?? 2.5
-                    Stepper("Carga: \(formatarCarga(current.number("load_kg") ?? 0, lb: lb))", value: load, in: 0...(1000 * (lb ? Progression.lbPerKg : 1)), step: step)
+                    Stepper("Carga: \(formatarCarga(current.number("load_kg") ?? 0, lb: lb))", value: load, in: 0...(1000 * (lb ? Progression.lbPerKg : 1)), step: step).font(.title2.weight(.semibold)).monospacedDigit()
                     TextField("Digitar carga", value: load, format: .number.precision(.fractionLength(0...2)))
-                        .keyboardType(.decimalPad).textFieldStyle(.roundedBorder).accessibilityLabel("Digitar carga em \(lb ? "libras" : "quilos")")
+                        .font(.largeTitle.bold()).monospacedDigit()
+                        .keyboardType(.decimalPad).textFieldStyle(.roundedBorder).frame(minHeight: 44).accessibilityLabel("Digitar carga em \(lb ? "libras" : "quilos")")
                 }
                 Stepper("\(time ? "Segundos" : "Repetições"): \(Int(current.number(time ? "seconds" : "reps") ?? 0))",
-                    value: binding(time ? "seconds" : "reps"), in: 0...(time ? 7200 : 500), step: time ? 5 : 1)
+                    value: binding(time ? "seconds" : "reps"), in: 0...(time ? 7200 : 500), step: time ? 5 : 1).font(.title2.weight(.semibold)).monospacedDigit()
                 TextField(time ? "Digitar segundos" : "Digitar repetições", value: binding(time ? "seconds" : "reps"), format: .number.precision(.fractionLength(0)))
-                    .keyboardType(.numberPad).textFieldStyle(.roundedBorder).accessibilityLabel(time ? "Digitar segundos" : "Digitar repetições")
+                    .font(.largeTitle.bold()).monospacedDigit()
+                    .keyboardType(.numberPad).textFieldStyle(.roundedBorder).frame(minHeight: 44).accessibilityLabel(time ? "Digitar segundos" : "Digitar repetições")
                 Button("Registrar série", systemImage: "checkmark") {
                     guard let value = current.number(time ? "seconds" : "reps"), value > 0,
                           value <= (time ? 7200 : 500), value == floor(value),
@@ -206,7 +245,7 @@ private struct SerieTreinoView: View {
                     if let kg = current.number("load_kg") { values["load_kg"] = .number(Progression.round(kg * 100) / 100) }
                     let changes = Workout.complete(conta.dados, set: set.changing(values), now: Date.now.timeIntervalSince1970 * 1000)
                     if !changes.isEmpty, conta.gravar(changes) { draft = nil; erro = nil }
-                }.buttonStyle(.borderedProminent).controlSize(.large)
+                }.buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).controlSize(.large)
                 if let erro { Text(erro).font(.footnote).foregroundStyle(.red) }
             }
         }
@@ -217,7 +256,7 @@ private struct SerieTreinoView: View {
         ForEach(["Fácil", "Ok", "Pesado", "No limite"].indices, id: \.self) { index in
             Button(["Fácil", "Ok", "Pesado", "No limite"][index]) {
                 _ = conta.gravar([PushChange("sets", set.changing(["rir": .number(Double(3 - index))]))])
-            }.buttonStyle(.bordered).tint(set.number("rir") == Double(3 - index) ? Tema.marca : Tema.tintaSuave)
+            }.buttonStyle(.glass).controlSize(.large).tint(set.number("rir") == Double(3 - index) ? Tema.marca : Tema.tintaSuave)
         }
     }
 }

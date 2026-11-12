@@ -24,6 +24,9 @@ on:
         'scripts/ios-analysis-source.ts',
         'scripts/ios-evolution-source.ts',
         'tests/e2e/analysis.spec.ts',
+        'src/screens/SessionDetail.tsx',
+        'src/styles/app.css',
+        'src/engine/__tests__/iosDemo.test.ts',
         'scripts/ios-source.ts',
         'scripts/ios-training-source.ts',
         'scripts/ios-session-source.ts',
@@ -83,7 +86,7 @@ jobs:
           node scripts/generate-ios.mjs
           node scripts/generate-ios.mjs --check
           node scripts/build-analysis.mjs --check
-          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/analysis/__tests__/analysis.test.ts src/analysis/__tests__/evolution.test.ts tests/db/analysis.test.ts --maxWorkers=1 --no-file-parallelism
+          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/engine/__tests__/iosDemo.test.ts src/analysis/__tests__/analysis.test.ts src/analysis/__tests__/evolution.test.ts tests/db/analysis.test.ts --maxWorkers=1 --no-file-parallelism
 
       - name: Testar paridade, gravação e fila Swift
         working-directory: .
@@ -109,6 +112,28 @@ jobs:
 
       - name: Gerar o projeto do Xcode
         run: xcodegen generate
+
+      - name: Capturar SwiftUI no simulador em claro e escuro
+        id: screenshots
+        continue-on-error: true
+        timeout-minutes: 15
+        run: bash scripts/capture-screenshots.sh
+
+      - name: Avisar falha nas capturas
+        if: steps.screenshots.outcome == 'failure'
+        run: echo '::warning::Capturas SwiftUI falharam ou ficaram incompletas. Confira Anilha-SwiftUI.zip e os logs. O archive continua.'
+
+      - name: Guardar os prints SwiftUI como artefato
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v6
+        with:
+          name: Anilha-SwiftUI-ios-build-${{ github.run_number }}
+          path: |
+            Anilha-SwiftUI.zip
+            artifacts/ios-native/
+          retention-days: 30
+          if-no-files-found: warn
 
       - name: Compilar (archive sem assinatura)
         run: |
@@ -170,3 +195,8 @@ jobs:
             --title "Anilha iOS $TAG" \
             --notes "Build ${{ github.run_number }} (commit ${GITHUB_SHA::7}). .ipa NÃO assinado: instale pelo Sideloadly com o mesmo Apple ID do CRUNNING." \
             --prerelease
+          if [ -f Anilha-SwiftUI.zip ]; then
+            gh release upload "$TAG" Anilha-SwiftUI.zip
+          else
+            echo '::warning::Release criada sem prints SwiftUI. Confira o passo de captura.'
+          fi

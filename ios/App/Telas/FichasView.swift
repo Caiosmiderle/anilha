@@ -4,8 +4,11 @@ import SwiftUI
 struct FichasView: View {
     let conta: ContaStore
     var body: some View {
+        let exercicios = conta.dados.exercises(catalog: conta.catalogo)
         List {
-            StatusSyncView(conta: conta).listRowBackground(Tema.fundo)
+            CabecalhoAnilha(titulo: "Fichas", selo: "Seu treino", icone: "list.bullet.rectangle")
+                .listRowBackground(Color.clear).listRowSeparator(.hidden).entradaAnilha(0)
+            StatusSyncView(conta: conta).listRowBackground(Color.clear)
             if conta.dados.routines.isEmpty {
                 Text("Nenhuma ficha ativa disponível. Crie suas fichas no PWA e puxe para atualizar.")
                     .foregroundStyle(Tema.tintaSuave)
@@ -14,18 +17,21 @@ struct FichasView: View {
                 NavigationLink {
                     FichaView(conta: conta, ficha: ficha)
                 } label: {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(ficha.string("name") ?? "Ficha").font(.headline)
-                        Text("\(conta.dados.items(ficha.id).count) exercícios")
-                            .font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                    HStack(spacing: 12) {
+                        DiscoExercicio(grupo: conta.dados.items(ficha.id).first.flatMap { exercicios[$0.string("exercise_id") ?? ""]?.string("primary_group") })
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(ficha.string("name") ?? "Ficha").font(.headline)
+                            Text("\(conta.dados.items(ficha.id).count) exercícios")
+                                .font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                        }
                     }
-                    .padding(.vertical, 6)
+                    .padding(.vertical, 10).frame(minHeight: 44)
                 }
-                .listRowBackground(Tema.superficie)
+                .listRowBackground(Tema.superficie).entradaAnilha(1)
             }
         }
-        .scrollContentBackground(.hidden).background(Tema.fundo)
-        .navigationTitle("Fichas").refreshable { await conta.atualizar() }
+        .scrollContentBackground(.hidden).background { FundoAnilha() }
+        .navigationTitle("Fichas").navigationBarTitleDisplayMode(.inline).refreshable { await conta.atualizar() }
     }
 }
 
@@ -42,6 +48,9 @@ struct FichaView: View {
             if atual == nil {
                 Text("Esta ficha foi arquivada ou removida.")
             } else {
+                CabecalhoAnilha(titulo: atual?.string("name") ?? "Ficha",
+                                selo: "\(conta.dados.items(ficha.id).count) exercícios", icone: "dumbbell")
+                    .listRowBackground(Color.clear).listRowSeparator(.hidden).entradaAnilha(0)
                 Section("Exercícios") {
                     if conta.dados.items(ficha.id).isEmpty { Text("Esta ficha ainda não tem exercícios.") }
                     ForEach(conta.dados.items(ficha.id)) { item in
@@ -65,12 +74,12 @@ struct FichaView: View {
                     }
                 }
                 Button(conta.ativa == nil ? "Começar treino" : "Continuar treino") { if let atual { conta.comecar(atual) } }
-                    .buttonStyle(.borderedProminent).listRowBackground(Tema.fundo)
+                    .buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).listRowBackground(Tema.fundo)
                 if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
             }
         }
-        .scrollContentBackground(.hidden).background(Tema.fundo)
-        .navigationTitle(atual?.string("name") ?? "Ficha")
+        .scrollContentBackground(.hidden).background { FundoAnilha() }
+        .navigationTitle("Ficha").navigationBarTitleDisplayMode(.inline)
         .refreshable { await conta.atualizar() }
     }
     private func prescricao(_ item: ReadRow, medida: String?) -> String {

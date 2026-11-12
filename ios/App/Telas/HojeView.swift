@@ -5,6 +5,14 @@ struct HojeView: View {
     let conta: ContaStore
     var today: String
 
+    private var dataHoje: String {
+        let formato = DateFormatter()
+        formato.locale = Locale(identifier: "pt_BR")
+        formato.dateFormat = "yyyy-MM-dd"
+        let data = formato.date(from: today) ?? .now
+        formato.dateFormat = "EEEE, d 'de' MMMM"
+        return formato.string(from: data)
+    }
     private var dia: DayView? { conta.dados.plannedToday(today) }
     private var ficha: ReadRow? {
         guard let split = dia?.split_key else { return nil }
@@ -20,19 +28,22 @@ struct HojeView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Tema.Espaco.e4) {
-                Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
-                    .font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                CabecalhoAnilha(titulo: "Hoje", selo: dataHoje, icone: "calendar")
+                    .entradaAnilha(0)
                 StatusSyncView(conta: conta)
                 VStack(alignment: .leading, spacing: Tema.Espaco.e3) {
-                    Text("Planejado no Anilha").font(.subheadline).foregroundStyle(Tema.tintaSuave)
+                    Label("Planejado no Anilha", systemImage: "calendar").font(.subheadline.weight(.semibold)).foregroundStyle(Tema.marcaForte)
                     if let dia {
                         if dia.kind == "gym" {
-                            Text(ficha?.string("name") ?? nomeSplit(dia.split_key)).font(.title2.bold())
+                            HStack(alignment: .top, spacing: 12) {
+                                DiscoExercicio(grupo: conta.dados.items(ficha?.id ?? "").first.flatMap { item in conta.dados.exercises(catalog: conta.catalogo)[item.string("exercise_id") ?? ""]?.string("primary_group") })
+                                Text(ficha?.string("name") ?? nomeSplit(dia.split_key)).font(.largeTitle.bold()).fixedSize(horizontal: false, vertical: true)
+                            }
                             if let ficha {
                                 NavigationLink {
                                     FichaView(conta: conta, ficha: ficha)
                                 } label: { Label("Ver exercícios", systemImage: "list.bullet") }
-                                .buttonStyle(.bordered)
+                                .buttonStyle(.glass).controlSize(.large).frame(minHeight: 44)
                             } else {
                                 Text("Esta ficha não está disponível. Confira as fichas no PWA.")
                                     .foregroundStyle(Tema.tintaSuave)
@@ -50,13 +61,13 @@ struct HojeView: View {
                             .font(.subheadline).foregroundStyle(Tema.tintaSuave)
                     }
                     if let ativa = conta.ativa {
-                        Button("Continuar treino") { conta.sessaoAberta = ativa.id }.buttonStyle(.borderedProminent)
+                        Button("Continuar treino") { conta.sessaoAberta = ativa.id }.buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44)
                     } else if let ficha {
-                        Button("Começar treino") { conta.comecar(ficha) }.buttonStyle(.borderedProminent)
+                        Button("Começar treino") { conta.comecar(ficha) }.buttonStyle(.glassProminent).tint(Tema.acao).controlSize(.large).frame(minHeight: 44)
                     }
                     if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
                 }
-                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao()
+                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).destaqueAnilha().entradaAnilha(1)
                 if !externos.isEmpty {
                     Text("Agenda do CRUNNING").font(.headline)
                     ForEach(externos) { row in
@@ -85,8 +96,8 @@ struct HojeView: View {
             }
             .padding(Tema.Espaco.e5)
         }
-        .background(Tema.fundo)
-        .navigationTitle("Hoje")
+        .background { FundoAnilha() }
+        .navigationTitle("Hoje").navigationBarTitleDisplayMode(.inline)
         .refreshable { await conta.atualizar() }
     }
 }
