@@ -1,0 +1,353 @@
+{
+  "title": "Anilha | Dossiê de UI/UX",
+  "date": "22/10/2026",
+  "base": "f741f92",
+  "verdict": "O Anilha já tem identidade visual e uma jornada de treino reconhecível. A prioridade é tornar o registro coerente entre telas, proteger ações de salvar e corrigir barreiras de leitura e navegação. Recomendo preservar o Harbor UI e trabalhar primeiro na confiança de uso.",
+  "scope": "Auditoria heurística, inspeção do código e coleta local em Chromium. Nove rotas em 390 e 320 px, menu desktop em 1440 px, temas claro/escuro e cenários de treino, planejamento, cadastro e assistente. Base inclui a revisão final do Claude, f741f92. Nenhuma interface ou regra do app foi alterada.",
+  "limits": "Sem entrevistas ou métricas de uso, leitor de tela real, iPhone/Safari instalado ou produção. A resposta longa do assistente foi simulada localmente. A duplicação de corrida foi testada com dois eventos DOM consecutivos; a frequência desse problema no uso real não foi medida. Esta análise não é certificação integral de acessibilidade.",
+  "strengths": [
+    "Cinco áreas principais com rótulos visíveis: Histórico, Plano, Hoje, Amigos e Você.",
+    "Ação de concluir série e ajuste de valores próximos ao polegar, com áreas grandes de toque.",
+    "Harbor UI consistente em cores, cards, cantos, tipografia e temas claro/escuro.",
+    "Folhas com dialog nativo, campos com labels reais e estados semânticos em switches e escolhas.",
+    "Modo foco reduz informação durante o esforço; Como fazer oferece ajuda no contexto do exercício.",
+    "Plano explica suas escolhas; propostas do assistente exigem salvar e oferecem desfazer."
+  ],
+  "findings": [
+    {
+      "id": "UX-01",
+      "priority": "P1",
+      "area": "Treino / modo foco",
+      "title": "O foco usa valores anteriores à edição",
+      "basis": "Reproduzido no navegador e na leitura do banco local.",
+      "scenario": "Abrir um treino novo, entrar no foco, tocar Ajustar, digitar 20 kg e 10 repetições e voltar ao foco antes de concluir.",
+      "observed": "O editor mostra 20/10, o foco mostra 6 repetições e Série feita grava uma série de aquecimento com carga nula e 6 repetições.",
+      "impact": "O registro pode divergir da intenção da pessoa. Alternar a apresentação da mesma série não deveria trocar seus valores.",
+      "recommendation": "Compartilhar um único rascunho por série entre editor completo e foco; salvar e restaurar os mesmos valores nas duas apresentações.",
+      "acceptance": "Editar 20/10, alternar os modos nas duas direções e concluir mantém e grava 20 kg e 10 repetições, inclusive após outras edições.",
+      "refs": [
+        "src/screens/Session.tsx:841",
+        "src/screens/parts/FocusMode.tsx:74",
+        "src/screens/parts/FocusMode.tsx:176"
+      ],
+      "proof": ["focus-draft", "focus-saved"]
+    },
+    {
+      "id": "UX-02",
+      "priority": "P1",
+      "area": "Treino / progressão",
+      "title": "Recusar a progressão não atualiza o editor",
+      "basis": "Reproduzido no navegador.",
+      "scenario": "Após duas sessões de 40 kg no topo da faixa, iniciar a próxima, selecionar uma série de trabalho e tocar Ignorar sugestão.",
+      "observed": "O cartão passa a 40 kg × 12; o controle principal continua em 42 kg × 8. Ele mantém seu estado inicial mesmo após a atualização da série.",
+      "impact": "A pessoa recusa uma alteração, mas o controle usado para concluir ainda apresenta a alteração recusada. O problema persiste após a correção de pirâmide do Claude.",
+      "recommendation": "Sincronizar o rascunho ao aceitar ou recusar uma sugestão; tratar separadamente uma edição manual deliberada para não apagá-la.",
+      "acceptance": "Depois de recusar 42 kg, cartão, editor, foco e gravação mostram 40 kg. Uma edição manual posterior continua prevalecendo.",
+      "refs": [
+        "src/screens/Session.tsx:431",
+        "src/screens/Session.tsx:467",
+        "src/screens/Session.tsx:841"
+      ],
+      "proof": ["dismiss-progression"]
+    },
+    {
+      "id": "UX-03",
+      "priority": "P2",
+      "area": "Plano",
+      "title": "Trocar dias descarta o horário que está na tela",
+      "basis": "Reproduzido no navegador e no banco local.",
+      "scenario": "Abrir segunda-feira, alterar o horário de 06:00 para 07:45 e tocar Trocar com terça sem Salvar dia antes.",
+      "observed": "A folha fecha; o treino vai para terça às 06:00. O horário 07:45 exibido antes da troca é perdido.",
+      "impact": "Duas ações no mesmo formulário operam sobre estados diferentes. A confirmação da troca transmite sucesso sem explicar o descarte.",
+      "recommendation": "Aplicar a troca sobre o rascunho atual ou separar edição e troca, pedindo descarte explícito quando houver mudanças.",
+      "acceptance": "Alterar horário/tipo e trocar preserva o conteúdo exibido ou informa a perda antes de confirmar. Nunca perde silenciosamente o rascunho.",
+      "refs": ["src/screens/parts/PlanDaySheet.tsx:47", "src/screens/parts/PlanDaySheet.tsx:64"],
+      "proof": ["day-swap", "day-swap-ui"]
+    },
+    {
+      "id": "UX-04",
+      "priority": "P2",
+      "area": "Cadastro / perfil",
+      "title": "Interrupções apagam trabalho de configuração",
+      "basis": "Cadastro reproduzido no navegador; perfil rastreado no código.",
+      "scenario": "Preencher o cadastro até Quanto tempo por treino e recarregar. No perfil, editar uma resposta e navegar para outra área antes de gerar o plano.",
+      "observed": "O cadastro volta a Vamos montar seu plano, perdendo a etapa e as respostas ainda não adotadas. O perfil também usa rascunho apenas em estado local da tela.",
+      "impact": "Interrupções comuns no celular obrigam a repetir decisões. Pronto na folha do perfil pode parecer persistência, embora o plano ainda não tenha sido gerado.",
+      "recommendation": "Rascunho por conta com retomada e indicação Mudanças ainda não aplicadas; proteger a saída. Preservar respostas também diante de erros de gravação.",
+      "acceptance": "Recarregar retoma etapa e respostas. Sair do perfil alterado preserva rascunho ou pede descarte; o que foi salvo e o que falta aplicar fica explícito.",
+      "refs": [
+        "src/screens/Onboarding.tsx:137",
+        "src/screens/TrainingProfile.tsx:91",
+        "src/screens/TrainingProfile.tsx:136"
+      ],
+      "proof": ["onboarding-reload"]
+    },
+    {
+      "id": "UX-05",
+      "priority": "P2",
+      "area": "Sistema visual",
+      "title": "O texto dos CTAs tem contraste insuficiente",
+      "basis": "Estilos computados no navegador e cálculo de contraste.",
+      "scenario": "Ler botões principais com texto branco e o gradiente azul; no tema escuro, ler confirmações com fundo danger.",
+      "observed": "Branco contra os extremos do gradiente resulta em 1,8354:1 e 2,9998:1. Branco sobre danger escuro resulta em 2,7869:1. O texto primário é 18 px, peso 600.",
+      "impact": "A hierarquia chama atenção, mas a leitura da ação principal é difícil para pessoas com baixa visão e em iluminação ruim.",
+      "recommendation": "Escurecer a área sob o texto branco ou adotar outra combinação acessível; manter o azul vivo como acento. O requisito usual para esse texto é 4,5:1 [R1].",
+      "acceptance": "Texto ativo alcança pelo menos 4,5:1 sob todos os glifos, nos dois temas e no hover. Texto de 18 px não deve ser tratado como 18 pontos.",
+      "refs": [
+        "design/harbor-ui/components.css:13",
+        "design/harbor-ui/extensions.css:38",
+        "design/harbor-ui/extensions.css:45"
+      ],
+      "proof": ["tokens-light", "tokens-dark"]
+    },
+    {
+      "id": "UX-06",
+      "priority": "P2",
+      "area": "Responsividade",
+      "title": "Opções ficam cortadas em largura de 320 px",
+      "basis": "Reproduzido no navegador em emulação configurada para 320 px.",
+      "scenario": "Abrir Ajustes e Histórico em uma tela estreita, ou numa configuração equivalente de ampliação.",
+      "observed": "Aviso do fim do descanso tem 248 px disponíveis e 316 px de conteúdo; Só na tela fica cortado. No Histórico, o seletor tem 288 px e conteúdo de 330 px; Corpo perde visibilidade e o viewport interno expande para 347 px.",
+      "impact": "A pessoa não enxerga todas as escolhas. O problema não aparece na largura padrão de 390 px usada em boa parte dos testes.",
+      "recommendation": "Permitir quebra dos rótulos, organizar opções verticalmente ou adaptar o seletor. Conteúdo essencial deve refluir sem perda [R3].",
+      "acceptance": "Todas as opções permanecem legíveis e acionáveis em 320 px e com texto ampliado a 200%, sem recorte ou rolagem horizontal da página.",
+      "refs": [
+        "src/screens/Settings.tsx:89",
+        "src/screens/History.tsx:79",
+        "design/harbor-ui/extensions.css:140"
+      ],
+      "proof": ["ajustes-320", "historico-320"]
+    },
+    {
+      "id": "UX-07",
+      "priority": "P2",
+      "area": "Foco / acessibilidade",
+      "title": "A camada visual não isola os controles encobertos",
+      "basis": "DOM inspecionado no navegador e código.",
+      "scenario": "Entrar no modo foco e navegar por teclado ou tecnologia assistiva.",
+      "observed": "A tela completa permanece montada atrás de uma região comum. O input do editor encoberto tem tabindex 0, sem ancestral inert ou aria-hidden; não há transferência explícita de foco para a superfície ativa.",
+      "impact": "Controles que não correspondem à tela visível continuam participando da navegação. Leitor de tela real ainda precisa ser validado.",
+      "recommendation": "Isolar a superfície ativa, mover o foco para um controle visível e restaurá-lo ao sair, preservando o rascunho compartilhado.",
+      "acceptance": "Durante o foco, Tab e navegação assistiva percorrem somente o conteúdo ativo. Sair devolve o foco a um lugar previsível.",
+      "refs": [
+        "src/screens/parts/FocusMode.tsx:88",
+        "src/screens/Session.tsx:310",
+        "src/styles/app.css:1637"
+      ],
+      "proof": ["focus-background"]
+    },
+    {
+      "id": "UX-08",
+      "priority": "P2",
+      "area": "Navegação desktop",
+      "title": "Abrir Sua conta pelo teclado não leva às ações",
+      "basis": "Reproduzido no navegador.",
+      "scenario": "No desktop, focar Sua conta, pressionar Enter e depois Tab.",
+      "observed": "O próximo foco foi Entendi na tela Hoje, fora do menu. Os itens são inseridos antes do gatilho no DOM, sem posicionar o foco na primeira ação.",
+      "impact": "O menu aparece, mas a sequência de navegação pula suas opções; seus papéis menu/menuitem prometem um comportamento que não está completo.",
+      "recommendation": "Implementar o padrão completo de menu ou usar uma lista de links/botões com sequência de foco coerente.",
+      "acceptance": "Abrir entra na primeira ação; todas as ações são alcançáveis em ordem previsível; Escape fecha e devolve foco ao gatilho.",
+      "refs": ["src/ui/nav.tsx:261", "src/ui/nav.tsx:291", "src/ui/nav.tsx:316"],
+      "proof": ["menu-keyboard"]
+    },
+    {
+      "id": "UX-09",
+      "priority": "P2",
+      "area": "Assistente",
+      "title": "A digitação toma a posição de leitura",
+      "basis": "Reproduzido com resposta longa simulada localmente.",
+      "scenario": "Durante a animação de uma resposta longa, voltar a rolagem ao topo para reler o pedido ou comparar uma proposta anterior.",
+      "observed": "A posição foi colocada em 0 e voltou ao fim enquanto o texto crescia. Cada atualização chama follow, que força scrollTop para scrollHeight, sem considerar intenção de leitura.",
+      "impact": "A pessoa perde o controle da conversa durante alguns segundos. É uma regressão da mudança recente que restaurou a digitação no popup.",
+      "recommendation": "Acompanhar somente quando a pessoa já estiver próxima ao fim; suspender após rolagem manual e oferecer Ir para a resposta mais recente.",
+      "acceptance": "Rolar para cima durante a digitação mantém a posição até a pessoa voltar ao fim. Reabrir continua mostrando a resposta inteira sem redigitar.",
+      "refs": ["src/screens/AgentChat.tsx:202", "src/screens/AgentChat.tsx:598"],
+      "proof": ["agent-scroll"]
+    },
+    {
+      "id": "UX-10",
+      "priority": "P2",
+      "area": "Assistente / revisão",
+      "title": "Revise a proposta não oferece todos os detalhes",
+      "basis": "Código e inspeção visual dos cartões existentes.",
+      "scenario": "Pedir plano novo e tentar revisar exercícios, séries, repetições e descanso antes de Salvar. Em ficha nova, conferir o descanso de cada exercício.",
+      "observed": "Plano novo mostra mudanças no perfil e nomes das fichas, sem listar os exercícios/doses de cada uma. A ficha nova lista exercícios e repetições, mas omite descanso.",
+      "impact": "A pessoa aceita uma mudança antes de conseguir inspecionar informações essenciais do que será gravado.",
+      "recommendation": "Detalhes expansíveis por ficha, com exercícios, doses, descanso e origem. Manter o resumo e os avisos como primeira camada.",
+      "acceptance": "Todo dado relevante que será alterado pode ser conferido antes de salvar, sem exigir aplicar e desfazer como forma de prévia.",
+      "refs": [
+        "src/screens/AgentChat.tsx:703",
+        "src/screens/AgentChat.tsx:731",
+        "src/screens/AgentChat.tsx:769"
+      ],
+      "proof": []
+    },
+    {
+      "id": "UX-11",
+      "priority": "P2",
+      "area": "Entrada",
+      "title": "Falha de rede culpa o código de acesso",
+      "basis": "Tratamento de erros rastreado no código; cenário offline não executado nesta coleta.",
+      "scenario": "Receber código válido, perder conexão e completar os seis dígitos.",
+      "observed": "Qualquer erro diferente de 429 vira Código inválido ou expirado, apaga os seis dígitos e volta o foco para o início.",
+      "impact": "A mensagem induz uma ação desnecessária, como pedir outro código, em vez de recuperar a conexão.",
+      "recommendation": "Distinguir código recusado, rede e serviço indisponível; preservar a entrada em falhas transitórias e permitir nova tentativa.",
+      "acceptance": "Uma falha simulada de rede mantém os dígitos e mostra uma ação de repetir a verificação. Código realmente recusado recebe sua mensagem específica.",
+      "refs": ["src/screens/Auth.tsx:110", "src/screens/Auth.tsx:124"],
+      "proof": []
+    },
+    {
+      "id": "UX-12",
+      "priority": "P2",
+      "area": "Hoje",
+      "title": "Ignorar sugestão esconde texto, mas mantém o treino",
+      "basis": "Fluxo do código e tela Hoje inspecionados; expectativa de usuários é hipótese.",
+      "scenario": "Em Hoje, recusar uma recomendação que difere do plano e depois tocar Iniciar treino.",
+      "observed": "ignored só esconde explicação e alertas. O treino recomendado, os itens e a ação de início continuam iguais; o texto passa a mencionar o plano.",
+      "impact": "O rótulo permite interpretar que a recomendação foi recusada, embora o mesmo treino ainda seja iniciado.",
+      "recommendation": "Decidir o contrato da ação: Ocultar explicação, se esse for o efeito; ou oferecer Seguir o plano / Treinar assim com prévia clara.",
+      "acceptance": "Após o toque, a pessoa identifica sem ambiguidade qual treino será iniciado. Alertas relevantes não somem apenas por ocultar uma explicação.",
+      "refs": [
+        "src/screens/Today.tsx:492",
+        "src/screens/Today.tsx:524",
+        "src/screens/Today.tsx:620"
+      ],
+      "proof": []
+    },
+    {
+      "id": "UX-13",
+      "priority": "P2",
+      "area": "Histórico",
+      "title": "Repetir este treino busca outra sessão",
+      "basis": "Seleção da fonte rastreada no código; cenário com duas sessões distintas não executado.",
+      "scenario": "Abrir no histórico um treino antigo de uma divisão que teve uma sessão mais recente com exercícios diferentes; escolher Repetir este treino.",
+      "observed": "O início usa itemsFromLastSession(split), que busca a sessão mais recente da divisão, e não o ID selecionado.",
+      "impact": "Título e ponto de entrada remetem à sessão antiga, mas os exercícios podem vir de outra sessão.",
+      "recommendation": "Repetir o conteúdo da sessão escolhida ou nomear explicitamente Repetir o último treino desta divisão.",
+      "acceptance": "Duas sessões diferentes da mesma divisão têm repetição previsível: o conteúdo é o selecionado, ou a origem alternativa é informada antes de iniciar.",
+      "refs": [
+        "src/screens/parts/SessionActions.tsx:23",
+        "src/screens/parts/SessionActions.tsx:87",
+        "src/data/ops.ts:337"
+      ],
+      "proof": []
+    },
+    {
+      "id": "UX-14",
+      "priority": "P1",
+      "area": "Corrida / salvar",
+      "title": "Salvar aceita reentrada e cria atividades duplicadas",
+      "basis": "Reproduzido com dois eventos de clique DOM consecutivos no navegador.",
+      "scenario": "Preencher corrida de 5 km em 30:00 e acionar Salvar corrida duas vezes antes de a primeira gravação terminar.",
+      "observed": "O banco local recebeu duas atividades de 5 km e 1.800 segundos. O botão não tem trava imediata nem estado de salvamento.",
+      "impact": "Uma intenção pode alterar duas vezes o histórico, as distâncias e a constância. A frequência em toques humanos reais não foi medida.",
+      "recommendation": "Trava síncrona de reentrada, estado Salvando e persistência idempotente onde cabível; erro recuperável que mantém os campos.",
+      "acceptance": "Dois acionamentos concorrentes resultam em uma atividade. Falha mantém os dados preenchidos e permite nova tentativa com resultado claro.",
+      "refs": [
+        "src/screens/sheets/RunSheet.tsx:269",
+        "src/screens/sheets/RunSheet.tsx:306",
+        "src/data/ops.ts:1080"
+      ],
+      "proof": ["run-double-submit"]
+    },
+    {
+      "id": "UX-15",
+      "priority": "P2",
+      "area": "Treino / orientação",
+      "title": "O foco omite orientações que mudam a execução",
+      "basis": "Comparação de propriedades e conteúdo das duas telas no código.",
+      "scenario": "Abrir diretamente no foco memorizado durante retorno, semana leve ou com alerta de exercício.",
+      "observed": "A tela completa tem orientações de retorno, semana leve, dor e teto de volume. Elas não são passadas para a superfície de foco, que mostra valores e ação de concluir.",
+      "impact": "Reduzir informação pode esconder o contexto necessário para interpretar os valores. A pessoa pode não abrir a tela completa.",
+      "recommendation": "Uma linha prioritária da orientação ativa, com acesso aos detalhes. Definir precedência para evitar empilhar todos os avisos.",
+      "acceptance": "Ao entrar direto no foco, a orientação ativa relevante aparece antes da primeira série; a composição continua simples e legível.",
+      "refs": [
+        "src/screens/Session.tsx:335",
+        "src/screens/Session.tsx:491",
+        "src/screens/parts/FocusMode.tsx:88"
+      ],
+      "proof": []
+    },
+    {
+      "id": "UX-16",
+      "priority": "P2",
+      "area": "Acessibilidade visual",
+      "title": "Foco e switches desligados têm pouca definição",
+      "basis": "Tokens computados no navegador e cálculo de contraste.",
+      "scenario": "Navegar por Tab e localizar controles desligados em Ajustes ou Privacidade.",
+      "observed": "O anel azul translúcido alcança cerca de 1,31:1 no branco e 1,46:1 no fundo escuro. O trilho desligado do switch tem 1,27:1 e 1,32:1 contra a superfície, sem uma borda definida.",
+      "impact": "O estado de foco e a presença do controle dependem de diferenças tênues. O estado semântico e o label dos switches já estão corretos e devem ser preservados.",
+      "recommendation": "Outline sólido e contorno/estado desligado com distinção suficiente. Partes necessárias para identificar controles e estados devem atender 3:1 [R2].",
+      "acceptance": "Identificar foco e estado desligado nos dois temas com pelo menos 3:1, preservando forma/posição e testando cores forçadas e teclado.",
+      "refs": [
+        "design/harbor-ui/tokens.css:59",
+        "design/harbor-ui/extensions.css:34",
+        "design/harbor-ui/extensions.css:171"
+      ],
+      "proof": ["tokens-light", "tokens-dark"]
+    },
+    {
+      "id": "UX-17",
+      "priority": "P2",
+      "area": "Histórico / gráficos",
+      "title": "A evolução perde contexto temporal e alternativa completa",
+      "basis": "Código e cálculo do posicionamento dos pontos; leitor de tela real não usado.",
+      "scenario": "Comparar evolução com intervalos longos entre treinos, ou consultar a série de 1RM estimado sem enxergar o gráfico.",
+      "observed": "O eixo X usa o índice das datas: 01/10, 02/10 e 22/10 ficam igualmente espaçados. O nome acessível resume apenas a série principal, omitindo os pontos da curva comparativa.",
+      "impact": "Uma pausa pode parecer evolução contínua, e parte do histórico visual não tem alternativa textual equivalente.",
+      "recommendation": "Posicionar por dias decorridos ou rotular explicitamente por sessão. Oferecer tabela com data, valor e unidade das duas séries.",
+      "acceptance": "Intervalos de 1 e 20 dias têm proporção temporal correta ou eixo declarado por sessão; todas as séries e seus dados ficam disponíveis em texto.",
+      "refs": [
+        "src/ui/charts.tsx:62",
+        "src/ui/charts.tsx:75",
+        "src/screens/parts/ExerciseProgress.tsx:84"
+      ],
+      "proof": []
+    },
+    {
+      "id": "UX-18",
+      "priority": "P3",
+      "area": "Ativação",
+      "title": "Testar um caminho mais curto até o primeiro valor",
+      "basis": "12 etapas verificadas na interface/código; efeito no abandono não medido.",
+      "scenario": "Pessoa nova quer experimentar o treino e percorre nome, idade, objetivo, foco, nível, pausa, local, semana, duração, divisão, gênero e plano. Prova pode acrescentar uma etapa.",
+      "observed": "Uma pergunta por tela orienta bem, mas decisões avançadas, como divisão, entram antes do primeiro uso. A sugestão já existe, porém não há atalho global para aceitar as sugestões restantes.",
+      "impact": "É hipótese de esforço inicial maior do que o necessário; não há dados para afirmar abandono ou prever ganho de conversão.",
+      "recommendation": "Prototipar Usar as sugestões após os dados essenciais, com revisão final e ajustes avançados disponíveis depois. Em Hoje, priorizar a próxima ação e resumir avisos extensos.",
+      "acceptance": "Comparar os dois fluxos em tarefas reais, medindo tempo, conclusão, compreensão e confiança. Não remover dados necessários ao motor sem revisar a regra.",
+      "refs": [
+        "src/screens/Onboarding.tsx:77",
+        "src/screens/Onboarding.tsx:152",
+        "src/screens/parts/trainingQuestions.tsx:591"
+      ],
+      "proof": ["onboarding-reload"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "R1",
+      "title": "W3C: WCAG 2.2, contraste de texto",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+    },
+    {
+      "id": "R2",
+      "title": "W3C: contraste não textual",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
+    },
+    {
+      "id": "R3",
+      "title": "W3C: reflow em 320 CSS px",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+    },
+    {
+      "id": "R4",
+      "title": "W3C: tamanho mínimo dos alvos, 24 CSS px com exceções",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum"
+    },
+    {
+      "id": "R5",
+      "title": "Nielsen Norman Group: heurísticas de usabilidade",
+      "url": "https://www.nngroup.com/articles/ten-usability-heuristics/"
+    }
+  ]
+}

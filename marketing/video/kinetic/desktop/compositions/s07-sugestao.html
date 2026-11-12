@@ -1,0 +1,62 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #e3f2fd; font-family: 'Inter', sans-serif; color: #141413; --accent: #006bb3; }
+    #root .row { display: block; }
+    #root .acc { color: var(--accent); }
+    #root .wd { display: inline-block; }
+    #root .shot { position: absolute; inset: 0; border-radius: 84px; overflow: hidden; background: #fafafa; box-shadow: 0 50px 140px rgba(20, 20, 19, 0.16), 0 0 0 5px rgba(20, 20, 19, 0.06); }
+    #root .shot-img { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; display: block; }
+    #root .press { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; }
+    #root .press img { display: block; width: 1170px; height: 2532px; }
+    #root .panel { position: absolute; left: 0; top: 0; width: 800px; height: 100%; background: #e3f2fd; }
+    #root .line { position: absolute; left: 110px; top: 0; width: 660px; height: 100%; display: flex; flex-direction: column; justify-content: center; font-size: 84px; font-weight: 700; line-height: 1.07; letter-spacing: -0.032em; opacity: 0; }
+    #root .line .wd { opacity: 0; }
+    #root .flood { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; padding: 0 150px; opacity: 0; }
+    #root .slam { font-size: 300px; font-weight: 900; line-height: 0.98; letter-spacing: -0.05em; }
+    #root .slam .row { transform-origin: 0% 60%; }
+    #root .hook { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 150px; }
+    #root .hook-text { font-size: 128px; font-weight: 700; line-height: 1.06; letter-spacing: -0.035em; }
+    #root .hook-row { width: fit-content; }
+    #root .hook-row .wd { opacity: 0; }
+    #root .brand, #root .end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0; }
+    #root .lockup { display: flex; align-items: center; gap: 41.8px; }
+    #root .mark { width: 190px; height: 190px; display: block; }
+    #root .name { font-size: 155.79999999999998px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; display: inline-block; }
+    #root .ch { display: inline-block; opacity: 0; }
+    #root .brand-line, #root .end-line { margin-top: 64.60000000000001px; font-size: 72px; font-weight: 700; line-height: 1.12; letter-spacing: -0.028em; }
+    #root .brand-line .k { color: #c9c9c6; }
+    #root .end-line .e, #root .note .n { opacity: 0; }
+    #root .cta { margin-top: 68.39999999999999px; padding: 30px 70px; border-radius: 30px; background: #0071bd; color: #fff; font-size: 60px; font-weight: 700; letter-spacing: -0.02em; box-shadow: 0 18px 40px rgba(0, 113, 189, 0.26); opacity: 0; }
+    #root .note { margin-top: 45.6px; font-size: 38px; font-weight: 400; color: #55554f; }
+    
+    #s07-sugestao-world { position: absolute; inset: 0; }
+    #s07-sugestao-cam { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; transform-origin: 0 0; }
+  </style>
+  <div id="root" data-composition-id="s07-sugestao" data-width="1920" data-height="1080">
+      
+      <div id="s07-sugestao-world" data-layout-allow-overflow>
+        <div id="s07-sugestao-cam">
+          <div class="shot">
+          <img id="s07-sugestao-img0" class="shot-img" src="assets/screens/treino-serie.png" alt="" />
+          </div>
+        
+        </div>
+      </div>
+      <div class="panel"></div>
+      <div id="s07-sugestao-t0" class="line"><span class="row"><span class="wd w0">Ele</span> <span class="wd w0 acc">sobe</span></span><span class="row"><span class="wd w0">a</span> <span class="wd w0">carga.</span></span></div>
+      <div id="s07-sugestao-t1" class="line"><span class="row"><span class="wd w1">Na</span> <span class="wd w1">hora</span> <span class="wd w1">certa,</span></span><span class="row"><span class="wd w1">com</span> <span class="wd w1">o</span> <span class="wd w1">motivo.</span></span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#s07-sugestao-cam', { x: 782.605, y: 417.57, scale: 0.987 }, { y: -338.43, duration: 0.45, ease: 'expo.out' }, 0);
+    tl.fromTo('#s07-sugestao-world', { filter: 'blur(14px)' }, { filter: 'blur(0px)', duration: 0.35, ease: 'power2.out' }, 0);
+    tl.to('#s07-sugestao-cam', { x: 579.424, y: -603.04, scale: 1.504, duration: 0.444, ease: 'expo.inOut' }, 1.778);
+    tl.to('#s07-sugestao-world', { filter: 'blur(5px)', duration: 0.2, ease: 'power2.in', yoyo: true, repeat: 1 }, 1.778);
+    tl.set('#s07-sugestao-t0', { opacity: 1 }, 0.389);
+    tl.fromTo('#s07-sugestao-t0 .w0', { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.14, stagger: 0.07, ease: 'power3.out' }, 0.389);
+    tl.to('#s07-sugestao-t0 .w0', { opacity: 0, filter: 'blur(8px)', duration: 0.15, stagger: 0.03, ease: 'power2.in' }, 1.722);
+    tl.set('#s07-sugestao-t1', { opacity: 1 }, 1.944);
+    tl.fromTo('#s07-sugestao-t1 .w1', { opacity: 1, color: '#c9c9c6' }, { color: (i, el) => (el.classList.contains('acc') ? 'var(--accent)' : '#141413'), duration: 0.12, stagger: 0.08, ease: 'none' }, 1.944);
+    window.__timelines['s07-sugestao'] = tl;
+  </script>
+</template>

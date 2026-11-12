@@ -1,0 +1,17 @@
+{
+  "code_commit": "e401965d510499a5738f100abf66e99268bde322",
+  "url": "https://anilha-eight.vercel.app/entrar",
+  "http_status": 200,
+  "css_path": "/assets/index-DVLmSVt_.css",
+  "js_path": "/assets/index-Dt1UyE8V.js",
+  "profile_path": "/assets/TrainingProfile-AKcnuH09.js",
+  "asset_statuses": [200, 200, 200],
+  "stable_height_css": true,
+  "scrollable_options_css": true,
+  "visible_step_navigation": true,
+  "old_question_select_absent": true,
+  "browser_errors": [],
+  "observed_at": "2026-10-23T05:28:54.605Z",
+  "authenticated_flow_tested": false,
+  "note": "Anonymous login-page smoke and public asset checks only. Functional flows tested locally."
+}

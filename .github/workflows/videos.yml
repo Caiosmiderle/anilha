@@ -1,0 +1,31 @@
+# Checks the curated YouTube videos of the exercises (oEmbed). A video removed,
+# private or with embedding off is marked unavailable and leaves the app on the next deploy.
+name: Vídeos dos exercícios
+
+on:
+  # Catálogo sem vídeos; reavaliar a agenda quando houver curadoria.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  checar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/media/check-videos.mjs
+      - name: Salvar se algum vídeo mudou
+        run: |
+          if git diff --quiet src/content/video-status.json; then
+            echo "Nenhum vídeo mudou."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/video-status.json
+          git commit -m "Vídeos dos exercícios: checagem manual"
+          git push

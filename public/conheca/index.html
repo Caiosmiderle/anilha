@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Anilha: seu treino da semana, cada série num toque</title>
+    <meta
+      name="description"
+      content="O Anilha monta sua semana de academia e corrida e anota cada série num toque. Grátis, sem anúncio, funciona sem internet. Instala direto do navegador."
+    />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1012" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Anilha: seu treino da semana, cada série num toque" />
+    <meta
+      property="og:description"
+      content="Monta sua semana de academia e corrida e anota cada série num toque. Grátis."
+    />
+    <meta
+      property="og:image"
+      content="https://anilha-eight.vercel.app/conheca/media/og-16x9.webp"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/conheca/conheca.css" />
+    <script src="/conheca/conheca.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="top">
+      <a class="brand" href="/conheca/" aria-label="Anilha, início desta página">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mark">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#5ccbff" />
+              <stop offset="1" stop-color="#0099ff" />
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="9" fill="url(#lg)" />
+          <path
+            d="M16 6.5 A9.5 9.5 0 1 1 7.77 11.25"
+            fill="none"
+            stroke="#fff"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+          <circle cx="16" cy="16" r="3.2" fill="#fff" />
+        </svg>
+        <span>Anilha</span>
+      </a>
+      <nav aria-label="Nesta página" class="toplinks">
+        <a href="#instalar">Instalar</a>
+        <a href="#manual">Manual</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+      <a class="btn btn-tint btn-sm" href="/entrar">Abrir o Anilha</a>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero" aria-labelledby="titulo">
+        <div class="hero-text">
+          <h1 id="titulo">
+            Seu treino da semana, <span class="accent">montado</span>. Cada série,
+            <span class="accent">num toque</span>.
+          </h1>
+          <p class="lead">
+            O Anilha monta sua semana de academia e corrida, já traz a carga de cada série e conta o
+            descanso sozinho. Grátis, sem anúncio, funciona sem internet.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="/entrar">Abrir o Anilha</a>
+            <button type="button" class="btn btn-tint" data-install hidden>Instalar o app</button>
+            <a class="btn btn-outline" href="#instalar" data-install-help>Como instalar</a>
+          </div>
+          <p class="installed-note" data-installed hidden>
+            Você já está no Anilha instalado.
+            <a href="/">Ir para o app</a>
+          </p>
+        </div>
+
+        <figure class="video">
+          <div class="video-frame">
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                srcset="/conheca/media/poster-16x9.webp"
+                width="1280"
+                height="720"
+              />
+              <img
+                id="promo"
+                src="/conheca/media/poster-9x16.webp"
+                width="720"
+                height="1280"
+                alt="Marca Anilha com o texto Seu treino, num toque e o convite Comece grátis."
+              />
+            </picture>
+          </div>
+          <figcaption>Seu treino, num toque. Instala pelo navegador, sem loja.</figcaption>
+        </figure>
+      </section>
+
+      <section class="proofs" aria-labelledby="provas-titulo">
+        <h2 id="provas-titulo">O que ele faz por você</h2>
+        <ul class="proof-list">
+          <li class="proof">
+            <img
+              src="/conheca/img/hoje.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Tela Hoje do Anilha: Hoje, costas e bíceps, 6 exercícios, com o botão Iniciar treino e a semana desenhada."
+            />
+            <div>
+              <h3>Abre e já sabe o que treinar</h3>
+              <p>A tela Hoje mostra o treino do dia segundo o seu plano e diz por quê.</p>
+            </div>
+          </li>
+          <li class="proof">
+            <img
+              src="/conheca/img/treino-serie.webp"
+              style="object-position: 50% 100%"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Treino em andamento: carga de 52,5 kg e 8 repetições já preenchidas, com o botão Concluir série."
+            />
+            <div>
+              <h3>Carga já preenchida, um toque por série</h3>
+              <p>
+                Carga e repetições vêm da última vez. Ajuste se quiser e toque em Concluir série.
+              </p>
+            </div>
+          </li>
+          <li class="proof">
+            <img
+              src="/conheca/img/treino-descanso.webp"
+              style="object-position: 50% 72%"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Descanso contando 1:15 depois da série concluída, com os botões mais 15 segundos e Pular."
+            />
+            <div>
+              <h3>O descanso conta sozinho</h3>
+              <p>
+                No fim, o celular toca ou vibra. Com o app instalado e as notificações ligadas,
+                avisa até com a tela bloqueada.
+              </p>
+            </div>
+          </li>
+          <li class="proof">
+            <img
+              src="/conheca/img/treino-inicio.webp"
+              style="object-position: 50% 18%"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Sugestão no exercício: Suba para 52,5 kg e volte para 8 repetições. Bateu 12 ou mais em todas as séries pela segunda sessão seguida, com folga na última."
+            />
+            <div>
+              <h3>Bateu a meta, ele sobe a carga</h3>
+              <p>
+                Fez o topo da faixa com folga duas vezes seguidas? O Anilha sugere a próxima carga,
+                num salto que cabe na faixa. Ficou abaixo? Ele segura.
+              </p>
+            </div>
+          </li>
+          <li class="proof">
+            <img
+              src="/conheca/img/plano.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Plano da semana: segunda costas e bíceps, terça corrida leve, quarta perna, quinta descanso, sexta peito e tríceps, sábado corrida longa, domingo descanso."
+            />
+            <div>
+              <h3>Sua semana montada em 6 passos</h3>
+              <p>
+                Fichas em rodízio, academia e corrida nos dias que você escolhe, ou o app distribui
+                por você. Muda quando quiser.
+              </p>
+            </div>
+          </li>
+          <li class="proof">
+            <img
+              src="/conheca/img/grupo.webp"
+              style="object-position: 50% 45%"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Ranking do grupo Turma das 6h: Ana 100%, Bruno 67%, Rafa 60%, pela porcentagem do plano cumprido."
+            />
+            <div>
+              <h3>Treine com os amigos</h3>
+              <p>
+                No ranking do grupo vale a porcentagem do plano de cada um. Treinar a mais não sobe.
+                E dá para mandar a sua ficha para um amigo.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="instalar" class="install" aria-labelledby="instalar-titulo">
+        <h2 id="instalar-titulo">Como instalar</h2>
+        <p class="section-lead">
+          O Anilha não está em loja: ele instala direto do navegador, em menos de um minuto, e fica
+          com ícone na tela como qualquer app.
+        </p>
+
+        <div class="notice" data-installed hidden role="status">
+          <strong>O Anilha já está instalado neste aparelho.</strong>
+          <span>Pode fechar esta página e abrir pelo ícone.</span>
+        </div>
+
+        <div class="notice notice-warn" data-inapp hidden role="alert">
+          <strong>Você abriu este link dentro de outro app.</strong>
+          <span>
+            De dentro do Instagram, Facebook, TikTok e afins não dá para instalar. Abra no Chrome
+            (Android) ou no Safari (iPhone):
+          </span>
+          <ol class="steps">
+            <li data-inapp-android hidden>
+              Toque nos três pontos <span class="key">⋮</span> no canto de cima e em
+              <strong>Abrir no Chrome</strong> (ou <strong>Abrir no navegador</strong>).
+            </li>
+            <li data-inapp-ios hidden>
+              Toque nos três pontos <span class="key">⋯</span> e em
+              <strong>Abrir no navegador externo</strong> (ou no ícone de bússola do Safari).
+            </li>
+            <li>Se não achar, copie o link e cole no navegador.</li>
+          </ol>
+          <div class="actions">
+            <a class="btn btn-primary" data-open-chrome hidden href="#">Abrir no Chrome</a>
+            <button type="button" class="btn btn-tint" data-copy>Copiar link</button>
+            <span class="copied" data-copied hidden role="status">Link copiado.</span>
+          </div>
+        </div>
+
+        <div class="install-box" data-install-box>
+          <div class="tabs" role="tablist" aria-label="Aparelho">
+            <button
+              type="button"
+              role="tab"
+              id="tab-android"
+              aria-controls="painel-android"
+              aria-selected="true"
+            >
+              Android
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="tab-iphone"
+              aria-controls="painel-iphone"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              iPhone
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="tab-pc"
+              aria-controls="painel-pc"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              Computador
+            </button>
+          </div>
+
+          <div role="tabpanel" id="painel-android" aria-labelledby="tab-android" class="panel">
+            <div class="actions" data-install-row hidden>
+              <button type="button" class="btn btn-primary" data-install>Instalar o Anilha</button>
+              <span class="hint">Um toque e confirme.</span>
+            </div>
+            <ol class="steps">
+              <li>Abra esta página no <strong>Chrome</strong>.</li>
+              <li>Toque nos três pontos <span class="key">⋮</span> no canto de cima.</li>
+              <li>
+                Toque em <strong>Instalar app</strong>. Em alguns aparelhos o nome é
+                <strong>Adicionar à tela inicial</strong>.
+              </li>
+              <li>Confirme em <strong>Instalar</strong>. O ícone aparece na tela.</li>
+            </ol>
+            <p class="hint">
+              Depois, abra pelo ícone e entre com o seu e-mail. Os treinos voltam da nuvem.
+            </p>
+          </div>
+
+          <div role="tabpanel" id="painel-iphone" aria-labelledby="tab-iphone" class="panel" hidden>
+            <p class="hint">No iPhone, use o <strong>Safari</strong>: é ele que instala.</p>
+            <div class="ios-versions">
+              <section class="ios" data-ios="26">
+                <h3>iPhone com iOS 26</h3>
+                <ol class="steps">
+                  <li>
+                    Toque nos três pontos <span class="key">⋯</span> ao lado da barra de endereço.
+                  </li>
+                  <li>Toque em <strong>Compartilhar</strong>.</li>
+                  <li>Role a lista e toque em <strong>Adicionar à Tela de Início</strong>.</li>
+                  <li>Deixe <strong>Abrir como app web</strong> ligado.</li>
+                  <li>Toque em <strong>Adicionar</strong>, no canto de cima.</li>
+                </ol>
+              </section>
+              <section class="ios" data-ios="18">
+                <h3>iPhone com iOS 18 ou anterior</h3>
+                <ol class="steps">
+                  <li>
+                    Toque em <strong>Compartilhar</strong> (o quadrado com a seta para cima) na
+                    barra do Safari.
+                  </li>
+                  <li>Role e toque em <strong>Adicionar à Tela de Início</strong>.</li>
+                  <li>Toque em <strong>Adicionar</strong>.</li>
+                </ol>
+              </section>
+            </div>
+            <p class="hint">
+              Depois, abra pelo ícone e entre de novo com o mesmo e-mail: o app instalado não
+              aproveita o login do Safari, mas seus treinos voltam da nuvem. Notificação do fim do
+              descanso no iPhone só com o app instalado (iOS 16.4 ou mais novo).
+            </p>
+          </div>
+
+          <div role="tabpanel" id="painel-pc" aria-labelledby="tab-pc" class="panel" hidden>
+            <div class="actions" data-install-row hidden>
+              <button type="button" class="btn btn-primary" data-install>Instalar o Anilha</button>
+            </div>
+            <ol class="steps">
+              <li>
+                No <strong>Chrome</strong> ou no <strong>Edge</strong>, clique no ícone de instalar
+                na ponta direita da barra de endereço e confirme.
+              </li>
+              <li>
+                No <strong>Safari do Mac</strong>, vá em <strong>Arquivo</strong> e
+                <strong>Adicionar ao Dock</strong>.
+              </li>
+            </ol>
+            <p class="hint">
+              Também dá para usar direto no navegador, sem instalar. Para treinar, o lugar certo é o
+              celular.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="manual" class="manual" aria-labelledby="manual-titulo">
+        <h2 id="manual-titulo">Manual passo a passo</h2>
+        <ol class="manual-list">
+          <li class="step">
+            <img
+              src="/conheca/img/entrar.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Tela Entrar no Anilha: campo de e-mail e o botão Enviar código."
+            />
+            <div>
+              <h3>1. Entre com seu e-mail</h3>
+              <p>
+                Digite o e-mail e o código de 6 dígitos que chega na caixa de entrada. Sem senha. O
+                código vale por 15 minutos.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <img
+              src="/conheca/img/comecar-2.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Tela Quantos dias por semana: 4 dias de academia e 2 de corrida, com segunda, quarta, quinta e sexta para a academia e terça e sábado para correr."
+            />
+            <div>
+              <h3>2. Monte o plano</h3>
+              <p>
+                Uma pergunta por tela: faixa de idade, objetivo, foco (opcional, pode marcar mais de
+                um), nível, se está voltando de uma pausa, onde treina, quantos dias de academia e
+                corrida (e, se quiser, quais), tempo por treino, divisão em fichas e, se quiser,
+                gênero. Nada de saúde no cadastro: articulações para poupar ficam em Você, Perfil de
+                treino, se você permitir dados de saúde.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <img
+              src="/conheca/img/comecar-plano.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Seu plano da semana com as fichas, os exercícios e o porquê de cada escolha."
+            />
+            <div>
+              <h3>3. Confira a semana</h3>
+              <p>
+                O plano sai com o porquê de cada escolha. Deixe marcado o lembrete 30 minutos antes
+                do treino e toque em Usar este plano. A semana muda depois na aba Plano, inclusive
+                trocar um dia com outro, e as respostas em Você, Perfil de treino.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <img
+              src="/conheca/img/treino-serie.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Treino com a carga e as repetições preenchidas e o botão Concluir série."
+            />
+            <div>
+              <h3>4. Treine</h3>
+              <p>
+                Em Hoje, toque em Iniciar treino. O primeiro exercício começa com aquecimento. A
+                carga vem preenchida; ajuste nos botões de mais e menos e toque em Concluir série.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <img
+              src="/conheca/img/treino-esforco.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Descanso contando 1:30 e a pergunta Como foi a série? com Fácil, Ok, Pesado e No limite."
+            />
+            <div>
+              <h3>5. Descanse e diga como foi</h3>
+              <p>
+                O descanso começa sozinho. Toque em Fácil, Ok, Pesado ou No limite: é isso que diz
+                quando subir a carga.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <img
+              src="/conheca/img/progresso.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Aba Progresso do histórico com o gráfico de carga de um exercício."
+            />
+            <div>
+              <h3>6. Encerre e acompanhe</h3>
+              <p>
+                Encerrar a qualquer momento não perde nada. Em Histórico ficam os treinos, o
+                progresso de cada exercício, os recordes e as semanas.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <img
+              src="/conheca/img/cardio.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Registrar bike: 18 km em 40 minutos, velocidade calculada, esforço 7."
+            />
+            <div>
+              <h3>7. Corrida e outro cardio</h3>
+              <p>
+                Corrida, caminhada, bike, elíptico, natação, remo e escada na mesma tela. Dá para
+                importar o arquivo do relógio (.gpx ou .tcx).
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <img
+              src="/conheca/img/amigos.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Tela Amigos com a aderência de cada amigo e o grupo Turma das 6h."
+            />
+            <div>
+              <h3>8. Chame os amigos</h3>
+              <p>
+                Em Amigos, convide por link ou código e montem um grupo. Você escolhe o que eles
+                veem em Você, Privacidade.
+              </p>
+            </div>
+          </li>
+          <li class="step" id="mandar-ficha">
+            <img
+              src="/conheca/img/enviar-ficha.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Folha Enviar ficha: Peito e tríceps com 6 exercícios, amiga Ana escolhida, recado Faz na segunda e na quinta e o botão Enviar."
+            />
+            <div>
+              <h3>9. Mande uma ficha para um amigo</h3>
+              <p>
+                Em Plano, toque na ficha e em Enviar para um amigo. Escolha quem recebe, escreva um
+                recado se quiser e toque em Enviar. Vale para quem já é seu amigo no Anilha.
+              </p>
+            </div>
+          </li>
+          <li class="step" id="receber-ficha">
+            <img
+              src="/conheca/img/ficha-recebida.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Ficha Peito e tríceps recebida de Rafa, com o recado, os seis exercícios com séries e descanso e os botões Adicionar às minhas fichas e Recusar."
+            />
+            <div>
+              <h3>10. Receba uma ficha</h3>
+              <p>
+                Ela chega no sino. Toque para ver os exercícios e escolha Adicionar às minhas fichas
+                ou Recusar. Adicionada, aparece em Plano, Treinos. Para treinar com ela, em Hoje
+                toque em Escolher outro (ou Treinar academia, em dia de descanso) e escolha a ficha.
+              </p>
+            </div>
+          </li>
+          <li class="step" id="fichas-prontas">
+            <img
+              src="/conheca/img/fichas-prontas.webp"
+              width="585"
+              height="1266"
+              loading="lazy"
+              alt="Tela Fichas prontas com Corpo inteiro para começar, Treino de 30 minutos e Em casa com halteres, cada uma com o botão Ver exercícios."
+            />
+            <div>
+              <h3>11. Comece por uma ficha pronta</h3>
+              <p>
+                Em Plano, toque em Fichas prontas. Veja os exercícios e toque em Adicionar às minhas
+                fichas: ela entra nos seus treinos para treinar quando quiser, e o plano não muda.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="duvidas" class="faq" aria-labelledby="duvidas-titulo">
+        <h2 id="duvidas-titulo">Dúvidas e problemas comuns</h2>
+
+        <details>
+          <summary>Não aparece a opção de instalar</summary>
+          <p>
+            Confira três coisas. No iPhone, use o Safari. Saia da aba anônima, que não instala. E
+            veja se o Anilha já não está instalado: procure o ícone na tela ou na lista de apps. No
+            Android, se o menu não mostrar Instalar app, procure Adicionar à tela inicial.
+          </p>
+        </details>
+        <details>
+          <summary>Abri pelo link do Instagram ou do WhatsApp e não instala</summary>
+          <p>
+            Esses apps abrem o link num navegador próprio, que não instala nada. Toque nos três
+            pontos e escolha abrir no Chrome (Android) ou no navegador externo (iPhone). Se não
+            houver a opção, copie o link e cole no navegador.
+          </p>
+        </details>
+        <details>
+          <summary>Instalei e sumiram meus dados</summary>
+          <p>
+            Não sumiram: estão na sua conta. O app instalado começa sem login, porque no iPhone ele
+            não enxerga o Safari. Entre com o mesmo e-mail e tudo volta da nuvem. A única exceção é
+            treino feito sem internet no navegador que ainda não sincronizou: abra o navegador com
+            internet uma vez e ele envia.
+          </p>
+        </details>
+        <details>
+          <summary>Precisa de internet?</summary>
+          <p>
+            Só para entrar na primeira vez, sincronizar e ver os amigos. Treinar, registrar séries e
+            ver o histórico funcionam sem sinal; o que você fez sobe quando a rede volta.
+          </p>
+        </details>
+        <details>
+          <summary>Como atualizar</summary>
+          <p>
+            Sozinho. Quando sai versão nova, ela baixa em segundo plano e entra na próxima vez que
+            você fechar e abrir o app.
+          </p>
+        </details>
+        <details>
+          <summary>Como desinstalar</summary>
+          <p>
+            Android: segure o ícone e toque em Desinstalar. iPhone: segure o ícone e escolha a opção
+            de remover. Computador: no app aberto, menu e Desinstalar. Sua conta e seus treinos
+            continuam na nuvem; para apagar tudo, use Você, Apagar conta.
+          </p>
+        </details>
+        <details>
+          <summary>É pago?</summary>
+          <p>Não. É grátis e sem anúncio.</p>
+        </details>
+        <details>
+          <summary>Funciona no computador?</summary>
+          <p>
+            Sim, no navegador ou instalado pelo Chrome e pelo Edge. A conta é a mesma do celular.
+            Para treinar, o celular é mais prático.
+          </p>
+        </details>
+        <details>
+          <summary>Meus treinos ficam públicos?</summary>
+          <p>
+            Não. Nada é público. Só amigos que você aceitou veem algo, e você escolhe o quê em Você,
+            Privacidade: aderência, treinos feitos, recordes e cargas.
+          </p>
+        </details>
+        <details>
+          <summary>Quero focar em um grupo, como pernas ou costas. Dá?</summary>
+          <p>
+            Dá. Na tela de foco, marque um ou mais: glúteos e pernas, costas e ombros, peito e
+            braços ou abdômen. Esses grupos ganham mais séries na semana e entram primeiro no
+            treino, e nenhum outro grupo sai do plano. Glúteos e pernas ganham fichas próprias e o
+            primeiro treino já é de perna. Sem foco, a semana divide o trabalho por igual. Já tem
+            plano? Em Você, Perfil de treino, mude o foco e gere um plano novo.
+          </p>
+        </details>
+        <details>
+          <summary>Dá para mudar as respostas do cadastro depois?</summary>
+          <p>
+            Dá, todas, em Você, Perfil de treino. Nada muda até você tocar em Gerar plano novo e
+            confirmar. O plano de agora vai para o histórico, e os treinos feitos ficam como estão.
+          </p>
+        </details>
+        <details>
+          <summary>Vou correr uma prova. O app ajuda?</summary>
+          <p>
+            Ajuda. Diga a distância (5, 10, 21 ou 42 km) e a data no cadastro ou em Plano, Prova
+            alvo. O longão sobe até 10% por semana (passar disso aumentou as lesões num estudo com
+            5.200 corredores), com uma semana mais leve a cada 4 e a reta final com menos volume.
+            Informe um tempo recente em Plano, Seus ritmos, e cada corrida ganha ritmo e a prova
+            ganha previsão.
+          </p>
+        </details>
+        <details>
+          <summary>Os treinos têm base científica?</summary>
+          <p>
+            Têm. Na academia, o volume de séries por semana, o descanso entre séries, o esforço
+            perto da falha e até a escolha de exercícios (como a cadeira flexora sentada) seguem
+            meta-análises e estudos recentes. Na corrida, os ritmos saem do seu tempo recente, a
+            maior parte é leve com um treino de qualidade por semana, nenhuma corrida passa 10% da
+            maior dos últimos 30 dias e a reta final antes da prova corta volume sem cortar
+            intensidade. Onde não há estudo, vale a prática de treinador.
+          </p>
+        </details>
+        <details>
+          <summary>O aparelho está ocupado. Dá para mudar a ordem?</summary>
+          <p>
+            Dá. No treino, toque nos três pontos do exercício e escolha Deixar para o fim, ou Fazer
+            agora em outro que esteja livre. A série atual segue a nova ordem. Para mudar a ordem de
+            vez, arraste os exercícios da ficha em Plano.
+          </p>
+        </details>
+        <details>
+          <summary>Como sei fazer um exercício direito?</summary>
+          <p>
+            No treino, toque em Como fazer, embaixo do nome do exercício: aparece a imagem do
+            movimento, do começo ao fim, com dicas e os erros mais comuns, e o descanso continua
+            correndo enquanto você lê. Os poucos exercícios ainda sem imagem têm um atalho para
+            buscar no YouTube. Sem internet, as dicas aparecem do mesmo jeito.
+          </p>
+        </details>
+        <details>
+          <summary>O que é o foguinho ao lado do meu nome?</summary>
+          <p>
+            São os dias seguidos em que você seguiu o plano: treinou no dia de treino ou descansou
+            no dia de descanso. Ele aparece a partir de 5 dias e fica cinza enquanto falta o treino
+            do dia. Precisa descansar num dia de treino? Em Hoje, toque em Hoje é descanso: a
+            sequência pausa e não zera. Sem notificação e sem cobrança.
+          </p>
+        </details>
+        <details>
+          <summary>Dá para levar as fichas numa planilha?</summary>
+          <p>
+            Dá. Em Plano, Treinos, toque em Exportar planilha: sai um arquivo do Excel com uma aba
+            por treino, com exercício, séries, repetições, descanso, aquecimento e quatro colunas de
+            semana para anotar a carga. Também está em Você, Seus dados. Dentro de uma ficha, o
+            mesmo botão exporta só ela. Abre no Excel, no Numbers e no Google Planilhas, e imprime
+            numa folha deitada. No iPhone, o arquivo vai para o menu de compartilhar, em Salvar em
+            Arquivos.
+          </p>
+        </details>
+        <details>
+          <summary>Dá para conversar com os amigos no app?</summary>
+          <p>
+            Só por fichas. Em Amigos, abra um amigo e toque em Fichas entre vocês: aparece tudo que
+            vocês mandaram um para o outro, como numa conversa, e se cada ficha foi adicionada ou
+            recusada. Para responder, mande uma ficha. Não tem campo de texto: o Anilha é para
+            treinar, não para mais um chat.
+          </p>
+        </details>
+        <details>
+          <summary>Dá para postar o treino?</summary>
+          <p>
+            Dá. No Histórico, abra um treino concluído e toque em Compartilhar treino: o app monta
+            uma imagem no tamanho de story, com a duração, as séries, a carga total e a melhor série
+            de cada exercício, sem nenhum dado do corpo. No celular, o botão abre o menu de
+            compartilhar, onde ficam o Instagram e, no iPhone, Salvar imagem. Também dá para tocar e
+            segurar a imagem.
+          </p>
+        </details>
+        <details>
+          <summary>Montei um treino meu. Ele some se eu mudar o plano?</summary>
+          <p>
+            Não. Em Plano, Treinos, as fichas ficam separadas: as do seu plano mudam quando você
+            gera um plano novo; as que você criou, pegou nas fichas prontas ou recebeu ficam em Seus
+            treinos. O que for arquivado aparece em Arquivados, com Restaurar. Quer mexer numa ficha
+            do plano sem perder? Abra e toque em duplicar como meu treino.
+          </p>
+        </details>
+        <details>
+          <summary>Dá para trocar um exercício por outro?</summary>
+          <p>
+            Dá. No treino, nos três pontos do exercício, Substituir exercício mostra até 6 parecidos
+            do mesmo grupo, com o porquê de cada um: mesmo movimento, o equipamento do seu local e o
+            seu nível vêm primeiro. Quer outro? Ver todos do grupo abre a lista com busca. Para
+            trocar de vez, abra a ficha em Plano, toque no exercício e em Trocar exercício.
+          </p>
+        </details>
+        <details>
+          <summary>Dá para escolher os dias de treino?</summary>
+          <p>
+            Dá. No passo Como é a sua semana, toque nos dias de academia e nos de corrida. É
+            opcional: o que você não escolher, o app encaixa, evitando perna na véspera de corrida.
+            Depois, em Plano, toque num dia para trocar com outro.
+          </p>
+        </details>
+        <details>
+          <summary>Não sei montar treino. Tem ficha pronta?</summary>
+          <p>
+            Tem. Em Plano, toque em Fichas prontas: são fichas montadas pelo Anilha, como Corpo
+            inteiro para começar, Treino de 30 minutos e Em casa com halteres. Toque em Ver
+            exercícios e em Adicionar às minhas fichas; ela vira um treino seu, que você ajusta como
+            quiser. Seu plano não muda.
+          </p>
+        </details>
+        <details>
+          <summary>Como mando uma ficha para um amigo?</summary>
+          <p>
+            Em Plano, toque na ficha e em Enviar para um amigo. Escolha quem recebe e toque em
+            Enviar. A pessoa precisa ser sua amiga no Anilha: o convite fica em Amigos. Ela recebe
+            no sino e decide se adiciona; o plano dela não muda sem ela aceitar.
+          </p>
+        </details>
+        <details>
+          <summary>Meu personal pode mandar meu treino pelo app?</summary>
+          <p>
+            Pode, se vocês forem amigos no Anilha: a ficha chega no sino e vira um treino seu quando
+            você aceita. O Anilha não confere se quem manda é profissional de educação física, então
+            avalie antes de treinar.
+          </p>
+        </details>
+        <details>
+          <summary>Onde mando uma sugestão ou aviso de um problema?</summary>
+          <p>
+            Em Você, Fale com o Anilha. Escolha Sugestão, Problema no app ou Meus dados e
+            privacidade e escreva. A resposta chega no próprio app e no sino.
+          </p>
+        </details>
+        <details>
+          <summary>O app guarda meu peso e minhas dores?</summary>
+          <p>
+            Só se você permitir. Até responder, aparece um ponto vermelho na aba Você. Dá para
+            desligar quando quiser em Você, Privacidade, e o que foi guardado é apagado.
+          </p>
+        </details>
+        <details>
+          <summary>Por que o cadastro pede a faixa de idade e o gênero?</summary>
+          <p>
+            A faixa de idade ajusta o começo do plano (com 60 anos ou mais, menos séries no início),
+            e só a faixa é guardada, não a data de nascimento. O gênero é opcional, tem Prefiro não
+            informar e só faz um ajuste pequeno de volume, nunca muda o foco. Em Você, Seus dados,
+            está tudo o que o app guarda e para quê, com exportar e apagar.
+          </p>
+        </details>
+        <details>
+          <summary>O Anilha usa cookies?</summary>
+          <p>
+            Não. Ele guarda no navegador só o necessário para funcionar, inclusive sem internet.
+            Detalhes na <a href="/privacidade/#cookies">Política de privacidade</a>.
+          </p>
+        </details>
+        <details>
+          <summary>Tem lembrete do treino?</summary>
+          <p>
+            Tem. No fim do cadastro o app oferece um lembrete 30 minutos antes do treino e na
+            véspera das corridas, e no domingo às 20:00 chega o resumo da semana. Tudo muda em
+            Ajustes, Notificações. No iPhone, só com o app instalado na tela de início.
+          </p>
+        </details>
+        <details>
+          <summary>O aviso do fim do descanso funciona com a tela bloqueada?</summary>
+          <p>
+            Sim, com as notificações ligadas. No iPhone, só com o app instalado na tela de início
+            (iOS 16.4 ou mais novo). Em Ajustes dá para escolher som e vibração, só vibração ou só
+            na tela.
+          </p>
+        </details>
+        <details>
+          <summary>Integra com Apple Saúde, Strava ou relógio?</summary>
+          <p>
+            Integração direta, não. Dá para importar uma corrida ou outro cardio pelo arquivo do
+            relógio (.gpx ou .tcx), exportado do Strava, Garmin ou Coros.
+          </p>
+        </details>
+        <details>
+          <summary>Já treino há tempo ou estou voltando agora. Serve?</summary>
+          <p>
+            Serve. Na montagem você diz o nível e se está voltando de pausa. Voltando, o Anilha
+            entra em modo retorno: menos séries e mais folga nas primeiras semanas.
+          </p>
+        </details>
+      </section>
+
+      <section class="final" aria-labelledby="final-titulo">
+        <h2 id="final-titulo">Comece hoje</h2>
+        <p>Entre com o e-mail, monte a semana em 6 passos e registre o primeiro treino.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/entrar">Abrir o Anilha</a>
+          <button type="button" class="btn btn-tint" data-install hidden>Instalar o app</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>Anilha. Grátis, sem anúncio. Seus dados ficam na sua conta e você apaga quando quiser.</p>
+      <nav aria-label="Rodapé">
+        <a href="/privacidade/">Política de privacidade</a>
+        <a href="/termos/">Termos de uso</a>
+      </nav>
+    </footer>
+  </body>
+</html>

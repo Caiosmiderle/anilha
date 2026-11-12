@@ -1,0 +1,413 @@
+{
+  "base": "f741f92",
+  "browser_probes": 7,
+  "routes": 9,
+  "viewport_widths": [
+    320,
+    390,
+    1440
+  ],
+  "observations": 30,
+  "captures": 31,
+  "contrast": {
+    "white_brand_top": 1.8354338451840952,
+    "white_brand_bottom": 2.99978868018584,
+    "white_danger_dark": 2.7869021083525656,
+    "focus_light": 1.3143072615467808,
+    "focus_dark": 1.458279669658466,
+    "off_switch_light": 1.2688774649087908,
+    "off_switch_dark": 1.316159658385549
+  },
+  "evidence": [
+    {
+      "id": "hoje-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "plano-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "treinos-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "historico-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "progresso-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "amigos-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "voce-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "ajustes-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "privacidade-390",
+      "data": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "hoje-320",
+      "data": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "plano-320",
+      "data": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "treinos-320",
+      "data": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "historico-320",
+      "data": {
+        "viewport": 347,
+        "scrollWidth": 347,
+        "clippedSegments": [
+          {
+            "label": "Seção do histórico",
+            "width": 288,
+            "scroll": 330,
+            "options": [
+              {
+                "text": "Treinos",
+                "width": 72.546875
+              },
+              {
+                "text": "Progresso",
+                "width": 91.46875
+              },
+              {
+                "text": "Semanas",
+                "width": 84.3125
+              },
+              {
+                "text": "Corpo",
+                "width": 65.828125
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "progresso-320",
+      "data": {
+        "viewport": 347,
+        "scrollWidth": 347,
+        "clippedSegments": [
+          {
+            "label": "Seção do histórico",
+            "width": 288,
+            "scroll": 330,
+            "options": [
+              {
+                "text": "Treinos",
+                "width": 72.546875
+              },
+              {
+                "text": "Progresso",
+                "width": 91.46875
+              },
+              {
+                "text": "Semanas",
+                "width": 84.3125
+              },
+              {
+                "text": "Corpo",
+                "width": 65.828125
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "amigos-320",
+      "data": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "voce-320",
+      "data": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "ajustes-320",
+      "data": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "clippedSegments": [
+          {
+            "label": "Aviso do fim do descanso",
+            "width": 248,
+            "scroll": 316,
+            "options": [
+              {
+                "text": "Som e vibração",
+                "width": 128.421875
+              },
+              {
+                "text": "Só vibrar",
+                "width": 84.75
+              },
+              {
+                "text": "Só na tela",
+                "width": 91.015625
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "privacidade-320",
+      "data": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "clippedSegments": []
+      }
+    },
+    {
+      "id": "tokens-light",
+      "data": {
+        "--bg-surface": "#fff",
+        "--bg-page": "#fafafa",
+        "--brand-300": "#5ccbff",
+        "--brand-500": "#09f",
+        "--ink-on-brand": "#fff",
+        "--danger": "#e0322d",
+        "--line-strong": "#e4e4e7",
+        "--shadow-focus": "0 0 0 3px #0099ff40"
+      }
+    },
+    {
+      "id": "tokens-dark",
+      "data": {
+        "--bg-surface": "#18191c",
+        "--bg-page": "#0f1012",
+        "--brand-300": "#5ccbff",
+        "--brand-500": "#09f",
+        "--ink-on-brand": "#fff",
+        "--danger": "#ff6b63",
+        "--line-strong": "#2e2f34",
+        "--shadow-focus": "0 0 0 3px #0099ff40"
+      }
+    },
+    {
+      "id": "menu-keyboard",
+      "data": {
+        "text": "Entendi",
+        "role": null,
+        "insideMenu": false
+      }
+    },
+    {
+      "id": "focus-draft",
+      "data": {
+        "edited": {
+          "load": 20,
+          "reps": 10
+        },
+        "shown": "6 repetições"
+      }
+    },
+    {
+      "id": "focus-background",
+      "data": {
+        "inert": false,
+        "tabindex": 0,
+        "ariaHidden": false
+      }
+    },
+    {
+      "id": "focus-saved",
+      "data": [
+        {
+          "load": null,
+          "reps": 6,
+          "kind": "warmup"
+        }
+      ]
+    },
+    {
+      "id": "day-swap",
+      "data": {
+        "edited": "07:45",
+        "days": [
+          [
+            {
+              "kind": "rest",
+              "time": "06:00",
+              "weekday": 0,
+              "run_type": null,
+              "split_key": null
+            },
+            {
+              "kind": "gym",
+              "time": "06:00",
+              "weekday": 1,
+              "run_type": null,
+              "split_key": null
+            },
+            {
+              "kind": "gym",
+              "time": "06:00",
+              "weekday": 2,
+              "run_type": null,
+              "split_key": null
+            },
+            {
+              "kind": "rest",
+              "time": "06:00",
+              "weekday": 3,
+              "run_type": null,
+              "split_key": null
+            },
+            {
+              "kind": "gym",
+              "time": "06:00",
+              "weekday": 4,
+              "run_type": null,
+              "split_key": null
+            },
+            {
+              "kind": "rest",
+              "time": "06:00",
+              "weekday": 5,
+              "run_type": null,
+              "split_key": null
+            },
+            {
+              "kind": "rest",
+              "time": "06:00",
+              "weekday": 6,
+              "run_type": null,
+              "split_key": null
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "day-swap-ui",
+      "data": {
+        "value": "06:00"
+      }
+    },
+    {
+      "id": "onboarding-reload",
+      "data": {
+        "before": "Quanto tempo por treino?",
+        "after": "Vamos montar seu plano",
+        "seen": [
+          "Vamos montar seu plano",
+          "Qual a sua idade?",
+          "Qual o seu objetivo principal?",
+          "Quer mais foco em algum grupo?",
+          "Qual o seu nível?",
+          "Está voltando de uma pausa longa?",
+          "Onde você treina?",
+          "Quantos dias por semana?",
+          "Quanto tempo por treino?"
+        ]
+      }
+    },
+    {
+      "id": "agent-scroll",
+      "data": {
+        "simulatedUserScroll": 0,
+        "after": 243,
+        "response": "simulada localmente",
+        "reducedMotion": false
+      }
+    },
+    {
+      "id": "dismiss-progression",
+      "data": {
+        "before": "42",
+        "rowAfter": "40 kg × 12",
+        "editorAfter": "42"
+      }
+    },
+    {
+      "id": "run-double-submit",
+      "data": {
+        "events": "dois cliques DOM consecutivos antes do primeiro await terminar",
+        "runs": [
+          {
+            "distance": 5,
+            "time": 1800
+          },
+          {
+            "distance": 5,
+            "time": 1800
+          }
+        ]
+      }
+    }
+  ]
+}

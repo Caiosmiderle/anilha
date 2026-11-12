@@ -1,0 +1,118 @@
+/* Privacy policy and terms: long reading, the landing tokens, one column. */
+.legal {
+  max-width: 760px;
+  padding-bottom: 48px;
+}
+.legal-head {
+  padding: 32px 0 8px;
+}
+.legal-head h1 {
+  font-size: 34px;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin: 0 0 8px;
+}
+.legal-version {
+  color: var(--ink-muted);
+  font-size: 15px;
+}
+.legal section {
+  padding: 24px 0 8px;
+  border-top: 1px solid var(--line);
+}
+.legal h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  scroll-margin-top: 96px;
+}
+.legal h3 {
+  margin-top: 16px;
+}
+.legal ul,
+.legal ol {
+  margin: 0 0 12px;
+  padding-left: 22px;
+}
+.legal li {
+  margin-bottom: 6px;
+}
+.legal-summary {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 24px;
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+  list-style: none;
+}
+.legal-summary li {
+  margin: 0;
+}
+.legal-toc {
+  columns: 2 220px;
+  column-gap: 24px;
+  margin-bottom: 8px;
+}
+.legal-toc li {
+  break-inside: avoid;
+}
+/* Tables turn into stacked cards on the phone: no sideways scrolling. */
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 16px;
+  font-size: 16px;
+}
+.legal-table th,
+.legal-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.legal-table th {
+  color: var(--ink-strong);
+  font-weight: 600;
+}
+.legal-table code {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 640px) {
+  .legal-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .legal-table tr {
+    display: grid;
+    gap: 2px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .legal-table td {
+    padding: 0;
+    border: 0;
+  }
+  .legal-table td::before {
+    content: attr(data-label) ': ';
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+  .legal-table td:first-child::before {
+    content: none;
+  }
+  .legal-table td:first-child {
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+}
+.legal-note {
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--brand-50);
+  color: var(--ink);
+}

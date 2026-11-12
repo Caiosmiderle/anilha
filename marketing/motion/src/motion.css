@@ -1,0 +1,100 @@
+/*
+ * Só o que o vídeo precisa por cima do CSS do app. Nada de cor nova: tudo usa os tokens.
+ */
+
+/* Render quadro a quadro: transição e animação de CSS dependem do relógio e quebram o
+   render. Cada movimento do Harbor é refeito em quadros (src/harbor.ts). */
+*,
+*::before,
+*::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--ink-strong);
+}
+
+/*
+ * A tela do celular. O viewport do vídeo tem 1920 ou 1080 px e acende as regras de
+ * computador do app (a partir de 768 e 1024 px). Dentro da moldura valem as regras de
+ * celular, com os mesmos valores das regras base do app.css e do extensions.css.
+ */
+.app-frame {
+  position: absolute;
+  width: 390px;
+  overflow: hidden;
+  border-radius: var(--radius-3xl);
+  /* Recorte explícito: com a moldura girando em 3D, áreas de rolagem (os chips) escapavam
+     do overflow com borda arredondada. */
+  clip-path: inset(0 round var(--radius-3xl));
+  background: var(--bg-page);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  text-align: left;
+}
+.app-frame .app-shell {
+  padding-left: 0;
+}
+.app-frame .page-title {
+  font: 600 24px/1.3 var(--font-sans);
+  letter-spacing: 0;
+}
+.app-frame .mobile-brand {
+  display: flex;
+}
+.app-frame .app-main {
+  padding: var(--space-5) var(--space-4) var(--space-4);
+}
+.app-frame .hb-tabbar {
+  position: absolute;
+  display: grid;
+}
+.app-frame .focus-mode {
+  position: absolute;
+}
+/* focus-big usa vw: no celular de 390 px dá 26vw e 15vw. */
+.app-frame .focus-big {
+  font-size: 101.4px;
+}
+.app-frame .focus-big.is-set {
+  font-size: 58.5px;
+}
+.app-frame .hb-dock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* O logo no tamanho pedido: o .hb-logo do Harbor fixa 32 px. */
+.logo-free .hb-logo {
+  width: 100%;
+  height: 100%;
+}
+
+/* Camadas do vídeo */
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.kinetic {
+  position: absolute;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  margin: 0;
+}
+.kinetic-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.kinetic-word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform;
+}

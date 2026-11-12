@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-22",
+  "timezone": "America/Sao_Paulo",
+  "code_commit": "bd093d5f2bd6c0e74c54770a16ce50abb4e8aca2",
+  "development_branch": "codex/walter-teclado-ios",
+  "vercel": {
+    "target": "production",
+    "status_source": "GitHub commit status: Vercel",
+    "status": "success",
+    "deployment_link": "https://vercel.com/caiosmiderles-projects/anilha/JBu1gogo4k7x7kNGXpUDWgZW81Dd",
+    "public_url": "https://anilha-eight.vercel.app/entrar",
+    "http_status": 200,
+    "css_path": "/assets/index-CwEj1cL-.css",
+    "js_path": "/assets/index-BtEwARSh.js",
+    "visual_height_css_found": true,
+    "walter_launcher_code_found": true,
+    "observed_at": "2026-10-23T01:32:50.999Z"
+  },
+  "supabase": {
+    "function": "agente",
+    "version": 3,
+    "status": "ACTIVE",
+    "files_match_local": true,
+    "walter_prompt_found": true,
+    "entrypoint_unchanged": true,
+    "cors_options_status": 204,
+    "unauthenticated_post_status": 401,
+    "schema_changes": false,
+    "real_model_call_tested": false
+  },
+  "verification": {
+    "regression_failed_before_fix": true,
+    "unit_tests_passed": 683,
+    "unit_files_passed": 52,
+    "chromium_e2e_passed": 7,
+    "webkit_windows_e2e_passed": 7,
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "formatting_manual_changed_files": "passed",
+    "geometry": "VisualViewport height 414; offsets 0/96/300/420; innerHeight independently 414; reopen, rotate, send and receive proposal"
+  },
+  "limitations": [
+    "User video shows the previous version failing on a physical iPhone; exact viewport API values were not measured there",
+    "The new version was checked with simulated keyboard geometry, not a physical iPhone keyboard",
+    "Private Vercel logs and authenticated production model flow were not checked",
+    "Other findings from the UI/UX dossier are not claimed fixed"
+  ],
+  "claude_review": "pending"
+}

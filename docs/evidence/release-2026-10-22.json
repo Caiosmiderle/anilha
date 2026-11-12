@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-22",
+  "timezone": "America/Sao_Paulo",
+  "code_commit": "9fed26a44895f5de0511bba0579268cf06dc7bdb",
+  "git_main_push": "success",
+  "vercel": {
+    "target": "production",
+    "status_source": "GitHub commit status: Vercel",
+    "status": "success",
+    "deployment_link": "https://vercel.com/caiosmiderles-projects/anilha/FroRDUrscAGhKtgdQjVPyq7QSjBN",
+    "public_url": "https://anilha-eight.vercel.app",
+    "private_api_inspection": "403, team scope authorization unavailable"
+  },
+  "public_browser": {
+    "url": "https://anilha-eight.vercel.app/entrar",
+    "status": 200,
+    "title": "Anilha",
+    "heading": "Entrar no Anilha",
+    "css_path": "/assets/index-BKkgVzwe.css",
+    "js_path": "/assets/index-dMAH5TNe.js",
+    "keyboard_css_found": true,
+    "visual_viewport_code_found": true,
+    "page_errors": 0,
+    "console_errors": 0,
+    "failed_requests": 0,
+    "observed_at": "2026-10-22T19:45:20.726Z"
+  },
+  "supabase": {
+    "project_id": "ssuuvzgqtobnfvobvjcu",
+    "function": "agente",
+    "version": 2,
+    "status": "ACTIVE",
+    "deployed_files_match_local": true,
+    "cors_options_status": 204,
+    "unauthenticated_post_status": 401,
+    "schema_changes": false,
+    "development_branch_created": false,
+    "real_model_call_tested": false
+  },
+  "local_verification": {
+    "unit_files_passed": 52,
+    "unit_tests_passed": 683,
+    "e2e_tests_passed": 14,
+    "keyboard_capture_repeat_passed": 1,
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "formatting_changed_files": "passed"
+  },
+  "limitations": [
+    "VisualViewport geometry simulated; physical iPhone/Safari/PWA keyboard not tested",
+    "Public browser check used a new anonymous context; no authenticated production agent flow",
+    "No private Vercel runtime/build logs inspected",
+    "Other dossier findings remain documented and are not claimed fixed"
+  ]
+}

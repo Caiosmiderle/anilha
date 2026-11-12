@@ -1,0 +1,37 @@
+node_modules
+dist
+dev-dist
+coverage
+playwright-report
+test-results
+blob-report
+.local
+*.log
+.env
+.env.local
+.env.*.local
+.vercel
+.DS_Store
+Thumbs.db
+artifacts
+supabase/bundle.sql
+
+# Marketing: the kit's paid guides stay local; renders and review frames are rebuilt.
+marketing/referencias
+marketing/qc
+marketing/capture/screens
+marketing/video/out
+marketing/video/*/renders
+marketing/video/*/qc
+marketing/video/*/.hyperframes
+marketing/motion/out
+marketing/motion/qc
+marketing/motion/public/audio
+marketing/video/kinetic/*/renders
+marketing/video/kinetic/*/renders.log
+marketing/video/kinetic/*/.hyperframes
+# The licensed track (Pixabay) stays local: put it at marketing/video/kinetic/music/trilha.mp3.
+marketing/video/kinetic/music
+marketing/video/kinetic/*/assets/music
+# Os sons ficam locais até haver origem e licença documentadas.
+marketing/video/**/assets/sfx/

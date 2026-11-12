@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #e3f2fd; font-family: 'Inter', sans-serif; color: #141413; --accent: #006bb3; }
+    #root .row { display: block; }
+    #root .acc { color: var(--accent); }
+    #root .wd { display: inline-block; }
+    #root .shot { position: absolute; inset: 0; border-radius: 84px; overflow: hidden; background: #fafafa; box-shadow: 0 50px 140px rgba(20, 20, 19, 0.16), 0 0 0 5px rgba(20, 20, 19, 0.06); }
+    #root .shot-img { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; display: block; }
+    #root .press { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; }
+    #root .press img { display: block; width: 1170px; height: 2532px; }
+    #root .panel { position: absolute; left: 0; top: 0; width: 800px; height: 100%; background: #e3f2fd; }
+    #root .line { position: absolute; left: 110px; top: 0; width: 660px; height: 100%; display: flex; flex-direction: column; justify-content: center; font-size: 84px; font-weight: 700; line-height: 1.07; letter-spacing: -0.032em; opacity: 0; }
+    #root .line .wd { opacity: 0; }
+    #root .flood { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; padding: 0 150px; opacity: 0; }
+    #root .slam { font-size: 300px; font-weight: 900; line-height: 0.98; letter-spacing: -0.05em; }
+    #root .slam .row { transform-origin: 0% 60%; }
+    #root .hook { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 150px; }
+    #root .hook-text { font-size: 128px; font-weight: 700; line-height: 1.06; letter-spacing: -0.035em; }
+    #root .hook-row { width: fit-content; }
+    #root .hook-row .wd { opacity: 0; }
+    #root .brand, #root .end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0; }
+    #root .lockup { display: flex; align-items: center; gap: 41.8px; }
+    #root .mark { width: 190px; height: 190px; display: block; }
+    #root .name { font-size: 155.79999999999998px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; display: inline-block; }
+    #root .ch { display: inline-block; opacity: 0; }
+    #root .brand-line, #root .end-line { margin-top: 64.60000000000001px; font-size: 72px; font-weight: 700; line-height: 1.12; letter-spacing: -0.028em; }
+    #root .brand-line .k { color: #c9c9c6; }
+    #root .end-line .e, #root .note .n { opacity: 0; }
+    #root .cta { margin-top: 68.39999999999999px; padding: 30px 70px; border-radius: 30px; background: #0071bd; color: #fff; font-size: 60px; font-weight: 700; letter-spacing: -0.02em; box-shadow: 0 18px 40px rgba(0, 113, 189, 0.26); opacity: 0; }
+    #root .note { margin-top: 45.6px; font-size: 38px; font-weight: 400; color: #55554f; }
+    
+    #s05-montado-world { position: absolute; inset: 0; }
+    #s05-montado-cam { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; transform-origin: 0 0; }
+  </style>
+  <div id="root" data-composition-id="s05-montado" data-width="1920" data-height="1080">
+      
+      <div id="s05-montado-world" data-layout-allow-overflow>
+        <div id="s05-montado-cam">
+          <div class="shot">
+          <img id="s05-montado-img0" class="shot-img" src="assets/screens/comecar-plano.png" alt="" />
+          </div>
+        
+        </div>
+      </div>
+      <div class="panel"></div>
+      <div id="s05-montado-t0" class="line"><span class="row"><span class="wd w0">Ele</span> <span class="wd w0">monta</span></span><span class="row"><span class="wd w0">as</span> <span class="wd w0 acc">fichas</span></span><span class="row"><span class="wd w0">da</span> <span class="wd w0">semana.</span></span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#s05-montado-cam', { x: 743.995, y: -260.28, scale: 1.053 }, { x: 810.1, y: -174.4, scale: 0.94, duration: 0.4, ease: 'expo.out' }, 0);
+    tl.set('#s05-montado-world', { filter: 'blur(0px)' }, 0);
+    tl.to('#s05-montado-cam', { x: 810.1, y: -870, scale: 0.94, duration: 0.556, ease: 'expo.inOut' }, 1.778);
+    tl.to('#s05-montado-world', { filter: 'blur(5px)', duration: 0.25, ease: 'power2.in', yoyo: true, repeat: 1 }, 1.778);
+    tl.set('#s05-montado-t0', { opacity: 1 }, 0.333);
+    tl.fromTo('#s05-montado-t0 .w0', { opacity: 1, color: '#c9c9c6' }, { color: (i, el) => (el.classList.contains('acc') ? 'var(--accent)' : '#141413'), duration: 0.12, stagger: 0.08, ease: 'none' }, 0.333);
+    window.__timelines['s05-montado'] = tl;
+  </script>
+</template>

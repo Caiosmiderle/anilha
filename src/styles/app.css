@@ -1,0 +1,2690 @@
+@import '../../design/harbor-ui/tokens.css';
+@import '../../design/harbor-ui/components.css';
+@import '../../design/harbor-ui/extensions.css';
+
+/* Training questions and explicit plan approval, inspired by beUI Approval Card. */
+.training-form {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  --training-question-height: clamp(340px, calc(100svh - 400px), 600px);
+}
+.training-editor-layout {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.training-editor-main {
+  min-width: 0;
+}
+.training-step-nav {
+  min-width: 0;
+}
+.training-step-nav-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.training-step-nav ol {
+  position: relative;
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scroll-padding: var(--space-1);
+}
+.training-step-nav li {
+  flex: none;
+}
+.training-step-nav button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  color: var(--ink-muted-aa);
+  font: 500 14px/20px var(--font-sans);
+  text-align: left;
+  white-space: nowrap;
+}
+.training-step-nav button[aria-current='step'] {
+  color: var(--brand-700);
+  background: var(--brand-50);
+  border-color: var(--brand-700);
+}
+.training-step-number {
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  color: var(--ink-muted-aa);
+  font-size: 12px;
+}
+.training-step-nav button[aria-current='step'] .training-step-number {
+  background: var(--brand-700);
+  color: var(--ink-on-brand);
+}
+.training-card.is-question {
+  height: var(--training-question-height);
+}
+.training-card.is-question .training-card-fields {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.training-card.is-question .training-card-head,
+.training-question-heading,
+.training-question-footer {
+  flex: none;
+}
+.training-question-heading {
+  padding: var(--space-4) var(--space-5);
+}
+.training-question-body {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  padding: var(--space-1) var(--space-5) var(--space-5);
+}
+.training-question-body > * {
+  flex-shrink: 0;
+}
+.training-question-body:focus-visible {
+  outline: 2px solid var(--brand-700);
+  outline-offset: -3px;
+}
+@media (min-width: 1100px) {
+  .training-form {
+    --training-question-height: clamp(420px, calc(100svh - 370px), 560px);
+  }
+  .training-editor-layout {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+  .training-step-nav {
+    display: flex;
+    flex-direction: column;
+  }
+  .training-step-nav-head {
+    display: grid;
+    padding: var(--space-2) var(--space-1);
+  }
+  .training-step-nav ol {
+    flex-direction: column;
+    overflow: visible;
+    min-height: 0;
+    gap: var(--space-1);
+  }
+  .training-step-nav button {
+    width: 100%;
+    white-space: normal;
+    border-color: transparent;
+    background: transparent;
+    padding: var(--space-2);
+  }
+}
+.training-card {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-2xl);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  scroll-margin-top: var(--space-5);
+}
+.training-card-fields {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.training-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-5) 0;
+}
+.training-card-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+  color: var(--ink-strong);
+}
+.training-card-status {
+  margin-left: auto;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  font: 500 12px/18px var(--font-sans);
+  color: var(--brand-700);
+  background: var(--brand-50);
+}
+.training-card-body {
+  padding: var(--space-5);
+}
+.training-card-title {
+  font: 600 22px/1.3 var(--font-sans);
+  margin: 0;
+  color: var(--ink-strong);
+}
+.training-card-title:focus {
+  outline: none;
+}
+.training-card-body p {
+  margin: 0;
+}
+.training-card .optioncards {
+  gap: var(--space-2);
+}
+.training-card .optioncard {
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+}
+.training-card .optioncard[aria-checked='true'] {
+  background: var(--brand-50);
+  border-color: var(--brand-700);
+}
+.training-card .optioncard:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+.training-question-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--line);
+}
+.training-question-footer .hb-iconbtn {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 1px solid var(--line-strong);
+}
+.training-question-footer .hb-iconbtn:last-child {
+  background: var(--brand-700);
+  color: var(--ink-on-brand);
+  border-color: var(--brand-700);
+}
+.training-progress {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+}
+.training-progress span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+.training-progress span[data-done='true'] {
+  background: var(--brand-300);
+}
+.training-progress span[data-active='true'] {
+  width: 18px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-700);
+}
+.training-form-actions p {
+  margin: 0;
+}
+.training-answers > summary {
+  padding: var(--space-4);
+  min-height: 48px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.training-review-values {
+  margin: 0;
+}
+.training-review-values > div {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.training-review-values dt {
+  color: var(--ink-muted-aa);
+}
+.training-review-values dd {
+  text-align: right;
+  margin: 0;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.training-review-routine {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+}
+.training-review-routine summary {
+  padding: var(--space-3);
+  min-height: 48px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.training-review-routine summary span {
+  display: block;
+  padding-left: var(--space-4);
+}
+.training-review-routine ol,
+.training-review-routine ul {
+  margin: 0;
+  padding: 0 var(--space-4) var(--space-4) var(--space-8);
+}
+.training-review-routine li > span {
+  display: block;
+}
+
+/* App layout. Tokens only; component values live in the Harbor files. */
+
+/* iPadOS 26 draws a glass blur over the top ~40 pt of an installed web app, above the
+   page; no CSS or meta tag turns it off. In the installed iPad app the top grows by that
+   much, painted in the bar's own colour, so the blur passes over an empty band and the
+   content stays sharp. Everywhere else the band is zero. */
+:root {
+  --edge-ramp: 0px;
+}
+
+/* Where the phone tab bar floats. On an iPhone with the home bar its bottom edge sits 21 pt
+   above the screen edge, inside the safe area, like the iOS 26 tab bar of the system apps;
+   on other phones, 12 px. --tabbar-top is the screen bottom to the bar's top edge, for what
+   floats right above it. */
+:root {
+  --tabbar-h: 64px;
+  --tabbar-bottom: max(12px, calc(env(safe-area-inset-bottom) - 13px));
+  --tabbar-top: calc(var(--tabbar-bottom) + var(--tabbar-h));
+}
+:root[data-ipad-app] {
+  --edge-ramp: 40px;
+}
+
+html,
+body {
+  background: var(--bg-page);
+}
+
+body {
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-sidenav {
+  display: none;
+}
+
+.app-main {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4) calc(var(--tabbar-top) + var(--space-6));
+  padding-top: calc(var(--space-5) + var(--edge-ramp));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.app-main.is-session {
+  padding-bottom: var(--space-4);
+}
+
+/* Back at the top left, where iOS puts it: the installed iPhone app has no browser back. */
+.backbar {
+  margin: calc(-1 * var(--space-3)) 0 calc(-1 * var(--space-3)) calc(-1 * var(--space-2));
+}
+.backbar-btn {
+  padding: 0 var(--space-3) 0 var(--space-1);
+  gap: 2px;
+  font-size: 17px;
+}
+
+.page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.page-title {
+  font: 600 24px/1.3 var(--font-sans);
+  color: var(--ink-strong);
+  margin: 0;
+}
+
+.page-sub {
+  font: 400 15px/22px var(--font-sans);
+  color: var(--ink-muted-aa);
+  margin: var(--space-1) 0 0;
+}
+
+/* Conversa de fichas com um amigo: balões, os seus à direita. Só fichas, sem campo de texto. */
+.thread {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.thread-item {
+  display: flex;
+}
+.thread-item.is-mine {
+  justify-content: flex-end;
+}
+.thread-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: min(86%, 440px);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-xl) var(--radius-xl) var(--radius-xl) var(--radius-sm);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-ring);
+}
+.thread-item.is-mine .thread-bubble {
+  border-radius: var(--radius-xl) var(--radius-xl) var(--radius-sm) var(--radius-xl);
+  background: var(--brand-50);
+  box-shadow: none;
+}
+.thread-meta {
+  font: 500 12px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.thread-title {
+  font: 600 16px/22px var(--font-sans);
+  color: var(--ink-strong);
+}
+.thread-note {
+  margin: var(--space-1) 0 0;
+  font: 400 15px/22px var(--font-sans);
+  color: var(--ink);
+}
+.thread-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-2);
+}
+.thread-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 13px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.thread-status.is-done {
+  color: var(--brand-700);
+}
+.thread-send {
+  position: sticky;
+  bottom: calc(var(--tabbar-top) + var(--space-3));
+  z-index: 5;
+}
+
+/* The greeting and, from 5 days on, the flame of the streak right after it. */
+.page-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+.streak-pill {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 4px 12px 4px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--pastel-peach);
+  color: var(--ink-strong);
+  font: 700 16px/1 var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.streak-pill svg {
+  color: var(--accent-orange);
+  fill: currentColor;
+}
+/* Today's workout still missing: the flame waits, gray. */
+.streak-pill[data-pending='true'] {
+  background: var(--bg-subtle);
+  color: var(--ink-muted-aa);
+}
+.streak-pill[data-pending='true'] svg {
+  color: var(--ink-muted);
+  fill: none;
+}
+/* A bigger target than the pill itself. */
+.streak-pill::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
+.streak-pill:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.section-title {
+  font: 600 16px/1.3 var(--font-sans);
+  color: var(--ink-strong);
+  margin: 0;
+}
+
+.t-body {
+  font: 500 16px/24px var(--font-sans);
+}
+
+.t-regular {
+  font: 400 15px/22px var(--font-sans);
+}
+
+.t-label {
+  font: 600 14px/20px var(--font-sans);
+}
+
+.t-caption {
+  font: 500 12px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+
+.t-muted {
+  color: var(--ink-muted-aa);
+}
+
+.t-strong {
+  color: var(--ink-strong);
+}
+
+.t-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stack-lg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.row-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.scroll-x {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  margin: 0 calc(var(--space-4) * -1);
+  padding: var(--space-1) var(--space-4);
+  scrollbar-width: none;
+}
+
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.actions > .hb-btn {
+  flex: 1 1 auto;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.hb-widget-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+.hb-widget-foot > .hb-btn {
+  flex: 1 1 auto;
+}
+
+.auth-wrap {
+  min-height: 100dvh;
+  display: grid;
+  padding-top: var(--edge-ramp);
+  background: var(--bg-surface);
+}
+
+.auth-wrap .hb-auth {
+  min-height: 100dvh;
+}
+
+@media (max-width: 640px) {
+  .auth-wrap .hb-auth {
+    grid-template-rows: auto 1fr;
+  }
+
+  .auth-wrap .hb-auth-form {
+    justify-content: flex-start;
+    padding-top: var(--space-8);
+  }
+}
+
+/* Management panel: numbers in cards (Marketing/title for the figure), facts as a
+   two-column list, the deadline of a data request as a pill. */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.kpi {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.kpi-value {
+  font: 600 24px/1.4 var(--font-sans);
+  color: var(--ink-strong);
+}
+
+.admin-facts {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+}
+
+.admin-facts dt {
+  font: 600 14px/22px var(--font-sans);
+  color: var(--ink-strong);
+}
+
+.admin-facts dd {
+  margin: 0;
+  font: 400 15px/22px var(--font-sans);
+  overflow-wrap: anywhere;
+}
+
+.admin-due {
+  align-self: flex-start;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-pill);
+  font: 600 14px/20px var(--font-sans);
+  color: var(--brand-700);
+  background: var(--brand-50);
+}
+
+.admin-due.is-late {
+  color: var(--ink-strong);
+  background: var(--pastel-pink);
+}
+
+.admin-wrap {
+  overflow-wrap: anywhere;
+}
+
+.admin-stack {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-3);
+  max-height: 240px;
+  overflow: auto;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  font:
+    400 12px/18px ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.admin-person {
+  width: 100%;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+}
+
+.admin-person .hb-list-main {
+  min-width: 0;
+}
+
+.admin-person .hb-list-title,
+.admin-person .hb-list-sub {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+/* Odd number of cards on the phone: the last one takes the whole row. */
+.kpi:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+  .kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kpi:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+}
+
+/* Privacy widget: friend sharing under its own label, policy links at the end. */
+.privacy-group {
+  margin-top: var(--space-3);
+}
+
+.health-choice {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.privacy-links {
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+/* Messages to the app: each one with its answer below, in a quieter box. */
+.ticket-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.ticket {
+  display: grid;
+  gap: var(--space-1);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.ticket:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.ticket-text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ticket-answer {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+}
+
+/* Consent: the summary, the health box apart from the rest (LGPD art. 11: highlighted). */
+.consent-form {
+  gap: var(--space-3);
+}
+
+.consent-list {
+  margin: 0;
+  padding-left: var(--space-5);
+  display: grid;
+  gap: var(--space-1);
+}
+
+.consent-health {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+}
+
+.consent-health-title {
+  margin: 0;
+}
+
+.auth-panel-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-6);
+}
+
+.session-head {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 56px;
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-1);
+  padding-top: calc(var(--space-1) + env(safe-area-inset-top) + var(--edge-ramp));
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.session-head-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.session-head-title strong {
+  display: block;
+  font: 600 16px/1.3 var(--font-sans);
+  color: var(--ink-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.active-bar {
+  position: fixed;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: calc(var(--tabbar-top) + var(--space-3));
+  z-index: 25;
+}
+
+.empty-line {
+  font: 400 15px/22px var(--font-sans);
+  color: var(--ink-muted-aa);
+  margin: 0;
+  padding: var(--space-4) 0;
+}
+
+@media (min-width: 640px) {
+  .app-main {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hb-tabbar {
+    display: none;
+  }
+
+  /* Computer: the menu at the side, with room for new areas; the iPad band on top. */
+  .app-shell {
+    padding-left: 248px;
+  }
+  .app-sidenav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 248px;
+    box-sizing: border-box;
+    padding: calc(var(--space-4) + var(--edge-ramp)) var(--space-3) var(--space-4);
+    background: var(--bg-surface);
+    border-right: 1px solid var(--line);
+    z-index: 30;
+  }
+  .sidenav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 0 var(--space-2);
+  }
+  .sidenav-brand {
+    text-decoration: none;
+  }
+  .sidenav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    overflow-y: auto;
+  }
+  .sidenav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-md);
+    color: var(--ink-muted-aa);
+    font: 500 15px/20px var(--font-sans);
+    text-decoration: none;
+  }
+  .sidenav-item:hover {
+    background: var(--bg-subtle);
+    color: var(--ink-strong);
+  }
+  .sidenav-item.is-active {
+    background: var(--brand-50);
+    color: var(--brand-700);
+    font-weight: 600;
+  }
+  .sidenav-group {
+    margin: var(--space-4) var(--space-3) var(--space-1);
+    font: 600 12px/16px var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-subtle);
+  }
+  .sidenav-bottom {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .sidenav-bottom .hb-status {
+    padding: 0 var(--space-3);
+  }
+  /* The inbox panel opens to the right of the bell, over the page. */
+  .app-sidenav .inbox-panel {
+    left: 0;
+    right: auto;
+  }
+
+  .profile-menu {
+    position: relative;
+  }
+  .profile-menu-button {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-2);
+    border: 0;
+    border-radius: var(--radius-lg);
+    background: transparent;
+    color: var(--ink-strong);
+    text-align: left;
+    cursor: pointer;
+  }
+  .profile-menu-button:hover,
+  .profile-menu-button[aria-expanded='true'] {
+    background: var(--bg-subtle);
+  }
+  .profile-avatar .pending-dot {
+    top: -1px;
+    left: auto;
+    right: -1px;
+  }
+  .profile-menu-text {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+  }
+  .profile-menu-name,
+  .profile-menu-email {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .profile-menu-name {
+    font: 600 14px/18px var(--font-sans);
+  }
+  .profile-menu-email {
+    font: 400 12px/16px var(--font-sans);
+    color: var(--ink-muted-aa);
+  }
+  .profile-menu-list {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    display: grid;
+    padding: var(--space-1);
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow:
+      var(--shadow-card),
+      0 12px 32px rgba(0, 0, 0, 0.14);
+    z-index: 40;
+  }
+  .profile-menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--ink);
+    font: 500 14px/18px var(--font-sans);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .profile-menu-item:hover {
+    background: var(--bg-subtle);
+  }
+  .profile-menu-item .pending-dot {
+    position: static;
+    margin-left: auto;
+  }
+
+  .app-main {
+    padding-top: calc(var(--space-8) + var(--edge-ramp));
+    padding-bottom: var(--space-12);
+  }
+
+  .page-title {
+    font: 700 32px/1.2 var(--font-sans);
+    letter-spacing: -0.4px;
+  }
+
+  .only-mobile {
+    display: none;
+  }
+
+  .scroll-x {
+    flex-wrap: wrap;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+
+  .grid-2 {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .active-bar {
+    left: auto;
+    right: var(--space-6);
+    bottom: var(--space-6);
+    width: 360px;
+  }
+
+  .hb-toasts {
+    bottom: var(--space-8);
+  }
+}
+
+/* Invite code on the public invite page: big, spaced, easy to read aloud or retype. */
+.invite-code {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+}
+.invite-code strong {
+  font: 600 28px/1.2 var(--font-sans);
+  letter-spacing: 3px;
+  color: var(--ink-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Workout clock in the session header: time first, sets done after. */
+.session-clock {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.session-clock-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font: 600 14px/20px var(--font-sans);
+  color: var(--brand-700);
+  font-variant-numeric: tabular-nums;
+}
+
+/* What an exercise works, above its sets and rest. */
+.ex-focus {
+  display: block;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Routine row: tap anywhere to edit, arrows stacked on the right; long names wrap. */
+.routine-row {
+  padding-right: var(--space-2);
+}
+.routine-row-main {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+.routine-row-main:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+.routine-row .hb-list-title {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+/* Drag to order: a handle at the side; the lifted row floats and the others make room
+   (fichas) or the row under it lights up to trade places (days of the plan). */
+.sort-handle {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink-subtle);
+  cursor: grab;
+  touch-action: none;
+}
+.sort-handle:active {
+  cursor: grabbing;
+}
+.sort-handle:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+.sortable-row {
+  position: relative;
+  background: var(--bg-surface);
+  transition: transform 160ms ease;
+}
+.sortable-row.is-lifted {
+  z-index: 3;
+  transition: none;
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.16),
+    0 0 0 1px var(--line);
+}
+.sortable-row.is-drop-target {
+  border-radius: var(--radius-lg);
+  background: var(--brand-50);
+  box-shadow: inset 0 0 0 2px var(--brand-500);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sortable-row {
+    transition: none;
+  }
+}
+.plan-day-row {
+  padding-right: var(--space-2);
+}
+
+/* Plano, Treinos: the archived ones fold away. */
+.archived-toggle {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.chevron {
+  transition: transform 0.2s ease;
+}
+.chevron.is-open {
+  transform: rotate(180deg);
+}
+
+/* Plano: this week at a glance, then the next days with the real ficha of each one. */
+.week-now .weekstrip-tile {
+  position: relative;
+}
+.weekstrip-tile[data-state='hoje'] {
+  box-shadow:
+    0 0 0 2px var(--bg-surface),
+    0 0 0 4px var(--brand-500);
+}
+.weekstrip-day[data-state='hoje'] .weekstrip-name {
+  color: var(--ink-strong);
+  font-weight: 700;
+}
+.weekstrip-tile[data-state='passou'] {
+  opacity: 0.4;
+}
+.weekstrip-check {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--brand-500);
+  color: #fff;
+  box-shadow: 0 0 0 2px var(--bg-surface);
+}
+.weekstrip-tile.is-small {
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  max-width: 36px;
+  font-size: 15px;
+}
+.week-now .hb-day-btn {
+  width: 100%;
+}
+.week-now .hb-day-btn .weekstrip-tile {
+  width: 100%;
+}
+.week-next-line {
+  margin: 0;
+  font: 500 15px/22px var(--font-sans);
+  color: var(--ink-strong);
+}
+
+/* Today's week: each day opens the plan day. */
+.hb-day-btn {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  -webkit-tap-highlight-color: transparent;
+}
+.hb-day-btn:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+/* Run days in the first setup: seven small toggles. */
+.daypick {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+.daypick-btn {
+  justify-content: center;
+  padding: 0;
+  font-size: 14px;
+}
+
+/* Você: who is signed in, with settings and sign out beside. */
+.profile-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.profile-head-text {
+  flex: 1;
+  min-width: 0;
+}
+.profile-head-text .page-title,
+.profile-head-text .page-sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.profile-avatar {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-50);
+  color: var(--brand-700);
+  font: 700 15px/1 var(--font-sans);
+}
+.profile-avatar.is-large {
+  width: 52px;
+  height: 52px;
+  font-size: 22px;
+}
+
+/* Inbox: a new item has a dot and a stronger title. */
+.inbox-row {
+  position: relative;
+}
+.inbox-row.is-unread::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--brand-500);
+  z-index: 1;
+}
+.inbox-row.is-unread .hb-list-title {
+  font-weight: 700;
+}
+
+/* Computer: the inbox in a panel under the bell. */
+.inbox-bell-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.inbox-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 400px;
+  max-height: min(72vh, 600px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  box-shadow:
+    var(--shadow-card),
+    0 18px 40px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  z-index: 40;
+  outline: none;
+}
+.inbox-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.inbox-panel-head h2 {
+  margin: 0;
+  font: 600 17px/22px var(--font-sans);
+  color: var(--ink-strong);
+}
+.inbox-panel-body {
+  overflow: auto;
+}
+.inbox-panel-foot {
+  justify-content: center;
+  padding: 12px 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* A row that slides to show an action (history): the action waits behind the row. */
+.swipe {
+  position: relative;
+  overflow: hidden;
+}
+.swipe-front {
+  position: relative;
+  background: var(--bg-surface);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 180ms ease;
+}
+.swipe-front.is-dragging {
+  transition: none;
+}
+.swipe-action {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  border: 0;
+  font: 600 13px/16px var(--font-sans);
+  color: #fff;
+}
+.swipe-action.is-start {
+  left: 0;
+}
+.swipe-action.is-end {
+  right: 0;
+}
+.swipe-action[data-tone='brand'] {
+  background: var(--brand-600);
+}
+.swipe-action[data-tone='danger'] {
+  background: var(--danger);
+}
+@media (prefers-reduced-motion: reduce) {
+  .swipe-front {
+    transition: none;
+  }
+}
+
+/* The installed app without an account: brand in the middle, the way in at the bottom. */
+.welcome {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--space-6);
+  max-width: 420px;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + var(--space-6)) var(--space-4)
+    calc(env(safe-area-inset-bottom) + var(--space-6));
+}
+.welcome-brand {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+.welcome-name {
+  margin: 0;
+  font: 700 34px/40px var(--font-sans);
+  color: var(--ink-strong);
+}
+.welcome-lead {
+  margin: 0;
+  max-width: 28ch;
+}
+.welcome-actions {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+}
+
+/* Paces by kind of run, on Plan. */
+.paces {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  font: 400 15px/21px var(--font-sans);
+}
+.paces dt {
+  color: var(--ink-muted-aa);
+}
+.paces dd {
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+
+/* The run of the day: one line per part (warm-up, repeats, cool-down). */
+.run-steps {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.run-steps li {
+  display: grid;
+  grid-template-columns: minmax(84px, auto) 1fr;
+  gap: var(--space-3);
+  font: 400 15px/21px var(--font-sans);
+}
+
+/* Target race: the long run of each week, this week first and the race last. */
+.race-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 88px;
+}
+.race-bar {
+  flex: 1 1 0;
+  min-width: 2px;
+  border-radius: 4px 4px 2px 2px;
+  background: var(--pastel-mint);
+}
+.race-bar[data-kind='cutback'],
+.race-bar[data-kind='taper'] {
+  background: var(--pastel-sky);
+}
+.race-bar[data-kind='race'] {
+  background: var(--pastel-butter);
+}
+.race-bar.is-now {
+  background: var(--brand-500);
+}
+
+/* Image of a finished workout: the story at the height that fits the sheet. */
+.sharecard-preview {
+  /* Holding the picture offers "Salvar na Fotos" on the iPhone. */
+  -webkit-touch-callout: default;
+  -webkit-user-select: auto;
+  user-select: auto;
+  display: block;
+  width: auto;
+  height: min(56vh, 560px);
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* Cardio picker: one row of chips that scrolls sideways, running first. */
+.cardio-pick {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  margin: 0 calc(-1 * var(--space-5));
+  padding: 2px var(--space-5);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.cardio-pick::-webkit-scrollbar {
+  display: none;
+}
+.cardio-chip {
+  flex: none;
+}
+
+/* Swap a plan day: the other six days, what each one holds. */
+.dayswap {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+.dayswap-btn {
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  min-height: 52px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-1) var(--space-2);
+  line-height: 1.2;
+}
+.dayswap-btn span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted-aa);
+}
+
+/* Bi-set: a small tag on both exercises of the pair. */
+.ss-chip {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 7px;
+  border-radius: var(--radius-pill);
+  background: var(--violet-tint);
+  color: var(--ink-strong);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  vertical-align: 1px;
+}
+.ss-line {
+  display: block;
+  margin: 2px 0;
+}
+
+/* Today on the phone: brand on the left, sync status on the right. */
+.mobile-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+@media (min-width: 1024px) {
+  .mobile-brand {
+    display: none;
+  }
+}
+
+/* Phone tab bar: a floating glass capsule (iOS 26). The pill of the current tab slides
+   between tabs and grows into a lens on the way. Content passes blurred underneath. */
+.hb-tabbar {
+  left: var(--space-5);
+  right: var(--space-5);
+  bottom: var(--tabbar-bottom);
+  max-width: 480px;
+  margin: 0 auto;
+  height: var(--tabbar-h);
+  box-sizing: border-box;
+  padding: 4px;
+  gap: 0;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 55%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-surface) 72%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.8);
+  backdrop-filter: blur(18px) saturate(1.8);
+  /* The bar takes sideways drags itself (the pill follows the finger); taps still click. */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+/* Tabs as in iOS: a big icon and a small semibold label, the same weight on every tab. */
+.hb-tabbar .hb-tab {
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+  gap: 3px;
+  background: transparent;
+  color: var(--ink);
+  font: 600 10px/12px var(--font-sans);
+  white-space: nowrap;
+}
+.hb-tabbar .hb-tab svg {
+  width: 26px;
+  height: 26px;
+}
+.hb-tabbar .hb-tab.is-active {
+  background: transparent;
+  color: var(--brand-600);
+}
+.tab-pill {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 5);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  transform: translateX(calc(var(--tab-index) * 100%)) scale(1);
+  transition:
+    transform 420ms cubic-bezier(0.34, 1.4, 0.64, 1),
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+}
+/* On the way: a glass lens, bigger than the bar, with a bright rim. */
+.tab-pill.is-moving {
+  transform: translateX(calc(var(--tab-index) * 100%)) scale(1.14, 1.32);
+  background: color-mix(in srgb, var(--bg-surface) 30%, transparent);
+  -webkit-backdrop-filter: blur(1.5px) saturate(2);
+  backdrop-filter: blur(1.5px) saturate(2);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.95),
+    inset 0 -6px 12px rgba(120, 180, 255, 0.18),
+    0 6px 18px rgba(0, 0, 0, 0.14);
+}
+/* Held and dragged: the lens follows the finger, with no delay. */
+.tab-pill.is-dragging {
+  transition: none;
+  background: color-mix(in srgb, var(--bg-surface) 30%, transparent);
+  -webkit-backdrop-filter: blur(1.5px) saturate(2);
+  backdrop-filter: blur(1.5px) saturate(2);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.95),
+    inset 0 -6px 12px rgba(120, 180, 255, 0.18),
+    0 6px 18px rgba(0, 0, 0, 0.14);
+}
+.tab-pill.is-hidden {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tab-pill,
+  .tab-pill.is-moving {
+    transition: none;
+    transform: translateX(calc(var(--tab-index) * 100%));
+  }
+}
+
+/* A choice waits in Você (health data): red dot on the tab, beside the icon. On the
+   computer the dot sits on the avatar of the menu at the side. */
+.hb-tab {
+  position: relative;
+}
+
+.pending-dot {
+  position: absolute;
+  top: 6px;
+  left: calc(50% + 8px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--danger);
+  box-shadow: 0 0 0 2px var(--bg-surface);
+}
+
+/* Inbox bell with the count of new items, in the side menu and on Today. */
+.inbox-bell {
+  position: relative;
+  text-decoration: none;
+  color: var(--ink);
+}
+.inbox-badge {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-deep);
+  color: var(--ink-on-brand);
+  font: 700 11px/18px var(--font-sans);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A list row that is a button (opens a sheet): looks like the link rows. */
+.row-button {
+  width: 100%;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* A sent ficha: one exercise per line, the sets and rest below the name. */
+.shared-items {
+  margin: 0;
+  padding-left: var(--space-5);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.shared-items li {
+  display: grid;
+  gap: 2px;
+}
+
+/* Inbox titles wrap: the whole sentence matters, not one line of it. */
+.inbox-title {
+  display: block;
+  white-space: normal;
+  overflow: visible;
+}
+
+/* Link to Ajustes at the top of Você: a one-row card. */
+.settings-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Como fazer: a small secondary button under the exercise name, and its sheet. */
+.howto-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-2);
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--bg-subtle);
+  color: var(--ink);
+  font: 500 14px/20px var(--font-sans);
+}
+.howto-btn:hover {
+  background: var(--line-tint);
+}
+.howto-media {
+  display: block;
+  width: 100%;
+  max-height: 38vh;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+}
+.howto-frames {
+  position: relative;
+  overflow: hidden;
+}
+.howto-frames img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.howto-frames img[data-on='true'] {
+  opacity: 1;
+}
+/* Reduced motion: the positions side by side, nothing switching. */
+.howto-frames.is-still {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  aspect-ratio: 2;
+}
+.howto-frames.is-still img {
+  position: static;
+  opacity: 1;
+}
+.howto-head {
+  margin: 0;
+}
+.howto-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font: 400 15px/22px var(--font-sans);
+  color: var(--ink);
+}
+.howto-list.is-errors li::marker {
+  color: var(--danger);
+}
+.howto-facade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  padding: var(--space-5) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+  color: var(--ink);
+  text-align: center;
+}
+.howto-facade-title {
+  font: 600 16px/24px var(--font-sans);
+  color: var(--ink-strong);
+}
+.howto-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+}
+.howto-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.howto-search {
+  align-self: flex-start;
+  text-decoration: none;
+}
+.howto-offline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+/* Substitutes in the workout: the rows bleed to the sheet edges, the link stays quiet. */
+.swap-list {
+  margin: 0 calc(-1 * var(--space-5));
+}
+.swap-all {
+  align-self: flex-start;
+}
+
+/* Seus dados: what is kept and why, one pair per line. */
+.data-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+.data-item dt {
+  font: 600 15px/22px var(--font-sans);
+  color: var(--ink-strong);
+}
+.data-item dd {
+  margin: 0;
+  font: 400 14px/20px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+
+/* A done set on a finished workout: a full-width row to tap and fix it. */
+.done-set-row {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+.done-set-row:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+/* Body numbers: read at a glance. */
+.body-big {
+  font-size: 22px;
+  line-height: 28px;
+}
+
+/* Focus mode in the workout: the clock and one big button, like a running app. */
+.focus-mode {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+  color: var(--ink-strong);
+  padding: env(safe-area-inset-top) var(--space-4) env(safe-area-inset-bottom);
+}
+.focus-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 64px;
+}
+.focus-top-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font: 600 15px/20px var(--font-sans);
+}
+.focus-top-text strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.focus-clock {
+  font: 700 28px/34px var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}
+.focus-icon {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--bg-subtle);
+  color: var(--ink-strong);
+}
+.focus-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  text-align: center;
+  min-height: 0;
+}
+.focus-label {
+  font: 600 18px/24px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.focus-big {
+  font: 800 clamp(72px, 26vw, 160px) / 1 var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+.focus-big.is-set {
+  font-size: clamp(48px, 15vw, 112px);
+}
+.focus-sub {
+  font: 500 16px/22px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.focus-effort {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 420px;
+  margin-top: var(--space-4);
+}
+.focus-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: var(--space-3);
+  padding: var(--space-4) 0 var(--space-5);
+}
+.focus-side {
+  display: flex;
+  justify-content: center;
+}
+.focus-go,
+.focus-small {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  color: var(--ink-strong);
+  font: 600 15px/20px var(--font-sans);
+}
+.focus-go > svg,
+.focus-small > svg {
+  box-sizing: content-box;
+  border-radius: 50%;
+}
+.focus-go > svg {
+  padding: 30px;
+  color: var(--ink-on-brand, #fff);
+  background: linear-gradient(180deg, var(--brand-300) 0%, var(--brand-500) 100%);
+  box-shadow: var(--shadow-button);
+}
+.focus-go > span {
+  color: var(--brand-600);
+  font-weight: 700;
+}
+.focus-small > svg {
+  padding: 18px;
+  background: var(--bg-subtle);
+}
+.focus-go:focus-visible > svg,
+.focus-small:focus-visible > svg,
+.focus-icon:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+/* Você: a few groups of rows, one card each. */
+.menu-group-title {
+  margin: 0;
+  padding: var(--space-3) var(--space-5) var(--space-1);
+  font: 600 13px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.menu-group .hb-list-row:first-child {
+  border-top: 0;
+}
+
+/* Plano: the reasons of the plan, folded until asked. */
+.plan-why summary {
+  cursor: pointer;
+  list-style: none;
+}
+.plan-why summary::-webkit-details-marker {
+  display: none;
+}
+.plan-why-list {
+  margin: 0;
+  padding: 0 var(--space-5) var(--space-4) calc(var(--space-5) + 20px);
+}
+
+/* The assistant: a conversation like the ficha threads, the proposal as a card under the
+   answer, and the box to write at the bottom, above the tab bar. */
+.agent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.agent-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.agent-launcher {
+  position: fixed;
+  right: var(--space-4);
+  bottom: calc(var(--tabbar-top) + var(--space-3));
+  z-index: 26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 52px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+  font: 600 14px/20px var(--font-sans);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.agent-launcher[hidden] {
+  display: none;
+}
+.agent-launcher > svg {
+  color: var(--brand-700);
+}
+.agent-launcher:active {
+  transform: scale(0.96);
+}
+.app-main:has(.agent-launcher:not([hidden])) {
+  padding-bottom: calc(var(--tabbar-top) + 88px);
+}
+.app-shell:has(.active-bar) .agent-launcher {
+  bottom: calc(var(--tabbar-top) + 100px);
+}
+.agent-popup {
+  --agent-popup-max-height: 660px;
+  --agent-popup-rest-bottom: calc(var(--tabbar-top) + var(--space-3));
+  --agent-popup-top-gap: 16px;
+  --agent-popup-height: min(
+    var(--agent-popup-max-height),
+    max(
+      0px,
+      calc(
+        var(--agent-viewport-height, 100dvh) - var(--agent-popup-rest-bottom) -
+          env(safe-area-inset-top) - var(--agent-popup-top-gap)
+      )
+    )
+  );
+  position: fixed;
+  inset: calc(
+      var(--agent-viewport-top, 0px) + var(--agent-viewport-height, 100dvh) -
+        var(--agent-popup-rest-bottom) - var(--agent-popup-height)
+    )
+    var(--space-3) auto auto;
+  width: min(440px, calc(100vw - 24px));
+  height: var(--agent-popup-height);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--bg-page);
+  color: var(--ink);
+  box-shadow: 0 20px 70px rgb(0 0 0 / 18%);
+}
+.agent-popup[open] {
+  animation: agent-popup-in 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom right;
+}
+.agent-popup::backdrop {
+  background: rgb(0 0 0 / 16%);
+}
+.agent-popup-surface {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.agent-popup-head {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-surface);
+}
+.agent-popup-heading {
+  flex: 1;
+  min-width: 0;
+}
+.agent-popup-heading h2 {
+  margin: 0 0 4px;
+  font: 600 17px/22px var(--font-sans);
+  color: var(--ink-strong);
+}
+.agent-popup-loading {
+  padding: var(--space-4);
+}
+.agent.is-embedded {
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+.agent.is-embedded .agent-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-4);
+}
+.agent-intro {
+  margin: 0;
+  font: 400 14px/21px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.agent.is-embedded .agent-start {
+  flex-direction: column;
+}
+.agent.is-embedded .agent-suggestion {
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+}
+.agent.is-embedded .agent-bubble {
+  max-width: 94%;
+  overflow-wrap: anywhere;
+}
+.agent.is-embedded .agent-composer {
+  position: static;
+  flex: none;
+  padding: var(--space-3);
+  border-top: 1px solid var(--line);
+  background: var(--bg-surface);
+}
+.agent-conversation-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-3);
+  font: 400 12px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+@keyframes agent-popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (min-width: 1024px) {
+  .agent-launcher {
+    right: 24px;
+    bottom: 24px;
+  }
+  .agent-popup {
+    --agent-popup-max-height: 700px;
+    --agent-popup-rest-bottom: 24px;
+    --agent-popup-top-gap: 24px;
+    right: 24px;
+  }
+}
+.agent-popup[data-compact-viewport] {
+  --agent-popup-rest-bottom: 8px;
+  --agent-popup-top-gap: 8px;
+}
+@media (max-height: 550px) {
+  .agent-popup {
+    --agent-popup-rest-bottom: 8px;
+    --agent-popup-top-gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .agent-popup[open] {
+    animation: none;
+  }
+  .agent-launcher {
+    transition: none;
+  }
+}
+.agent-entry-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--pastel-lavender);
+  color: var(--ink);
+}
+.agent-start {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.agent-suggestion {
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-ring);
+  font: 500 14px/20px var(--font-sans);
+  color: var(--ink);
+  text-align: left;
+}
+.agent-suggestion:disabled {
+  opacity: 0.5;
+}
+.agent-thread {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.agent-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.agent-item.is-mine {
+  align-items: flex-end;
+}
+.agent-bubble {
+  max-width: min(86%, 520px);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-xl) var(--radius-xl) var(--radius-sm) var(--radius-xl);
+  background: var(--brand-50);
+  font: 400 15px/22px var(--font-sans);
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+.agent-bubble.is-assistant {
+  border-radius: var(--radius-xl) var(--radius-xl) var(--radius-xl) var(--radius-sm);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-ring);
+  white-space: normal;
+}
+.agent-bubble p {
+  margin: 0 0 var(--space-2);
+}
+.agent-bubble p:last-child,
+.agent-bubble .agent-list:last-child {
+  margin-bottom: 0;
+}
+.agent-who {
+  display: block;
+  margin-bottom: 2px;
+  font: 500 12px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.agent-list {
+  margin: 0 0 var(--space-2);
+  padding-left: var(--space-5);
+}
+.agent-working {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: 500 14px/20px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.agent-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.agent-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-500);
+  animation: agent-dot 1.2s infinite ease-in-out;
+}
+.agent-dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.agent-dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes agent-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .agent-dots i {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+.agent-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(100%, 560px);
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+}
+.agent-card.is-antiga,
+.agent-card.is-recusada,
+.agent-card.is-desfeita {
+  opacity: 0.7;
+}
+.agent-card-kind {
+  font: 600 12px/18px var(--font-sans);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--brand-700);
+}
+.agent-card-title {
+  font: 600 17px/24px var(--font-sans);
+  color: var(--ink-strong);
+}
+.agent-card-text {
+  margin: 0;
+  font: 400 14px/20px var(--font-sans);
+  color: var(--ink);
+}
+.agent-fields {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.agent-field {
+  display: grid;
+  grid-template-columns: minmax(96px, 34%) 1fr;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--line);
+  font: 400 14px/20px var(--font-sans);
+}
+.agent-field dt {
+  color: var(--ink-muted-aa);
+}
+.agent-field dd {
+  margin: 0;
+  color: var(--ink);
+}
+.agent-field.is-change dd {
+  font-weight: 600;
+}
+.agent-field s,
+.agent-exercises s {
+  font-weight: 400;
+  color: var(--ink-muted-aa);
+}
+.agent-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-subtle);
+  font: 500 12px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+  vertical-align: 1px;
+}
+.agent-tag.is-change {
+  background: var(--brand-50);
+  color: var(--brand-700);
+}
+.agent-exercises {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font: 400 14px/20px var(--font-sans);
+}
+.agent-proposal-details {
+  border-top: 1px solid var(--line);
+  font: 400 14px/20px var(--font-sans);
+  overflow-wrap: anywhere;
+}
+.agent-proposal-details > summary {
+  min-height: 44px;
+  padding: var(--space-3) 0;
+  color: var(--brand-700);
+  cursor: pointer;
+}
+.agent-proposal-details > p,
+.agent-proposal-details > ol,
+.agent-proposal-details > ul {
+  margin-bottom: var(--space-3);
+}
+.agent-risk {
+  font-size: 14px;
+  line-height: 20px;
+}
+.agent-risk small {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.agent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-1);
+}
+.agent-done {
+  font: 500 14px/20px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.agent-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+  font: 400 14px/20px var(--font-sans);
+}
+.agent-composer {
+  position: sticky;
+  bottom: calc(var(--tabbar-top) + var(--space-2));
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.agent-offline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font: 400 13px/18px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.agent-composer-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-2xl);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+}
+.agent-input {
+  flex: 1;
+  min-height: 44px;
+  max-height: 120px;
+  resize: none;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.agent-send {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--brand-500);
+  color: var(--ink-on-brand);
+}
+.agent-send:disabled {
+  background: var(--bg-subtle);
+  color: var(--ink-muted-aa);
+}
+@media (min-width: 1024px) {
+  .agent-composer {
+    bottom: var(--space-4);
+  }
+}
+.agent-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+.agent-composer .agent-input {
+  height: 44px;
+  min-height: 44px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  resize: none;
+  overflow-y: auto;
+}
+
+/* Histórico: the month at a glance. A day with a workout is filled; cardio gets a ring. */
+.month-cal {
+  padding: var(--space-4);
+}
+.month-cal-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.month-cal-title {
+  flex: 1;
+  text-align: center;
+}
+.month-cal-title .section-title {
+  margin: 0;
+}
+.month-cal-grid {
+  display: grid;
+  gap: 4px;
+  margin-top: var(--space-3);
+}
+.month-cal-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  justify-items: center;
+}
+.month-cal-wd {
+  font: 600 12px/16px var(--font-sans);
+  color: var(--ink-muted-aa);
+}
+.month-cal-day {
+  all: unset;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font: 500 15px/20px var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted-aa);
+  cursor: pointer;
+}
+.month-cal-day:disabled {
+  cursor: default;
+}
+.month-cal-day[data-gym] {
+  background: var(--brand-deep);
+  color: var(--ink-on-brand);
+  font-weight: 700;
+}
+.month-cal-day[data-cardio] {
+  box-shadow: inset 0 0 0 3px var(--pastel-mint-ink, #1f9d6b);
+  color: var(--ink-strong);
+  font-weight: 700;
+}
+.month-cal-day[data-gym][data-cardio] {
+  color: var(--ink-on-brand);
+}
+.month-cal-day[data-today] {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+.month-cal-day[aria-pressed='true'] {
+  outline: 3px solid var(--ink-strong);
+  outline-offset: 2px;
+}
+.month-cal-day:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+.month-cal-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 10px;
+  margin-top: var(--space-3);
+}
+.month-cal-key {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.month-cal-key[data-gym] {
+  background: var(--brand-deep);
+}
+.month-cal-key[data-cardio] {
+  box-shadow: inset 0 0 0 3px var(--pastel-mint-ink, #1f9d6b);
+}
+.month-cal-picked {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+}
+.month-cal-picked .t-label {
+  margin: 0;
+}

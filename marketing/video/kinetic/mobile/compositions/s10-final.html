@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #fafafa; font-family: 'Inter', sans-serif; color: #141413; --accent: #006bb3; }
+    #root .row { display: block; }
+    #root .acc { color: var(--accent); }
+    #root .wd { display: inline-block; }
+    #root .shot { position: absolute; inset: 0; border-radius: 84px; overflow: hidden; background: #fafafa; box-shadow: 0 50px 140px rgba(20, 20, 19, 0.16), 0 0 0 5px rgba(20, 20, 19, 0.06); }
+    #root .shot-img { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; display: block; }
+    #root .press { position: absolute; left: 0; top: 0; width: 1170px; height: 2532px; }
+    #root .press img { display: block; width: 1170px; height: 2532px; }
+    #root .panel { position: absolute; left: 0; top: 0; width: 100%; height: 640px; background: #fafafa; }
+    #root .line { position: absolute; left: 90px; top: 210px; width: 880px; height: 410px; display: flex; flex-direction: column; justify-content: center; font-size: 92px; font-weight: 700; line-height: 1.07; letter-spacing: -0.032em; opacity: 0; }
+    #root .line .wd { opacity: 0; }
+    #root .flood { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; padding: 0 90px; opacity: 0; }
+    #root .slam { font-size: 210px; font-weight: 900; line-height: 0.98; letter-spacing: -0.05em; }
+    #root .slam .row { transform-origin: 0% 60%; }
+    #root .hook { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 90px; }
+    #root .hook-text { font-size: 104px; font-weight: 700; line-height: 1.06; letter-spacing: -0.035em; }
+    #root .hook-row { width: fit-content; }
+    #root .hook-row .wd { opacity: 0; }
+    #root .brand, #root .end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 80px; }
+    #root .lockup { display: flex; align-items: center; gap: 33px; }
+    #root .mark { width: 150px; height: 150px; display: block; }
+    #root .name { font-size: 122.99999999999999px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; display: inline-block; }
+    #root .ch { display: inline-block; opacity: 0; }
+    #root .brand-line, #root .end-line { margin-top: 51.00000000000001px; font-size: 70px; font-weight: 700; line-height: 1.12; letter-spacing: -0.028em; }
+    #root .brand-line .k { color: #c9c9c6; }
+    #root .end-line .e, #root .note .n { opacity: 0; }
+    #root .cta { margin-top: 54px; padding: 30px 66px; border-radius: 30px; background: #0071bd; color: #fff; font-size: 60px; font-weight: 700; letter-spacing: -0.02em; box-shadow: 0 18px 40px rgba(0, 113, 189, 0.26); opacity: 0; }
+    #root .note { margin-top: 36px; font-size: 38px; font-weight: 400; color: #55554f; }
+    
+  </style>
+  <div id="root" data-composition-id="s10-final" data-width="1080" data-height="1920">
+      <div class="end">
+        <div class="lockup"><img id="s10-final-mark" class="mark" src="assets/logo.svg" alt="" /><span id="s10-final-name" class="name">Anilha</span></div>
+        <div id="s10-final-line" class="end-line"><span class="row"><span class="wd e">Seu</span> <span class="wd e">treino,</span> <span class="wd e acc">num</span> <span class="wd e acc">toque.</span></span></div>
+        <div id="s10-final-cta" class="cta">Comece grátis</div>
+        
+      </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#s10-final-mark', { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: 'back.out(1.7)' }, 0);
+    tl.fromTo('#s10-final-name', { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 0.4, ease: 'expo.out' }, 0.2);
+    tl.fromTo('#s10-final-line .e', { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.14, stagger: 0.07, ease: 'power3.out' }, 0.55);
+    tl.fromTo('#s10-final-cta', { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.42, ease: 'back.out(1.5)' }, 1.0);
+    tl.to('#s10-final-cta', { scale: 0.95, filter: 'brightness(0.9)', duration: 0.08, ease: 'power2.out' }, 1.9);
+    tl.to('#s10-final-cta', { scale: 1, filter: 'brightness(1)', duration: 0.16, ease: 'power3.out' }, 1.98);
+    window.__timelines['s10-final'] = tl;
+  </script>
+</template>

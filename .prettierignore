@@ -1,0 +1,18 @@
+dist
+dev-dist
+node_modules
+coverage
+playwright-report
+test-results
+.local
+design/harbor-ui/tokens.css
+design/harbor-ui/components.css
+design/harbor-ui/extensions.css
+design/harbor-ui/README.md
+supabase/bundle.sql
+src/engine/exercises.ts
+# HTML de e-mail: igual ao que está colado no painel do Supabase
+supabase/templates
+marketing/PROMPT-ANILHA.md
+marketing/referencias/
+marketing/video/
