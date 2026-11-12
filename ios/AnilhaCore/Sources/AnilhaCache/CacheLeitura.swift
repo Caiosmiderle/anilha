@@ -194,6 +194,17 @@ public final class CacheLeitura {
             }
             for (key, value) in metadata {
                 var value = value
+                if key.hasPrefix("review:"), let index = value.number("reviewWrite") {
+                    var decisions = value.array("decisions")
+                    let i = Int(index)
+                    guard decisions.indices.contains(i), let routineID = value.string("routineID") else { throw WorkoutAnalysis.Failure.conflict }
+                    if decisions[i].string("status") == "saved" {
+                        decisions[i].fields["undoAfter"] = .array(written.map { .object(["table": .string($0.table), "row": .object($0.row.fields)]) })
+                    }
+                    value.fields["decisions"] = .array(decisions.map { .object($0.fields) })
+                    value.fields["version"] = .object(RoutineReview.version(try ler(dono), routineID: routineID).fields)
+                    value.fields.removeValue(forKey: "reviewWrite")
+                }
                 if value.string("status") == "saved", value.fields["undoBefore"] != nil {
                     value.fields["undoAfter"] = .array(written.map { .object(["table": .string($0.table), "row": .object($0.row.fields)]) })
                 }
@@ -270,6 +281,55 @@ public final class CacheLeitura {
     public func guardarAnalise(_ row: ReadRow, sessionID: String, dono: String) throws {
         do { try porMeta(row, nome: "analysis:\(sessionID)", dono: dono); try contexto.save() }
         catch { contexto.rollback(); throw error }
+    }
+    public func guardarRevisao(_ row: ReadRow, routineID: String, dono: String) throws {
+        do { try porMeta(row, nome: "review:\(routineID)", dono: dono); try contexto.save() }
+        catch { contexto.rollback(); throw error }
+    }
+    public func decidirRevisao(routineID: String, index: Int, action: String, dono: String, catalog: [ReadRow], today: String) throws {
+        let data = try ler(dono), key = "review:\(routineID)"
+        func content(_ row: ReadRow) -> JSONValue {
+            var row = row; row.fields.removeValue(forKey: "updated_at"); return stable(.object(row.fields))
+        }
+        guard var saved = try metadados(dono)[key], saved.object("version") == RoutineReview.version(data, routineID: routineID) else { throw WorkoutAnalysis.Failure.conflict }
+        var decisions = saved.array("decisions")
+        guard decisions.indices.contains(index) else { throw WorkoutAnalysis.Failure.invalidAdjustment }
+        var decision = decisions[index]
+        var changes: [PushChange] = []
+        if action == "undo" {
+            guard decision.string("status") == "saved", case .array(let before) = decision.fields["undoBefore"] else { throw WorkoutAnalysis.Failure.conflict }
+            let after = decision.array("undoAfter")
+            guard !after.isEmpty, after.count == before.count else { throw WorkoutAnalysis.Failure.conflict }
+            for (i, entry) in after.enumerated() {
+                let row = entry.object("row"), table = entry.string("table") ?? ""
+                guard let current = data.tables[table]?.first(where: { $0.id == row.id }), content(current) == content(row) else { throw WorkoutAnalysis.Failure.conflict }
+                let old: ReadRow
+                if case .object(let f) = before[i] { old = ReadRow(fields: f) } else { old = row.changing(["deleted": .bool(true)]) }
+                changes.append(PushChange(table, old))
+            }
+            decision.fields["status"] = .string("undone")
+        } else {
+            guard decision.string("status") == "proposed" else { throw WorkoutAnalysis.Failure.conflict }
+            if action == "refuse" { decision.fields["status"] = .string("refused") }
+            else {
+                guard action == "apply" else { throw WorkoutAnalysis.Failure.invalidAdjustment }
+                var binding = try RoutineReview.binding(data, routineID: routineID, today: today)
+                binding.fields["items"] = saved.object("binding").fields["items"]
+                let adjustment = try RoutineReview.adjustment(saved, index: index)
+                changes = try WorkoutAnalysis.changes(adjustment, binding: binding, catalog: catalog)
+                changes = changes.filter { c in
+                    guard let old = data.tables[c.table]?.first(where: { $0.id == c.row.id }) else { return true }
+                    return content(old) != content(c.row)
+                }
+                guard !changes.isEmpty else { throw WorkoutAnalysis.Failure.invalidAdjustment }
+                decision.fields["binding"] = .object(binding.fields)
+                decision.fields["status"] = .string("saved")
+                decision.fields["undoBefore"] = .array(changes.map { c in data.tables[c.table]?.first { $0.id == c.row.id }.map { .object($0.fields) } ?? .null })
+            }
+        }
+        decisions[index] = decision; saved.fields["decisions"] = .array(decisions.map { .object($0.fields) })
+        if changes.isEmpty { try guardarRevisao(saved, routineID: routineID, dono: dono) }
+        else { saved.fields["reviewWrite"] = .number(Double(index)); try gravar(changes, dono: dono, catalog: catalog, metadata: [key: saved]) }
     }
     /// Same owner-scoped metadata as analyses, with the PWA consent payload unchanged.
     public func guardarConsentimento(_ row: ReadRow, dono: String) throws {

@@ -1,5 +1,6 @@
 import { EXERCISES } from '../engine/exercises';
 import { diffDays } from '../engine/dates';
+import { runningContext } from './running';
 import { exerciseHistory, exerciseNext } from './evolution';
 import {
   FOCUS,
@@ -113,6 +114,7 @@ export function buildAnalysisContext(input: AnalysisInput): AnalysisContext {
           }));
   return {
     version: 1,
+    running: runningContext(input.tables, date, 2),
     week: plan ? Math.floor(diffDays(String(plan.active_from), date) / 7) + 1 : null,
     focus,
     deload: session.deload === true,

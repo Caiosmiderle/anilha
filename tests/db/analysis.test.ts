@@ -6,6 +6,8 @@ import {
   type AnalysisDependencies,
 } from '../../supabase/functions/analise-treino/core';
 import { analysisCases, replyCases } from '../../scripts/ios-analysis-source';
+import { handleReview, type ReviewDependencies } from '../../supabase/functions/revisao-ficha/core';
+import { reviewCases, reviewReply } from '../../scripts/ios-review-source';
 let db: PGlite;
 const user = '00000000-0000-4000-8000-000000000081';
 const claims = { sub: user, role: 'authenticated' as const };
@@ -116,5 +118,84 @@ describe('função de análise com modelo simulado e RPCs reais locais', () => {
     expect((await handleAnalysis(req(), deps)).status).toBe(429);
     expect(model.mock.calls.length).toBe(before);
     await expect(callRpc(db, claims, 'agent_begin_turn', {})).rejects.toThrow();
+  });
+  it('revisão exige admin antes de reservar uso e compartilha cota e tokens', async () => {
+    await db.query(
+      'update public.agent_usage set messages=2,input_tokens=0,output_tokens=0 where user_id=$1',
+      [user],
+    );
+    const reviewModel = vi.fn<ReviewDependencies['model']>(async () => ({
+      model: 'claude-sonnet-5-5',
+      stop: 'tool_use',
+      input: 2000,
+      output: 1000,
+      content: [{ type: 'tool_use', name: 'responder_revisao', input: reviewReply }],
+    }));
+    const reviewDeps: ReviewDependencies = {
+      ...deps,
+      model: reviewModel,
+      async authorize() {
+        return (await callRpc(db, claims, 'is_admin', {})) === true
+          ? {}
+          : { status: 403, error: 'Revisão disponível só para o dono por enquanto.' };
+      },
+    };
+    const request = () => req({ context: reviewCases()[0]!.expected });
+    let response = await handleReview(request(), reviewDeps);
+    expect(response.status).toBe(403);
+    expect(await response.json()).toEqual({
+      error: 'Revisão disponível só para o dono por enquanto.',
+    });
+    expect(reviewModel).not.toHaveBeenCalled();
+    await db.query('insert into public.admins(user_id) values ($1)', [user]);
+    expect(
+      (
+        await handleReview(
+          req({ context: { ...reviewCases()[0]!.expected, note: 'secret' } }),
+          reviewDeps,
+        )
+      ).status,
+    ).toBe(400);
+    response = await handleReview(request(), reviewDeps);
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      ...reviewReply,
+      usage: { model: 'claude-sonnet-5-5', input_tokens: 2000, output_tokens: 1000 },
+    });
+    expect(
+      (
+        await db.query(
+          'select messages,input_tokens,output_tokens from public.agent_usage where user_id=$1',
+          [user],
+        )
+      ).rows[0],
+    ).toMatchObject({ messages: 3, input_tokens: 2000, output_tokens: 1000 });
+    reviewModel.mockResolvedValueOnce({
+      stop: 'tool_use',
+      input: 100,
+      output: 50,
+      content: [
+        {
+          type: 'tool_use',
+          name: 'responder_revisao',
+          input: { ...reviewReply, ajustes: [{ ...reviewReply.ajustes[0], sets: 99 }] },
+        },
+      ],
+    });
+    expect((await (await handleReview(request(), reviewDeps)).json()).ajustes).toEqual([]);
+    reviewModel.mockResolvedValueOnce({
+      stop: 'max_tokens',
+      input: 100,
+      output: 8000,
+      content: [],
+    });
+    expect((await handleReview(request(), reviewDeps)).status).toBe(502);
+    reviewModel.mockRejectedValueOnce(new Error('private-secret'));
+    expect(await (await handleReview(request(), reviewDeps)).text()).not.toContain(
+      'private-secret',
+    );
+    await db.query('update public.agent_usage set messages=60 where user_id=$1', [user]);
+    expect((await handleReview(request(), reviewDeps)).status).toBe(429);
+    expect((await handleReview(req(undefined, ''), reviewDeps)).status).toBe(401);
   });
 });

@@ -82,6 +82,19 @@ try {
 } finally {
   await analysisBundle.close();
 }
+const reviewBundle = await rolldown({
+  input: resolve(root, 'scripts/ios-review-source.ts'),
+  platform: 'node',
+});
+let review;
+try {
+  const { output } = await reviewBundle.generate({ format: 'esm' });
+  review = (
+    await import('data:text/javascript;base64,' + Buffer.from(output[0].code).toString('base64'))
+  ).reviewArtifacts();
+} finally {
+  await reviewBundle.close();
+}
 const env = await readFile(resolve(root, '.env.production'), 'utf8');
 if (!/^VITE_SUPABASE_ANON_KEY=sb_publishable_[A-Za-z0-9_-]+\s*$/m.test(env)) {
   throw new Error(
@@ -94,6 +107,10 @@ const publicValue = (key) => {
   return JSON.stringify(value);
 };
 const outputs = {
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/review.json': json(review).replace(
+    /\u2014/g,
+    '\\u2014',
+  ),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/history.json': json(history),
   'ios/AnilhaCore/Sources/AnilhaCore/Resources/history-taxonomy.json': json(history.taxonomy),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/calendar.json': json(calendar),

@@ -11,6 +11,8 @@ import {
   Trash2,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useIsAdmin } from '../sync/admin';
+import { ReviewCard } from '../review/ReviewCard';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAccount } from '../app/account';
 import { useLiveQuery } from 'dexie-react-hooks';
@@ -43,6 +45,7 @@ import { SubstituteList } from './parts/SubstituteList';
 
 export default function RoutineEdit() {
   const { id } = useParams();
+  const admin = useIsAdmin();
   const { db } = useAccount();
   const routine = useLiveQuery(
     async () => (id ? ((await db.routines.get(id)) ?? null) : null),
@@ -166,6 +169,7 @@ export default function RoutineEdit() {
           </p>
         </div>
       </header>
+      {admin && !routine.archived && <ReviewCard key={routine.id} routineID={routine.id} />}
 
       <div className="hb-widget">
         <div className="hb-widget-body stack">

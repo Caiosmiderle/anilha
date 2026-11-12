@@ -66,7 +66,7 @@ public enum WorkoutAnalysis {
             ReadRow(fields: ["days_ago": .number(Double(max(0, LocalDay.distance($0.string("local_date") ?? date, date)))), "deload": .bool($0.bool("deload") == true), "items": rows(items($0))])
         }
         return ReadRow(fields: ["version": .number(1), "week": plan.map { .number(floor(Double(LocalDay.distance($0.string("active_from") ?? date, date)) / 7) + 1) } ?? .null,
-            "focus": .array(allowedFocus), "deload": .bool(session.bool("deload") == true), "items": rows(items(session)), "previous": rows(previous)])
+            "focus": .array(allowedFocus), "deload": .bool(session.bool("deload") == true), "items": rows(items(session)), "previous": rows(previous), "running": .object(RunningContext.build(data, date: date, window: 2).fields)])
     }
     public static func validAdjustment(_ a: ReadRow, slots: Int, catalog: [ReadRow]) -> Bool {
         guard Set(a.fields.keys) == Set(["operation", "slot", "sets", "min", "max", "replacement"]),
@@ -113,6 +113,7 @@ public enum WorkoutAnalysis {
     static let prices: [String: (input: Double, output: Double)] = [
         "claude-haiku-5-5": (0.10, 0.50),
         "claude-opus-5-5": (4, 20),
+        "claude-sonnet-5-5": (2, 10),
     ]
     public static func estimatedCost(_ usage: ReadRow) -> Double? {
         guard Self.usage(usage) != nil, let price = prices[usage.string("model") ?? ""] else { return nil }

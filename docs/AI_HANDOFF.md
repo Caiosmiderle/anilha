@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS 0.10.0, revisão da ficha com corridas, Codex, 12/11/2026
+
+- Branch `codex/revisao-ficha`, base `f7ebee8`, arquivos interrompidos revisados/aproveitados; entrega só local, sem escrita em `.git`. Claude revisa e commita; nada publicado.
+- Nova `revisao-ficha`, só admin via JWT/`is_admin`, cota compartilhada, Sonnet 5.5, `auto`, 8.000 tokens/120 s, sem repetição. Contexto permitido da ficha/plano/volume e corridas feitas/planejadas em 14 dias, projeção e alerta existentes; TS/Swift com seis vetores.
+- Cartões PWA/iPhone com até três ajustes fechados, antes/depois, Aplicar/Recusar separados, desfazer protegido, cache por conta e versão com `updated_at` dos itens, uso/custo. LGPD com base legal a definir; iOS **0.10.0**.
+- Análise Opus/Haiku inclui corridas em dois dias antes/depois; contrato aceita clientes antigos sem o campo. Corrigido timeout herdado dos clientes de 45 para 125 s, contra 120 s do Opus. Chat intacto no Haiku.
+- Passaram geradores `--check`, lint, typecheck, build e diff; 55 testes TS do conjunto CI cobertos nas execuções descritas no parecer. Quatro E2E da análise e um novo da revisão passaram; revisão repetida após acabamento final. Só API/PGlite locais e `.local/e2e-dist`.
+- Swift tentado, ausente no Windows; quatro testes Swift novos, paridade Apple, CI, iPhone e modelo real **PENDENTES**. Demo `revisao` na matriz, 46/92 PNGs esperados; print PWA `210-revisao-ficha.png` inspecionado. Revisão do Claude **PENDENTE**.
+- Parecer, prompt/esquema, custos, falhas e roteiro em [REVISAO_CODEX_REVISAO_FICHA_2026-11-12.md](REVISAO_CODEX_REVISAO_FICHA_2026-11-12.md). Após revisão/OK, publicar funções ampliadas antes dos clientes; a análise v2 atual rejeita `running`. Sem SQL novo.
+
 ## iOS 0.8.0, Histórico, Codex, 12/11/2026
 
 - Branch `codex/ios-historico`, origem `116ddd4`, recebida limpa. Entrega local; Claude revisa e commita por decisão do Caio sobre `.git`.

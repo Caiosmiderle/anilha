@@ -247,6 +247,10 @@ describe('análise: gravação e fila compartilhadas com Waltér e treino', () =
     const attempts = await Promise.allSettled([requestAnalysis(id), requestAnalysis(id)]);
     expect(attempts.every((r) => r.status === 'rejected')).toBe(true);
     expect(invoke).toHaveBeenCalledTimes(1);
+    expect(invoke).toHaveBeenCalledWith(
+      'analise-treino',
+      expect.objectContaining({ timeout: 125000 }),
+    );
     failing.mockRestore();
     await requestAnalysis(id);
     expect(invoke).toHaveBeenCalledTimes(1);

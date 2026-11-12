@@ -21,6 +21,7 @@ final class ContaStore {
     private(set) var pendentes = 0
     private(set) var rejeitadas = 0
     private(set) var analises: [String: ReadRow] = [:]
+    private(set) var admin = false
     private(set) var consentimento: ReadRow?
     var saudePermitida: Bool { History.healthOn(consentimento) }
     var saudePendente: Bool {
@@ -373,7 +374,7 @@ final class ContaStore {
             try cache.guardarAnalise(ReadRow(fields: ["status": .string("requesting")]), sessionID: id, dono: owner)
             try recarregar()
             var request = URLRequest(url: Configuracao.supabaseURL.appendingPathComponent("functions/v1/analise-treino"))
-            request.httpMethod = "POST"; request.timeoutInterval = 45
+            request.httpMethod = "POST"; request.timeoutInterval = 125
             request.setValue(Configuracao.supabaseKey, forHTTPHeaderField: "apikey")
             request.setValue("Bearer \(auth.accessToken)", forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -418,6 +419,70 @@ final class ContaStore {
         catch { erro = "Não foi possível guardar a análise."; return false }
     }
     func analisePrecisaGravar(_ id: String) -> Bool { analisesNaoGravadas["analysis:\(id)"] != nil }
+    func revisaoPrecisaGravar(_ id: String) -> Bool { analisesNaoGravadas["review:\(id)"] != nil }
+    func conferirAdmin() async {
+        guard let owner = dono, let cliente else { admin = false; return }
+        let epoch = geracao
+        do {
+            let auth = try await cliente.auth.session
+            try conferir(owner, epoch)
+            guard auth.user.id.uuidString.lowercased() == owner else { throw ReadSync.Failure.accountChanged }
+            let result: Bool = try await rpc("is_admin", body: Data("{}".utf8), token: auth.accessToken)
+            try conferir(owner, epoch); admin = result
+        } catch { if geracao == epoch { admin = false } }
+    }
+    func revisarFicha(_ id: String) async {
+        let key = "review:\(id)", today = LocalDay.today()
+        guard admin, let owner = dono, let cliente, let cache, online, !analisando.contains(key) else { return }
+        let epoch = geracao
+        analisando.insert(key)
+        defer { if geracao == epoch { analisando.remove(key) } }
+        do {
+            try recarregar()
+            let version = RoutineReview.version(dados, routineID: id)
+            if let saved = analises[key], saved.object("version") == version, saved.object("reply").string("resumo") != nil {
+                try cache.guardarRevisao(saved, routineID: id, dono: owner)
+                analisesNaoGravadas.removeValue(forKey: key); try recarregar(); return
+            }
+            let context = try RoutineReview.context(dados, routineID: id, today: today, catalog: catalogo)
+            let binding = try RoutineReview.binding(dados, routineID: id, today: today)
+            let auth = try await cliente.auth.session
+            try conferir(owner, epoch)
+            guard auth.user.id.uuidString.lowercased() == owner else { throw ReadSync.Failure.accountChanged }
+            try cache.guardarRevisao(ReadRow(fields: ["status": .string("requesting"), "version": .object(version.fields)]), routineID: id, dono: owner)
+            try recarregar()
+            var request = URLRequest(url: Configuracao.supabaseURL.appendingPathComponent("functions/v1/revisao-ficha"))
+            request.httpMethod = "POST"; request.timeoutInterval = 125
+            request.setValue(Configuracao.supabaseKey, forHTTPHeaderField: "apikey")
+            request.setValue("Bearer \(auth.accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = try JSONEncoder().encode(ReadRow(fields: ["context": .object(context.fields)]))
+            let config = URLSessionConfiguration.ephemeral; config.urlCache = nil
+            let transport = URLSession(configuration: config)
+            defer { transport.invalidateAndCancel() }
+            let (bytes, response) = try await transport.data(for: request)
+            try conferir(owner, epoch)
+            var raw = try JSONDecoder().decode(ReadRow.self, from: bytes)
+            guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+                erro = raw.string("error") ?? "Não foi possível revisar agora."; return
+            }
+            let usage = WorkoutAnalysis.usage(raw.object("usage")); raw.fields.removeValue(forKey: "usage")
+            guard let reply = RoutineReview.parseReply(raw, slots: context.array("items").count, catalog: catalogo) else { throw ReadSync.Failure.invalidPage }
+            let saved = ReadRow(fields: ["routineID": .string(id), "version": .object(version.fields), "context": .object(context.fields), "binding": .object(binding.fields), "reply": .object(reply.fields),
+                "usage": usage.map { .object($0.fields) } ?? .null, "decisions": .array(reply.array("ajustes").map { _ in .object(["status": .string("proposed")]) })])
+            analisesNaoGravadas[key] = saved; analises[key] = saved
+            try cache.guardarRevisao(saved, routineID: id, dono: owner)
+            analisesNaoGravadas.removeValue(forKey: key); try recarregar(); erro = nil
+        } catch {
+            guard geracao == epoch, dono == owner else { return }
+            erro = "Não foi possível concluir ou guardar a revisão. Tente novamente. Uma tentativa enviada conta no limite diário."
+        }
+    }
+    func decidirRevisao(_ id: String, index: Int, action: String) {
+        guard admin, let dono, let cache else { return }
+        do { try cache.decidirRevisao(routineID: id, index: index, action: action, dono: dono, catalog: catalogo, today: LocalDay.today()); try recarregar(); erro = nil; Task { await atualizar() } }
+        catch { erro = "Não foi possível mudar a ficha. Ela pode ter mudado depois da revisão ou deste ajuste." }
+    }
     func salvarAjuste(_ saved: ReadRow, id: String) {
         guard let dono, let cache else { return }
         do { try cache.salvarAjuste(saved, sessionID: id, dono: dono, catalog: catalogo); try recarregar(); erro = nil; Task { await atualizar() } }
@@ -435,7 +500,7 @@ final class ContaStore {
         geracao = UUID(); tarefaSync?.cancel(); tarefaSync = nil
         descanso.atualizar(fim: nil)
         dono = nil; dados = ReadData(); atualizadoEm = nil; sincronizando = false
-        analises = [:]; consentimento = nil; analisando = []; analisesNaoGravadas = [:]
+        analises = [:]; consentimento = nil; analisando = []; analisesNaoGravadas = [:]; admin = false
         pendentes = 0; rejeitadas = 0; sessaoAberta = nil; repetirSync = false
         defer { ocupado = false }
         do {
@@ -474,6 +539,13 @@ extension ContaStore {
             "context": .object(context.fields), "binding": .object(binding.fields),
             "usage": .object(["model": .string("claude-haiku-5-5"), "input_tokens": .number(2345), "output_tokens": .number(210)])
         ])
+        let reviewContext = try RoutineReview.context(store.dados, routineID: "demo-routine", today: "2026-11-12", catalog: store.catalogo)
+        let reviewBinding = try RoutineReview.binding(store.dados, routineID: "demo-routine", today: "2026-11-12")
+        let reviewReply = try JSONDecoder().decode(ReadRow.self, from: Data(ModoDemo.revisao.utf8))
+        guard RoutineReview.parseReply(reviewReply, slots: reviewContext.array("items").count, catalog: store.catalogo) != nil else { throw WorkoutAnalysis.Failure.invalidAdjustment }
+        store.analises["review:demo-routine"] = ReadRow(fields: ["routineID": .string("demo-routine"), "version": .object(RoutineReview.version(store.dados, routineID: "demo-routine").fields),
+            "context": .object(reviewContext.fields), "binding": .object(reviewBinding.fields), "reply": .object(reviewReply.fields), "decisions": .array([.object(["status": .string("proposed")])]),
+            "usage": .object(["model": .string("claude-sonnet-5-5"), "input_tokens": .number(2000), "output_tokens": .number(1000)])])
         return store
     }
 }

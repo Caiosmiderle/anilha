@@ -128,7 +128,7 @@ public enum TrainingCalendar {
     }
 
     // Same guard and wording as recommend.ts legsBeforeRunAlert, without fatigue rules.
-    private static func legsBeforeRunAlert(day: String, split: String, plan: Plan,
+    static func legsBeforeRunAlert(day: String, split: String, plan: Plan,
                                             overrides: [ReadRow], external: [ReadRow]) -> String? {
         guard plan.rules.no_legs_before_run, Planning.splits.contains(where: { $0.id == split && $0.legs }) else { return nil }
         let tomorrow = LocalDay.add(day, 1)

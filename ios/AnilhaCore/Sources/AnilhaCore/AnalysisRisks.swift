@@ -1,6 +1,42 @@
 import Foundation
 
 public extension WorkoutAnalysis {
+    /// Same frequency, taxonomy and weeklyCap as the TS weeklyVolume/weekRisks projection.
+    static func reviewMetrics(_ b: ReadRow) -> ReadRow {
+        let p = b.object("params"), plan = b.object("plan")
+        var values: [String: Double] = [:]
+        for routine in b.array("routines") where !routine.deleted && routine.bool("archived") != true {
+            let origin = routine.string("origin")
+            let reason = routine.string("reason") ?? ""
+            let isPlan = origin.map { $0 == "plano" } ?? (!routine.id.hasPrefix("pronta-") && !routine.id.hasPrefix("recebida-") && reason.range(of: "^\\d+ exercícios, \\d+ séries de trabalho\\.$", options: .regularExpression) != nil)
+            let perWeek: Double
+            if !isPlan || plan.id.isEmpty { perWeek = 0 }
+            else if case .array(let rotation) = plan.object("rules").fields["rotation"], !rotation.isEmpty {
+                perWeek = (plan.number("gym_per_week") ?? 0) / Double(rotation.count) * Double(rotation.filter { $0 == routine.fields["split_key"] }.count)
+            } else { perWeek = Double(plan.array("days").filter { $0.string("kind") == "gym" && $0.string("split_key") == routine.string("split_key") }.count) }
+            for row in b.array("allRoutineItems") where !row.deleted && row.string("routine_id") == routine.id {
+                guard let group = riskRules.object("groups").string(row.string("exercise_id") ?? "") else { continue }
+                values[group, default: 0] += (row.number("sets") ?? 0) * perWeek
+            }
+        }
+        let easy = p.bool("returning") == true || p.string("level") == "iniciante" || p.string("goal") == "corrida" || (p.string("age_range") == "60+" && p.string("level") != "avancado")
+        let ceiling: Double = easy ? 10 : p.string("level") == "intermediario" ? 16 : 20
+        let focuses: [String]
+        if case .array(let a) = p.fields["focus"] { focuses = a.compactMap { if case .string(let s) = $0 { return s }; return nil } }
+        else { focuses = p.string("focus").map { [$0] } ?? [] }
+        let focusGroups = Set(focuses.flatMap { f -> [String] in
+            guard case .array(let a) = riskRules.object("focusGroups").fields[f] else { return [] }
+            return a.compactMap { if case .string(let s) = $0 { return s }; return nil }
+        })
+        let volume = RoutineReview.groups.compactMap { g -> ReadRow? in
+            guard let n = values[g] else { return nil }; return ReadRow(fields: ["group": .string(g), "sets": .number(n)])
+        }
+        let warnings = volume.filter { v in
+            let cap = ceiling + (p.string("gender") == "feminino" ? 2 : 0) + (focusGroups.contains(v.string("group") ?? "") ? 4 : 0)
+            return (v.number("sets") ?? 0) > cap
+        }.map { ReadRow(fields: ["group": $0.fields["group"]!, "code": .string("acima_teto")]) }
+        return ReadRow(fields: ["volume": .array(volume.map { .object($0.fields) }), "warnings": .array(warnings.map { .object($0.fields) })])
+    }
     private static let riskRules: ReadRow = {
         let url = Bundle.module.url(forResource: "analysis-rules", withExtension: "json")!
         return try! JSONDecoder().decode(ReadRow.self, from: Data(contentsOf: url))

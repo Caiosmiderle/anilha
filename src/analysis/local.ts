@@ -46,6 +46,8 @@ export async function analysisInput(d: AnilhaDB, sessionID: string): Promise<Ana
     'routine_items',
     'profiles',
     'exercises',
+    'runs',
+    'external_plan_items',
   ])
     tables[table] = await d.table(table).toArray();
   const planned: NonNullable<AnalysisInput['planned']> = {},
@@ -130,6 +132,8 @@ export async function requestAnalysis(id: string): Promise<SavedAnalysis> {
         owner.db.routine_items,
         owner.db.profiles,
         owner.db.exercises,
+        owner.db.runs,
+        owner.db.external_plan_items,
         owner.db.meta,
       ],
       async () => ({
@@ -145,7 +149,7 @@ export async function requestAnalysis(id: string): Promise<SavedAnalysis> {
     const { data, error } = await client.functions.invoke('analise-treino', {
       body: { context },
       headers: { Authorization: `Bearer ${auth.session.access_token}` },
-      timeout: 45000,
+      timeout: 125000,
     });
     check(owner);
     if (error) {

@@ -1,0 +1,3672 @@
+{
+  "contexts": [
+    {
+      "input": {
+        "today": "2026-11-12",
+        "params": {
+          "first_name": "private-name-canary",
+          "goal": "hipertrofia",
+          "gym_days": 3,
+          "run_days": 0,
+          "force_gym_days": false,
+          "minutes": 45,
+          "equipment": [
+            "barra",
+            "halteres",
+            "polia"
+          ],
+          "level": "intermediario",
+          "spare_joints": [
+            "joelho"
+          ],
+          "returning": false,
+          "time": "08:00",
+          "focus": [
+            "pernas"
+          ],
+          "age_range": "60+"
+        },
+        "plan": {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "rotation": [
+              "peito_triceps"
+            ],
+            "no_legs_before_run": true
+          },
+          "params": null,
+          "reasons": []
+        },
+        "routines": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine",
+            "name": "Ficha sintética",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "reason": null,
+            "archived": false,
+            "origin": "plano"
+          }
+        ],
+        "items": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-0",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          },
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-1",
+            "routine_id": "routine",
+            "exercise_id": "remada-curvada",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          }
+        ],
+        "health": true,
+        "returnMode": true,
+        "sessions": [],
+        "runs": [
+          {
+            "id": "run-0",
+            "deleted": false,
+            "local_date": "2026-10-28",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-1",
+            "deleted": false,
+            "local_date": "2026-10-29",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-2",
+            "deleted": false,
+            "local_date": "2026-11-10",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-3",
+            "deleted": false,
+            "local_date": "2026-11-11",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-4",
+            "deleted": false,
+            "local_date": "2026-11-12",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-5",
+            "deleted": false,
+            "local_date": "2026-11-13",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          }
+        ],
+        "externalPlans": [
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-0",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-11",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-1",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-12",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-2",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-13",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-3",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-14",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-4",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-26",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-5",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-27",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          }
+        ],
+        "overrides": []
+      },
+      "routineID": "routine",
+      "expected": {
+        "version": 1,
+        "split": "peito_triceps",
+        "days": 5,
+        "focus": [
+          "pernas"
+        ],
+        "deload": false,
+        "running": {
+          "done": [
+            {
+              "days_ago": 14,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 14,
+              "weekday": 3,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
+        "schedule": [
+          {
+            "days_ahead": 0,
+            "weekday": 3,
+            "kind": "run",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 1,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 2,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 3,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 4,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 5,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 6,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 7,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 8,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 9,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 10,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 11,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 12,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 13,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 14,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          }
+        ],
+        "items": [
+          {
+            "slot": 0,
+            "exercise": "Supino reto com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          },
+          {
+            "slot": 1,
+            "exercise": "Remada curvada com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          }
+        ],
+        "volume": [
+          {
+            "group": "costas",
+            "sets": 15
+          },
+          {
+            "group": "peito",
+            "sets": 15
+          }
+        ],
+        "warnings": [
+          {
+            "group": "costas",
+            "code": "acima_teto"
+          },
+          {
+            "group": "peito",
+            "code": "acima_teto"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "today": "2026-11-12",
+        "params": {
+          "first_name": "private-name-canary",
+          "goal": "hipertrofia",
+          "gym_days": 3,
+          "run_days": 0,
+          "force_gym_days": false,
+          "minutes": 45,
+          "equipment": [
+            "barra",
+            "halteres",
+            "polia"
+          ],
+          "level": "intermediario",
+          "spare_joints": [
+            "joelho"
+          ],
+          "returning": false,
+          "time": "08:00",
+          "focus": [
+            "pernas"
+          ],
+          "age_range": "60+"
+        },
+        "plan": null,
+        "routines": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine",
+            "name": "Ficha sintética",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "reason": null,
+            "archived": false,
+            "origin": "plano"
+          }
+        ],
+        "items": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-0",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          },
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-1",
+            "routine_id": "routine",
+            "exercise_id": "remada-curvada",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          }
+        ],
+        "health": true,
+        "returnMode": true,
+        "sessions": [],
+        "runs": [
+          {
+            "id": "run-0",
+            "deleted": false,
+            "local_date": "2026-10-28",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-1",
+            "deleted": false,
+            "local_date": "2026-10-29",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-2",
+            "deleted": false,
+            "local_date": "2026-11-10",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-3",
+            "deleted": false,
+            "local_date": "2026-11-11",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-4",
+            "deleted": false,
+            "local_date": "2026-11-12",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-5",
+            "deleted": false,
+            "local_date": "2026-11-13",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          }
+        ],
+        "externalPlans": [
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-0",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-11",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-1",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-12",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-2",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-13",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-3",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-14",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-4",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-26",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-5",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-27",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          }
+        ],
+        "overrides": []
+      },
+      "routineID": "routine",
+      "expected": {
+        "version": 1,
+        "split": "peito_triceps",
+        "days": 3,
+        "focus": [
+          "pernas"
+        ],
+        "deload": false,
+        "running": {
+          "done": [
+            {
+              "days_ago": 14,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 14,
+              "weekday": 3,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
+        "schedule": [],
+        "items": [
+          {
+            "slot": 0,
+            "exercise": "Supino reto com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          },
+          {
+            "slot": 1,
+            "exercise": "Remada curvada com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          }
+        ],
+        "volume": [
+          {
+            "group": "costas",
+            "sets": 0
+          },
+          {
+            "group": "peito",
+            "sets": 0
+          }
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "input": {
+        "today": "2026-11-12",
+        "params": {
+          "first_name": "private-name-canary",
+          "goal": "hipertrofia",
+          "gym_days": 3,
+          "run_days": 0,
+          "force_gym_days": false,
+          "minutes": 45,
+          "equipment": [
+            "barra",
+            "halteres",
+            "polia"
+          ],
+          "level": "intermediario",
+          "spare_joints": [
+            "joelho"
+          ],
+          "returning": false,
+          "time": "08:00",
+          "focus": [
+            "pernas"
+          ],
+          "age_range": "60+"
+        },
+        "plan": {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "rotation": [
+              "peito_triceps"
+            ],
+            "no_legs_before_run": true
+          },
+          "params": null,
+          "reasons": []
+        },
+        "routines": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine",
+            "name": "Ficha sintética",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "reason": null,
+            "archived": false,
+            "origin": "plano"
+          }
+        ],
+        "items": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-0",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          },
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-1",
+            "routine_id": "routine",
+            "exercise_id": "remada-curvada",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          }
+        ],
+        "health": true,
+        "returnMode": true,
+        "sessions": [],
+        "runs": [],
+        "externalPlans": [],
+        "overrides": []
+      },
+      "routineID": "routine",
+      "expected": {
+        "version": 1,
+        "split": "peito_triceps",
+        "days": 5,
+        "focus": [
+          "pernas"
+        ],
+        "deload": false,
+        "running": {
+          "done": [],
+          "planned": []
+        },
+        "schedule": [
+          {
+            "days_ahead": 0,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 1,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 2,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 3,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 4,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 5,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 6,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 7,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 8,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 9,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 10,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 11,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 12,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 13,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 14,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          }
+        ],
+        "items": [
+          {
+            "slot": 0,
+            "exercise": "Supino reto com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          },
+          {
+            "slot": 1,
+            "exercise": "Remada curvada com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          }
+        ],
+        "volume": [
+          {
+            "group": "costas",
+            "sets": 15
+          },
+          {
+            "group": "peito",
+            "sets": 15
+          }
+        ],
+        "warnings": [
+          {
+            "group": "costas",
+            "code": "acima_teto"
+          },
+          {
+            "group": "peito",
+            "code": "acima_teto"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "today": "2026-11-12",
+        "params": {
+          "first_name": "private-name-canary",
+          "goal": "hipertrofia",
+          "gym_days": 3,
+          "run_days": 0,
+          "force_gym_days": false,
+          "minutes": 45,
+          "equipment": [
+            "barra",
+            "halteres",
+            "polia"
+          ],
+          "level": "intermediario",
+          "spare_joints": [
+            "joelho"
+          ],
+          "returning": false,
+          "time": "08:00",
+          "focus": [
+            "pernas"
+          ],
+          "age_range": "60+"
+        },
+        "plan": {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "rotation": [
+              "peito_triceps"
+            ],
+            "no_legs_before_run": true
+          },
+          "params": null,
+          "reasons": []
+        },
+        "routines": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine",
+            "name": "Ficha sintética",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "reason": null,
+            "archived": false,
+            "origin": "plano"
+          }
+        ],
+        "items": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-0",
+            "routine_id": "routine",
+            "exercise_id": "custom-private-canary",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          },
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-1",
+            "routine_id": "routine",
+            "exercise_id": "custom-private-canary",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          }
+        ],
+        "health": true,
+        "returnMode": true,
+        "sessions": [],
+        "runs": [
+          {
+            "id": "run-0",
+            "deleted": false,
+            "local_date": "2026-10-28",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-1",
+            "deleted": false,
+            "local_date": "2026-10-29",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-2",
+            "deleted": false,
+            "local_date": "2026-11-10",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-3",
+            "deleted": false,
+            "local_date": "2026-11-11",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-4",
+            "deleted": false,
+            "local_date": "2026-11-12",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-5",
+            "deleted": false,
+            "local_date": "2026-11-13",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          }
+        ],
+        "externalPlans": [
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-0",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-11",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-1",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-12",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-2",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-13",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-3",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-14",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-4",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-26",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-5",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-27",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          }
+        ],
+        "overrides": []
+      },
+      "routineID": "routine",
+      "expected": {
+        "version": 1,
+        "split": "peito_triceps",
+        "days": 5,
+        "focus": [
+          "pernas"
+        ],
+        "deload": false,
+        "running": {
+          "done": [
+            {
+              "days_ago": 14,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 14,
+              "weekday": 3,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
+        "schedule": [
+          {
+            "days_ahead": 0,
+            "weekday": 3,
+            "kind": "run",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 1,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 2,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 3,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 4,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 5,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 6,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 7,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 8,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 9,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 10,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 11,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 12,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 13,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 14,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          }
+        ],
+        "items": [
+          {
+            "slot": 0,
+            "exercise": "Exercício personalizado",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          },
+          {
+            "slot": 1,
+            "exercise": "Exercício personalizado",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          }
+        ],
+        "volume": [],
+        "warnings": []
+      }
+    },
+    {
+      "input": {
+        "today": "2026-11-12",
+        "params": {
+          "first_name": "private-name-canary",
+          "goal": "hipertrofia",
+          "gym_days": 3,
+          "run_days": 0,
+          "force_gym_days": false,
+          "minutes": 45,
+          "equipment": [
+            "barra",
+            "halteres",
+            "polia"
+          ],
+          "level": "intermediario",
+          "spare_joints": [
+            "joelho"
+          ],
+          "returning": false,
+          "time": "08:00",
+          "focus": [
+            "pernas"
+          ],
+          "age_range": "60+"
+        },
+        "plan": {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": "peito_triceps",
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": "peito_triceps",
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": "peito_triceps",
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": "peito_triceps",
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": "peito_triceps",
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": "peito_triceps",
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": "peito_triceps",
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "no_legs_before_run": false
+          },
+          "params": null,
+          "reasons": []
+        },
+        "routines": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine",
+            "name": "Ficha sintética",
+            "split_key": "peito_triceps",
+            "position": 0,
+            "reason": null,
+            "archived": false,
+            "origin": "plano"
+          }
+        ],
+        "items": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-0",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          },
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-1",
+            "routine_id": "routine",
+            "exercise_id": "remada-curvada",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          }
+        ],
+        "health": true,
+        "returnMode": true,
+        "sessions": [],
+        "runs": [
+          {
+            "id": "run-0",
+            "deleted": false,
+            "local_date": "2026-10-28",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-1",
+            "deleted": false,
+            "local_date": "2026-10-29",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-2",
+            "deleted": false,
+            "local_date": "2026-11-10",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-3",
+            "deleted": false,
+            "local_date": "2026-11-11",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-4",
+            "deleted": false,
+            "local_date": "2026-11-12",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-5",
+            "deleted": false,
+            "local_date": "2026-11-13",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          }
+        ],
+        "externalPlans": [
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-0",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-11",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-1",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-12",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-2",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-13",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-3",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-14",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-4",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-26",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-5",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-27",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          }
+        ],
+        "overrides": []
+      },
+      "routineID": "routine",
+      "expected": {
+        "version": 1,
+        "split": "peito_triceps",
+        "days": 5,
+        "focus": [
+          "pernas"
+        ],
+        "deload": false,
+        "running": {
+          "done": [
+            {
+              "days_ago": 14,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 14,
+              "weekday": 3,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
+        "schedule": [
+          {
+            "days_ahead": 0,
+            "weekday": 3,
+            "kind": "run",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 1,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 2,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 3,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 4,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 5,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 6,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 7,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 8,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 9,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 10,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 11,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 12,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 13,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 14,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "peito_triceps",
+            "target": true,
+            "legs_before_run": false
+          }
+        ],
+        "items": [
+          {
+            "slot": 0,
+            "exercise": "Supino reto com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          },
+          {
+            "slot": 1,
+            "exercise": "Remada curvada com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          }
+        ],
+        "volume": [
+          {
+            "group": "costas",
+            "sets": 15
+          },
+          {
+            "group": "peito",
+            "sets": 15
+          }
+        ],
+        "warnings": [
+          {
+            "group": "costas",
+            "code": "acima_teto"
+          },
+          {
+            "group": "peito",
+            "code": "acima_teto"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "today": "2026-11-12",
+        "params": {
+          "first_name": "private-name-canary",
+          "goal": "hipertrofia",
+          "gym_days": 3,
+          "run_days": 0,
+          "force_gym_days": false,
+          "minutes": 45,
+          "equipment": [
+            "barra",
+            "halteres",
+            "polia"
+          ],
+          "level": "intermediario",
+          "spare_joints": [
+            "joelho"
+          ],
+          "returning": false,
+          "time": "08:00",
+          "focus": [
+            "pernas"
+          ],
+          "age_range": "60+"
+        },
+        "plan": {
+          "user_id": "calendar-fixture",
+          "updated_at": 1,
+          "deleted": false,
+          "id": "plan",
+          "active_from": "2026-11-09",
+          "gym_per_week": 5,
+          "run_per_week": 0,
+          "days": [
+            {
+              "weekday": 0,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 1,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 2,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 3,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 4,
+              "kind": "gym",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 5,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            },
+            {
+              "weekday": 6,
+              "kind": "rest",
+              "split_key": null,
+              "run_type": null,
+              "time": "18:00"
+            }
+          ],
+          "rules": {
+            "rotation": [
+              "perna"
+            ],
+            "no_legs_before_run": true
+          },
+          "params": null,
+          "reasons": []
+        },
+        "routines": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine",
+            "name": "Ficha sintética",
+            "split_key": "perna",
+            "position": 0,
+            "reason": null,
+            "archived": false,
+            "origin": "plano"
+          }
+        ],
+        "items": [
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-0",
+            "routine_id": "routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          },
+          {
+            "user_id": "synthetic-owner",
+            "updated_at": 100,
+            "deleted": false,
+            "id": "routine-item-1",
+            "routine_id": "routine",
+            "exercise_id": "remada-curvada",
+            "position": 1,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 2,
+            "note": "Nota sintética preservada",
+            "reason": null,
+            "superset": "pair"
+          }
+        ],
+        "health": true,
+        "returnMode": true,
+        "sessions": [],
+        "runs": [
+          {
+            "id": "run-0",
+            "deleted": false,
+            "local_date": "2026-10-28",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-1",
+            "deleted": false,
+            "local_date": "2026-10-29",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-2",
+            "deleted": false,
+            "local_date": "2026-11-10",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-3",
+            "deleted": false,
+            "local_date": "2026-11-11",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-4",
+            "deleted": false,
+            "local_date": "2026-11-12",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          },
+          {
+            "id": "run-5",
+            "deleted": false,
+            "local_date": "2026-11-13",
+            "activity": "corrida",
+            "run_type": "intervalado",
+            "distance_km": 5,
+            "duration_sec": 1800,
+            "rpe": 7,
+            "note": "private-note-canary",
+            "source_type": "private-name-canary"
+          }
+        ],
+        "externalPlans": [
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-0",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-11",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-1",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-12",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-2",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-13",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-3",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-14",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-4",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-26",
+            "run_type": "intervalado",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          },
+          {
+            "user_id": "calendar-fixture",
+            "updated_at": 1,
+            "deleted": false,
+            "id": "external-5",
+            "source": "crunning",
+            "kind": "corrida",
+            "origin_id": "synthetic",
+            "local_date": "2026-11-27",
+            "run_type": "longo",
+            "source_type": "private-run-name-canary",
+            "name": "private-run-name-canary",
+            "distance_m": 10000,
+            "duration_sec": null,
+            "important": true,
+            "status": "planejada"
+          }
+        ],
+        "overrides": []
+      },
+      "routineID": "routine",
+      "expected": {
+        "version": 1,
+        "split": "perna",
+        "days": 5,
+        "focus": [
+          "pernas"
+        ],
+        "deload": false,
+        "running": {
+          "done": [
+            {
+              "days_ago": 14,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 14,
+              "weekday": 3,
+              "type": "intervalado",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
+        "schedule": [
+          {
+            "days_ahead": 0,
+            "weekday": 3,
+            "kind": "run",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 1,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": true
+          },
+          {
+            "days_ahead": 2,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 3,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 4,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 5,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 6,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 7,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 8,
+            "weekday": 4,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 9,
+            "weekday": 5,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 10,
+            "weekday": 6,
+            "kind": "rest",
+            "split": null,
+            "target": false,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 11,
+            "weekday": 0,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 12,
+            "weekday": 1,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": false
+          },
+          {
+            "days_ahead": 13,
+            "weekday": 2,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": true
+          },
+          {
+            "days_ahead": 14,
+            "weekday": 3,
+            "kind": "gym",
+            "split": "perna",
+            "target": true,
+            "legs_before_run": true
+          }
+        ],
+        "items": [
+          {
+            "slot": 0,
+            "exercise": "Supino reto com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          },
+          {
+            "slot": 1,
+            "exercise": "Remada curvada com barra",
+            "sets": 3,
+            "min": 8,
+            "max": 12,
+            "warmup": 2,
+            "pair": 0
+          }
+        ],
+        "volume": [
+          {
+            "group": "costas",
+            "sets": 15
+          },
+          {
+            "group": "peito",
+            "sets": 15
+          }
+        ],
+        "warnings": [
+          {
+            "group": "costas",
+            "code": "acima_teto"
+          },
+          {
+            "group": "peito",
+            "code": "acima_teto"
+          }
+        ]
+      }
+    }
+  ],
+  "catalog": [
+    {
+      "id": "puxada-frente",
+      "name": "Puxada frente na polia"
+    },
+    {
+      "id": "puxada-supinada",
+      "name": "Puxada supinada na polia"
+    },
+    {
+      "id": "puxada-triangulo",
+      "name": "Puxada com triângulo"
+    },
+    {
+      "id": "barra-fixa",
+      "name": "Barra fixa"
+    },
+    {
+      "id": "remada-curvada",
+      "name": "Remada curvada com barra"
+    },
+    {
+      "id": "remada-unilateral",
+      "name": "Remada unilateral com halter"
+    },
+    {
+      "id": "remada-baixa",
+      "name": "Remada baixa na polia"
+    },
+    {
+      "id": "remada-cavalinho",
+      "name": "Remada cavalinho"
+    },
+    {
+      "id": "remada-maquina",
+      "name": "Remada na máquina"
+    },
+    {
+      "id": "remada-invertida",
+      "name": "Remada invertida"
+    },
+    {
+      "id": "pulldown-bracos-estendidos",
+      "name": "Pulldown com braços estendidos"
+    },
+    {
+      "id": "pullover-halter",
+      "name": "Pullover com halter"
+    },
+    {
+      "id": "hiperextensao-lombar",
+      "name": "Hiperextensão lombar"
+    },
+    {
+      "id": "supino-reto-barra",
+      "name": "Supino reto com barra"
+    },
+    {
+      "id": "supino-reto-halteres",
+      "name": "Supino reto com halteres"
+    },
+    {
+      "id": "supino-inclinado-barra",
+      "name": "Supino inclinado com barra"
+    },
+    {
+      "id": "supino-inclinado-halteres",
+      "name": "Supino inclinado com halteres"
+    },
+    {
+      "id": "supino-declinado",
+      "name": "Supino declinado com barra"
+    },
+    {
+      "id": "supino-maquina",
+      "name": "Supino na máquina"
+    },
+    {
+      "id": "supino-inclinado-maquina",
+      "name": "Supino inclinado na máquina"
+    },
+    {
+      "id": "crucifixo-halteres",
+      "name": "Crucifixo com halteres"
+    },
+    {
+      "id": "crucifixo-maquina",
+      "name": "Crucifixo na máquina"
+    },
+    {
+      "id": "crossover",
+      "name": "Crossover na polia"
+    },
+    {
+      "id": "flexao-bracos",
+      "name": "Flexão de braços"
+    },
+    {
+      "id": "desenvolvimento-halteres-sentado",
+      "name": "Desenvolvimento com halteres sentado"
+    },
+    {
+      "id": "desenvolvimento-maquina",
+      "name": "Desenvolvimento na máquina"
+    },
+    {
+      "id": "desenvolvimento-barra",
+      "name": "Desenvolvimento militar com barra"
+    },
+    {
+      "id": "desenvolvimento-arnold",
+      "name": "Desenvolvimento Arnold"
+    },
+    {
+      "id": "elevacao-lateral",
+      "name": "Elevação lateral com halteres"
+    },
+    {
+      "id": "elevacao-lateral-polia",
+      "name": "Elevação lateral na polia"
+    },
+    {
+      "id": "elevacao-lateral-maquina",
+      "name": "Elevação lateral na máquina"
+    },
+    {
+      "id": "elevacao-frontal",
+      "name": "Elevação frontal com halteres"
+    },
+    {
+      "id": "remada-alta",
+      "name": "Remada alta com barra"
+    },
+    {
+      "id": "crucifixo-inverso",
+      "name": "Crucifixo inverso com halteres"
+    },
+    {
+      "id": "crucifixo-inverso-maquina",
+      "name": "Crucifixo inverso na máquina"
+    },
+    {
+      "id": "face-pull",
+      "name": "Face pull na polia"
+    },
+    {
+      "id": "encolhimento-halteres",
+      "name": "Encolhimento com halteres"
+    },
+    {
+      "id": "encolhimento-barra",
+      "name": "Encolhimento com barra"
+    },
+    {
+      "id": "rosca-direta",
+      "name": "Rosca direta com barra"
+    },
+    {
+      "id": "rosca-barra-w",
+      "name": "Rosca com barra W"
+    },
+    {
+      "id": "rosca-alternada",
+      "name": "Rosca alternada com halteres"
+    },
+    {
+      "id": "rosca-martelo",
+      "name": "Rosca martelo"
+    },
+    {
+      "id": "rosca-scott",
+      "name": "Rosca Scott"
+    },
+    {
+      "id": "rosca-concentrada",
+      "name": "Rosca concentrada"
+    },
+    {
+      "id": "rosca-polia",
+      "name": "Rosca na polia"
+    },
+    {
+      "id": "rosca-inclinada",
+      "name": "Rosca inclinada com halteres"
+    },
+    {
+      "id": "triceps-polia",
+      "name": "Tríceps na polia com barra"
+    },
+    {
+      "id": "triceps-corda",
+      "name": "Tríceps na polia com corda"
+    },
+    {
+      "id": "triceps-frances",
+      "name": "Tríceps francês com halter"
+    },
+    {
+      "id": "triceps-testa",
+      "name": "Tríceps testa com barra W"
+    },
+    {
+      "id": "triceps-coice",
+      "name": "Tríceps coice com halter"
+    },
+    {
+      "id": "triceps-maquina",
+      "name": "Tríceps na máquina"
+    },
+    {
+      "id": "supino-fechado",
+      "name": "Supino fechado"
+    },
+    {
+      "id": "paralelas",
+      "name": "Paralelas"
+    },
+    {
+      "id": "mergulho-banco",
+      "name": "Mergulho no banco"
+    },
+    {
+      "id": "agachamento-livre",
+      "name": "Agachamento livre com barra"
+    },
+    {
+      "id": "agachamento-smith",
+      "name": "Agachamento no Smith"
+    },
+    {
+      "id": "agachamento-goblet",
+      "name": "Agachamento goblet"
+    },
+    {
+      "id": "agachamento-sumo",
+      "name": "Agachamento sumô com halter"
+    },
+    {
+      "id": "agachamento-bulgaro",
+      "name": "Agachamento búlgaro"
+    },
+    {
+      "id": "afundo",
+      "name": "Afundo com halteres"
+    },
+    {
+      "id": "passada",
+      "name": "Passada com halteres"
+    },
+    {
+      "id": "leg-press-45",
+      "name": "Leg press 45"
+    },
+    {
+      "id": "leg-press-horizontal",
+      "name": "Leg press horizontal"
+    },
+    {
+      "id": "hack-squat",
+      "name": "Hack squat"
+    },
+    {
+      "id": "cadeira-extensora",
+      "name": "Cadeira extensora"
+    },
+    {
+      "id": "mesa-flexora",
+      "name": "Mesa flexora"
+    },
+    {
+      "id": "cadeira-flexora",
+      "name": "Cadeira flexora"
+    },
+    {
+      "id": "stiff",
+      "name": "Stiff com barra"
+    },
+    {
+      "id": "stiff-halteres",
+      "name": "Stiff com halteres"
+    },
+    {
+      "id": "levantamento-terra",
+      "name": "Levantamento terra"
+    },
+    {
+      "id": "elevacao-pelvica",
+      "name": "Elevação pélvica com barra"
+    },
+    {
+      "id": "swing-kettlebell",
+      "name": "Swing com kettlebell"
+    },
+    {
+      "id": "cadeira-abdutora",
+      "name": "Cadeira abdutora"
+    },
+    {
+      "id": "cadeira-adutora",
+      "name": "Cadeira adutora"
+    },
+    {
+      "id": "panturrilha-em-pe",
+      "name": "Panturrilha em pé na máquina"
+    },
+    {
+      "id": "panturrilha-sentado",
+      "name": "Panturrilha sentado"
+    },
+    {
+      "id": "panturrilha-leg-press",
+      "name": "Panturrilha no leg press"
+    },
+    {
+      "id": "panturrilha-halter",
+      "name": "Panturrilha unilateral com halter"
+    },
+    {
+      "id": "prancha",
+      "name": "Prancha"
+    },
+    {
+      "id": "prancha-lateral",
+      "name": "Prancha lateral"
+    },
+    {
+      "id": "elevacao-pernas-cadeira",
+      "name": "Elevação de pernas na cadeira"
+    },
+    {
+      "id": "elevacao-pernas-solo",
+      "name": "Elevação de pernas deitado"
+    },
+    {
+      "id": "elevacao-pernas-barra",
+      "name": "Elevação de pernas na barra fixa"
+    },
+    {
+      "id": "abdominal-polia",
+      "name": "Abdominal na polia"
+    },
+    {
+      "id": "abdominal-supra",
+      "name": "Abdominal supra"
+    },
+    {
+      "id": "abdominal-maquina",
+      "name": "Abdominal na máquina"
+    },
+    {
+      "id": "abdominal-infra",
+      "name": "Abdominal infra"
+    },
+    {
+      "id": "abdominal-bicicleta",
+      "name": "Abdominal bicicleta"
+    },
+    {
+      "id": "roda-abdominal",
+      "name": "Roda abdominal"
+    },
+    {
+      "id": "pallof-press",
+      "name": "Pallof press na polia"
+    },
+    {
+      "id": "dead-bug",
+      "name": "Dead bug"
+    }
+  ],
+  "replies": [
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          },
+          {
+            "operation": "repeticoes",
+            "slot": 1,
+            "sets": null,
+            "min": 6,
+            "max": 8,
+            "replacement": null,
+            "motivo": "Mantenha uma faixa confortável."
+          },
+          {
+            "operation": "trocar",
+            "slot": 0,
+            "sets": null,
+            "min": null,
+            "max": null,
+            "replacement": "remada-baixa",
+            "motivo": "Experimente esta alternativa do catálogo."
+          }
+        ]
+      },
+      "expected": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          },
+          {
+            "operation": "repeticoes",
+            "slot": 1,
+            "sets": null,
+            "min": 6,
+            "max": 8,
+            "replacement": null,
+            "motivo": "Mantenha uma faixa confortável."
+          },
+          {
+            "operation": "trocar",
+            "slot": 0,
+            "sets": null,
+            "min": null,
+            "max": null,
+            "replacement": "remada-baixa",
+            "motivo": "Experimente esta alternativa do catálogo."
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 13,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          }
+        ]
+      },
+      "expected": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": []
+      }
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "repeticoes",
+            "slot": 1,
+            "sets": null,
+            "min": 6,
+            "max": 1,
+            "replacement": null,
+            "motivo": "Mantenha uma faixa confortável."
+          }
+        ]
+      },
+      "expected": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": []
+      }
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "trocar",
+            "slot": 0,
+            "sets": null,
+            "min": null,
+            "max": null,
+            "replacement": "unknown",
+            "motivo": "Experimente esta alternativa do catálogo."
+          }
+        ]
+      },
+      "expected": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": []
+      }
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          },
+          {
+            "operation": "repeticoes",
+            "slot": 1,
+            "sets": null,
+            "min": 6,
+            "max": 8,
+            "replacement": null,
+            "motivo": "Mantenha uma faixa confortável."
+          },
+          {
+            "operation": "trocar",
+            "slot": 0,
+            "sets": null,
+            "min": null,
+            "max": null,
+            "replacement": "remada-baixa",
+            "motivo": "Experimente esta alternativa do catálogo."
+          },
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "ajustes": [
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          },
+          {
+            "operation": "repeticoes",
+            "slot": 1,
+            "sets": null,
+            "min": 6,
+            "max": 8,
+            "replacement": null,
+            "motivo": "Mantenha uma faixa confortável."
+          },
+          {
+            "operation": "trocar",
+            "slot": 0,
+            "sets": null,
+            "min": null,
+            "max": null,
+            "replacement": "remada-baixa",
+            "motivo": "Experimente esta alternativa do catálogo."
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          },
+          {
+            "operation": "repeticoes",
+            "slot": 1,
+            "sets": null,
+            "min": 6,
+            "max": 8,
+            "replacement": null,
+            "motivo": "Mantenha uma faixa confortável."
+          },
+          {
+            "operation": "trocar",
+            "slot": 0,
+            "sets": null,
+            "min": null,
+            "max": null,
+            "replacement": "remada-baixa",
+            "motivo": "Experimente esta alternativa do catálogo."
+          }
+        ],
+        "extra": true
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "Texto\u2014inválido",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          {
+            "operation": "series",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          },
+          {
+            "operation": "repeticoes",
+            "slot": 1,
+            "sets": null,
+            "min": 6,
+            "max": 8,
+            "replacement": null,
+            "motivo": "Mantenha uma faixa confortável."
+          },
+          {
+            "operation": "trocar",
+            "slot": 0,
+            "sets": null,
+            "min": null,
+            "max": null,
+            "replacement": "remada-baixa",
+            "motivo": "Experimente esta alternativa do catálogo."
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": [
+          null,
+          {
+            "operation": "mudar_dia",
+            "slot": 0,
+            "sets": 2,
+            "min": null,
+            "max": null,
+            "replacement": null,
+            "motivo": "Reduza o volume antes da corrida forte."
+          }
+        ]
+      },
+      "expected": {
+        "avaliacao": "ajustavel",
+        "resumo": "A ficha está coerente. Proteja as corridas importantes.",
+        "pontos": [
+          "Os ajustes só valem com sua confirmação."
+        ],
+        "ajustes": []
+      }
+    }
+  ]
+}

@@ -15,6 +15,8 @@ import { callRpc, createUser, openDatabase, type Claims } from './pg';
 import { seedDemo } from './seed';
 import { handleCrunning } from '../supabase/functions/troca-crunning/core';
 import { handleAnalysis } from '../supabase/functions/analise-treino/core';
+import { handleReview } from '../supabase/functions/revisao-ficha/core';
+import { reviewReply } from '../scripts/ios-review-source';
 
 const JWT_SECRET = 'anilha-local-dev-secret-never-used-in-production';
 const ACCESS_TTL = 3600;
@@ -285,6 +287,45 @@ export async function startLocalSupabase(opts: Options = {}): Promise<LocalSupab
     // The assistant, simulated: the same shape as supabase/functions/agente, without the
     // model. The beta and the daily limit go through the same database function; the
     // answers are scripted by keywords, so the tests walk the whole flow with no key.
+    if (url.pathname === '/functions/v1/revisao-ficha' && req.method === 'POST') {
+      const claims = claimsFrom(req);
+      if (!claims) return send(401, { error: 'Entre na sua conta.' });
+      const response = await handleReview(
+        new Request(`http://127.0.0.1${req.url}`, {
+          method: 'POST',
+          headers: { authorization: req.headers.authorization ?? '' },
+          body: JSON.stringify(body),
+        }),
+        {
+          async authorize() {
+            return (await callRpc(db, claims, 'is_admin', {})) === true
+              ? {}
+              : { status: 403, error: 'Revisão disponível só para o dono por enquanto.' };
+          },
+          async begin() {
+            try {
+              await callRpc(db, claims, 'agent_begin_turn', {});
+              return {};
+            } catch {
+              return { status: 429, error: 'Você chegou ao limite de hoje. Amanhã tem mais.' };
+            }
+          },
+          async end(_auth, input, output) {
+            await callRpc(db, claims, 'agent_end_turn', { p_input: input, p_output: output });
+          },
+          async model() {
+            return {
+              model: 'claude-sonnet-5-5',
+              stop: 'tool_use',
+              input: 2000,
+              output: 1000,
+              content: [{ type: 'tool_use', name: 'responder_revisao', input: reviewReply }],
+            };
+          },
+        },
+      );
+      return send(response.status, await response.json());
+    }
     if (url.pathname === '/functions/v1/analise-treino' && req.method === 'POST') {
       const claims = claimsFrom(req);
       if (!claims) return send(401, { error: 'Entre na sua conta.' });

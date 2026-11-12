@@ -75,11 +75,13 @@ struct FichaView: View {
                 }
                 Button(conta.ativa == nil ? "Começar treino" : "Continuar treino") { if let atual { conta.comecar(atual) } }
                     .buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large).frame(minHeight: 44).listRowBackground(Tema.fundo)
+                if conta.admin { CartaoRevisaoFicha(conta: conta, routineID: ficha.id) }
                 if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
             }
         }
         .scrollContentBackground(.hidden).background { FundoAnilha() }
         .navigationTitle("Ficha").navigationBarTitleDisplayMode(.inline)
+        .task { await conta.conferirAdmin() }
         .refreshable { await conta.atualizar() }
     }
     private func prescricao(_ item: ReadRow, medida: String?) -> String {

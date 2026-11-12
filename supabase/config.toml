@@ -4,3 +4,6 @@ verify_jwt = false
 
 [functions.analise-treino]
 verify_jwt = true
+
+[functions.revisao-ficha]
+verify_jwt = true

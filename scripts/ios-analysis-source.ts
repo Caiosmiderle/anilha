@@ -113,6 +113,29 @@ export function analysisCases() {
       })),
     ).flat(),
   };
+  tables.runs = [-3, -2, -1, 0, 1].map((offset, n) => ({
+    id: 'run-' + n,
+    local_date: '2026-11-0' + (5 + offset),
+    run_type: 'intervalado',
+    distance_km: 5,
+    duration_sec: 1800,
+    rpe: 7,
+    note: 'private-note-canary',
+    source_type: 'private-name-canary',
+    activity: 'corrida',
+  }));
+  tables.external_plan_items = [-1, 0, 1, 2, 3].map((offset, n) => ({
+    id: 'planned-' + n,
+    source: 'crunning',
+    kind: 'corrida',
+    local_date: '2026-11-0' + (5 + offset),
+    run_type: 'longo',
+    distance_m: 10000,
+    status: 'planejada',
+    important: true,
+    name: 'private-name-canary',
+    source_type: 'private-name-canary',
+  }));
   const planned = Object.fromEntries(
     (tables.sets ?? []).map((s) => [
       String(s.id),

@@ -3016,6 +3016,125 @@
               "rir": 2,
               "completed_at": null
             }
+          ],
+          "runs": [
+            {
+              "id": "run-0",
+              "local_date": "2026-11-02",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-1",
+              "local_date": "2026-11-03",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-2",
+              "local_date": "2026-11-04",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-3",
+              "local_date": "2026-11-05",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-4",
+              "local_date": "2026-11-06",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            }
+          ],
+          "external_plan_items": [
+            {
+              "id": "planned-0",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-04",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-1",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-05",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-2",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-06",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-3",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-07",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-4",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-08",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            }
           ]
         },
         "planned": {
@@ -3235,6 +3354,57 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
         "week": 2,
         "focus": [
           "pernas"
@@ -4526,6 +4696,125 @@
               "rir": 2,
               "completed_at": null
             }
+          ],
+          "runs": [
+            {
+              "id": "run-0",
+              "local_date": "2026-11-02",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-1",
+              "local_date": "2026-11-03",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-2",
+              "local_date": "2026-11-04",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-3",
+              "local_date": "2026-11-05",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-4",
+              "local_date": "2026-11-06",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            }
+          ],
+          "external_plan_items": [
+            {
+              "id": "planned-0",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-04",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-1",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-05",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-2",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-06",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-3",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-07",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-4",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-08",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            }
           ]
         },
         "planned": {},
@@ -4533,6 +4822,57 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
         "week": 2,
         "focus": [
           "pernas"
@@ -5688,6 +6028,125 @@
               "rir": 2,
               "completed_at": null
             }
+          ],
+          "runs": [
+            {
+              "id": "run-0",
+              "local_date": "2026-11-02",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-1",
+              "local_date": "2026-11-03",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-2",
+              "local_date": "2026-11-04",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-3",
+              "local_date": "2026-11-05",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-4",
+              "local_date": "2026-11-06",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            }
+          ],
+          "external_plan_items": [
+            {
+              "id": "planned-0",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-04",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-1",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-05",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-2",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-06",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-3",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-07",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-4",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-08",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            }
           ]
         },
         "planned": {
@@ -5907,6 +6366,57 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -7198,6 +7708,125 @@
               "rir": 2,
               "completed_at": null
             }
+          ],
+          "runs": [
+            {
+              "id": "run-0",
+              "local_date": "2026-11-02",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-1",
+              "local_date": "2026-11-03",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-2",
+              "local_date": "2026-11-04",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-3",
+              "local_date": "2026-11-05",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-4",
+              "local_date": "2026-11-06",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            }
+          ],
+          "external_plan_items": [
+            {
+              "id": "planned-0",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-04",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-1",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-05",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-2",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-06",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-3",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-07",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-4",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-08",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            }
           ]
         },
         "planned": {
@@ -7417,6 +8046,57 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
         "week": 2,
         "focus": [
           "pernas"
@@ -8446,6 +9126,125 @@
               "rir": 2,
               "completed_at": null
             }
+          ],
+          "runs": [
+            {
+              "id": "run-0",
+              "local_date": "2026-11-02",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-1",
+              "local_date": "2026-11-03",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-2",
+              "local_date": "2026-11-04",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-3",
+              "local_date": "2026-11-05",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            },
+            {
+              "id": "run-4",
+              "local_date": "2026-11-06",
+              "run_type": "intervalado",
+              "distance_km": 5,
+              "duration_sec": 1800,
+              "rpe": 7,
+              "note": "private-note-canary",
+              "source_type": "private-name-canary",
+              "activity": "corrida"
+            }
+          ],
+          "external_plan_items": [
+            {
+              "id": "planned-0",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-04",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-1",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-05",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-2",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-06",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-3",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-07",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            },
+            {
+              "id": "planned-4",
+              "source": "crunning",
+              "kind": "corrida",
+              "local_date": "2026-11-08",
+              "run_type": "longo",
+              "distance_m": 10000,
+              "status": "planejada",
+              "important": true,
+              "name": "private-name-canary",
+              "source_type": "private-name-canary"
+            }
           ]
         },
         "planned": {
@@ -8665,6 +9464,57 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [
+            {
+              "days_ago": 2,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 1,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            },
+            {
+              "days_ago": 0,
+              "type": "intervalado",
+              "km": 5,
+              "moving_sec": 1800,
+              "effort": 7
+            }
+          ],
+          "planned": [
+            {
+              "days_ahead": 0,
+              "weekday": 3,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 1,
+              "weekday": 4,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            },
+            {
+              "days_ahead": 2,
+              "weekday": 5,
+              "type": "longo",
+              "km": 10,
+              "status": "planejada",
+              "important": true
+            }
+          ]
+        },
         "week": 2,
         "focus": [
           "pernas"
@@ -9530,6 +10380,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -10210,6 +11064,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -10820,6 +11678,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -11458,6 +12320,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -12054,6 +12920,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -12729,6 +13599,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -13403,6 +14277,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -14069,6 +14947,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -14749,6 +15631,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -15429,6 +16315,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -16109,6 +16999,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -16789,6 +17683,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -17469,6 +18367,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"
@@ -18171,6 +19073,10 @@
       },
       "expected": {
         "version": 1,
+        "running": {
+          "done": [],
+          "planned": []
+        },
         "week": null,
         "focus": [
           "equilibrado"

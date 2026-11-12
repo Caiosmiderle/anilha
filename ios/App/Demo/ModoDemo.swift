@@ -17,6 +17,9 @@ enum ModoDemo {
     static let resposta = #"""
     {"avaliacao":"boa","summary":"Você manteve a execução e avançou no supino.","points":["As séries de trabalho ficaram dentro da faixa."],"proximaVez":[{"slot":0,"comentario":"Mantenha o controle na descida e registre o esforço."}],"adjustment":{"operation":"series","slot":0,"sets":3,"min":null,"max":null,"replacement":null}}
     """#
+    static let revisao = #"""
+    {"avaliacao":"ajustavel","resumo":"A ficha está coerente. Proteja as corridas importantes.","pontos":["O longão planejado no CRUNNING continua no dia escolhido."],"ajustes":[{"operation":"series","slot":0,"sets":3,"min":null,"max":null,"replacement":null,"motivo":"Distribua o volume com as outras fichas da semana."}]}
+    """#
 
     static func dados(descanso: Bool, pronto: Bool = false) throws -> ReadData {
         // Fixed, fictional input. The normal engine calculates evolution and preview from it.
@@ -152,6 +155,9 @@ struct DemoView: View {
         case "analise":
             List { CartaoAnaliseTreino(conta: conta, sessionID: "demo-done", mostrarEvolucao: false) }
                 .scrollContentBackground(.hidden).background { FundoAnilha() }.navigationTitle("Treino concluído")
+        case "revisao":
+            List { CartaoRevisaoFicha(conta: conta, routineID: "demo-routine") }
+                .scrollContentBackground(.hidden).background { FundoAnilha() }.navigationTitle("Revisão da ficha")
         case "historico": HistoricoView(conta: conta, today: "2026-11-12")
         case "historico-progresso": HistoricoView(conta: conta, parteInicial: "Progresso", today: "2026-11-12")
         case "historico-semanas": HistoricoView(conta: conta, parteInicial: "Semanas", today: "2026-11-12")
