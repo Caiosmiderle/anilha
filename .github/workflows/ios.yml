@@ -149,6 +149,12 @@ jobs:
           echo "Erros e avisos do compilador (sem repetição):"
           grep -E 'error:|warning:' "$RUNNER_TEMP/xcodebuild.log" | sed "s|$GITHUB_WORKSPACE/||" | sort -u || echo "nenhum"
           grep -E '\*\* (ARCHIVE|BUILD) (SUCCEEDED|FAILED) \*\*' "$RUNNER_TEMP/xcodebuild.log" || true
+          if [ "$build_status" -ne 0 ]; then
+            # Failures without "error:" (crashed compiler, failed command): show where it stopped.
+            echo "Comandos que falharam e fim do log:"
+            grep -nE 'fatal|Stack dump|Command .* failed|failed with a nonzero exit code|Segmentation' "$RUNNER_TEMP/xcodebuild.log" | sed "s|$GITHUB_WORKSPACE/||" | tail -40 || true
+            tail -60 "$RUNNER_TEMP/xcodebuild.log" | sed "s|$GITHUB_WORKSPACE/||"
+          fi
           test "$build_status" -eq 0
           test -d "$RUNNER_TEMP/Anilha.xcarchive/Products/Applications/Anilha.app"
 
