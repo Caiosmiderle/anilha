@@ -20,6 +20,7 @@ private struct ContaRaiz: View {
     @State private var conta = ContaStore()
     @State private var linkAberto = false
     @State private var confirmarSaida = false
+    @AppStorage(Aparencia.chave) private var aparencia = Aparencia.sistema.rawValue
     @Environment(\.scenePhase) private var fase
 
     var body: some View {
@@ -39,28 +40,34 @@ private struct ContaRaiz: View {
             } else if conta.dono == nil {
                 NavigationStack { EntrarView(conta: conta) }
             } else {
+                // Quatro abas, decisão do Caio (app híbrido): Hoje, Plano, Histórico e Você.
                 TabView {
-                    NavigationStack {
-                        TimelineView(.periodic(from: .now, by: 60)) { context in
-                            HojeView(conta: conta, today: LocalDay.today(context.date))
+                    Tab("Hoje", systemImage: "sun.max") {
+                        NavigationStack {
+                            TimelineView(.periodic(from: .now, by: 60)) { context in
+                                HojeView(conta: conta, today: LocalDay.today(context.date))
+                            }
                         }
-                        .toolbar { menuConta }
                     }
-                        .tabItem { Label("Hoje", systemImage: "calendar") }
-                    NavigationStack { FichasView(conta: conta).toolbar { menuConta } }
-                        .tabItem { Label("Fichas", systemImage: "list.bullet.rectangle") }
-                    NavigationStack { HistoricoView(conta: conta).toolbar { menuConta } }
-                        .tabItem { Label("Histórico", systemImage: "clock") }
-                    NavigationStack {
-                        TimelineView(.periodic(from: .now, by: 60)) { context in
-                            CalendarioView(conta: conta, today: LocalDay.today(context.date))
-                        }.toolbar { menuConta }
-                    }.tabItem { Label("Calendário", systemImage: "calendar.badge.clock") }
+                    Tab("Plano", systemImage: "calendar") {
+                        NavigationStack {
+                            TimelineView(.periodic(from: .now, by: 60)) { context in
+                                PlanoView(conta: conta, today: LocalDay.today(context.date))
+                            }
+                        }
+                    }
+                    Tab("Histórico", systemImage: "clock.arrow.circlepath") {
+                        NavigationStack { HistoricoView(conta: conta) }
+                    }
+                    Tab("Você", systemImage: "person.crop.circle") {
+                        NavigationStack { VoceView(conta: conta, pedirSaida: { confirmarSaida = true }) }
+                    }
                 }
                 .id(conta.dono)
             }
         }
         .tint(Tema.marca)
+        .preferredColorScheme(Aparencia(rawValue: aparencia)?.esquema)
         .sheet(item: Binding(get: { conta.sessaoAberta.map { SessaoApresentada(id: $0) } },
                              set: { conta.sessaoAberta = $0?.id })) { session in
             NavigationStack {
@@ -91,14 +98,6 @@ private struct ContaRaiz: View {
         }
     }
 
-    @ToolbarContentBuilder private var menuConta: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Menu {
-                NavigationLink("Sobre o app") { SobreView() }
-                Button("Sair da conta", role: .destructive) { confirmarSaida = true }.disabled(conta.ocupado)
-            } label: { Label("Conta", systemImage: "person.crop.circle") }
-        }
-    }
 }
 
 private struct SessaoApresentada: Identifiable { let id: String }

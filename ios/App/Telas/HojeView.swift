@@ -25,10 +25,23 @@ struct HojeView: View {
     }
     private var feitos: [HistoryEntry] { HistoryEntry.entries(conta.dados).filter { $0.date == today && $0.concluido } }
 
+    /// Segunda a domingo da semana de hoje, com força e corrida de cada dia (mesma fonte do calendário).
+    private var semana: [CalendarDay] {
+        let inicio = LocalDay.add(today, -LocalDay.weekday(today))
+        let datas = (0..<7).map { LocalDay.add(inicio, $0) }
+        var porData: [String: CalendarDay] = [:]
+        for mes in Set(datas.map { String($0.prefix(7)) }) {
+            for d in TrainingCalendar.days(TrainingCalendarInput(data: conta.dados, month: mes, today: today)) {
+                porData[d.date] = d
+            }
+        }
+        return datas.compactMap { porData[$0] }
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Tema.Espaco.e4) {
-                CabecalhoAnilha(titulo: "Hoje", selo: dataHoje, icone: "calendar")
+                CabecalhoAnilha(titulo: Self.saudacao(), selo: dataHoje.prefix(1).uppercased() + dataHoje.dropFirst(), icone: "sun.max.fill")
                     .entradaAnilha(0)
                 StatusSyncView(conta: conta)
                 if let ativa = conta.ativa {
@@ -77,7 +90,32 @@ struct HojeView: View {
                     }
                     if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
                 }
-                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao().entradaAnilha(1)
+                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao()
+                .contentShape(RoundedRectangle(cornerRadius: Tema.Raio.xxl))
+                .contextMenu {
+                    if conta.ativa == nil, let ficha {
+                        Button("Começar treino", systemImage: "play.fill") { conta.comecar(ficha) }
+                    }
+                } preview: {
+                    PreviaFicha(conta: conta, ficha: ficha, titulo: ficha?.string("name") ?? nomeSplit(dia?.split_key))
+                }
+                .entradaAnilha(1)
+                Link(destination: Site.url("/plano/pedir")) {
+                    Label("Falar com o Waltér", systemImage: "bubble.left.and.text.bubble.right")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                }
+                .buttonStyle(.glass)
+                .accessibilityHint("Abre a conversa com o Waltér no site, até o chat chegar ao app")
+                .entradaAnilha(2)
+                NavigationLink {
+                    CalendarioView(conta: conta, today: today)
+                } label: {
+                    cartaoSemana
+                }
+                .buttonStyle(.plain)
+                .accessibilityHint("Abre o calendário com força e corrida")
+                .entradaAnilha(3)
                 if !externos.isEmpty {
                     Text("Agenda do CRUNNING").font(.headline)
                     ForEach(externos) { row in
@@ -107,8 +145,128 @@ struct HojeView: View {
             .padding(Tema.Espaco.e5)
         }
         .background { FundoAnilha() }
-        .navigationTitle("Hoje").navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .navigationBar)
         .refreshable { await conta.atualizar() }
+    }
+
+    static func saudacao(_ data: Date = .now) -> String {
+        switch Calendar.current.component(.hour, from: data) {
+        case 5..<12: "Bom dia"
+        case 12..<18: "Boa tarde"
+        default: "Boa noite"
+        }
+    }
+
+    // MARK: Esta semana
+
+    private var cartaoSemana: some View {
+        let dias = semana
+        let forcaFeita = dias.reduce(0) { $0 + $1.events.filter { $0.kind == "strength" && $0.status == "done" }.count }
+        let corridaFeita = dias.reduce(0) { $0 + $1.events.filter { $0.kind == "run" && $0.status == "done" }.count }
+        return VStack(alignment: .leading, spacing: 14) {
+            HStack {
+                Text("Esta semana").font(.footnote.weight(.semibold)).foregroundStyle(Tema.tintaSuave)
+                Spacer()
+                Label("Calendário", systemImage: "calendar").font(.footnote.weight(.semibold)).foregroundStyle(Tema.tintaSuave)
+                Image(systemName: "chevron.right").font(.footnote).foregroundStyle(Tema.tintaApagada)
+            }
+            HStack(alignment: .firstTextBaseline) {
+                numero("\(forcaFeita)", legenda: forcaFeita == 1 ? "treino de força" : "treinos de força")
+                Spacer()
+                numero("\(corridaFeita)", legenda: corridaFeita == 1 ? "corrida" : "corridas")
+            }
+            HStack(alignment: .bottom, spacing: 6) {
+                ForEach(dias) { dia in colunaDia(dia) }
+            }
+        }
+        .padding(Tema.Espaco.e5)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .cartao()
+    }
+
+    /// Um dia da faixa: força em azul e corrida em laranja; cheio é feito, vazado é previsto.
+    private func colunaDia(_ dia: CalendarDay) -> some View {
+        let forca = dia.events.filter { $0.kind == "strength" }
+        let corrida = dia.events.filter { $0.kind == "run" }
+        let letras = ["S", "T", "Q", "Q", "S", "S", "D"]
+        let letra = letras[LocalDay.weekday(dia.date) % 7]
+        var rotulo = dataCurta(dia.date)
+        if forca.isEmpty && corrida.isEmpty { rotulo += ", nada" }
+        for e in forca + corrida {
+            rotulo += ", " + (e.kind == "strength" ? "força " : "corrida ") + (e.status == "done" ? "feita" : "prevista")
+        }
+        return VStack(spacing: 6) {
+            marca(forca, cor: Tema.marcaForte, icone: "dumbbell")
+            marca(corrida, cor: Tema.laranja, icone: "figure.run")
+            Text(String(Int(dia.date.suffix(2)) ?? 0))
+                .font(.caption2.weight(.semibold)).monospacedDigit()
+                .foregroundStyle(dia.today ? Tema.marcaForte : Tema.tinta)
+            Text(letra)
+                .font(.caption2.weight(dia.today ? .bold : .semibold))
+                .foregroundStyle(dia.today ? Tema.marcaForte : Tema.tintaSuave)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 6)
+        .background(dia.today ? Tema.marcaFundo : Color.clear, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(rotulo + (dia.today ? ", hoje" : ""))
+    }
+
+    private func marca(_ eventos: [CalendarEvent], cor: Color, icone: String) -> some View {
+        let feito = eventos.contains { $0.status == "done" }
+        return Image(systemName: icone)
+            .font(.system(size: 11, weight: .semibold))
+            .foregroundStyle(feito ? Tema.sobreMarca : cor)
+            .frame(width: 24, height: 24)
+            .background {
+                Circle().fill(feito ? cor : Color.clear)
+                Circle().stroke(cor.opacity(eventos.isEmpty ? 0 : 0.8), lineWidth: 1.5)
+            }
+            .opacity(eventos.isEmpty ? 0.12 : 1)
+    }
+
+    private func numero(_ valor: String, legenda: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(valor).font(.system(.title, design: .rounded, weight: .semibold)).monospacedDigit()
+            Text(legenda).font(.caption).foregroundStyle(Tema.tintaSuave)
+        }
+    }
+}
+
+/// Prévia da ficha ao segurar o cartão do treino de hoje: os exercícios com a prescrição.
+private struct PreviaFicha: View {
+    let conta: ContaStore
+    let ficha: ReadRow?
+    let titulo: String
+
+    var body: some View {
+        let catalogo = conta.dados.exercises(catalog: conta.catalogo)
+        let itens = ficha.map { conta.dados.items($0.id) } ?? []
+        VStack(alignment: .leading, spacing: 10) {
+            SeloAnilha(texto: "\(itens.count) exercícios", icone: "dumbbell")
+            Text(titulo).font(.title2.bold()).foregroundStyle(Tema.tintaForte)
+            ForEach(itens.prefix(8)) { item in
+                let exercicio = catalogo[item.string("exercise_id") ?? ""]
+                HStack(alignment: .firstTextBaseline) {
+                    Text(exercicio?.string("name") ?? "Exercício").font(.subheadline.weight(.medium)).lineLimit(1)
+                    Spacer(minLength: 8)
+                    Text(prescricaoCurta(item, medida: exercicio?.string("measure")))
+                        .font(.subheadline.monospacedDigit()).foregroundStyle(Tema.tintaSuave)
+                }
+            }
+            if itens.count > 8 { Text("e mais \(itens.count - 8)").font(.caption).foregroundStyle(Tema.tintaSuave) }
+            if itens.isEmpty { Text("Sem exercícios para mostrar.").foregroundStyle(Tema.tintaSuave) }
+        }
+        .padding(20)
+        .frame(width: 340, alignment: .leading)
+        .background { FundoAnilha() }
+    }
+
+    private func prescricaoCurta(_ item: ReadRow, medida: String?) -> String {
+        let sets = Int(item.number("sets") ?? 0)
+        let min = Int(item.number("target_min") ?? 0), max = Int(item.number("target_max") ?? 0)
+        let faixa = min == max ? "\(min)" : "\(min)-\(max)"
+        return "\(sets)x \(faixa)\(medida == "time" ? " s" : "")"
     }
 }
 
