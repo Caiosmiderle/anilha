@@ -153,7 +153,9 @@ jobs:
             # Failures without "error:" (crashed compiler, failed command): show where it stopped.
             echo "Comandos que falharam e fim do log:"
             grep -nE 'fatal|Stack dump|Command .* failed|failed with a nonzero exit code|Segmentation' "$RUNNER_TEMP/xcodebuild.log" | sed "s|$GITHUB_WORKSPACE/||" | tail -40 || true
-            tail -60 "$RUNNER_TEMP/xcodebuild.log" | sed "s|$GITHUB_WORKSPACE/||"
+            # A crashed compiler names the file and function in the lines around the stack dump.
+            grep -n -B6 -A14 'Stack dump:' "$RUNNER_TEMP/xcodebuild.log" | grep -vE '0x[0-9a-f]{8,}' | sed "s|$GITHUB_WORKSPACE/||" | head -80 || true
+            grep -nE 'While (evaluating|emitting|silgen|type-checking|running pass)|Compiling with|SwiftCompile normal' "$RUNNER_TEMP/xcodebuild.log" | sed "s|$GITHUB_WORKSPACE/||" | tail -30 || true
           fi
           test "$build_status" -eq 0
           test -d "$RUNNER_TEMP/Anilha.xcarchive/Products/Applications/Anilha.app"
