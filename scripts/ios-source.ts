@@ -15,6 +15,10 @@ export function iosArtifacts() {
     equipment: e.equipment,
     measure: e.measure,
     increment_kg: e.increment_kg,
+    bodyweight: e.bodyweight,
+    progression_hint: e.progression_hint,
+    pattern: e.pattern,
+    compound: e.compound,
   }));
   const splits = Object.values(SPLITS).map((s) => ({
     id: s.key,

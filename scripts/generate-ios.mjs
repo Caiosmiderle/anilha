@@ -16,6 +16,32 @@ try {
 } finally {
   await bundle.close();
 }
+const trainingBundle = await rolldown({
+  input: resolve(root, 'scripts/ios-training-source.ts'),
+  platform: 'node',
+});
+let training;
+try {
+  const { output } = await trainingBundle.generate({ format: 'esm' });
+  training = (
+    await import(`data:text/javascript;base64,${Buffer.from(output[0].code).toString('base64')}`)
+  ).trainingArtifacts();
+} finally {
+  await trainingBundle.close();
+}
+const sessionBundle = await rolldown({
+  input: resolve(root, 'scripts/ios-session-source.ts'),
+  platform: 'node',
+});
+let sessionFixture;
+try {
+  const { output } = await sessionBundle.generate({ format: 'esm' });
+  sessionFixture = await (
+    await import(`data:text/javascript;base64,${Buffer.from(output[0].code).toString('base64')}`)
+  ).sessionArtifact();
+} finally {
+  await sessionBundle.close();
+}
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
 const env = await readFile(resolve(root, '.env.production'), 'utf8');
 if (!/^VITE_SUPABASE_ANON_KEY=sb_publishable_[A-Za-z0-9_-]+\s*$/m.test(env)) {
@@ -29,6 +55,8 @@ const publicValue = (key) => {
   return JSON.stringify(value);
 };
 const outputs = {
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/training.json': json(training),
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/session.json': json(sessionFixture),
   'ios/App/Recursos/exercises.json': json(artifacts.catalog),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/plans.json': json(artifacts.planCases),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/projections.json': json(artifacts.projectionCases),

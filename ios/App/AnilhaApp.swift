@@ -1,7 +1,7 @@
 import AnilhaCore
 import SwiftUI
 
-/// Etapa 3A: conta e consulta offline. Nenhuma escrita de treino no servidor.
+/// Conta, treino offline e sincronização com as mesmas RPCs do PWA.
 @main
 struct AnilhaApp: App {
     @State private var conta = ContaStore()
@@ -44,6 +44,13 @@ struct AnilhaApp: App {
                 }
             }
             .tint(Tema.marca)
+            .sheet(item: Binding(get: { conta.sessaoAberta.map { SessaoApresentada(id: $0) } },
+                                 set: { conta.sessaoAberta = $0?.id })) { session in
+                NavigationStack {
+                    TreinoView(conta: conta, sessionID: session.id)
+                        .toolbar { Button("Minimizar") { conta.sessaoAberta = nil } }
+                }
+            }
             .foregroundStyle(Tema.tinta)
             .task { await conta.abrir() }
             .onChange(of: fase) { _, fase in
@@ -61,6 +68,10 @@ struct AnilhaApp: App {
                                 titleVisibility: .visible) {
                 Button("Sair e apagar dados locais", role: .destructive) { Task { await conta.sair() } }
                 Button("Cancelar", role: .cancel) {}
+            } message: {
+                Text(conta.pendentes + conta.rejeitadas > 0
+                    ? "Há \(conta.pendentes + conta.rejeitadas) alterações que ainda não foram salvas na conta. Sair apaga esse treino deste iPhone. Cancele e puxe para atualizar antes de sair."
+                    : "O cache deste iPhone será apagado. Seus dados já enviados continuam na conta.")
             }
         }
     }
@@ -74,3 +85,5 @@ struct AnilhaApp: App {
         }
     }
 }
+
+private struct SessaoApresentada: Identifiable { let id: String }

@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS etapa 3B, executar ficha e enviar, Codex, 12/11/2026
+
+- Autor Codex. Branch recebida `codex/ios-treino`, base `c32ca5b`, checkout inicialmente limpo. Intenção: treino offline e gravação na conta do PWA. Por pedido expresso do Caio: sem escrita em `.git`, branch nova, commit ou push; Claude revisa e commita. Sem produção, migração, coluna/RPC nova ou publicação. Versão **0.3.0**.
+- Política documentada antes de gravar em [POLITICA_SYNC_IOS.md](POLITICA_SYNC_IOS.md): push aceita carimbo igual (`<=`); pull preserva só pendência estritamente maior; ACK protege edição durante envio; lápides, `sync_ids` e horizonte de retenção. Substituída a limpeza total da parte A por reconciliação que preserva fila. `records` entra no pull com releitura versionada e cursor anterior preservado para retenção.
+- Entrega: iniciar/retomar em Hoje e Ficha, séries ordenadas, aquecimento, sugestão/última vez, ajuste rápido e entrada numérica, rascunho único persistente, esforço, bi-set, trocar/mover/pular exercício, descanso por relógio salvo, aviso local com autorização e cancelamento, concluir com planejado/feito e reabrir resumo no Histórico. SwiftData confirma linhas/fila e conclusão/recordes atomicamente. Envia em lotes pela RPC existente, depois puxa. Disparos: concluir, abrir/primeiro plano, atualizar e reconectar. Saída com pendência/rejeição avisa e pede confirmação.
+- Motor portado por decisões numéricas do TS, incluindo progressão, pré-preenchimento, aquecimento, retorno usado pela tela, semana leve aceita, bi-set, editor, ordem e recordes. Vetores em `training.json`; `session.json` vem das funções reais de gravação do PWA com dados fictícios. Catálogo inclui metadados necessários, sem regra nova no TS. CI mantém `swift test` antes do archive e passa o JSON emitido pelo Swift ao E2E local.
+- Validações reais: gerador/`--check`, lint, typecheck, build, **791 testes TS em 64 arquivos** e **1 E2E móvel local** passaram. Após ampliar vetores, os **4 testes de artefatos** passaram novamente. `git diff --check` passou. `swift test` não iniciou porque Swift não existe neste Windows. **20 métodos Swift preparados, não executados**. E2E Windows usa fixture de contrato gerada pelo PWA; o payload executado pelo Swift depende do CI, ainda não observado.
+- Falhas registradas no parecer: IDs iniciais incorretos no gerador e erros de tipagem corrigidos; primeira tentativa E2E esperava indicador ausente no Histórico, corrigida. Runner Windows aguardou servidores após resultado; somente os PIDs conferidos nas portas locais desta execução foram encerrados, e a segunda execução terminou com saída 0. Sem Xcode, novo IPA, teste visual ou execução no iPhone. O sucesso da 0.2.0 foi informado pelo Caio, não valida esta 0.3.0.
+- Parecer completo, achados, comandos, fontes, limites e roteiro de aceite: [REVISAO_CODEX_IOS_TREINO_2026-11-12.md](REVISAO_CODEX_IOS_TREINO_2026-11-12.md). Claude deve conferir especialmente compilação Swift 6/concorrência, migração sobre 0.2.0, fila/ACK/horizonte, troca após série feita, paridade e notificações. Revisão do Claude desta entrega: **PENDENTE**. Etapa 3 só aceita depois de concluir offline, fechar/reabrir, enviar sem duplicar e comparar no PWA no aparelho.
+
 ## iOS etapa 3A, login e consulta, Codex, 12/11/2026
 
 - Autor Codex. Branch recebida `codex/ios-login`, base `fec24fc`, checkout inicialmente limpo. Intenção: entrar por código e consultar dados reais/offline, sem gravação de treino. Por instrução expressa do Caio: sem criar branch ou escrever em `.git`; Claude revisa e commita. Tudo só neste checkout, sem produção, publicação ou push.
@@ -21,6 +31,7 @@
      - `synced_tables()` tem 14 tabelas.
 
      Advisor de segurança sem item novo fora do padrão já aceito no projeto.
+
   2. Função `troca-crunning` v1 publicada com `verify_jwt = false`. `index.ts` e `core.ts` são idênticos ao repositório. **`engine.generated.ts` foi publicado com a formatação compactada** (o mesmo código, sem comentários e sem a linha `new Map(...)` sem efeito). Ele só serve ao `GET /forca`, que o CRUNNING ainda não chama: republicar o arquivo exato do repositório antes da etapa 4.
   3. Teste de fora, sem token válido:
      - `OPTIONS` responde 204;

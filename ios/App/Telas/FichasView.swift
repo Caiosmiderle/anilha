@@ -64,7 +64,9 @@ struct FichaView: View {
                         .listRowBackground(Tema.superficie)
                     }
                 }
-                ComecarIndisponivel().listRowBackground(Tema.fundo)
+                Button(conta.ativa == nil ? "Começar treino" : "Continuar treino") { if let atual { conta.comecar(atual) } }
+                    .buttonStyle(.borderedProminent).listRowBackground(Tema.fundo)
+                if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
             }
         }
         .scrollContentBackground(.hidden).background(Tema.fundo)

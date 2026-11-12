@@ -2,6 +2,7 @@ import AnilhaCore
 import AnilhaCache
 import Foundation
 import Observation
+import Network
 import Supabase
 
 @MainActor @Observable
@@ -17,6 +18,13 @@ final class ContaStore {
     private(set) var erro: String?
     private(set) var aviso = "Puxe para atualizar."
     private(set) var atualizadoEm: Date?
+    private(set) var pendentes = 0
+    private(set) var rejeitadas = 0
+    var sessaoAberta: String?
+    private let descanso = DescansoLocal()
+    private var repetirSync = false
+    private var monitor: NWPathMonitor?
+    private var tinhaRede = false
     private var cache: CacheLeitura?
     private var chaveiro = ChaveiroSessao()
     private var cliente: SupabaseClient?
@@ -47,9 +55,24 @@ final class ContaStore {
             _ = try chaveiro.retrieve(key: "anilha-session")
             let client = novoCliente()
             cliente = client
+            if monitor == nil {
+                let monitor = NWPathMonitor()
+                self.monitor = monitor
+                monitor.pathUpdateHandler = { [weak self] path in
+                    let online = path.status == .satisfied
+                    Task { @MainActor [weak self] in
+                        guard let self else { return }
+                        let reconectou = online && !self.tinhaRede
+                        self.tinhaRede = online
+                        if reconectou { await self.atualizar() }
+                    }
+                }
+                monitor.start(queue: DispatchQueue(label: "anilha.rede"))
+            }
             if let session = client.auth.currentSession {
                 dono = session.user.id.uuidString.lowercased()
-                dados = try local.ler(dono!)
+                try local.preparar(dono!)
+                try recarregar()
                 atualizadoEm = try local.cursor(dono!).atualizadoEm
                 Task { await atualizar() }
             } else { try local.apagar() }
@@ -92,19 +115,23 @@ final class ContaStore {
             try cache.apagar()
             geracao = UUID()
             dono = session.user.id.uuidString.lowercased()
+            try cache.preparar(dono!)
             dados = ReadData(); atualizadoEm = nil
             await atualizar()
         } catch { erro = "Não deu para entrar. O código pode ter expirado. Confira a conexão e tente de novo." }
     }
 
     func atualizar() async {
-        if let tarefaSync { await tarefaSync.value; return }
+        if let tarefaSync { repetirSync = true; await tarefaSync.value; return }
         guard let dono, let cliente, let cache, !limpezaPendente else { return }
         let epoch = geracao
         let task = Task { await self.puxar(dono: dono, cliente: cliente, cache: cache, epoch: epoch) }
         tarefaSync = task
         await task.value
-        if geracao == epoch { tarefaSync = nil }
+        if geracao == epoch {
+            tarefaSync = nil
+            if repetirSync { repetirSync = false; await atualizar() }
+        }
     }
 
     private func conferir(_ owner: String, _ epoch: UUID) throws {
@@ -117,8 +144,19 @@ final class ContaStore {
         aviso = "Atualizando..."
         defer { if geracao == epoch { sincronizando = false } }
         do {
-            var cycle = ReadSync.PullCycle()
-            for _ in 0..<200 {
+            for _ in 0..<100 {
+                try conferir(owner, epoch)
+                let batch = try cache.lote(owner)
+                if batch.changes.isEmpty { break }
+                let session = try await cliente.auth.session
+                try conferir(owner, epoch)
+                guard session.user.id.uuidString.lowercased() == owner else { throw ReadSync.Failure.accountChanged }
+                let result: PushResult = try await rpc("sync_push", body: JSONEncoder().encode(PushPayload(changes: batch.changes)), token: session.accessToken)
+                try conferir(owner, epoch)
+                try cache.confirmar(batch, dono: owner, rejeitadas: Set(result.rejected.map { "\($0.table):\($0.id)" }))
+                try recarregar()
+            }
+            for index in 0..<200 {
                 try conferir(owner, epoch)
                 // Refresh only for network work. An expired cached session still opens offline data.
                 let session = try await cliente.auth.session
@@ -128,20 +166,27 @@ final class ContaStore {
                 let page = try await pull(since: since, token: session.accessToken)
                 try conferir(owner, epoch)
                 try ReadSync.validate(page, since: since, owner: owner)
-                if cycle.shouldRebuild(since: since, horizon: page.horizon) {
-                    // Read-only client has no pending writes to preserve. Rebuild after purged tombstones.
-                    try cache.apagar(); dados = ReadData(); atualizadoEm = nil
-                    continue
+                let horizon = page.horizon ?? 0
+                if index == 0, horizon > (try cache.horizonte(owner)) {
+                    let retentionCursor = try cache.cursorRetencao(owner)
+                    if retentionCursor > 0 && horizon > retentionCursor {
+                        let ids: [String: [String]] = try await rpc("sync_ids", body: Data("{}".utf8), token: session.accessToken)
+                        try conferir(owner, epoch)
+                        try cache.limparPurgadas(ids, dono: owner, horizon: horizon)
+                    } else { try cache.marcarHorizonte(owner, horizon: horizon) }
                 }
                 try cache.aplicar(page, dono: owner, since: since)
-                dados = try cache.ler(owner)
+                try recarregar()
                 atualizadoEm = try cache.cursor(owner).atualizadoEm
-                if !page.more { aviso = "Dados atualizados."; return }
+                if !page.more {
+                    aviso = rejeitadas > 0 ? "Há envios recusados pelo servidor. Confira os dados antes de sair da conta." : pendentes > 0 ? "Há alterações aguardando envio." : "Dados atualizados."
+                    return
+                }
             }
             throw ReadSync.Failure.tooManyPages
         } catch {
             guard geracao == epoch, dono == owner else { return }
-            aviso = "Não foi possível atualizar. Você pode consultar o que já foi baixado."
+            aviso = "Sem sincronização agora. Seu treino está salvo neste iPhone. Puxe para tentar novamente."
             if cliente.auth.currentSession == nil {
                 aviso = "Sua sessão expirou. Saia e entre novamente para atualizar. Os dados baixados continuam disponíveis."
             }
@@ -151,13 +196,22 @@ final class ContaStore {
     // Fixed-token read RPC, like accountRpc in the PWA. No request can adopt a new account's JWT.
     private func pull(since: Int64, token: String) async throws -> PullPage {
         struct Params: Encodable { let since: Int64; let max_rows = 500 }
-        var request = URLRequest(url: Configuracao.supabaseURL.appendingPathComponent("rest/v1/rpc/sync_pull"))
+        return try await rpc("sync_pull", body: JSONEncoder().encode(Params(since: since)), token: token)
+    }
+    private struct PushResult: Decodable, Sendable {
+        struct Rejection: Decodable, Sendable { let table: String; let id: String }
+        let applied: Int
+        let stale: Int
+        let rejected: [Rejection]
+    }
+    private func rpc<T: Decodable & Sendable>(_ name: String, body: Data, token: String) async throws -> T {
+        var request = URLRequest(url: Configuracao.supabaseURL.appendingPathComponent("rest/v1/rpc/\(name)"))
         request.httpMethod = "POST"
         request.timeoutInterval = 30
         request.setValue(Configuracao.supabaseKey, forHTTPHeaderField: "apikey")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(Params(since: since))
+        request.httpBody = body
         let config = URLSessionConfiguration.ephemeral
         config.urlCache = nil
         let session = URLSession(configuration: config)
@@ -166,14 +220,76 @@ final class ContaStore {
         guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
             throw ReadSync.Failure.invalidPage
         }
-        return try JSONDecoder().decode(PullPage.self, from: data)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+
+    private func recarregar() throws {
+        guard let dono, let cache else { return }
+        dados = try cache.ler(dono)
+        pendentes = try cache.pendentes(dono); rejeitadas = try cache.rejeitadas(dono)
+        descanso.atualizar(fim: avisosDescanso ? ativa.flatMap(Workout.restEnd) : nil)
+    }
+    var ativa: ReadRow? { dados.active("sessions").first { $0.string("status") == "active" } }
+    func gravar(_ changes: [PushChange]) -> Bool {
+        guard let dono, let cache, !limpezaPendente else { return false }
+        do {
+            try cache.gravar(changes, dono: dono)
+            try recarregar(); erro = nil
+            aviso = "Salvo neste iPhone. \(pendentes) alterações aguardando envio."
+            return true
+        } catch { erro = "Não foi possível salvar. Tente novamente antes de fechar o app."; return false }
+    }
+    func comecar(_ ficha: ReadRow) {
+        do { try recarregar() }
+        catch { erro = "Não foi possível abrir o treino salvo. Tente novamente antes de começar outro."; return }
+        if let ativa { sessaoAberta = ativa.id; return }
+        let items = dados.items(ficha.id)
+        let exercises = dados.exercises(catalog: catalogo)
+        guard let atual = dados.routines.first(where: { $0.id == ficha.id }), !items.isEmpty,
+              items.allSatisfy({ exercises[$0.string("exercise_id") ?? ""] != nil }) else {
+            erro = "Esta ficha tem exercícios indisponíveis. Atualize ou ajuste no PWA."; return
+        }
+        if gravar(Workout.start(dados, routine: atual, catalog: catalogo, today: LocalDay.today(), now: Date.now.timeIntervalSince1970 * 1000)) {
+            sessaoAberta = ativa?.id
+        }
+    }
+    func rascunhoSalvo(_ setID: String) -> ReadRow? {
+        guard let dono, let cache else { return nil }
+        do { return try cache.rascunho(dono, set: setID) }
+        catch { erro = "Não foi possível ler o rascunho desta série."; return nil }
+    }
+    func guardarRascunho(_ row: ReadRow) {
+        guard let dono, let cache else { return }
+        do { try cache.guardarRascunho(row, dono: dono) }
+        catch { erro = "Não foi possível guardar o ajuste. Tente novamente antes de fechar." }
+    }
+    func permitirAvisos() async -> Bool {
+        guard avisosDescanso else { return false }
+        let permitido = await descanso.permitir()
+        descanso.atualizar(fim: ativa.flatMap(Workout.restEnd))
+        return permitido
+    }
+    private var avisosDescanso: Bool { dados.active("profiles").first?.object("reminders").bool("rest") != false }
+    func concluir(_ session: ReadRow) -> Bool {
+        var changes = Workout.finish(dados, session: session, now: Date.now.timeIntervalSince1970 * 1000)
+        guard !changes.isEmpty else { return false }
+        var preview = dados
+        for change in changes {
+            var rows = preview.tables[change.table] ?? []
+            rows.removeAll { $0.id == change.row.id }; rows.append(change.row)
+            preview.tables[change.table] = rows
+        }
+        changes += Workout.records(preview, session: session.id, catalog: catalogo)
+        return gravar(changes)
     }
 
     func sair() async {
         guard !ocupado else { return }
         ocupado = true; limpezaPendente = true; erro = nil
         geracao = UUID(); tarefaSync?.cancel(); tarefaSync = nil
+        descanso.atualizar(fim: nil)
         dono = nil; dados = ReadData(); atualizadoEm = nil; sincronizando = false
+        pendentes = 0; rejeitadas = 0; sessaoAberta = nil; repetirSync = false
         defer { ocupado = false }
         do {
             // Immediate local sign-out, including offline. Seal the old client's storage before

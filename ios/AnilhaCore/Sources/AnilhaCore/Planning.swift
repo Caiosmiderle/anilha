@@ -96,6 +96,9 @@ public enum LocalDay {
         precondition(parts.count == 3, "Invalid calendar day")
         return calendar.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2]))!
     }
+    public static func distance(_ from: String, _ to: String) -> Int {
+        Int((date(to).timeIntervalSince(date(from)) / 86400).rounded())
+    }
     public static func add(_ day: String, _ n: Int) -> String {
         let d = calendar.date(byAdding: .day, value: n, to: date(day))!
         let c = calendar.dateComponents([.year, .month, .day], from: d)

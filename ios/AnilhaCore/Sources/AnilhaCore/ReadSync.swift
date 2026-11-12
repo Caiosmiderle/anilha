@@ -72,7 +72,7 @@ public enum ReadSync {
     }
     public static let tables: Set<String> = [
         "profiles", "plans", "routines", "routine_items", "exercises", "sessions",
-        "session_items", "sets", "runs", "day_overrides", "external_plan_items",
+        "session_items", "sets", "runs", "day_overrides", "external_plan_items", "records",
     ]
     public enum Failure: Error { case invalidPage, accountChanged, tooManyPages }
     public static func requiresRebuild(since: Int64, horizon: Int64?) -> Bool {

@@ -49,7 +49,12 @@ struct HojeView: View {
                         Text("Crie ou ajuste seu plano no PWA e puxe para atualizar.")
                             .font(.subheadline).foregroundStyle(Tema.tintaSuave)
                     }
-                    ComecarIndisponivel()
+                    if let ativa = conta.ativa {
+                        Button("Continuar treino") { conta.sessaoAberta = ativa.id }.buttonStyle(.borderedProminent)
+                    } else if let ficha {
+                        Button("Começar treino") { conta.comecar(ficha) }.buttonStyle(.borderedProminent)
+                    }
+                    if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
                 }
                 .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao()
                 if !externos.isEmpty {
@@ -67,9 +72,15 @@ struct HojeView: View {
                 if feitos.isEmpty {
                     Text("Nenhum treino registrado hoje.").foregroundStyle(Tema.tintaSuave)
                 } else {
-                    ForEach(feitos) { entry in HistoricoLinha(entry: entry) }
+                    ForEach(feitos) { entry in
+                        if entry.corrida { HistoricoLinha(entry: entry) }
+                        else {
+                            Button { conta.sessaoAberta = String(entry.id.dropFirst("session:".count)) } label: { HistoricoLinha(entry: entry) }
+                                .buttonStyle(.plain)
+                        }
+                    }
                 }
-                Text("Você está consultando seu plano. As sugestões de ajuste e o registro do treino chegam nas próximas etapas.")
+                Text("O treino é salvo neste iPhone durante a execução. Conclua e atualize para enviar à sua conta.")
                     .font(.footnote).foregroundStyle(Tema.tintaSuave)
             }
             .padding(Tema.Espaco.e5)
@@ -86,21 +97,12 @@ struct StatusSyncView: View {
         VStack(alignment: .leading, spacing: 4) {
             if conta.sincronizando { ProgressView().accessibilityLabel("Atualizando dados") }
             Text(conta.aviso).font(.footnote)
+            if conta.pendentes > 0 { Text("\(conta.pendentes) alterações aguardando envio").font(.caption) }
             if let date = conta.atualizadoEm {
                 Text("Última atualização: \(date.formatted(date: .abbreviated, time: .shortened))").font(.caption)
             }
         }
         .foregroundStyle(Tema.tintaSuave).accessibilityElement(children: .combine)
-    }
-}
-
-struct ComecarIndisponivel: View {
-    var body: some View {
-        VStack(spacing: 6) {
-            Button("Começar treino") {}.buttonStyle(.borderedProminent).disabled(true)
-            Text("na próxima versão").font(.footnote).foregroundStyle(Tema.tintaSuave)
-        }
-        .frame(maxWidth: .infinity).accessibilityElement(children: .combine)
     }
 }
 

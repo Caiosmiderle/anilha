@@ -1,0 +1,587 @@
+{
+  "owner": "00000000-0000-4000-8000-000000000031",
+  "now": 1900000000000,
+  "today": "2030-03-17",
+  "catalog": [
+    {
+      "id": "prancha",
+      "name": "Prancha",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "peso_corporal",
+      "measure": "time",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "core_anti_extensao",
+      "progression_hint": "pés mais afastados do apoio ou um pé elevado",
+      "level": "iniciante",
+      "user_id": "00000000-0000-4000-8000-000000000031",
+      "updated_at": 1900000000000,
+      "deleted": false,
+      "note": null,
+      "builtin": true,
+      "archived": false
+    },
+    {
+      "id": "remada-baixa",
+      "name": "Remada baixa na polia",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps",
+        "ombro_posterior"
+      ],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante",
+      "user_id": "00000000-0000-4000-8000-000000000031",
+      "updated_at": 1900000000000,
+      "deleted": false,
+      "note": null,
+      "builtin": true,
+      "archived": false
+    },
+    {
+      "id": "supino-reto-barra",
+      "name": "Supino reto com barra",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "triceps",
+        "ombro_anterior"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro",
+        "cotovelo",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": null,
+      "level": "intermediario",
+      "user_id": "00000000-0000-4000-8000-000000000031",
+      "updated_at": 1900000000000,
+      "deleted": false,
+      "note": null,
+      "builtin": true,
+      "archived": false
+    }
+  ],
+  "initial": {
+    "profiles": [
+      {
+        "id": "00000000-0000-4000-8000-000000000031",
+        "deleted": false,
+        "display_name": "Pessoa fictícia",
+        "unit": "kg",
+        "rest_sec": 90,
+        "timezone": "America/Sao_Paulo",
+        "share_adherence": true,
+        "share_workouts": true,
+        "share_records": true,
+        "share_details": false,
+        "return_mode": "auto",
+        "return_started_on": null,
+        "return_notice_seen": null,
+        "reminders": {
+          "enabled": false,
+          "gym_time": "05:30",
+          "run_eve_time": "21:00"
+        },
+        "onboarding": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      }
+    ],
+    "routines": [
+      {
+        "id": "00000000-0000-4000-8000-000000000030",
+        "deleted": false,
+        "name": "Ficha sintética iOS",
+        "split_key": "peito_triceps",
+        "position": 0,
+        "archived": false,
+        "reason": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      }
+    ],
+    "routine_items": [
+      {
+        "id": "fixture-item-0",
+        "deleted": false,
+        "routine_id": "00000000-0000-4000-8000-000000000030",
+        "position": 0,
+        "exercise_id": "supino-reto-barra",
+        "sets": 2,
+        "target_min": 8,
+        "target_max": 10,
+        "rest_sec": 90,
+        "warmup_sets": 0,
+        "note": null,
+        "reason": null,
+        "superset": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      },
+      {
+        "id": "fixture-item-1",
+        "deleted": false,
+        "routine_id": "00000000-0000-4000-8000-000000000030",
+        "position": 1,
+        "exercise_id": "remada-baixa",
+        "sets": 2,
+        "target_min": 8,
+        "target_max": 10,
+        "rest_sec": 90,
+        "warmup_sets": 0,
+        "note": null,
+        "reason": null,
+        "superset": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      }
+    ]
+  },
+  "start": {
+    "sessions": [
+      {
+        "id": "00000000-0000-4000-8000-000000000100",
+        "deleted": false,
+        "local_date": "2030-03-17",
+        "started_at": 1900000000000,
+        "ended_at": null,
+        "status": "active",
+        "split_key": "peito_triceps",
+        "title": "Ficha sintética iOS",
+        "routine_id": "00000000-0000-4000-8000-000000000030",
+        "source": "routine",
+        "note": null,
+        "detail": "full",
+        "rest_started_at": null,
+        "rest_duration_sec": null,
+        "adjustments": [],
+        "deload": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      }
+    ],
+    "session_items": [
+      {
+        "id": "00000000-0000-4000-8000-000000000101",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "position": 0,
+        "exercise_id": "supino-reto-barra",
+        "original_exercise_id": null,
+        "substitution_reason": null,
+        "status": "pending",
+        "skip_reason": null,
+        "planned_sets": 2,
+        "target_min": 8,
+        "target_max": 10,
+        "rest_sec": 90,
+        "warmup_sets": 2,
+        "note": null,
+        "pain_joint": null,
+        "added": false,
+        "superset": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000106",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "position": 1,
+        "exercise_id": "remada-baixa",
+        "original_exercise_id": null,
+        "substitution_reason": null,
+        "status": "pending",
+        "skip_reason": null,
+        "planned_sets": 2,
+        "target_min": 8,
+        "target_max": 10,
+        "rest_sec": 90,
+        "warmup_sets": 0,
+        "note": null,
+        "pain_joint": null,
+        "added": false,
+        "superset": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      }
+    ],
+    "sets": [
+      {
+        "id": "00000000-0000-4000-8000-000000000102",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "item_id": "00000000-0000-4000-8000-000000000101",
+        "exercise_id": "supino-reto-barra",
+        "position": 0,
+        "kind": "warmup",
+        "load_kg": null,
+        "reps": 6,
+        "seconds": null,
+        "rir": null,
+        "note": null,
+        "completed_at": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000103",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "item_id": "00000000-0000-4000-8000-000000000101",
+        "exercise_id": "supino-reto-barra",
+        "position": 1,
+        "kind": "warmup",
+        "load_kg": null,
+        "reps": 6,
+        "seconds": null,
+        "rir": null,
+        "note": null,
+        "completed_at": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000104",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "item_id": "00000000-0000-4000-8000-000000000101",
+        "exercise_id": "supino-reto-barra",
+        "position": 2,
+        "kind": "work",
+        "load_kg": null,
+        "reps": null,
+        "seconds": null,
+        "rir": null,
+        "note": null,
+        "completed_at": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000105",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "item_id": "00000000-0000-4000-8000-000000000101",
+        "exercise_id": "supino-reto-barra",
+        "position": 3,
+        "kind": "work",
+        "load_kg": null,
+        "reps": null,
+        "seconds": null,
+        "rir": null,
+        "note": null,
+        "completed_at": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000107",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "item_id": "00000000-0000-4000-8000-000000000106",
+        "exercise_id": "remada-baixa",
+        "position": 0,
+        "kind": "work",
+        "load_kg": null,
+        "reps": null,
+        "seconds": null,
+        "rir": null,
+        "note": null,
+        "completed_at": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000108",
+        "deleted": false,
+        "session_id": "00000000-0000-4000-8000-000000000100",
+        "item_id": "00000000-0000-4000-8000-000000000106",
+        "exercise_id": "remada-baixa",
+        "position": 1,
+        "kind": "work",
+        "load_kg": null,
+        "reps": null,
+        "seconds": null,
+        "rir": null,
+        "note": null,
+        "completed_at": null,
+        "user_id": "00000000-0000-4000-8000-000000000031",
+        "updated_at": 1900000000000
+      }
+    ]
+  },
+  "payload": {
+    "changes": [
+      {
+        "table": "sessions",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000100",
+          "deleted": false,
+          "local_date": "2030-03-17",
+          "started_at": 1900000000000,
+          "ended_at": 1900000000000,
+          "status": "done",
+          "split_key": "peito_triceps",
+          "title": "Ficha sintética iOS",
+          "routine_id": "00000000-0000-4000-8000-000000000030",
+          "source": "routine",
+          "note": null,
+          "detail": "full",
+          "rest_started_at": null,
+          "rest_duration_sec": null,
+          "adjustments": [],
+          "deload": null,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "session_items",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000101",
+          "deleted": false,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "position": 0,
+          "exercise_id": "supino-reto-barra",
+          "original_exercise_id": null,
+          "substitution_reason": null,
+          "status": "done",
+          "skip_reason": null,
+          "planned_sets": 2,
+          "target_min": 8,
+          "target_max": 10,
+          "rest_sec": 90,
+          "warmup_sets": 2,
+          "note": null,
+          "pain_joint": null,
+          "added": false,
+          "superset": null,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "session_items",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000106",
+          "deleted": false,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "position": 1,
+          "exercise_id": "prancha",
+          "original_exercise_id": "remada-baixa",
+          "substitution_reason": null,
+          "status": "skipped",
+          "skip_reason": null,
+          "planned_sets": 2,
+          "target_min": 30,
+          "target_max": 45,
+          "rest_sec": 90,
+          "warmup_sets": 0,
+          "note": null,
+          "pain_joint": null,
+          "added": false,
+          "superset": null,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000102",
+          "deleted": false,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000101",
+          "exercise_id": "supino-reto-barra",
+          "position": 0,
+          "kind": "warmup",
+          "load_kg": 10,
+          "reps": 6,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": 1900000000000,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000103",
+          "deleted": false,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000101",
+          "exercise_id": "supino-reto-barra",
+          "position": 1,
+          "kind": "warmup",
+          "load_kg": 10,
+          "reps": 6,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": 1900000000000,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000104",
+          "deleted": false,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000101",
+          "exercise_id": "supino-reto-barra",
+          "position": 2,
+          "kind": "work",
+          "load_kg": 40,
+          "reps": 8,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": 1900000000000,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000105",
+          "deleted": false,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000101",
+          "exercise_id": "supino-reto-barra",
+          "position": 3,
+          "kind": "work",
+          "load_kg": 40,
+          "reps": 8,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": 1900000000000,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000107",
+          "deleted": true,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000106",
+          "exercise_id": "remada-baixa",
+          "position": 0,
+          "kind": "work",
+          "load_kg": null,
+          "reps": null,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": null,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000108",
+          "deleted": true,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000106",
+          "exercise_id": "remada-baixa",
+          "position": 1,
+          "kind": "work",
+          "load_kg": null,
+          "reps": null,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": null,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000109",
+          "deleted": true,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000106",
+          "exercise_id": "prancha",
+          "position": 0,
+          "kind": "work",
+          "load_kg": null,
+          "reps": null,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": null,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      },
+      {
+        "table": "sets",
+        "row": {
+          "id": "00000000-0000-4000-8000-000000000110",
+          "deleted": true,
+          "session_id": "00000000-0000-4000-8000-000000000100",
+          "item_id": "00000000-0000-4000-8000-000000000106",
+          "exercise_id": "prancha",
+          "position": 1,
+          "kind": "work",
+          "load_kg": null,
+          "reps": null,
+          "seconds": null,
+          "rir": null,
+          "note": null,
+          "completed_at": null,
+          "user_id": "00000000-0000-4000-8000-000000000031",
+          "updated_at": 1900000000000
+        }
+      }
+    ]
+  }
+}

@@ -11,7 +11,7 @@ let package = Package(
     targets: [
         .target(name: "AnilhaCore", resources: [.process("Resources")]),
         .target(name: "AnilhaCache", dependencies: ["AnilhaCore"]),
-        .testTarget(name: "AnilhaCoreTests", dependencies: ["AnilhaCore"], resources: [.copy("Fixtures")]),
+        .testTarget(name: "AnilhaCoreTests", dependencies: ["AnilhaCore", "AnilhaCache"], resources: [.copy("Fixtures")]),
         .testTarget(name: "AnilhaCacheTests", dependencies: ["AnilhaCache", "AnilhaCore"]),
     ]
 )
