@@ -20,11 +20,15 @@ final class ContaStore {
     private(set) var atualizadoEm: Date?
     private(set) var pendentes = 0
     private(set) var rejeitadas = 0
+    private(set) var analises: [String: ReadRow] = [:]
+    private(set) var analisando: Set<String> = []
+    private var analisesNaoGravadas: [String: ReadRow] = [:]
     var sessaoAberta: String?
     private let descanso = DescansoLocal()
     private var repetirSync = false
     private var monitor: NWPathMonitor?
     private var tinhaRede = false
+    var online: Bool { tinhaRede }
     private var cache: CacheLeitura?
     private var chaveiro = ChaveiroSessao()
     private var cliente: SupabaseClient?
@@ -131,6 +135,7 @@ final class ContaStore {
         if geracao == epoch {
             tarefaSync = nil
             if repetirSync { repetirSync = false; await atualizar() }
+            await analisarPendentes()
         }
     }
 
@@ -226,14 +231,15 @@ final class ContaStore {
     private func recarregar() throws {
         guard let dono, let cache else { return }
         dados = try cache.ler(dono)
+        analises = try cache.metadados(dono).merging(analisesNaoGravadas) { _, memory in memory }
         pendentes = try cache.pendentes(dono); rejeitadas = try cache.rejeitadas(dono)
         descanso.atualizar(fim: avisosDescanso ? ativa.flatMap(Workout.restEnd) : nil)
     }
     var ativa: ReadRow? { dados.active("sessions").first { $0.string("status") == "active" } }
-    func gravar(_ changes: [PushChange]) -> Bool {
+    func gravar(_ changes: [PushChange], metadata: [String: ReadRow] = [:]) -> Bool {
         guard let dono, let cache, !limpezaPendente else { return false }
         do {
-            try cache.gravar(changes, dono: dono)
+            try cache.gravar(changes, dono: dono, catalog: catalogo, metadata: metadata)
             try recarregar(); erro = nil
             aviso = "Salvo neste iPhone. \(pendentes) alterações aguardando envio."
             return true
@@ -280,7 +286,89 @@ final class ContaStore {
             preview.tables[change.table] = rows
         }
         changes += Workout.records(preview, session: session.id, catalog: catalogo)
-        return gravar(changes)
+        let saved = gravar(changes, metadata: ["analysis:\(session.id)": ReadRow(fields: ["status": .string("pending")])])
+        if saved { Task { await analisar(session.id, automatico: true) } }
+        return saved
+    }
+
+    private func analisarPendentes() async {
+        guard tinhaRede else { return }
+        let ids = analises.filter { $0.key.hasPrefix("analysis:") && $0.value.string("status") == "pending" }.map { String($0.key.dropFirst(9)) }.sorted()
+        for id in ids { await analisar(id, automatico: true) }
+    }
+    func analisar(_ id: String, automatico: Bool = false) async {
+        guard let owner = dono, let cache, let cliente, !limpezaPendente, !analisando.contains(id),
+              analises["analysis:\(id)"]?.object("reply").string("summary") == nil,
+              !automatico || analises["analysis:\(id)"]?.string("status") == "pending" else { return }
+        guard tinhaRede else { return }
+        let epoch = geracao
+        analisando.insert(id)
+        defer { if geracao == epoch { analisando.remove(id) } }
+        var sent = false
+        do {
+            try recarregar()
+            let planned = analises.filter { $0.key.hasPrefix("analysis-plan:") }.reduce(into: [String: ReadRow]()) { $0[String($1.key.dropFirst(14))] = $1.value }
+            let rules = analises.filter { $0.key.hasPrefix("analysis-rule:") }.reduce(into: [String: String]()) { $0[String($1.key.dropFirst(14))] = $1.value.string("rule") }
+            let context = try WorkoutAnalysis.context(dados, sessionID: id, catalog: catalogo, planned: planned, appliedRules: rules)
+            let binding = try WorkoutAnalysis.binding(dados, sessionID: id)
+            let auth = try await cliente.auth.session
+            try conferir(owner, epoch)
+            guard auth.user.id.uuidString.lowercased() == owner else { throw ReadSync.Failure.accountChanged }
+            // Persist the attempt before sending. An interrupted request requires an explicit retry.
+            try cache.guardarAnalise(ReadRow(fields: ["status": .string("requesting")]), sessionID: id, dono: owner)
+            try recarregar()
+            var request = URLRequest(url: Configuracao.supabaseURL.appendingPathComponent("functions/v1/analise-treino"))
+            request.httpMethod = "POST"; request.timeoutInterval = 45
+            request.setValue(Configuracao.supabaseKey, forHTTPHeaderField: "apikey")
+            request.setValue("Bearer \(auth.accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = try JSONEncoder().encode(ReadRow(fields: ["context": .object(context.fields)]))
+            let config = URLSessionConfiguration.ephemeral; config.urlCache = nil
+            let transport = URLSession(configuration: config)
+            defer { transport.invalidateAndCancel() }
+            sent = true
+            let (bytes, response) = try await transport.data(for: request)
+            try conferir(owner, epoch)
+            guard let http = response as? HTTPURLResponse else { throw ReadSync.Failure.invalidPage }
+            if http.statusCode == 429 {
+                try cache.guardarAnalise(ReadRow(fields: ["status": .string("failed"), "error": .string("Você chegou ao limite de hoje do Waltér. Amanhã tem mais.")]), sessionID: id, dono: owner)
+                try recarregar(); return
+            }
+            guard (200..<300).contains(http.statusCode), let reply = WorkoutAnalysis.parseReply(try JSONDecoder().decode(ReadRow.self, from: bytes), slots: context.array("items").count, catalog: catalogo) else { throw ReadSync.Failure.invalidPage }
+            let saved = ReadRow(fields: ["status": .string("proposed"), "reply": .object(reply.fields), "context": .object(context.fields), "binding": .object(binding.fields)])
+            // Keep an in-memory copy if the disk is temporarily unavailable; do not call the model again.
+            analisesNaoGravadas["analysis:\(id)"] = saved
+            analises["analysis:\(id)"] = saved
+            do {
+                try cache.guardarAnalise(saved, sessionID: id, dono: owner)
+                analisesNaoGravadas.removeValue(forKey: "analysis:\(id)")
+                try recarregar()
+            }
+            catch { erro = "A análise chegou, mas não foi possível guardá-la. Tente guardar novamente antes de fechar." }
+        } catch {
+            guard geracao == epoch, dono == owner else { return }
+            let pending = !sent && (!tinhaRede || (error as? URLError)?.code == .notConnectedToInternet)
+            do {
+                try cache.guardarAnalise(ReadRow(fields: ["status": .string(pending ? "pending" : "failed"), "error": .string(pending ? "Sem internet. A análise aguarda conexão." : "Não foi possível analisar agora. Tente novamente. Uma tentativa enviada conta no limite diário.")]), sessionID: id, dono: owner)
+                try recarregar()
+            } catch { erro = "Não foi possível guardar o estado da análise." }
+        }
+    }
+    func guardarAnalise(_ saved: ReadRow, id: String) -> Bool {
+        guard let dono, let cache else { return false }
+        do { try cache.guardarAnalise(saved, sessionID: id, dono: dono); analisesNaoGravadas.removeValue(forKey: "analysis:\(id)"); try recarregar(); return true }
+        catch { erro = "Não foi possível guardar a análise."; return false }
+    }
+    func analisePrecisaGravar(_ id: String) -> Bool { analisesNaoGravadas["analysis:\(id)"] != nil }
+    func salvarAjuste(_ saved: ReadRow, id: String) {
+        guard let dono, let cache else { return }
+        do { try cache.salvarAjuste(saved, sessionID: id, dono: dono, catalog: catalogo); try recarregar(); erro = nil; Task { await atualizar() } }
+        catch { erro = "O ajuste não foi salvo. Confira os parâmetros. Se a ficha mudou depois da análise, preserve a edição mais recente e ajuste no PWA." }
+    }
+    func desfazerAjuste(_ id: String) {
+        guard let dono, let cache else { return }
+        do { try cache.desfazerAjuste(sessionID: id, dono: dono); try recarregar(); erro = nil; Task { await atualizar() } }
+        catch { erro = "Não deu para voltar: os dados podem ter mudado depois deste ajuste." }
     }
 
     func sair() async {
@@ -289,6 +377,7 @@ final class ContaStore {
         geracao = UUID(); tarefaSync?.cancel(); tarefaSync = nil
         descanso.atualizar(fim: nil)
         dono = nil; dados = ReadData(); atualizadoEm = nil; sincronizando = false
+        analises = [:]; analisando = []; analisesNaoGravadas = [:]
         pendentes = 0; rejeitadas = 0; sessaoAberta = nil; repetirSync = false
         defer { ocupado = false }
         do {

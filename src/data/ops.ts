@@ -194,6 +194,7 @@ async function plannedSets(
   warmStyle?: WarmupStyle,
   /** Deload week: 10% less load on every set. */
   deload = false,
+  captureRule?: (rule: string) => void,
 ): Promise<Writable<SetRow>[]> {
   const exercise = (await db().exercises.get(exerciseId)) ?? EXERCISES_BY_ID.get(exerciseId);
   const time = exercise?.measure === 'time';
@@ -205,6 +206,7 @@ async function plannedSets(
     today,
     sessionId,
   );
+  captureRule?.(s?.kind ?? 'unknown');
   // Warm-up from today's working load: 6 reps at 40% and 80%. Without a known load
   // (first time), last session's warm-up loads, and the rule shows on the card.
   const weighted = exercise?.measure === 'weight_reps';
@@ -298,6 +300,7 @@ export async function startSession(input: StartInput): Promise<string> {
       },
     },
   ];
+  const analysisRules: { key: string; value: unknown }[] = [];
   for (const [position, it] of items.entries()) {
     const itemId = newId();
     changes.push({
@@ -332,10 +335,11 @@ export async function startSession(input: StartInput): Promise<string> {
       0,
       style,
       deload,
+      (rule) => analysisRules.push({ key: `analysis-rule:${itemId}`, value: rule }),
     );
     changes.push(...sets.map((row) => ({ table: 'sets' as const, row })));
   }
-  await saveMany(changes);
+  await saveMany(changes, analysisRules);
   return sessionId;
 }
 
@@ -689,6 +693,7 @@ export async function substituteExercise(
     table: 'sets' as const,
     row: { ...s, deleted: true },
   }));
+  const analysisRules: { key: string; value: unknown }[] = [];
   const ex = (await d.exercises.get(newExerciseId)) ?? EXERCISES_BY_ID.get(newExerciseId);
   const target = ex ? sameUnitTarget(item, ex) : { min: item.target_min, max: item.target_max };
   const remaining = Math.max(
@@ -713,6 +718,10 @@ export async function substituteExercise(
       newExerciseId,
       { sets: remaining, target_min: target.min, target_max: target.max, warmup_sets: 0 },
       today,
+      0,
+      undefined,
+      false,
+      (rule) => analysisRules.push({ key: `analysis-rule:${item.id}`, value: rule }),
     );
     changes.push(...sets2.map((row) => ({ table: 'sets' as const, row })));
   } else {
@@ -751,10 +760,14 @@ export async function substituteExercise(
       newExerciseId,
       { sets: remaining, target_min: target.min, target_max: target.max, warmup_sets: 0 },
       today,
+      0,
+      undefined,
+      false,
+      (rule) => analysisRules.push({ key: `analysis-rule:${newItemId}`, value: rule }),
     );
     changes.push(...sets2.map((row) => ({ table: 'sets' as const, row })));
   }
-  await saveMany(changes);
+  await saveMany(changes, analysisRules);
 }
 
 function sameUnitTarget(

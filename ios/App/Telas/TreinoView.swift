@@ -56,6 +56,7 @@ struct TreinoView: View {
                             Text("Planejado e feito por exercício").font(.headline)
                             Text("Salvo neste iPhone. O estado do envio aparece acima.").font(.footnote)
                         }
+                        CartaoAnaliseTreino(conta: conta, sessionID: sessionID)
                     }
                     ForEach(items) { item in
                         let exercise = exercises[item.string("exercise_id") ?? ""]

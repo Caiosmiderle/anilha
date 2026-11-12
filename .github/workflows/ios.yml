@@ -17,6 +17,12 @@ on:
       [
         'ios/**',
         'src/engine/**',
+        'src/analysis/**',
+        'src/agent/**',
+        'supabase/functions/analise-treino/**',
+        'scripts/build-analysis.mjs',
+        'scripts/ios-analysis-source.ts',
+        'tests/e2e/analysis.spec.ts',
         'scripts/ios-source.ts',
         'scripts/ios-training-source.ts',
         'scripts/ios-session-source.ts',
@@ -75,7 +81,8 @@ jobs:
           npm ci
           node scripts/generate-ios.mjs
           node scripts/generate-ios.mjs --check
-          npx vitest run src/engine/__tests__/iosArtifacts.test.ts --maxWorkers=1 --no-file-parallelism
+          node scripts/build-analysis.mjs --check
+          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/analysis/__tests__/analysis.test.ts tests/db/analysis.test.ts --maxWorkers=1 --no-file-parallelism
 
       - name: Testar paridade, gravação e fila Swift
         working-directory: .
@@ -89,7 +96,7 @@ jobs:
           ANILHA_NATIVE_PAYLOAD: ${{ github.workspace }}/.local/ios-native-payload.json
         run: |
           npx playwright install chromium
-          npx playwright test -c playwright.node.config.ts tests/e2e/ios-treino.spec.ts
+          npx playwright test -c playwright.node.config.ts tests/e2e/ios-treino.spec.ts tests/e2e/analysis.spec.ts
 
       - name: Gerar o ícone 1024 a partir do ícone do PWA
         run: |

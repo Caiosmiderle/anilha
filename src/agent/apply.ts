@@ -7,6 +7,11 @@ import type { Proposal } from './execute';
 
 /** Puts everything a save changed back as it was. */
 export type Undo = () => Promise<void>;
+export interface UndoSnapshot {
+  changes: Change[];
+  before: (Change['row'] | undefined)[];
+  after: Change['row'][];
+}
 
 /** Undo must never replace a newer edit, including one synced from another device. */
 export class UndoConflictError extends Error {
@@ -22,49 +27,67 @@ export class UndoConflictError extends Error {
  * Writes the changes and keeps each row as it was before, so "Voltar ao anterior" restores
  * them and drops the rows that did not exist. Synced like any other write.
  */
-export async function applyWithUndo(changes: Change[]): Promise<Undo> {
+export async function applyWithUndo(
+  changes: Change[],
+  captured?: (snapshot: UndoSnapshot) => Promise<void>,
+): Promise<Undo> {
   const d = db();
   const userId = uid();
   const tables = [...new Set(changes.map((c) => c.table))].map((t) => d.table(t));
   const sameAccount = () => hasCurrent() && db() === d && uid() === userId;
-  const snapshots = await d.transaction('rw', [...tables, d.outbox], async () => {
+  const snapshots = await d.transaction('rw', [...tables, d.outbox, d.meta], async () => {
     const before = await Promise.all(changes.map((c) => d.table(c.table).get(c.row.id)));
     if (!sameAccount()) throw new UndoConflictError();
     await saveMany(changes);
     const after = await Promise.all(changes.map((c) => d.table(c.table).get(c.row.id)));
+    if (captured) await captured({ changes, before, after });
     return { before, after };
   });
-  return async () => {
-    if (!sameAccount()) throw new UndoConflictError();
-    await d.transaction('rw', [...tables, d.outbox], async () => {
-      const current = await Promise.all(changes.map((c) => d.table(c.table).get(c.row.id)));
-      // Every local or synced write changes updated_at. Check all rows before restoring any.
-      if (
-        !sameAccount() ||
-        current.some((row, i) => !row || row.updated_at !== snapshots.after[i]?.updated_at)
-      ) {
-        throw new UndoConflictError();
-      }
-      await saveMany(
-        changes.map((c, i) => {
-          const old = snapshots.before[i] as Change['row'] | undefined;
-          return (
-            old
-              ? { table: c.table, row: old }
-              : { table: c.table, row: { ...c.row, deleted: true } }
-          ) as Change;
-        }),
-      );
-    });
-  };
+  return () => undoSaved({ changes, ...snapshots }, { db: d, userId });
 }
 
-export async function applyProposal(p: Proposal, today: string): Promise<Undo> {
+/** Persistable undo, with the same revision/account checks as the chat. */
+export async function undoSaved(
+  snapshots: UndoSnapshot,
+  owner: NonNullable<ReturnType<typeof currentStore>>,
+  restored?: () => Promise<void>,
+): Promise<void> {
+  const { db: d, userId } = owner;
+  const changes = snapshots.changes;
+  const sameAccount = () => hasCurrent() && db() === d && uid() === userId;
+  const tables = [...new Set(changes.map((c) => c.table))].map((t) => d.table(t));
+  if (!sameAccount()) throw new UndoConflictError();
+  await d.transaction('rw', [...tables, d.outbox, d.meta], async () => {
+    const current = await Promise.all(changes.map((c) => d.table(c.table).get(c.row.id)));
+    // Every local or synced write changes updated_at. Check all rows before restoring any.
+    if (
+      !sameAccount() ||
+      current.some((row, i) => !row || row.updated_at !== snapshots.after[i]?.updated_at)
+    ) {
+      throw new UndoConflictError();
+    }
+    await saveMany(
+      changes.map((c, i) => {
+        const old = snapshots.before[i] as Change['row'] | undefined;
+        return (
+          old ? { table: c.table, row: old } : { table: c.table, row: { ...c.row, deleted: true } }
+        ) as Change;
+      }),
+    );
+    await restored?.();
+  });
+}
+
+export async function applyProposal(
+  p: Proposal,
+  today: string,
+  captured?: (snapshot: UndoSnapshot) => Promise<void>,
+): Promise<Undo> {
   const owner = currentStore();
   async function applyPrepared(preparing: Promise<Change[]>): Promise<Undo> {
     const changes = await preparing;
     if (!owner || currentStore() !== owner) throw new UndoConflictError();
-    return applyWithUndo(changes);
+    return applyWithUndo(changes, captured);
   }
   switch (p.kind) {
     case 'plano':
@@ -82,10 +105,10 @@ export async function applyProposal(p: Proposal, today: string): Promise<Undo> {
  * A ficha edited: exercises that stay keep their row (warm-up, note, bi-set), the ones that
  * leave are deleted, the new ones are added, everything in the new order.
  */
-async function fichaChanges(routineId: string, after: ContextFicha): Promise<Change[]> {
-  const old = (await db().routine_items.where('routine_id').equals(routineId).toArray()).filter(
-    (i) => !i.deleted,
-  );
+export async function fichaChanges(routineId: string, after: ContextFicha): Promise<Change[]> {
+  const old = (await db().routine_items.where('routine_id').equals(routineId).toArray())
+    .filter((i) => !i.deleted)
+    .sort((a, b) => a.position - b.position || a.id.localeCompare(b.id));
   const unused = [...old];
   const changes: Change[] = after.items.map((it, position) => {
     const at = unused.findIndex((o) => o.exercise_id === it.exercise_id);

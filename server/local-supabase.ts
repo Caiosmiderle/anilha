@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { callRpc, createUser, openDatabase, type Claims } from './pg';
 import { seedDemo } from './seed';
 import { handleCrunning } from '../supabase/functions/troca-crunning/core';
+import { handleAnalysis } from '../supabase/functions/analise-treino/core';
 
 const JWT_SECRET = 'anilha-local-dev-secret-never-used-in-production';
 const ACCESS_TTL = 3600;
@@ -284,6 +285,57 @@ export async function startLocalSupabase(opts: Options = {}): Promise<LocalSupab
     // The assistant, simulated: the same shape as supabase/functions/agente, without the
     // model. The beta and the daily limit go through the same database function; the
     // answers are scripted by keywords, so the tests walk the whole flow with no key.
+    if (url.pathname === '/functions/v1/analise-treino' && req.method === 'POST') {
+      const claims = claimsFrom(req);
+      if (!claims) return send(401, { error: 'Entre na sua conta.' });
+      const response = await handleAnalysis(
+        new Request(`http://127.0.0.1${req.url}`, {
+          method: 'POST',
+          headers: { authorization: req.headers.authorization ?? '' },
+          body: JSON.stringify(body),
+        }),
+        {
+          async begin() {
+            try {
+              await callRpc(db, claims, 'agent_begin_turn', {});
+              return {};
+            } catch {
+              return { status: 429, error: 'Você chegou ao limite de hoje. Amanhã tem mais.' };
+            }
+          },
+          async end(_auth, input, output) {
+            await callRpc(db, claims, 'agent_end_turn', { p_input: input, p_output: output });
+          },
+          async model() {
+            return {
+              stop: 'tool_use',
+              input: 1000,
+              output: 150,
+              content: [
+                {
+                  type: 'tool_use',
+                  name: 'responder_analise',
+                  input: {
+                    summary: 'Você concluiu a sessão. Compare o ritmo das séries na próxima vez.',
+                    points: ['O aquecimento faz parte do planejado.'],
+                    adjustment: {
+                      operation: 'series',
+                      slot: 0,
+                      sets: 2,
+                      min: null,
+                      max: null,
+                      replacement: null,
+                    },
+                  },
+                },
+              ],
+            };
+          },
+        },
+      );
+      return send(response.status, await response.json());
+    }
+
     if (url.pathname === '/functions/v1/agente' && req.method === 'POST') {
       const claims = claimsFrom(req);
       if (!claims) return send(401, { error: 'Entre na sua conta' });

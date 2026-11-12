@@ -42,6 +42,7 @@ import { SetEditSheet } from './parts/SetEditSheet';
 import { ShareCardSheet } from './parts/ShareCardSheet';
 import { addDoneSet } from '../data/ops';
 import { shareCardData, type ShareCardData } from '../lib/shareCard';
+import { AnalysisCard } from '../analysis/AnalysisCard';
 
 /** One finished session: what was planned, swapped, skipped, done, and what comes next time. */
 export default function SessionDetail() {
@@ -154,6 +155,9 @@ export default function SessionDetail() {
         <p className="t-regular t-muted" style={{ margin: 0 }}>
           Registro resumido: só o tipo e a data, sem detalhe de séries.
         </p>
+      ) : null}
+      {session.status === 'done' && session.detail === 'full' ? (
+        <AnalysisCard key={session.id} sessionID={session.id} />
       ) : null}
       {session.adjustments.length ? (
         <p className="t-caption" style={{ margin: 0 }}>

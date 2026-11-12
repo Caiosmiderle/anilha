@@ -1,5 +1,6 @@
 import type { Table } from 'dexie';
 import type { AnilhaDB, RowByTable, SyncedTable } from './db';
+import { numericSet } from '../analysis/context';
 
 export interface CurrentStore {
   db: AnilhaDB;
@@ -68,13 +69,23 @@ function table<K extends SyncedTable>(name: K): Table<RowByTable[K], string> {
  * Writes rows locally and queues them for sync in one transaction.
  * The interface reads from IndexedDB, so the change shows up immediately.
  */
-export async function saveMany(changes: Change[]): Promise<void> {
+export async function saveMany(
+  changes: Change[],
+  metadata: { key: string; value: unknown }[] = [],
+): Promise<void> {
   if (changes.length === 0) return;
   const d = db();
   const userId = uid();
   const tables = [...new Set(changes.map((c) => c.table))].map((t) => d.table(t));
-  await d.transaction('rw', [...tables, d.outbox], async () => {
+  await d.transaction('rw', [...tables, d.outbox, d.meta], async () => {
+    for (const m of metadata) await d.meta.put(m);
     for (const c of changes) {
+      // Keep the actual first prescription before a set is edited/completed/deleted.
+      if (c.table === 'sets' && c.row.completed_at == null && !c.row.deleted) {
+        const key = `analysis-plan:${c.row.id}`;
+        if (!(await d.meta.get(key)) && !(await d.sets.get(c.row.id)))
+          await d.meta.put({ key, value: numericSet(c.row as unknown as Record<string, unknown>) });
+      }
       const ts = stamp();
       const row = { ...c.row, user_id: userId, updated_at: ts } as RowByTable[typeof c.table];
       await d.table(c.table).put(row);

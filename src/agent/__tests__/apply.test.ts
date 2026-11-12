@@ -38,6 +38,38 @@ const item = (id: string, sets = 3): RoutineItemRow => ({
 });
 
 describe('assistente: desfazer sem perder mudanças mais recentes', () => {
+  it('preserva metadados de exercícios repetidos em suas posições ao editar outra linha', async () => {
+    await d.routine_items.bulkPut([
+      { ...item('zz'), position: 0, note: 'Primeira posição', warmup_sets: 2 },
+      { ...item('aa'), position: 1, note: 'Segunda posição', warmup_sets: 0 },
+      { ...item('middle'), position: 2, exercise_id: 'remada-baixa', note: 'Terceira posição' },
+    ]);
+    const before = {
+      id: 'r1',
+      name: 'Ficha sintética',
+      items: [
+        { exercise_id: 'supino-reto-barra', sets: 3, target_min: 8, target_max: 12, rest_sec: 90 },
+        { exercise_id: 'supino-reto-barra', sets: 3, target_min: 8, target_max: 12, rest_sec: 90 },
+        { exercise_id: 'remada-baixa', sets: 3, target_min: 8, target_max: 12, rest_sec: 90 },
+      ],
+    };
+    const after = {
+      ...before,
+      items: before.items.map((row, n) => (n === 2 ? { ...row, sets: 2 } : row)),
+    };
+    await applyProposal({ kind: 'ficha', before, after, volume: [], risks: [] }, '2026-11-12');
+    expect(await d.routine_items.get('zz')).toMatchObject({
+      position: 0,
+      note: 'Primeira posição',
+      warmup_sets: 2,
+    });
+    expect(await d.routine_items.get('aa')).toMatchObject({
+      position: 1,
+      note: 'Segunda posição',
+      warmup_sets: 0,
+    });
+    expect((await d.routine_items.get('middle'))?.sets).toBe(2);
+  });
   it('não grava uma proposta se a conta muda enquanto as linhas são preparadas', async () => {
     await d.routine_items.put(item('old'));
     const other = openDb(`agent-other-${n}`);

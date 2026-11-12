@@ -43,6 +43,19 @@ try {
   await sessionBundle.close();
 }
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
+const analysisBundle = await rolldown({
+  input: resolve(root, 'scripts/ios-analysis-source.ts'),
+  platform: 'node',
+});
+let analysis;
+try {
+  const { output } = await analysisBundle.generate({ format: 'esm' });
+  analysis = await (
+    await import(`data:text/javascript;base64,${Buffer.from(output[0].code).toString('base64')}`)
+  ).analysisArtifacts();
+} finally {
+  await analysisBundle.close();
+}
 const env = await readFile(resolve(root, '.env.production'), 'utf8');
 if (!/^VITE_SUPABASE_ANON_KEY=sb_publishable_[A-Za-z0-9_-]+\s*$/m.test(env)) {
   throw new Error(
@@ -55,6 +68,8 @@ const publicValue = (key) => {
   return JSON.stringify(value);
 };
 const outputs = {
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/analysis.json': json(analysis),
+  'ios/AnilhaCore/Sources/AnilhaCore/Resources/analysis-rules.json': json(analysis.riskRules),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/training.json': json(training),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/session.json': json(sessionFixture),
   'ios/App/Recursos/exercises.json': json(artifacts.catalog),

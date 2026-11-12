@@ -40,7 +40,7 @@ export function weeklyCap(p: OnboardingParams, g: VolumeGroup): number {
   return cap + (p.gender === 'feminino' ? 2 : 0) + (focus.has(g) ? 4 : 0);
 }
 
-const VOLUME_SOURCE =
+export const VOLUME_SOURCE =
   'Volume semanal por grupo: mais séries rendem mais, com retorno cada vez menor (Schoenfeld, Ogborn e Krieger, 2017; Pelland e colegas); o teto de cada nível é escolha do app.';
 
 /** Groups the change pushes past the weekly ceiling. */
@@ -72,7 +72,7 @@ export function maintenanceFloor(p: OnboardingParams): number {
   return p.age_range === '60+' ? 6 : 3;
 }
 
-const MAINTENANCE_SOURCE =
+export const MAINTENANCE_SOURCE =
   'Manter custa bem menos que ganhar, desde que a carga continue boa (Bickel, Cross e Bamman, 2011; Spiering e colegas, 2021); depois dos 60 é preciso mais.';
 
 /**
