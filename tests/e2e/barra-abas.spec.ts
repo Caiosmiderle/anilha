@@ -18,12 +18,16 @@ test('barra de abas na altura do iOS: 21 pt da borda no iPhone, 12 px sem a barr
   const bar = page.locator('.hb-tabbar');
 
   // No safe area (Android, iPhone with a home button): 12 px from the edge.
-  await expect.poll(() => bar.boundingBox()).toEqual({ x: 20, y: 852 - 12 - 64, width: 353, height: 64 });
+  await expect
+    .poll(() => bar.boundingBox())
+    .toEqual({ x: 20, y: 852 - 12 - 64, width: 353, height: 64 });
 
   // iPhone with the home bar: the bottom safe area is 34 pt, the bar sits 21 pt up.
   const cdp = await page.context().newCDPSession(page);
   await cdp.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: 59, bottom: 34 } });
-  await expect.poll(() => bar.boundingBox()).toEqual({ x: 20, y: 852 - 21 - 64, width: 353, height: 64 });
+  await expect
+    .poll(() => bar.boundingBox())
+    .toEqual({ x: 20, y: 852 - 21 - 64, width: 353, height: 64 });
 
   // Big icon, small semibold label, the same weight on every tab.
   const voce = bar.getByRole('link', { name: 'Você' });
@@ -37,7 +41,11 @@ test('barra de abas na altura do iOS: 21 pt da borda no iPhone, 12 px sem a barr
 
   // What floats above the bar keeps clear of it: the end of the page scrolls past its top.
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-  const last = await page.locator('.app-main > *').last().boundingBox();
+  // The Waltér button floats and its closed dialog has no box: page content only.
+  const last = await page
+    .locator('.app-main > :not(dialog):not(.agent-launcher)')
+    .last()
+    .boundingBox();
   if (!last) throw new Error('página sem conteúdo');
   expect(last.y + last.height).toBeLessThanOrEqual(852 - 21 - 64);
   await page.evaluate(() => window.scrollTo(0, 0));
