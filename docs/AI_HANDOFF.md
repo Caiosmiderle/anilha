@@ -1,5 +1,23 @@
 # Registro entre Codex e Claude
 
+## Troca com o CRUNNING publicada, Claude, 12/11/2026
+
+- Revisão do Claude das correções do Codex (lápide mínima, limites, versão no GET): **aprovada**. Conferi o código e os 4 testes novos; 787 testes passando no relato do Codex.
+- Publicação autorizada pelo Caio ("Pode publicar"):
+  1. Migração `troca_crunning` aplicada no Supabase de produção (projeto `anilha`), com o conteúdo de `20261112000021_troca_crunning.sql`. Conferi depois:
+     - as 2 tabelas e as 6 colunas novas existem;
+     - `crunning_exchange` só é executável pelo `service_role`;
+     - `authenticated` não lê `crunning_tokens` nem grava em `external_plan_items`;
+     - `synced_tables()` tem 14 tabelas.
+
+     Advisor de segurança sem item novo fora do padrão já aceito no projeto.
+  2. Função `troca-crunning` v1 publicada com `verify_jwt = false`. `index.ts` e `core.ts` são idênticos ao repositório. **`engine.generated.ts` foi publicado com a formatação compactada** (o mesmo código, sem comentários e sem a linha `new Map(...)` sem efeito). Ele só serve ao `GET /forca`, que o CRUNNING ainda não chama: republicar o arquivo exato do repositório antes da etapa 4.
+  3. Teste de fora, sem token válido:
+     - `OPTIONS` responde 204;
+     - sem token, ou com token falso bem formado, responde 401 `{"erro":"token"}`. O token falso vai até o banco e volta recusado: a função alcança o banco.
+  4. Merge desta branch na `main` (contrato e implementação). A Vercel publica o site com Você > Conexões > CRUNNING.
+- Pendente: teste de ponta a ponta com o Caio (gerar token, colar no CRUNNING 0.17.0, corrida nova, lápide e planejados). A tela de juntar duplicata continua pendente.
+
 ## Troca com o CRUNNING, Codex, 12/11/2026
 
 - Continuação após revisão do Claude, autor Codex, 12/11/2026, mesma branch `codex/troca-crunning` e base `03dc305`, preservando todo o diff sem commit. Intenção: corrigir a lápide mínima e aplicar limites do contrato esclarecido. Segundo retorno do Caio, revisão inicial de segurança/RLS/grants/token/limite aprovada pelo Claude; revisão destas correções **PENDENTE**.
