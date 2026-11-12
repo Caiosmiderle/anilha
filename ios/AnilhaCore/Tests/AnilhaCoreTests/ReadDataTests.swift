@@ -71,9 +71,9 @@ final class ReadDataTests: XCTestCase {
         XCTAssertEqual(snapshot.plannedToday("2026-11-12")?.kind, "rest")
     }
     func testProtocolAdvancesAcrossUnusedTablesButRejectsNonProgressingPages() throws {
-        let unknown = try JSONDecoder().decode(PullPage.self, from: Data(#"{"rows":[{"table":"body_logs","row":{"id":"unused"}}],"cursor":501,"more":true}"#.utf8))
+        let unknown = try JSONDecoder().decode(PullPage.self, from: Data(#"{"rows":[{"table":"messages","row":{"id":"unused"}}],"cursor":501,"more":true}"#.utf8))
         try ReadSync.validate(unknown, since: 500, owner: "fictional")
-        XCTAssertFalse(ReadSync.tables.contains("body_logs"))
+        XCTAssertFalse(ReadSync.tables.contains("messages"))
         XCTAssertThrowsError(try ReadSync.validate(unknown, since: 501, owner: "fictional"))
     }
     func testPurgedTombstonesRebuildOnlyOnceDuringPaginatedFullPull() {

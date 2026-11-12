@@ -9,12 +9,12 @@ final class CacheTests: XCTestCase {
     }
     @MainActor func testPaginationUpsertTombstoneAndCursorInSwiftData() async throws {
         let cache = try CacheLeitura(inMemory: true)
-        let first = try page(#"{"rows":[{"table":"runs","row":{"id":"run","user_id":"fiction-a","deleted":false,"distance_km":5}},{"table":"body_logs","row":{"id":"ignored","user_id":"fiction-a","deleted":false}}],"cursor":500,"more":true}"#)
+        let first = try page(#"{"rows":[{"table":"runs","row":{"id":"run","user_id":"fiction-a","deleted":false,"distance_km":5}},{"table":"messages","row":{"id":"ignored","user_id":"fiction-a","deleted":false}}],"cursor":500,"more":true}"#)
         try cache.aplicar(first, dono: "fiction-a", since: 0)
         XCTAssertEqual(try cache.cursor("fiction-a").cursor, 500)
         XCTAssertNil(try cache.cursor("fiction-a").atualizadoEm)
         XCTAssertEqual(try cache.ler("fiction-a").active("runs").count, 1)
-        XCTAssertTrue(try cache.ler("fiction-a").active("body_logs").isEmpty)
+        XCTAssertTrue(try cache.ler("fiction-a").active("messages").isEmpty)
         // Replaying the same page is idempotent (no extra row).
         try cache.aplicar(first, dono: "fiction-a", since: 0)
         XCTAssertEqual(try cache.ler("fiction-a").active("runs").count, 1)
