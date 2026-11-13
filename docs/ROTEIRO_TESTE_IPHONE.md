@@ -78,8 +78,10 @@ Preenchido pelo Claude a cada build; o resumo também fica no `PROGRESSO.md`.
 
 | O quê | Onde roda | Resultado |
 | --- | --- | --- |
-| Testes do motor, análise, revisão, memória, calendário, duplicados, "como fazer", chat (TypeScript) | CI iOS | pendente |
-| Paridade TS e Swift, fila de gravação, desfazer, chat e baralho (Swift) | CI iOS (`swift test`) | pendente |
-| Payload do iPhone no servidor e PWA locais: treino, análise, revisão, calendário (e2e) | CI iOS (Playwright) | pendente |
-| Prints de todas as telas, claro e escuro, mais baralho em tela pequena | CI iOS (simulador) | pendente |
-| Site: unitários, e2e e sincronização sem internet | PC (`npm test`, Playwright) | pendente |
+| Testes do motor, análise, revisão, memória, calendário, duplicados, "como fazer", chat, ficha e sincronização (TypeScript) | CI iOS, build 30 | verde |
+| Paridade TS e Swift, fila de gravação, desfazer, chat, baralho, ficha e sincronização (Swift) | CI iOS (`swift test`), build 30 | verde |
+| Payload do iPhone no servidor e PWA locais: treino, análise, revisão, calendário (e2e) | CI iOS (Playwright), build 30 | verde |
+| Prints de todas as telas, claro e escuro, mais baralho em tela pequena | CI iOS (simulador) | ver `PROGRESSO.md` |
+| Site: tipos, lint e unitários | PC | 859 de 859 |
+| Site: ponta a ponta | PC (Playwright) | 130 testes, todos passando depois da correção do teste da barra de abas |
+| Sincronização entre dois aparelhos e banco real (PGlite) | PC | 8 de 8 |
