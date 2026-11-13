@@ -22,7 +22,7 @@ struct FichasView: View {
                         DiscoExercicio(grupo: conta.dados.items(ficha.id).first.flatMap { exercicios[$0.string("exercise_id") ?? ""]?.string("primary_group") })
                         VStack(alignment: .leading, spacing: 4) {
                             Text(ficha.string("name") ?? "Ficha").font(.headline)
-                            Text("\(conta.dados.items(ficha.id).count) exercícios")
+                            Text(contagemExercicios(conta.dados.items(ficha.id).count))
                                 .font(.subheadline).foregroundStyle(Tema.tintaSuave)
                         }
                     }
@@ -53,7 +53,7 @@ struct FichaView: View {
                 Text("Esta ficha foi arquivada ou removida.")
             } else {
                 CabecalhoAnilha(titulo: atual?.string("name") ?? "Ficha",
-                                selo: "\(conta.dados.items(ficha.id).count) exercícios", icone: "dumbbell")
+                                selo: contagemExercicios(conta.dados.items(ficha.id).count), icone: "dumbbell")
                     .listRowBackground(Color.clear).listRowSeparator(.hidden).entradaAnilha(0)
                 Section("Exercícios") {
                     if conta.dados.items(ficha.id).isEmpty { Text("Esta ficha ainda não tem exercícios.") }
@@ -67,7 +67,7 @@ struct FichaView: View {
                             if let last = cargas[exerciseID] {
                                 let lb = conta.dados.active("profiles").first?.string("unit") == "lb"
                                 let load = lb ? last.kg * 2.20462262185 : last.kg
-                                Text("Última carga: \(load.formatted(.number.precision(.fractionLength(0...2)))) \(lb ? "lb" : "kg") em \(last.date)")
+                                Text("Última carga: \(load.formatted(.number.precision(.fractionLength(0...2)))) \(lb ? "lb" : "kg") em \(dataCurta(last.date))")
                                     .font(.subheadline).monospacedDigit().foregroundStyle(Tema.marcaForte)
                             } else {
                                 Text("Sem carga anterior registrada").font(.footnote).foregroundStyle(Tema.tintaSuave)
@@ -96,3 +96,6 @@ struct FichaView: View {
         return "\(sets) séries de \(min) a \(max) \(medida == "time" ? "segundos" : "repetições")"
     }
 }
+
+/// "1 exercício", "3 exercícios".
+func contagemExercicios(_ n: Int) -> String { n == 1 ? "1 exercício" : "\(n) exercícios" }

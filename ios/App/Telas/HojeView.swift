@@ -70,7 +70,7 @@ struct HojeView: View {
                                 } label: { Label("Ver exercícios", systemImage: "list.bullet") }
                                 .buttonStyle(.glass).controlSize(.large).frame(minHeight: 44)
                             } else {
-                                Text("Esta ficha não está disponível. Confira as fichas no PWA.")
+                                Text("Esta ficha não está disponível. Confira em Plano > Fichas.")
                                     .foregroundStyle(Tema.tintaSuave)
                             }
                         } else if dia.kind == "run" {
@@ -82,7 +82,7 @@ struct HojeView: View {
                         if let time = dia.time { Text("Horário: \(time)").font(.subheadline) }
                     } else {
                         Text(conta.sincronizando ? "Buscando seu plano..." : "Nenhum plano disponível.")
-                        Text("Crie ou ajuste seu plano no PWA e puxe para atualizar.")
+                        Text("Crie um em Plano > Plano novo ou puxe para atualizar.")
                             .font(.subheadline).foregroundStyle(Tema.tintaSuave)
                     }
                     if conta.ativa == nil, let ficha {

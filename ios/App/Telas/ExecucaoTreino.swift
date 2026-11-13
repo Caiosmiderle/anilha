@@ -171,7 +171,7 @@ struct ExecucaoTreino: View {
                 Button("Concluir treino") { confirmarFim = true }
                 Button("Minimizar treino") { conta.sessaoAberta = nil; dismiss() }
                 Button("Ativar aviso de descanso") {
-                    Task { aviso = await conta.permitirAvisos() ? "Aviso local ativado." : "Confira as permissões do iPhone e a preferência de descanso no PWA." }
+                    Task { aviso = await conta.permitirAvisos() ? "Aviso local ativado." : "Confira as permissões do iPhone e a preferência de descanso no site." }
                 }
             } label: { Image(systemName: "ellipsis").frame(width: 44, height: 44) }
             .accessibilityLabel("Opções do treino")
@@ -230,7 +230,7 @@ struct ExecucaoTreino: View {
                                     DiscoExercicio(grupo: ex?.string("primary_group"))
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(ex?.string("name") ?? "Exercício indisponível").font(.headline)
-                                        Text(ex?.string("primary_group")?.capitalized ?? "").font(.caption).foregroundStyle(Tema.tintaSuave)
+                                        Text(Catalogo.nomeGrupo(ex?.string("primary_group"))).font(.caption).foregroundStyle(Tema.tintaSuave)
                                     }
                                     Spacer(minLength: 0)
                                     Image(systemName: expandido ? "chevron.up" : "chevron.down").accessibilityHidden(true)

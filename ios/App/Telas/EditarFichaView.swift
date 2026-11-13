@@ -11,6 +11,7 @@ struct EditarFichaView: View {
     @State private var editando: ReadRow?
     @State private var confirmarApagar = false
     @State private var confirmarSair = false
+    @State private var modoEdicao: EditMode = .inactive
     @Environment(\.dismiss) private var dismiss
 
     init(conta: ContaStore, ficha: ReadRow? = nil) {
@@ -82,8 +83,14 @@ struct EditarFichaView: View {
                     if conta.salvarFicha(ficha, original: original, antigos: antigos, items: items) { dismiss() }
                 }.disabled((ficha.string("name") ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
-            ToolbarItem(placement: .bottomBar) { EditButton().disabled(items.isEmpty) }
+            // "Editar" here was a second Editar inside the ficha editor: it only reorders.
+            ToolbarItem(placement: .bottomBar) {
+                Button(modoEdicao.isEditing ? "Pronto" : "Reordenar", systemImage: modoEdicao.isEditing ? "checkmark" : "arrow.up.arrow.down") {
+                    withAnimation { modoEdicao = modoEdicao.isEditing ? .inactive : .active }
+                }.disabled(items.isEmpty)
+            }
         }
+        .environment(\.editMode, $modoEdicao)
         .interactiveDismissDisabled(alterada)
         .confirmationDialog("Descartar alterações?", isPresented: $confirmarSair, titleVisibility: .visible) {
             Button("Descartar", role: .destructive) { dismiss() }

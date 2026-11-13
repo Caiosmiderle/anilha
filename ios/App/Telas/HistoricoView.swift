@@ -119,8 +119,8 @@ struct HistoricoView: View {
                         VStack(spacing: 3) {
                             Text(String(Int(date.suffix(2)) ?? 0)).font(.subheadline)
                             HStack(spacing: 3) {
-                                if rows.contains(where: { !$0.corrida }) { Circle().fill(Tema.marca).frame(width: 5, height: 5) }
-                                if rows.contains(where: \.corrida) { Circle().fill(Tema.verdeAgua).frame(width: 5, height: 5) }
+                                if rows.contains(where: { !$0.corrida }) { Circle().fill(Tema.marcaForte).frame(width: 5, height: 5) }
+                                if rows.contains(where: \.corrida) { Circle().fill(Tema.laranja).frame(width: 5, height: 5) }
                             }.frame(height: 5)
                         }.frame(maxWidth: .infinity, minHeight: 44)
                             .background(dia == date || date == today ? Tema.marcaFundo : Tema.superficie, in: RoundedRectangle(cornerRadius: 8))
@@ -129,7 +129,7 @@ struct HistoricoView: View {
                         .disabled(rows.isEmpty || date > today)
                 }
             }
-            Text("Azul: academia · Verde: cardio").font(.caption).foregroundStyle(Tema.tintaSuave)
+            Text("Azul: academia · Laranja: corrida e cardio").font(.caption).foregroundStyle(Tema.tintaSuave)
             if let dia {
                 Text(dataCurta(dia)).font(.headline)
                 ForEach(entries.filter { $0.date == dia }) { linha($0) }
