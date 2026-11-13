@@ -2,8 +2,7 @@ import AnilhaCore
 import SwiftUI
 
 /// Perfil de treino: as respostas que montaram o plano e o modo retorno, que muda na hora sem
-/// trocar o plano (igual ao site). Refazer o plano com respostas novas continua no site, porque
-/// gera fichas pelo motor de geração.
+/// trocar o plano (igual ao site). Plano novo usa o mesmo gerador TypeScript offline.
 struct PerfilTreinoView: View {
     let conta: ContaStore
     let today: String
@@ -55,11 +54,12 @@ struct PerfilTreinoView: View {
                     Text("Depois de mais de 3 semanas sem treino, liga sozinho e dura 4 semanas: até 10 séries por grupo na semana e 2 a 3 repetições na reserva. Muda na hora, sem trocar o plano.")
                 }
                 Section {
-                    Link(destination: Site.url("/voce/treino")) {
-                        Label("Mudar respostas e refazer o plano", systemImage: "safari")
+                    NavigationLink { PlanoNovoView(conta: conta, today: today) } label: {
+                        Label("Plano novo", systemImage: "arrow.triangle.2.circlepath")
                     }
+                    Link("Salvar só as respostas no site", destination: Site.url("/voce/treino"))
                 } footer: {
-                    Text("Refazer o plano gera fichas novas pelo motor e pede confirmação; isso fica no site.")
+                    Text("Revise suas respostas e a prévia antes de trocar as fichas do plano.")
                 }
             }
         }

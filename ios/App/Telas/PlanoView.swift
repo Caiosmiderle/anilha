@@ -1,8 +1,7 @@
 import AnilhaCore
 import SwiftUI
 
-/// Aba Plano: as fichas e o calendário com força e corrida. O plano da semana e a edição de
-/// ficha entram aqui nas próximas entregas; até lá, o site cuida disso.
+/// Aba Plano: semana, fichas, calendário e entrada para gerar um plano novo offline.
 struct PlanoView: View {
     let conta: ContaStore
     let today: String
@@ -43,10 +42,10 @@ struct PlanoView: View {
                 .frame(maxWidth: 300)
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Link(destination: Site.url("/plano")) {
-                    Label("Editar no site", systemImage: "safari")
+                NavigationLink { PlanoNovoView(conta: conta, today: today) } label: {
+                    Label("Plano novo", systemImage: "arrow.triangle.2.circlepath")
                 }
-                .accessibilityHint("Abre o plano no site do Anilha")
+                .accessibilityHint("Revise as respostas e o plano antes de trocar as fichas")
             }
         }
     }

@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS 0.18.0, plano novo nativo, Codex, 12/11/2026
+
+- Branch recebida limpa `codex/ios-plano-novo`, base `4ddee67b83b5da3b3eabe979c2c321424c3fdc02`. Entrega só local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.
+- `PlanoNovoView` nas entradas Perfil de treino e Plano: respostas atuais, mesmas perguntas/opções, prévia e confirmação preservando outras fichas e treinos feitos. Harbor, saúde condicionada ao consentimento e snapshot para recusar confirmação antiga.
+- Gerador TS real empacotado pelo gerador iOS em `AnilhaCore/Resources/plan-engine.js`, executado offline pelo JavaScriptCore com JSON. Swift porta apenas linhas de `planChanges`; `plans` liberada na fila atômica. Nenhuma tabela/coluna/RPC/pacote novo. Versão **0.18.0**.
+- Doze cenários fictícios com saída do gerador e escritas reais do site. Passaram **82 testes TS em 17 arquivos do CI iOS**, três geradores `--check`, lint, typecheck, build, Bash e diff. Falhas intermediárias corrigidas e registradas no parecer.
+- Quatro métodos Swift preparados; `swift test` tentado, comando ausente. CI Apple, Release Swift 6/iOS 26, capturas, iPhone e sync real **PENDENTES**. Demo `plano-novo` na matriz de 30 telas, 60/120 PNGs esperados, não capturados aqui. E2E não executado.
+- `propor_plano` pelo chat **PENDENTE**: também exige volume/avisos, argumentos e persistência/binding/undo de plano, além do gerador e das linhas. Chat aponta a entrada nativa; encaminhamento existente preservado.
+- Parecer e roteiro em [REVISAO_CODEX_PLANO_NOVO_2026-11-12.md](REVISAO_CODEX_PLANO_NOVO_2026-11-12.md). Claude deve revisar JSContext, paridade, consentimento, snapshot, fila e preservação de treinos, executar CI Apple e commitar esta árvore. Sem commit, push ou publicação pelo Codex.
+
 ## iOS 0.17.0, análises e revisões por conta, Codex, 12/11/2026
 
 - Branch recebida limpa `codex/ios-analises-sync`, base `e95b21f7d4ef613f20bcc746b2755a7f181edc9b`. Entrega só local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.

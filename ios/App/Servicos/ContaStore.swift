@@ -317,6 +317,14 @@ final class ContaStore {
             return true
         } catch { erro = "Não foi possível salvar. Tente novamente antes de fechar o app."; return false }
     }
+    func adotarPlano(_ generated: ReadRow, params: ReadRow, baseline: ReadRow, today: String) throws {
+        guard let dono, let cache, !limpezaPendente else { throw PlanEngine.Failure.conflict }
+        try cache.adotarPlano(generated, params: params, baseline: baseline, today: today, dono: dono)
+        try recarregar()
+        aviso = "Plano novo salvo neste iPhone. Aguardando envio."
+        erro = nil
+        Task { await atualizar() }
+    }
     func permitirSaude() async {
         guard !ocupado, let dono, let cliente, let cache, !limpezaPendente else { return }
         let epoch = geracao
