@@ -98,7 +98,7 @@ struct VoceView: View {
         }
         .scrollContentBackground(.hidden)
         .background { FundoAnilha() }
-        .navigationTitle("Você").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Você").navigationBarTitleDisplayMode(.inline).semTituloNaBarra()
         .refreshable { await conta.atualizar() }
     }
 

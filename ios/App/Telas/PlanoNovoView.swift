@@ -47,7 +47,7 @@ struct PlanoNovoView: View {
             if let erro { Section { Text(erro).foregroundStyle(Tema.perigo).accessibilityIdentifier("plano-novo-erro") } }
         }
         .scrollContentBackground(.hidden).background { FundoAnilha() }
-        .navigationTitle(soRespostas && preview == nil && !salvo ? "Suas respostas" : "Plano novo").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(soRespostas && preview == nil && !salvo ? "Suas respostas" : "Plano novo").navigationBarTitleDisplayMode(.inline).semTituloNaBarra()
         .disabled(salvando)
         // Save stays in view while the preview scrolls (it used to sit after every ficha and reason).
         .safeAreaInset(edge: .bottom) {

@@ -25,8 +25,8 @@ struct PlanoView: View {
         Group {
             switch Parte(rawValue: parte) ?? .semana {
             case .semana: SemanaPlanoView(conta: conta, today: today)
-            case .fichas: FichasView(conta: conta)
-            case .calendario: CalendarioView(conta: conta, today: today)
+            case .fichas: FichasView(conta: conta, noPlano: true)
+            case .calendario: CalendarioView(conta: conta, today: today, noPlano: true)
             }
         }
         .toolbar {

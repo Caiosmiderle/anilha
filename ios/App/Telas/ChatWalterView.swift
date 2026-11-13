@@ -71,7 +71,7 @@ struct ChatWalterView: View {
             }
         }
         .background { FundoAnilha() }
-        .navigationTitle("Waltér").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Waltér").navigationBarTitleDisplayMode(.inline).semTituloNaBarra()
         .toolbar(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) { Button("Limpar") { conta.limparChat(); draft = "" }.disabled(busy || conta.chatEntries.isEmpty) }
@@ -103,7 +103,7 @@ struct ChatWalterView: View {
                 }
                 if unavailable { Text("Os dados mudaram ou a proposta não pôde ser guardada. Peça uma nova proposta.").font(.footnote) }
                 else if status == "proposed" {
-                    Button("Salvar") { conta.decidirChat(card.id, action: "apply") }.buttonStyle(.principalAnilha).disabled(busy)
+                    Button("Aplicar") { conta.decidirChat(card.id, action: "apply") }.buttonStyle(.principalAnilha).disabled(busy)
                     Button("Recusar") { conta.decidirChat(card.id, action: "refuse") }.buttonStyle(.glass).disabled(busy)
                 } else if status == "saved" {
                     Text("Salvo neste iPhone").font(.subheadline.weight(.semibold))

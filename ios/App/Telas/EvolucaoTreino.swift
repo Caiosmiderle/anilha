@@ -6,7 +6,7 @@ struct EvolucaoTreino: View {
     let sessionID: String
     var body: some View {
         Section("Evolução") {
-            Text("Hoje e última vez em qualquer ficha. RIR indica repetições na reserva. Recordes e comparações usam séries de trabalho.")
+            Text("Hoje e última vez em qualquer ficha. Reserva é quantas repetições ainda caberiam. Recordes e comparações usam séries de trabalho.")
                 .font(.footnote).foregroundStyle(Tema.tintaSuave)
             ForEach(Array(WorkoutEvolution.build(conta.dados, sessionID: sessionID, catalog: conta.catalogo).enumerated()), id: \.offset) { _, row in
                 VStack(alignment: .leading, spacing: 12) {
@@ -47,7 +47,7 @@ struct EvolucaoTreino: View {
             ForEach(Array(sets.enumerated()), id: \.offset) { _, set in
                 VStack(alignment: .leading, spacing: 2) {
                     Text(resumoSerie(set, lb: false)).font(.subheadline).monospacedDigit()
-                    Text(set.number("rir").map { "RIR \(Int($0))" } ?? "Esforço sem registro")
+                    Text(set.number("rir").map { "\(Int($0)) na reserva" } ?? "Esforço sem registro")
                         .font(.caption).foregroundStyle(Tema.tintaSuave)
                 }.accessibilityElement(children: .combine)
             }

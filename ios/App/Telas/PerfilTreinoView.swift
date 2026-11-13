@@ -67,7 +67,7 @@ struct PerfilTreinoView: View {
         }
         .scrollContentBackground(.hidden)
         .background { FundoAnilha() }
-        .navigationTitle("Perfil de treino").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Perfil de treino").navigationBarTitleDisplayMode(.inline).semTituloNaBarra()
         .refreshable { await conta.atualizar() }
     }
 

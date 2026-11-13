@@ -208,7 +208,8 @@ struct ExecucaoTreino: View {
                             .accessibilityLabel("A fazer, \(what ?? "anotar a série")")
                         Text("\(setLine) · \(done) \(done == 1 ? "série feita" : "séries feitas")").font(.subheadline).foregroundStyle(Tema.tintaSuave)
                         if let dica { Text("Waltér: \(dica)").font(.subheadline).foregroundStyle(Tema.tintaSuave).accessibilityIdentifier("focus-hint") }
-                        if let item { sugestao(item, exercise: exercise) }
+                        // The load advice is about work sets: none over the warm-up.
+                        if let item, next?.string("kind") == "work" { sugestao(item, exercise: exercise) }
                     } else {
                         Text("Tudo feito").font(.title2)
                         Text("\(done)").font(.system(size: tamanhoPrincipal, weight: .bold, design: .rounded))

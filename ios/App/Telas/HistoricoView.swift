@@ -42,12 +42,9 @@ struct HistoricoView: View {
     let conta: ContaStore
     let today: String
     @State private var parte: String
-    @State private var mes: String
-    @State private var dia: String?
     init(conta: ContaStore, parteInicial: String = "Treinos", today: String = LocalDay.today()) {
         self.conta = conta; self.today = today
         _parte = State(initialValue: parteInicial)
-        _mes = State(initialValue: String(today.prefix(7)))
     }
     private var entries: [HistoryEntry] { HistoryEntry.entries(conta.dados).filter(\.concluido) }
     var body: some View {
@@ -68,12 +65,16 @@ struct HistoricoView: View {
             }.padding(20)
         }
         .background { FundoAnilha() }
-        .navigationTitle("Histórico").navigationBarTitleDisplayMode(.inline).refreshable { await conta.atualizar() }
+        .navigationTitle("Histórico").navigationBarTitleDisplayMode(.inline).semTituloNaBarra().refreshable { await conta.atualizar() }
     }
     @ViewBuilder private var treinos: some View {
         if entries.isEmpty { Text("Nenhum treino registrado ainda.").foregroundStyle(Tema.tintaSuave) }
         else {
-            calendario
+            // The integrated Calendário (done and planned, strength and runs) replaces the
+            // done-only month grid that used to sit here.
+            NavigationLink { CalendarioView(conta: conta, today: today) } label: {
+                Label("Ver no calendário", systemImage: "calendar").frame(maxWidth: .infinity, minHeight: 44)
+            }.buttonStyle(.glass)
             ForEach(Array(Set(entries.map { History.weekStart($0.date) })).sorted(by: >), id: \.self) { week in
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -90,55 +91,6 @@ struct HistoricoView: View {
                 }
             }
         }
-    }
-    private var calendario: some View {
-        let first = mes + "-01"
-        let dates = (0..<31).map { LocalDay.add(first, $0) }.filter { $0.hasPrefix(mes) }
-        let active = Set(entries.filter { $0.date.hasPrefix(mes) }.map(\.date)).count
-        let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
-        return VStack(spacing: 12) {
-            HStack {
-                Button { mudarMes(-1) } label: { Image(systemName: "chevron.left").frame(width: 44, height: 44) }.accessibilityLabel("Mês anterior")
-                Spacer()
-                VStack {
-                    Text("\(months[(Int(mes.suffix(2)) ?? 1) - 1]) de \(mes.prefix(4))").font(.headline)
-                    Text(active == 0 ? "Nenhum treino neste mês" : "\(active) \(active == 1 ? "dia com treino" : "dias com treino")").font(.caption).foregroundStyle(Tema.tintaSuave)
-                }
-                Spacer()
-                Button { mudarMes(1) } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.accessibilityLabel("Próximo mês")
-                    .disabled(mes == String(today.prefix(7)))
-            }
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 0), count: 7), spacing: 4) {
-                ForEach(["S", "T", "Q", "Q", "S", "S", "D"].indices, id: \.self) { index in
-                    Text(["S", "T", "Q", "Q", "S", "S", "D"][index]).font(.caption).accessibilityHidden(true)
-                }
-                ForEach(0..<LocalDay.weekday(first), id: \.self) { _ in Color.clear.frame(height: 44) }
-                ForEach(dates, id: \.self) { date in
-                    let rows = entries.filter { $0.date == date }
-                    Button { dia = dia == date ? nil : date } label: {
-                        VStack(spacing: 3) {
-                            Text(String(Int(date.suffix(2)) ?? 0)).font(.subheadline)
-                            HStack(spacing: 3) {
-                                if rows.contains(where: { !$0.corrida }) { Circle().fill(Tema.marcaForte).frame(width: 5, height: 5) }
-                                if rows.contains(where: \.corrida) { Circle().fill(Tema.laranja).frame(width: 5, height: 5) }
-                            }.frame(height: 5)
-                        }.frame(maxWidth: .infinity, minHeight: 44)
-                            .background(dia == date || date == today ? Tema.marcaFundo : Tema.superficie, in: RoundedRectangle(cornerRadius: 8))
-                    }.buttonStyle(.plain).accessibilityLabel("\(dataCurta(date)), \(rows.filter { !$0.corrida }.count) de força, \(rows.filter(\.corrida).count) de cardio")
-                        .accessibilityAddTraits(dia == date ? .isSelected : [])
-                        .disabled(rows.isEmpty || date > today)
-                }
-            }
-            Text("Azul: academia · Laranja: corrida e cardio").font(.caption).foregroundStyle(Tema.tintaSuave)
-            if let dia {
-                Text(dataCurta(dia)).font(.headline)
-                ForEach(entries.filter { $0.date == dia }) { linha($0) }
-            }
-        }.padding(12).cartao()
-    }
-    private func mudarMes(_ n: Int) {
-        let base = mes + "-01"
-        mes = String((n > 0 ? LocalDay.add(base, 32) : LocalDay.add(base, -1)).prefix(7)); dia = nil
     }
     @ViewBuilder private func linha(_ entry: HistoryEntry) -> some View {
         if entry.corrida {

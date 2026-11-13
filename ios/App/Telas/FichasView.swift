@@ -3,6 +3,7 @@ import SwiftUI
 
 struct FichasView: View {
     let conta: ContaStore
+    var noPlano = false
     @State private var criando = false
     var body: some View {
         let exercicios = conta.dados.exercises(catalog: conta.catalogo)
@@ -32,7 +33,7 @@ struct FichasView: View {
             }
         }
         .scrollContentBackground(.hidden).background { FundoAnilha() }
-        .navigationTitle("Fichas").navigationBarTitleDisplayMode(.inline).refreshable { await conta.atualizar() }
+        .navigationTitle("Fichas").navigationBarTitleDisplayMode(.inline).semTituloNaBarra(!noPlano).refreshable { await conta.atualizar() }
         .toolbar { ToolbarItem(placement: .primaryAction) { Button("Nova ficha", systemImage: "plus") { criando = true } } }
         .sheet(isPresented: $criando) { NavigationStack { EditarFichaView(conta: conta) } }
     }

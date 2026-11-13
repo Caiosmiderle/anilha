@@ -34,6 +34,17 @@ struct SeloAnilha: View {
     }
 }
 
+extension View {
+    /// The big header (CabecalhoAnilha) already names the screen: no second, small title in the
+    /// bar. navigationTitle stays set, so the back button and the app switcher keep the name.
+    /// `ativo` false inside the Plano tab, whose bar center already holds the section picker.
+    func semTituloNaBarra(_ ativo: Bool = true) -> some View {
+        toolbar {
+            if ativo { ToolbarItem(placement: .principal) { Color.clear.frame(width: 1, height: 1).accessibilityHidden(true) } }
+        }
+    }
+}
+
 struct CabecalhoAnilha: View {
     let titulo: String
     let selo: String

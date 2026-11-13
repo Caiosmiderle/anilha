@@ -87,7 +87,7 @@ struct GraficoHistorico: View {
             }
             if compare.count > 1 {
                 ForEach(points(compare)) { p in
-                    LineMark(x: .value("Data", p.day), y: .value(unit, p.value), series: .value("Série", "1RM est."))
+                    LineMark(x: .value("Data", p.day), y: .value(unit, p.value), series: .value("Série", "Máxima estimada"))
                         .foregroundStyle(Tema.tintaSuave).lineStyle(StrokeStyle(lineWidth: 2, dash: [5, 4]))
                 }
             }
@@ -133,12 +133,12 @@ struct ProgressoHistorico: View {
             }
             if loaded {
                 if let kg = result.number("max_load"), kg > 0 { LabeledContent("Carga máxima", value: historicoCarga(kg, unit: unit)) }
-                if let kg = result.number("last1rm"), kg > 0 { LabeledContent("1RM estimado (última)", value: historicoCarga(kg, unit: unit)) }
+                if let kg = result.number("last1rm"), kg > 0 { LabeledContent("Carga máxima estimada (última)", value: historicoCarga(kg, unit: unit)) }
                 if let kg = result.number("last_volume") { LabeledContent("Volume da última", value: historicoCarga(kg, unit: unit)) }
             }
             if let day = result.string("last_date") { LabeledContent("Última vez", value: historicoDia(day)) }
             if loaded && main.count >= 2 {
-                Text("Linha azul: carga máxima. Tracejada: 1RM estimado (Epley, até 12 repetições).").font(.caption).foregroundStyle(Tema.tintaSuave)
+                Text("Linha azul: carga máxima feita. Tracejada: carga máxima estimada para 1 repetição, calculada das séries de até 12 repetições.").font(.caption).foregroundStyle(Tema.tintaSuave)
             }
         }
     }
@@ -174,7 +174,7 @@ struct ProgressoHistorico: View {
                         VStack(alignment: .leading) {
                             Text(r.string("exercise_name") ?? "Exercício")
                             let kind = r.string("kind") ?? ""
-                            Text("\(["e1rm": "1RM estimado", "carga": "Carga", "marco": "Marco"][kind] ?? kind.capitalized) em \(historicoDia(r.string("local_date") ?? ""))").font(.caption).foregroundStyle(Tema.tintaSuave)
+                            Text("\(["e1rm": "Carga máxima estimada", "carga": "Carga", "marco": "Marco"][kind] ?? kind.capitalized) em \(historicoDia(r.string("local_date") ?? ""))").font(.caption).foregroundStyle(Tema.tintaSuave)
                         }
                         Spacer()
                         let value = r.number("value") ?? 0, recordUnit = r.string("unit") ?? ""

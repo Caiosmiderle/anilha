@@ -33,8 +33,7 @@ struct CartaoRevisaoFicha: View {
                     }
                     ForEach(Array(reply.array("ajustes").enumerated()), id: \.offset) { index, a in adjustment(index, a) }
                     if let usage = WorkoutAnalysis.usage(saved.object("usage")) {
-                        let cost = WorkoutAnalysis.estimatedCost(usage).map { $0.formatted(.number.locale(Locale(identifier: "pt_BR")).precision(.fractionLength(7))) } ?? "indisponível"
-                        Text("\(usage.string("model") ?? "") · \(Int(usage.number("input_tokens") ?? 0))/\(Int(usage.number("output_tokens") ?? 0)) tokens · custo estimado US$ \(cost)")
+                        Text(rodapeIA(usage))
                             .font(.caption2).foregroundStyle(Tema.tintaSuave)
                     }
                     if conta.revisaoPrecisaGravar(routineID) { Button("Guardar resposta") { Task { await conta.revisarFicha(routineID) } } }

@@ -109,7 +109,7 @@ struct CartaoAnaliseTreino: View {
         }
     }
     @ViewBuilder private var actions: some View {
-        Button("Salvar") { conta.salvarAjuste(saved, id: sessionID) }.buttonStyle(.principalAnilha).tint(Tema.acao)
+        Button("Aplicar") { conta.salvarAjuste(saved, id: sessionID) }.buttonStyle(.principalAnilha).tint(Tema.acao)
         Button("Ajustar") { draft = adjustment; editando = true }
         Button("Recusar") { _ = conta.guardarAnalise(saved.changing(["status": .string("refused")]), id: sessionID) }
     }
@@ -137,14 +137,27 @@ struct CartaoAnaliseTreino: View {
     }
     @ViewBuilder private var rodape: some View {
         if let usage = WorkoutAnalysis.usage(saved.object("usage")) {
-            let custo = WorkoutAnalysis.estimatedCost(usage).map { " · est. US$ \($0.formatted(.number.locale(Locale(identifier: "pt_BR")).precision(.fractionLength(7))))" } ?? ""
-            Text("\(usage.string("model") ?? "") · \(Int(usage.number("input_tokens") ?? 0))/\(Int(usage.number("output_tokens") ?? 0)) tokens\(custo)")
+            Text(rodapeIA(usage))
                 .font(.caption2).foregroundStyle(Tema.tintaSuave)
-                .accessibilityLabel("Modelo \(usage.string("model") ?? ""), \(Int(usage.number("input_tokens") ?? 0)) tokens de entrada e \(Int(usage.number("output_tokens") ?? 0)) de saída\(custo.replacingOccurrences(of: "est.", with: "custo estimado"))")
+                .accessibilityLabel("Modelo \(nomeModelo(usage.string("model"))), \(Int(usage.number("input_tokens") ?? 0)) tokens de entrada e \(Int(usage.number("output_tokens") ?? 0)) de saída")
         }
     }
     private func line(_ row: ReadRow) -> String {
         let name = conta.catalogo.first { $0.id == row.string("exercise_id") }?.string("name") ?? "Exercício"
         return "\(name): \(Int(row.number("sets") ?? 0)) séries de \(Int(row.number("target_min") ?? 0)) a \(Int(row.number("target_max") ?? 0))"
     }
+}
+
+/// "Opus · US$ 0,012": the model family and the estimated cost, rounded. The exact tokens stay
+/// in the accessibility label of the analysis card.
+func rodapeIA(_ usage: ReadRow) -> String {
+    let nome = nomeModelo(usage.string("model"))
+    guard let custo = WorkoutAnalysis.estimatedCost(usage) else { return nome }
+    let casas = custo >= 0.01 ? 2 : custo >= 0.001 ? 3 : 4
+    return "\(nome) · US$ \(custo.formatted(.number.locale(Locale(identifier: "pt_BR")).precision(.fractionLength(casas))))"
+}
+func nomeModelo(_ id: String?) -> String {
+    let id = id ?? ""
+    for (chave, nome) in [("opus", "Opus"), ("sonnet", "Sonnet"), ("haiku", "Haiku")] where id.contains(chave) { return nome }
+    return id.isEmpty ? "Modelo" : id
 }

@@ -7,7 +7,9 @@ struct CalendarioView: View {
     @State private var month: String
     @State private var picked: String
     @State private var opened: CalendarEvent?
-    init(conta: ContaStore, today: String, diaInicial: String? = nil) {
+    private let noPlano: Bool
+    init(conta: ContaStore, today: String, diaInicial: String? = nil, noPlano: Bool = false) {
+        self.noPlano = noPlano
         self.conta = conta
         self.today = today
         _month = State(initialValue: String(today.prefix(7)))
@@ -59,7 +61,7 @@ struct CalendarioView: View {
             }.padding(16)
         }
         .background { FundoAnilha() }
-        .navigationTitle("Calendário").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Calendário").navigationBarTitleDisplayMode(.inline).semTituloNaBarra(!noPlano)
         .refreshable { await conta.atualizar() }
         .sheet(item: $opened) { event in
             NavigationStack {

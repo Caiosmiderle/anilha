@@ -219,7 +219,7 @@ struct ExercicioView: View {
             }
         } footer: {
             // Atribuição pedida pela licença, como em Créditos e licenças no site.
-            Text("\(m.atribuicao ?? m.fonte). \(m.autor), \(m.licenca).")
+            Text("Imagens e dados: \(m.atribuicao ?? m.fonte). \(m.autor), \(m.licenca).")
         }
     }
 }
