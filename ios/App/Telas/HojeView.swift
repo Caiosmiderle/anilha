@@ -13,11 +13,6 @@ struct HojeView: View {
         formato.dateFormat = "EEEE, d 'de' MMMM"
         return formato.string(from: data)
     }
-    private var dia: DayView? { conta.dados.plannedToday(today) }
-    private var ficha: ReadRow? {
-        guard let split = dia?.split_key else { return nil }
-        return conta.dados.routines.first { $0.string("split_key") == split }
-    }
     private var externos: [ReadRow] {
         conta.dados.active("external_plan_items").filter {
             $0.string("local_date") == today && $0.string("source") == "crunning"
@@ -56,50 +51,8 @@ struct HojeView: View {
                             .buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large)
                     }.padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).destaqueAnilha()
                 }
-                VStack(alignment: .leading, spacing: Tema.Espaco.e3) {
-                    Label("Planejado no Anilha", systemImage: "calendar").font(.subheadline.weight(.semibold)).foregroundStyle(Tema.marcaForte)
-                    if let dia {
-                        if dia.kind == "gym" {
-                            HStack(alignment: .top, spacing: 12) {
-                                DiscoExercicio(grupo: conta.dados.items(ficha?.id ?? "").first.flatMap { item in conta.dados.exercises(catalog: conta.catalogo)[item.string("exercise_id") ?? ""]?.string("primary_group") })
-                                Text(ficha?.string("name") ?? nomeSplit(dia.split_key)).font(.largeTitle.bold()).fixedSize(horizontal: false, vertical: true)
-                            }
-                            if let ficha {
-                                NavigationLink {
-                                    FichaView(conta: conta, ficha: ficha)
-                                } label: { Label("Ver exercícios", systemImage: "list.bullet") }
-                                .buttonStyle(.glass).controlSize(.large).frame(minHeight: 44)
-                            } else {
-                                Text("Esta ficha não está disponível. Confira em Plano > Fichas.")
-                                    .foregroundStyle(Tema.tintaSuave)
-                            }
-                        } else if dia.kind == "run" {
-                            Label("Corrida \(nomeCorrida(dia.run_type))", systemImage: "figure.run")
-                                .font(.title2.bold())
-                        } else {
-                            Text("Descanso planejado").font(.title2.bold())
-                        }
-                        if let time = dia.time { Text("Horário: \(time)").font(.subheadline) }
-                    } else {
-                        Text(conta.sincronizando ? "Buscando seu plano..." : "Nenhum plano disponível.")
-                        Text("Crie um em Plano > Plano novo ou puxe para atualizar.")
-                            .font(.subheadline).foregroundStyle(Tema.tintaSuave)
-                    }
-                    if conta.ativa == nil, let ficha {
-                        Button("Começar treino") { conta.comecar(ficha) }.buttonStyle(.principalAnilha).tint(Tema.acao).controlSize(.large).frame(minHeight: 44)
-                    }
-                    if let erro = conta.erro { Text(erro).foregroundStyle(.red) }
-                }
-                .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao()
-                .contentShape(RoundedRectangle(cornerRadius: Tema.Raio.xxl))
-                .contextMenu {
-                    if conta.ativa == nil, let ficha {
-                        Button("Começar treino", systemImage: "play.fill") { conta.comecar(ficha) }
-                    }
-                } preview: {
-                    PreviaFicha(conta: conta, ficha: ficha, titulo: ficha?.string("name") ?? nomeSplit(dia?.split_key))
-                }
-                .entradaAnilha(1)
+                CartaoHoje(conta: conta, today: today)
+                    .entradaAnilha(1)
                 NavigationLink {
                     ChatWalterView(conta: conta)
                 } label: {
@@ -233,43 +186,6 @@ struct HojeView: View {
             Text(valor).font(.system(.title, design: .rounded, weight: .semibold)).monospacedDigit()
             Text(legenda).font(.caption).foregroundStyle(Tema.tintaSuave)
         }
-    }
-}
-
-/// Prévia da ficha ao segurar o cartão do treino de hoje: os exercícios com a prescrição.
-private struct PreviaFicha: View {
-    let conta: ContaStore
-    let ficha: ReadRow?
-    let titulo: String
-
-    var body: some View {
-        let catalogo = conta.dados.exercises(catalog: conta.catalogo)
-        let itens = ficha.map { conta.dados.items($0.id) } ?? []
-        VStack(alignment: .leading, spacing: 10) {
-            SeloAnilha(texto: "\(itens.count) exercícios", icone: "dumbbell")
-            Text(titulo).font(.title2.bold()).foregroundStyle(Tema.tintaForte)
-            ForEach(itens.prefix(8)) { item in
-                let exercicio = catalogo[item.string("exercise_id") ?? ""]
-                HStack(alignment: .firstTextBaseline) {
-                    Text(exercicio?.string("name") ?? "Exercício").font(.subheadline.weight(.medium)).lineLimit(1)
-                    Spacer(minLength: 8)
-                    Text(prescricaoCurta(item, medida: exercicio?.string("measure")))
-                        .font(.subheadline.monospacedDigit()).foregroundStyle(Tema.tintaSuave)
-                }
-            }
-            if itens.count > 8 { Text("e mais \(itens.count - 8)").font(.caption).foregroundStyle(Tema.tintaSuave) }
-            if itens.isEmpty { Text("Sem exercícios para mostrar.").foregroundStyle(Tema.tintaSuave) }
-        }
-        .padding(20)
-        .frame(width: 340, alignment: .leading)
-        .background { FundoAnilha() }
-    }
-
-    private func prescricaoCurta(_ item: ReadRow, medida: String?) -> String {
-        let sets = Int(item.number("sets") ?? 0)
-        let min = Int(item.number("target_min") ?? 0), max = Int(item.number("target_max") ?? 0)
-        let faixa = min == max ? "\(min)" : "\(min)-\(max)"
-        return "\(sets)x \(faixa)\(medida == "time" ? " s" : "")"
     }
 }
 

@@ -124,7 +124,7 @@ public final class CacheLeitura {
             let outbox = try saidas(dono)
             let healthDenied = try metadados(dono)["consent"]?.object("saude").bool("granted") == false
             for change in page.rows where ReadSync.tables.contains(change.table) {
-                if healthDenied && change.table == "body_logs" { continue }
+                if healthDenied && (change.table == "body_logs" || (change.table == "day_overrides" && change.row.string("action") == "spare_joint")) { continue }
                 let key = "\(dono):\(change.table):\(change.row.id)"
                 if let pending = outbox.first(where: { $0.chave == key && !$0.rejeitada }) {
                     if let local = index[key],
@@ -167,7 +167,10 @@ public final class CacheLeitura {
             var written: [PushChange] = []
             for change in changes {
                 // profiles: modo retorno; exercises: exercício próprio criado no iPhone. Como no site.
-                guard ["plans", "sessions", "session_items", "sets", "records", "routines", "routine_items", "body_logs", "profiles", "exercises"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
+                guard ["day_overrides", "plans", "sessions", "session_items", "sets", "records", "routines", "routine_items", "body_logs", "profiles", "exercises"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
+                if change.table == "day_overrides" {
+                    try DayAdjustments.validate(change.row, health: History.healthOn(try metadados(dono)["consent"]))
+                }
                 if change.table == "body_logs" {
                     _ = try History.bodyChange(change.row, consent: metadados(dono)["consent"], today: LocalDay.today())
                 }

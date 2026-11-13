@@ -115,7 +115,7 @@ struct DemoView: View {
     init(tela: String) {
         self.tela = tela
         _resultado = State(initialValue: Result {
-            try ContaStore.demonstracao(descanso: ["descanso", "blackjack", "poker", "proxima", "esforco"].contains(tela), pronto: tela == "proxima")
+            try ContaStore.demonstracao(descanso: ["descanso", "blackjack", "poker", "proxima", "esforco"].contains(tela), pronto: tela == "proxima", ajusteHoje: tela == "hoje-ajuste")
         })
     }
     var body: some View {
@@ -138,6 +138,7 @@ struct DemoView: View {
         switch tela {
         case "entrar": EntrarView(conta: conta)
         case "hoje": HojeView(conta: conta, today: "2026-11-12")
+        case "hoje-ajuste": HojeView(conta: conta, today: "2026-11-13")
         case "fichas": FichasView(conta: conta)
         case "plano": PlanoView(conta: conta, today: "2026-11-12")
         case "voce": VoceView(conta: conta, pedirSaida: {})

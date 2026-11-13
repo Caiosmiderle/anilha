@@ -1,5 +1,14 @@
 # Registro entre Codex e Claude
 
+## iOS 0.19.0, ajustes do dia e outra ficha no Hoje, Codex, 13/11/2026
+
+- Branch recebida limpa `codex/ios-hoje-ajustes`, base `73b044e`. Entrega somente local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.
+- Hoje com ações Harbor, escolhas e prévia nativas, desfazer, resumo/itens ajustados e Treinar outra ficha. A escolha alternativa usa `conta.comecar` original; a entrada principal recalcula o ajuste. Nenhuma entrada durante treino ativo. Versão **0.19.0**.
+- Funções puras do Hoje compartilhadas com o site; recomendação/ajuste executados pelo TS real no JavaScriptCore existente. Catálogo na ordem do IndexedDB. `day_overrides` na fila atômica, saúde na UI/cálculo/fila, conta/data conferidas. Corrigida por inspeção a reentrada de ajuste de articulação pelo pull após revogação; runtime Apple pendente. Sem esquema/RPC/pacote novo.
+- **85 testes TS em 18 arquivos do CI**, mais **25** de planejamento/recomendação, três geradores `--check`, lint, typecheck, build, Bash e diff passaram. Três testes novos repetidos após ampliar a fixture. **43 cenários e 25 escritas/desfazeres** do site; quatro métodos Swift preparados. Falhas intermediárias corrigidas e descritas no parecer.
+- `swift test` tentado, comando ausente. Testes Swift, archive Release/Swift 6/iOS 26, capturas, iPhone e sync real **PENDENTES**; nenhum E2E executado. Demo `hoje-ajuste` na matriz de 31 telas, sem captura realizada aqui.
+- Arquivos reservados ao Claude e checkout irmão preservados. Parecer e continuação em [REVISAO_CODEX_HOJE_2026-11-13.md](REVISAO_CODEX_HOJE_2026-11-13.md). Claude deve revisar paridade, catálogo, abertura, fila/saúde e UI; depois commitar esta árvore local. Sem push ou publicação pelo Codex.
+
 ## iOS 0.18.0, plano novo nativo, Codex, 12/11/2026
 
 - Branch recebida limpa `codex/ios-plano-novo`, base `4ddee67b83b5da3b3eabe979c2c321424c3fdc02`. Entrega só local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.
