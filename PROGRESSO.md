@@ -41,7 +41,7 @@ Backup da `main` anterior: tag `backup-main-antes-ios-2026-11-12` (`abc2b1e`). A
   - **Auditoria da interface (0.18.3):** `docs/AUDITORIA_INTERFACE_IPHONE.md`. Corrigidos os 6 itens P1 (plural, data crua, "Braços", cor da corrida, textos "PWA", "Reordenar"); P2 e P3 aguardam o Caio.
   - **P2 da auditoria (0.19.0):** ajustes do dia e treinar outra ficha no Hoje (Codex, mesmo motor do site via JavaScriptCore; corrigida também a volta do ajuste de articulação num pull depois de revogar a saúde), descartar treino, corrigir série de treino concluído, editar respostas sem trocar o plano e menu com nomes na aba Plano. Site: 873 testes unitários e os de ponta a ponta do Hoje passando depois da extração de funções de `src/data/today.ts`.
   - **P3 da auditoria (0.19.1):** um título por tela, calendário único, sugestão só antes de série de trabalho, "Aplicar" em toda proposta da IA, rodapé curto ("Haiku · US$ 0,0003"), sem RIR e 1RM, atribuição do RepDB em português.
-  - **Revisão com IA dava 502:** a ferramenta strict tinha `maxItems`, que a API recusa antes do Sonnet. Corrigido no repositório (`f1e568c`); **falta publicar `revisao-ficha`** (o conector da Supabase caiu em 13/11). Depende só do servidor.
+  - **Revisão com IA dava 502:** a ferramenta strict tinha `maxItems`, que a API recusa antes do Sonnet. Corrigido (`f1e568c`) e publicado em 13/11 pelo painel da Supabase (o conector estava fora): o código no ar tem o mesmo tamanho e hash do repositório; OPTIONS 204 e 401 sem login. Falta a primeira revisão real do Caio para confirmar a resposta do Sonnet.
   - **CI:** os prints passaram do limite de 20 minutos com as telas novas; limite aumentado. Builds 35 e 36: todas as capturas feitas, nenhuma falha.
 
 ## Resultado dos testes automáticos
