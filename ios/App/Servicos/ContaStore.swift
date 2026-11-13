@@ -352,17 +352,41 @@ final class ContaStore {
         } catch { erro = "Confira a data, o peso (20 a 400 kg), a cintura (30 a 250 cm) e a permissão de saúde." }
         return false
     }
-    func comecar(_ ficha: ReadRow) {
+    func ajustarDia(_ today: String, action: String?, value: String? = nil, owner: String?) -> Bool {
+        guard owner == dono, dono != nil, today == LocalDay.today(), !limpezaPendente else {
+            erro = DayAdjustments.Failure.changed.localizedDescription; return false
+        }
+        do {
+            try recarregar()
+            guard ativa == nil else { erro = "Conclua o treino em andamento antes de ajustar o dia."; return false }
+            if gravar(try DayAdjustments.changes(dados, today: today, action: action, value: value, health: saudePermitida)) {
+                Task { await atualizar() }; return true
+            }
+        } catch { erro = error.localizedDescription }
+        return false
+    }
+    func comecar(_ ficha: ReadRow, ajusteDoDia: Bool = false) {
         do { try recarregar() }
         catch { erro = "Não foi possível abrir o treino salvo. Tente novamente antes de começar outro."; return }
         if let ativa { sessaoAberta = ativa.id; return }
-        let items = dados.items(ficha.id)
+        var items = dados.items(ficha.id)
+        var summary: String?
+        if ajusteDoDia {
+            do {
+                let result = try DayAdjustments.evaluate(dados, catalog: catalogo, today: LocalDay.today(), health: saudePermitida)
+                guard result.object("rec").string("kind") == "gym", result.object("routine").id == ficha.id else {
+                    erro = "O treino de hoje mudou. Confira o cartão novamente."; return
+                }
+                items = result.array("items"); summary = result.string("summary")
+            } catch { erro = error.localizedDescription; return }
+        }
         let exercises = dados.exercises(catalog: catalogo)
         guard let atual = dados.routines.first(where: { $0.id == ficha.id }), !items.isEmpty,
               items.allSatisfy({ exercises[$0.string("exercise_id") ?? ""] != nil }) else {
             erro = "Esta ficha tem exercícios indisponíveis. Atualize ou ajuste no PWA."; return
         }
-        if gravar(Workout.start(dados, routine: atual, catalog: catalogo, today: LocalDay.today(), now: Date.now.timeIntervalSince1970 * 1000)) {
+        if gravar(Workout.start(dados, routine: atual, catalog: catalogo, today: LocalDay.today(), now: Date.now.timeIntervalSince1970 * 1000,
+                               planned: items, adjustment: summary)) {
             sessaoAberta = ativa?.id
         }
     }
@@ -685,7 +709,7 @@ final class ContaStore {
 #if DEBUG
 extension ContaStore {
     /// Memory-only presentation fixture. Never call abrir, atualizar or a write from this root.
-    static func demonstracao(descanso: Bool, pronto: Bool = false) throws -> ContaStore {
+    static func demonstracao(descanso: Bool, pronto: Bool = false, ajusteHoje: Bool = false) throws -> ContaStore {
         let store = ContaStore(dadosDemonstracao: try ModoDemo.dados(descanso: descanso, pronto: pronto))
         guard let url = Bundle.main.url(forResource: "exercises", withExtension: "json") else {
             throw WorkoutAnalysis.Failure.invalidSession
@@ -720,6 +744,11 @@ extension ContaStore {
         store.chatEntries = [ReadRow(fields: ["id": .string("demo-chat-user"), "role": .string("user"), "text": .string("Quero descansar dois minutos na puxada.")]),
             ReadRow(fields: ["id": .string("demo-chat-answer"), "role": .string("assistant"), "text": .string("Revise o descanso da ficha. Só muda quando você salvar."), "cards": AgentChat.rows([proposal])])]
         store.tinhaRede = true
+        if ajusteHoje {
+            store.dados.tables["sessions"] = store.dados.active("sessions").filter { $0.id == "demo-prior" }
+            store.dados.tables["runs"] = []
+            store.dados.tables["day_overrides"] = try DayAdjustments.changes(store.dados, today: "2026-11-13", action: "no_equipment", value: "barra", health: true).map(\.row)
+        }
         return store
     }
 }

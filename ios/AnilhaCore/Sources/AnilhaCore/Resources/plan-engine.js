@@ -3,6 +3,8 @@
 var AnilhaPlanEngine = (function(exports) {
 	Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 	//#region src/engine/dates.ts
+	/** Calendar helpers on local 'YYYY-MM-DD' strings. Weeks start on Monday. */
+	const DAY_MS = 864e5;
 	function pad(n) {
 		return n < 10 ? `0${n}` : String(n);
 	}
@@ -14,6 +16,35 @@ var AnilhaPlanEngine = (function(exports) {
 			m,
 			d
 		];
+	}
+	/** Days since epoch, ignoring time zones and DST. */
+	function ordinal(day) {
+		const [y, m, d] = parts(day);
+		return Math.round(Date.UTC(y, m - 1, d) / DAY_MS);
+	}
+	function fromOrdinal(n) {
+		const d = /* @__PURE__ */ new Date(n * DAY_MS);
+		return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`;
+	}
+	function addDays(day, n) {
+		return fromOrdinal(ordinal(day) + n);
+	}
+	/** b minus a, in whole days. */
+	function diffDays(a, b) {
+		return ordinal(b) - ordinal(a);
+	}
+	/** 0 = segunda ... 6 = domingo */
+	function weekday(day) {
+		return ((ordinal(day) + 3) % 7 + 7) % 7;
+	}
+	function weekStart(day) {
+		return addDays(day, -weekday(day));
+	}
+	function weekEnd(day) {
+		return addDays(weekStart(day), 6);
+	}
+	function inRange(day, from, to) {
+		return day >= from && day <= to;
 	}
 	const WEEKDAY_NAMES = [
 		"segunda",
@@ -51,6 +82,21 @@ var AnilhaPlanEngine = (function(exports) {
 	function joinPt(items) {
 		if (items.length <= 1) return items.join("");
 		return `${items.slice(0, -1).join(", ")} e ${items[items.length - 1]}`;
+	}
+	const COUNT_WORDS = [
+		"zero",
+		"uma",
+		"duas",
+		"três",
+		"quatro",
+		"cinco",
+		"seis",
+		"sete"
+	];
+	/** 'duas vezes' */
+	function timesPt(n) {
+		const word = COUNT_WORDS[n] ?? String(n);
+		return n === 1 ? "uma vez" : `${word} vezes`;
 	}
 	function plural(n, one, many) {
 		return n === 1 ? one : many;
@@ -963,6 +1009,32 @@ var AnilhaPlanEngine = (function(exports) {
 	const EXERCISES_BY_ID = new Map(EXERCISES.map((e) => [e.id, e]));
 	//#endregion
 	//#region src/engine/taxonomy.ts
+	const GROUP_LABEL = {
+		costas: "Costas",
+		peito: "Peito",
+		pernas: "Pernas",
+		ombros: "Ombros",
+		bracos: "Braços",
+		core: "Abdômen"
+	};
+	const MUSCLE_LABEL = {
+		costas: "costas",
+		lombar: "lombar",
+		trapezio: "trapézio",
+		peito: "peito",
+		ombro_anterior: "ombro anterior",
+		ombro_lateral: "ombro lateral",
+		ombro_posterior: "ombro posterior",
+		biceps: "bíceps",
+		triceps: "tríceps",
+		antebraco: "antebraço",
+		quadriceps: "quadríceps",
+		posterior_coxa: "posterior de coxa",
+		gluteos: "glúteos",
+		adutores: "adutores",
+		panturrilha: "panturrilha",
+		abdomen: "abdômen"
+	};
 	const MUSCLE_VOLUME_GROUP = {
 		costas: "costas",
 		lombar: "costas",
@@ -981,6 +1053,38 @@ var AnilhaPlanEngine = (function(exports) {
 		panturrilha: "panturrilha",
 		abdomen: "core"
 	};
+	const JOINT_LABEL = {
+		ombro: "ombro",
+		cotovelo: "cotovelo",
+		joelho: "joelho",
+		lombar: "lombar",
+		punho: "punho"
+	};
+	const JOINTS = [
+		"ombro",
+		"cotovelo",
+		"joelho",
+		"lombar",
+		"punho"
+	];
+	const EQUIPMENT_LABEL = {
+		halteres: "Halteres",
+		barra: "Barra e anilhas",
+		polia: "Polias",
+		maquina: "Máquinas",
+		peso_corporal: "Peso corporal",
+		kettlebell: "Kettlebell",
+		barra_fixa: "Barra fixa"
+	};
+	const ALL_EQUIPMENT = [
+		"halteres",
+		"barra",
+		"polia",
+		"maquina",
+		"peso_corporal",
+		"kettlebell",
+		"barra_fixa"
+	];
 	/** Adjective that agrees with "corrida". */
 	const RUN_TYPE_LABEL = {
 		leve: "leve",
@@ -1370,6 +1474,37 @@ var AnilhaPlanEngine = (function(exports) {
 		if (o.spareJoints?.some((j) => e.joints.includes(j))) return false;
 		if (o.excludeIds?.includes(e.id)) return false;
 		return true;
+	}
+	/**
+	* Alternatives for an exercise, best first: same movement pattern, then same main
+	* muscle, then same group. Variations of equipment are distinct exercises.
+	*/
+	function rankSubstitutes(exercise, o = {}) {
+		const library = o.library ?? EXERCISES;
+		const exclude = /* @__PURE__ */ new Set([exercise.id, ...o.excludeIds ?? []]);
+		const scored = [];
+		library.forEach((e, index) => {
+			if (exclude.has(e.id) || !isAvailable(e, {
+				...o,
+				excludeIds: []
+			})) return;
+			let score = 0;
+			if (e.pattern === exercise.pattern) score += 4;
+			if (e.muscles[0] && e.muscles[0] === exercise.muscles[0]) score += 2;
+			if (e.primary_group === exercise.primary_group) score += 1;
+			if (e.compound === exercise.compound) score += .5;
+			if (e.measure === exercise.measure) score += .25;
+			if (score >= 2) scored.push({
+				e,
+				score,
+				index
+			});
+		});
+		scored.sort((a, b) => b.score - a.score || a.index - b.index);
+		return scored.map((s) => s.e);
+	}
+	function findSubstitute(exercise, o = {}) {
+		return rankSubstitutes(exercise, o)[0] ?? null;
 	}
 	new Map(EXERCISES.map((e, i) => [e.id, i]));
 	//#endregion
@@ -2636,6 +2771,792 @@ var AnilhaPlanEngine = (function(exports) {
 		};
 	}
 	//#endregion
+	//#region src/engine/routines.ts
+	/** The generator's reason has always been "N exercícios, M séries de trabalho.". */
+	const GENERATED = /^\d+ exercícios, \d+ séries de trabalho\.$/;
+	/**
+	* Where a routine came from. Rows written before the origin existed (or by an older app
+	* version) are inferred the same way as the database backfill.
+	*/
+	function routineOrigin(r) {
+		if (r.origin) return r.origin;
+		if (r.id.startsWith("pronta-") || r.reason === "Ficha pronta do Anilha") return "pronta";
+		if (r.id.startsWith("recebida-") || r.reason?.startsWith("Enviada ")) return "recebida";
+		if (r.reason && GENERATED.test(r.reason)) return "plano";
+		return "pessoa";
+	}
+	/** The plan's fichas are replaced by a new plan; everything else belongs to the person. */
+	function isPlanRoutine(r) {
+		return routineOrigin(r) === "plano";
+	}
+	//#endregion
+	//#region src/engine/adjust.ts
+	function lookup(library) {
+		const map = new Map(library.map((e) => [e.id, e]));
+		return (id) => map.get(id);
+	}
+	function nameOf(get, id) {
+		return get(id)?.name ?? id;
+	}
+	/** Recomputes today's workout for a one-tap request and says what changed. */
+	function adjustWorkout(items, adj, ctx = {}) {
+		const library = ctx.library ?? EXERCISES;
+		const get = lookup(library);
+		if (adj.type === "time") {
+			const n = exercisesForMinutes(adj.minutes);
+			if (items.length <= n) return {
+				items,
+				changes: [],
+				summary: `Cabe tudo em ${adj.minutes} min.`
+			};
+			const ranked = items.map((it, index) => ({
+				it,
+				index,
+				compound: get(it.exercise_id)?.compound ?? false
+			})).sort((a, b) => Number(b.compound) - Number(a.compound) || a.index - b.index);
+			const keep = new Set(ranked.slice(0, n).map((r) => r.index));
+			const kept = items.filter((_, i) => keep.has(i));
+			const removed = items.filter((_, i) => !keep.has(i));
+			return {
+				items: kept,
+				changes: removed.map((r) => ({
+					type: "removed",
+					exercise_id: r.exercise_id
+				})),
+				summary: `${adj.minutes} min: ficam os ${n} principais, na mesma ordem. Saem ${joinPt(removed.map((r) => nameOf(get, r.exercise_id).toLowerCase()))}.`
+			};
+		}
+		if (adj.type === "focus") {
+			const keep = items.filter((it) => get(it.exercise_id)?.primary_group === adj.group);
+			const used = new Set(keep.map((k) => k.exercise_id));
+			const target = Math.max(items.length, 4);
+			const pool = library.filter((e) => e.primary_group === adj.group && !used.has(e.id) && (e.equipment === "peso_corporal" || !ctx.available || ctx.available.includes(e.equipment)) && !(ctx.spareJoints ?? []).some((j) => e.joints.includes(j))).sort((a, b) => Number(b.compound) - Number(a.compound));
+			const added = [];
+			const patterns = new Set(keep.map((k) => get(k.exercise_id)?.pattern));
+			for (const e of pool) {
+				if (keep.length + added.length >= target) break;
+				if (patterns.has(e.pattern) && pool.some((o) => !patterns.has(o.pattern) && !used.has(o.id))) continue;
+				patterns.add(e.pattern);
+				used.add(e.id);
+				const t = targetFor(e, {
+					level: ctx.level ?? "intermediario",
+					returning: ctx.returning ?? false,
+					goal: ctx.goal ?? "hipertrofia"
+				});
+				added.push({
+					exercise_id: e.id,
+					sets: 3,
+					target_min: t.min,
+					target_max: t.max,
+					rest_sec: restFor(e, ctx.goal),
+					warmup_sets: 0
+				});
+			}
+			const removed = items.filter((it) => !keep.includes(it));
+			const result = [...keep, ...added].sort((a, b) => Number(get(b.exercise_id)?.compound ?? false) - Number(get(a.exercise_id)?.compound ?? false));
+			return {
+				items: result,
+				changes: [...removed.map((r) => ({
+					type: "removed",
+					exercise_id: r.exercise_id
+				})), ...added.map((a) => ({
+					type: "added",
+					exercise_id: a.exercise_id
+				}))],
+				summary: `Foco em ${GROUP_LABEL[adj.group].toLowerCase()}: ${result.length} ${plural(result.length, "exercício", "exercícios")}.`
+			};
+		}
+		const opts = adj.type === "no_equipment" ? {
+			without: [adj.equipment],
+			available: ctx.available,
+			spareJoints: ctx.spareJoints,
+			library
+		} : {
+			spareJoints: [...ctx.spareJoints ?? [], adj.joint],
+			available: ctx.available,
+			library
+		};
+		const hits = (e) => !!e && (adj.type === "no_equipment" ? e.equipment === adj.equipment : e.joints.includes(adj.joint));
+		const changes = [];
+		const next = [];
+		const taken = new Set(items.map((i) => i.exercise_id));
+		for (const it of items) {
+			const e = get(it.exercise_id);
+			if (!hits(e)) {
+				next.push(it);
+				continue;
+			}
+			const sub = findSubstitute(e, {
+				...opts,
+				excludeIds: [...taken]
+			});
+			if (sub) {
+				taken.add(sub.id);
+				next.push({
+					...it,
+					exercise_id: sub.id
+				});
+				changes.push({
+					type: "replaced",
+					from: it.exercise_id,
+					to: sub.id
+				});
+			} else changes.push({
+				type: "removed",
+				exercise_id: it.exercise_id
+			});
+		}
+		const what = adj.type === "no_equipment" ? `Sem ${EQUIPMENT_LABEL[adj.equipment].toLowerCase()}` : `Poupando ${adj.joint === "lombar" ? "a lombar" : `o ${JOINT_LABEL[adj.joint]}`}`;
+		return {
+			items: next,
+			changes,
+			summary: changes.length === 0 ? `${what}: nada muda.` : `${what}: ${changes.length} ${plural(changes.length, "mudança", "mudanças")}.`
+		};
+	}
+	function describeChange(change, library = EXERCISES) {
+		const get = lookup(library);
+		switch (change.type) {
+			case "removed": return `Sai ${nameOf(get, change.exercise_id)}`;
+			case "added": return `Entra ${nameOf(get, change.exercise_id)}`;
+			case "replaced": return `${nameOf(get, change.from)} vira ${nameOf(get, change.to)}`;
+		}
+	}
+	//#endregion
+	//#region src/engine/dayAdjustment.ts
+	function overrideToAdjustment(o) {
+		if (!o || !o.value) return null;
+		switch (o.action) {
+			case "time": return {
+				type: "time",
+				minutes: Number(o.value)
+			};
+			case "focus": return {
+				type: "focus",
+				group: o.value
+			};
+			case "no_equipment": return {
+				type: "no_equipment",
+				equipment: o.value
+			};
+			case "spare_joint": return {
+				type: "spare_joint",
+				joint: o.value
+			};
+			default: return null;
+		}
+	}
+	/** The plan's ficha for that split; a ficha of the person with the same split never takes its place. */
+	function routineFor(split, routines) {
+		if (!split) return null;
+		const same = routines.filter((r) => r.split_key === split);
+		return same.find(isPlanRoutine) ?? same[0] ?? null;
+	}
+	function plannedFromRoutine(routine, items) {
+		if (!routine) return [];
+		return items.filter((i) => i.routine_id === routine.id).sort((a, b) => a.position - b.position).map((i) => ({
+			exercise_id: i.exercise_id,
+			sets: i.sets,
+			target_min: i.target_min,
+			target_max: i.target_max,
+			rest_sec: i.rest_sec,
+			warmup_sets: i.warmup_sets,
+			superset: i.superset ?? null
+		}));
+	}
+	function applyAdjustment(base, adj, library, profile) {
+		if (!adj) return {
+			items: base,
+			changes: [],
+			summary: ""
+		};
+		return adjustWorkout(base, adj, {
+			library,
+			available: profile?.onboarding?.equipment,
+			spareJoints: profile?.onboarding?.spare_joints,
+			level: profile?.onboarding?.level,
+			returning: profile?.onboarding?.returning,
+			goal: profile?.onboarding?.goal
+		});
+	}
+	//#endregion
+	//#region src/engine/cardio.ts
+	const CARDIO = {
+		corrida: {
+			label: "Corrida",
+			noun: "corrida",
+			fem: true,
+			distance: "km",
+			pace: "min_km",
+			legs: 1
+		},
+		caminhada: {
+			label: "Caminhada",
+			noun: "caminhada",
+			fem: true,
+			distance: "km",
+			pace: "min_km",
+			legs: .3
+		},
+		bike: {
+			label: "Bike",
+			noun: "bike",
+			fem: true,
+			distance: "km",
+			pace: "kmh",
+			legs: .6
+		},
+		eliptico: {
+			label: "Elíptico",
+			noun: "elíptico",
+			fem: false,
+			distance: null,
+			pace: null,
+			legs: .5
+		},
+		natacao: {
+			label: "Natação",
+			noun: "natação",
+			fem: true,
+			distance: "m",
+			pace: "per100m",
+			legs: 0
+		},
+		remo: {
+			label: "Remo",
+			noun: "remo",
+			fem: false,
+			distance: "m",
+			pace: "per500m",
+			legs: .4
+		},
+		escada: {
+			label: "Escada",
+			noun: "escada",
+			fem: true,
+			distance: null,
+			pace: null,
+			legs: .8
+		},
+		outro: {
+			label: "Outro cardio",
+			noun: "cardio",
+			fem: false,
+			distance: null,
+			pace: null,
+			legs: .5
+		}
+	};
+	Object.keys(CARDIO);
+	/** Rows written before other cardio existed are runs. */
+	function activityOf(r) {
+		return r.activity ?? "corrida";
+	}
+	const RUN_TYPE_NAME = {
+		leve: "leve",
+		longo: "longa",
+		intervalado: "de qualidade"
+	};
+	/** "Corrida leve", "Bike", "Natação". */
+	function cardioName(r) {
+		const kind = activityOf(r);
+		return kind === "corrida" ? `Corrida ${RUN_TYPE_NAME[r.run_type]}` : CARDIO[kind].label;
+	}
+	/** Distance as people say it: "5 km", "1.500 m"; null when there is none. */
+	function distanceText(r) {
+		if (r.distance_km == null || r.distance_km <= 0) return null;
+		if (CARDIO[activityOf(r)].distance === "m") return `${Math.round(r.distance_km * 1e3).toLocaleString("pt-BR")} m`;
+		return `${fmtNum(r.distance_km)} km`;
+	}
+	/** "Corrida leve de 5 km", "Bike de 20 km", "Elíptico de 30 min". */
+	function cardioTitle(r) {
+		const dist = distanceText(r);
+		return `${cardioName(r)} de ${dist ?? `${Math.round(r.duration_sec / 60)} min`}`;
+	}
+	/**
+	* Leg load: a run counts its kilometers; other cardio counts its minutes as if run at
+	* 6 min/km, scaled by how much it uses the legs. Weighted by effort (1 to 10).
+	*/
+	function cardioLegLoad(r) {
+		const kind = activityOf(r);
+		const effort = (r.rpe ?? 5) / 10;
+		if (kind === "corrida") return (r.distance_km ?? (r.duration_sec ?? 0) / 360) * effort;
+		return (r.duration_sec ?? 0) / 360 * CARDIO[kind].legs * effort;
+	}
+	/**
+	* Cardio that counts for the plan: every run, and other cardio only while it fills a
+	* cardio day of that week's plan. Past that it is a bonus: not a deviation, and an
+	* elliptical before lifting does not close the gym day.
+	*/
+	function countedCardio(runs, plannedFor) {
+		const byWeek = /* @__PURE__ */ new Map();
+		for (const r of runs) {
+			const w = weekStart(r.local_date);
+			const list = byWeek.get(w) ?? [];
+			list.push(r);
+			byWeek.set(w, list);
+		}
+		const out = [];
+		for (const [w, list] of byWeek) {
+			const sorted = [...list].sort((a, b) => a.local_date.localeCompare(b.local_date));
+			const running = sorted.filter((r) => activityOf(r) === "corrida");
+			const others = sorted.filter((r) => activityOf(r) !== "corrida");
+			const slots = Math.max(0, plannedFor(w) - running.length);
+			out.push(...running, ...others.slice(0, slots));
+		}
+		return out;
+	}
+	//#endregion
+	//#region src/engine/recommend.ts
+	/** Plan that governs the week containing `day`: the latest one active by the end of that week. */
+	function planForDay(plans, day) {
+		const end = weekEnd(day);
+		let best = null;
+		for (const p of plans) {
+			if (p.active_from > end) continue;
+			if (!best || p.active_from > best.active_from || p.active_from === best.active_from && p.updated_at > best.updated_at) best = p;
+		}
+		return best;
+	}
+	function planDayFor(plan, day) {
+		if (!plan) return null;
+		return plan.days.find((d) => d.weekday === weekday(day)) ?? null;
+	}
+	function weekCounts(day, plan, sessions, runs) {
+		const from = weekStart(day);
+		const to = weekEnd(day);
+		return {
+			week_start: from,
+			planned_gym: plan?.gym_per_week ?? 0,
+			planned_run: plan?.run_per_week ?? 0,
+			done_gym: sessions.filter((s) => inRange(s.local_date, from, to)).length,
+			done_run: runs.filter((r) => inRange(r.local_date, from, to)).length
+		};
+	}
+	/** Leg load of a run or other cardio, weighted by perceived effort (1 to 10). */
+	function runLegLoad(run) {
+		return cardioLegLoad(run);
+	}
+	const HEAVY_RUN_LOAD = 8;
+	/** The existing eve-of-run rule, also used to annotate the calendar's projection. */
+	function legsBeforeRunAlert(input, split) {
+		if (!splitHasLegs(split) || !(input.plan?.rules.no_legs_before_run ?? true)) return null;
+		const tomorrow = addDays(input.today, 1);
+		const override = input.overrides?.find((o) => o.local_date === tomorrow);
+		const external = input.externalPlans?.find((p) => !p.deleted && p.source === "crunning" && p.kind === "corrida" && p.local_date === tomorrow && p.status === "planejada" && p.important);
+		if (!(!!external || override?.action === "run" || planDayFor(input.plan, tomorrow)?.kind === "run" && override?.action !== "rest")) return null;
+		return {
+			kind: "legs_before_run",
+			text: external ? `Corrida planejada no CRUNNING: ${external.name ?? "corrida importante"}, amanhã (${tomorrow}). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino.` : "Corrida amanhã cedo, então perna fica para outro dia."
+		};
+	}
+	function plannedCount(plan, split) {
+		if (!plan) return 1;
+		const rotation = plan.rules.rotation;
+		if (rotation?.length) return rotation.includes(split) ? Math.max(1, Math.ceil(plan.gym_per_week / rotation.length)) : 1;
+		const n = plan.days.filter((d) => d.kind === "gym" && d.split_key === split).length;
+		return Math.max(1, n);
+	}
+	/** Consecutive training days ending on `day`. */
+	function streakEndingOn(day, trainingDays) {
+		let n = 0;
+		let d = day;
+		while (trainingDays.has(d)) {
+			n += 1;
+			d = addDays(d, -1);
+		}
+		return n;
+	}
+	/**
+	* Fatigue alerts over the last 7 days. Always suggestions, never blocks.
+	*/
+	function fatigueAlerts(input) {
+		const { today, plan } = input;
+		const from = addDays(today, -6);
+		const recent = input.sessions.filter((s) => inRange(s.local_date, from, today)).sort((a, b) => a.local_date.localeCompare(b.local_date));
+		const alerts = [];
+		const limit = plan ? plan.gym_per_week : 4;
+		if (recent.length > limit) alerts.push({
+			kind: "volume",
+			text: plan ? `${recent.length} treinos em 7 dias, o plano é ${limit} de academia.` : `${recent.length} treinos em 7 dias.`
+		});
+		const bySplit = /* @__PURE__ */ new Map();
+		for (const s of recent) {
+			if (!s.split_key || s.split_key === "livre") continue;
+			const list = bySplit.get(s.split_key) ?? [];
+			list.push(s.local_date);
+			bySplit.set(s.split_key, list);
+		}
+		for (const [split, days] of bySplit) if (days.length > plannedCount(plan, split)) {
+			const span = diffDays(days[0], days[days.length - 1]) + 1;
+			alerts.push({
+				kind: "repeat",
+				text: `${splitLabel(split)} ${timesPt(days.length)} em ${span} dias.`
+			});
+		}
+		const trainingDays = /* @__PURE__ */ new Set([...input.sessions.map((s) => s.local_date), ...input.runs.map((r) => r.local_date)]);
+		const streak = streakEndingOn(trainingDays.has(today) ? today : addDays(today, -1), trainingDays);
+		if (streak >= 4) alerts.push({
+			kind: "streak",
+			text: `${streak} dias seguidos de treino.`
+		});
+		return alerts;
+	}
+	/** Muscles from yesterday that a candidate split would hit again. */
+	function overlapAlert(today, sessions, candidate) {
+		const yesterday = addDays(today, -1);
+		const prev = sessions.filter((s) => s.local_date === yesterday);
+		if (prev.length === 0) return null;
+		const target = new Set(SPLITS[candidate].muscles);
+		for (const s of prev) {
+			if (s.split_key === candidate) continue;
+			for (const e of s.exercises) {
+				const hit = e.muscles.find((m) => target.has(m));
+				if (hit) return {
+					kind: "overlap",
+					text: `${capitalizeFirst(MUSCLE_LABEL[hit])} já trabalhou ontem (${e.name.toLowerCase()}). Alivie ou pule hoje.`
+				};
+			}
+			if (s.exercises.length === 0) {
+				const hit = s.muscles.find((m) => target.has(m));
+				if (hit) return {
+					kind: "overlap",
+					text: `${capitalizeFirst(MUSCLE_LABEL[hit])} já trabalhou ontem. Alivie hoje.`
+				};
+			}
+		}
+		return null;
+	}
+	function heavyRunYesterday(today, runs) {
+		const yesterday = addDays(today, -1);
+		const twoAgo = addDays(today, -2);
+		const y = runs.filter((r) => r.local_date === yesterday);
+		const yLoad = y.reduce((acc, r) => acc + runLegLoad(r), 0);
+		const twoLoad = runs.filter((r) => r.local_date === twoAgo).reduce((acc, r) => acc + runLegLoad(r), 0);
+		if (yLoad >= HEAVY_RUN_LOAD || yLoad + twoLoad * .5 >= HEAVY_RUN_LOAD * 1.5) return y[0] ?? null;
+		return null;
+	}
+	function daysSinceSplit(today, sessions, split) {
+		let last = null;
+		for (const s of sessions) if (s.split_key === split && s.local_date <= today && (!last || s.local_date > last)) last = s.local_date;
+		return last ? diffDays(last, today) : Number.POSITIVE_INFINITY;
+	}
+	/** The last ficha of the rotation that was done, by date. */
+	function lastFicha(rotation, sessions) {
+		let last = null;
+		for (const s of sessions) {
+			const index = s.split_key ? rotation.indexOf(s.split_key) : -1;
+			if (index < 0) continue;
+			if (!last || s.local_date >= last.local_date) last = {
+				index,
+				local_date: s.local_date
+			};
+		}
+		return last;
+	}
+	/** The rotation starting at the ficha after the last one done: next first. */
+	function rotationQueue(rotation, sessions) {
+		const last = lastFicha(rotation, sessions);
+		const start = last ? (last.index + 1) % rotation.length : 0;
+		return rotation.map((_, i) => rotation[(start + i) % rotation.length]);
+	}
+	/** "ficha B, costas e bíceps" in a rotation, "costas e bíceps" otherwise. */
+	function dayName(rotation, split) {
+		const letter = fichaLetter(rotation, split);
+		const label = splitLabel(split).toLowerCase();
+		return letter ? `ficha ${letter}, ${label}` : label;
+	}
+	function remainingSplits(plan, weekSessions) {
+		const planned = plan.days.filter((d) => d.kind === "gym" && d.split_key).sort((a, b) => a.weekday - b.weekday).map((d) => d.split_key);
+		const done = weekSessions.map((s) => s.split_key);
+		const left = [];
+		const pool = [...done];
+		for (const split of planned) {
+			const i = pool.indexOf(split);
+			if (i >= 0) pool.splice(i, 1);
+			else left.push(split);
+		}
+		return left;
+	}
+	function runTypeForToday(plan, today, doneRuns) {
+		const pd = planDayFor(plan, today);
+		if (pd?.kind === "run" && pd.run_type) return pd.run_type;
+		return (plan?.days ?? []).filter((d) => d.kind === "run").sort((a, b) => a.weekday - b.weekday).map((d) => d.run_type ?? "leve")[doneRuns] ?? "leve";
+	}
+	function faltam(n, what) {
+		return `${n === 1 ? "Falta" : "Faltam"} ${n} ${what}`;
+	}
+	/**
+	* What to do today. The weekly plan rules; history adjusts.
+	* Excess is a deviation, the same as missing a session.
+	*/
+	function recommendDay(input) {
+		const { today, plan } = input;
+		const sessions = input.sessions.filter((s) => s.local_date <= today);
+		const runs = input.runs.filter((r) => r.local_date <= today);
+		const counted = countedCardio(runs, () => plan?.run_per_week ?? 0);
+		const overrides = input.overrides ?? [];
+		const week = weekCounts(today, plan, sessions, counted);
+		const plannedToday = planDayFor(plan, today);
+		const tomorrow = addDays(today, 1);
+		const overrideToday = overrides.find((o) => o.local_date === today) ?? null;
+		const externalRun = input.externalPlans?.find((p) => !p.deleted && p.source === "crunning" && p.kind === "corrida" && p.local_date === tomorrow && p.status === "planejada" && p.important);
+		const alerts = fatigueAlerts({
+			today,
+			plan,
+			sessions,
+			runs
+		});
+		const loadAlerts = alerts.filter((a) => a.kind !== "overlap");
+		const heavy = alerts.some((a) => a.kind === "volume" || a.kind === "streak");
+		const excess = plan ? week.done_gym > plan.gym_per_week || week.done_run > plan.run_per_week : false;
+		const todayDone = sessions.some((s) => s.local_date === today) || counted.some((r) => r.local_date === today);
+		const result = (kind, headline, reason, extra = {}) => ({
+			kind,
+			split_key: null,
+			run_type: null,
+			headline,
+			reason,
+			alerts,
+			today_done: todayDone,
+			planned_today: plannedToday,
+			week,
+			excess,
+			...extra
+		});
+		const alertLine = loadAlerts.map((a) => a.text).join(" ");
+		if (todayDone) return result("rest", "Treino de hoje feito", heavy ? `${alertLine} Agora é descanso.` : "Agora é recuperar. Amanhã tem mais.");
+		if (overrideToday?.action === "rest") return result("rest", "Hoje: descanso", "Você marcou hoje como descanso.");
+		if (overrideToday?.action === "run") {
+			const type = runTypeForToday(plan, today, week.done_run);
+			return result("run", `Hoje: corrida ${RUN_TYPE_LABEL[type]}`, "Treino trocado por corrida.", { run_type: type });
+		}
+		if (!plan) return recommendWithoutPlan(input, alerts, week, todayDone, heavy);
+		const remainingGym = Math.max(0, plan.gym_per_week - week.done_gym);
+		const remainingRun = Math.max(0, plan.run_per_week - week.done_run);
+		if (remainingGym === 0 && remainingRun === 0) return result("rest", "Hoje: descanso", excess ? `${deviationText(week)} Hoje é descanso.` : "Plano da semana cumprido. Hoje é descanso, e descanso também conta.");
+		if (heavy) return result("light", "Hoje: descanso ou algo leve", `${alertLine} Hoje descanso ou algo leve.`);
+		if (remainingGym === 0) {
+			if (remainingRun > 0 && plannedToday?.kind !== "gym") {
+				const type = runTypeForToday(plan, today, week.done_run);
+				return result("run", `Hoje: corrida ${RUN_TYPE_LABEL[type]}`, `Academia da semana feita. ${faltam(remainingRun, plural(remainingRun, "corrida", "corridas"))}.`, { run_type: type });
+			}
+			if (remainingRun > 0) {
+				const type = runTypeForToday(plan, today, week.done_run);
+				return result("run", `Hoje: corrida ${RUN_TYPE_LABEL[type]}`, `Os ${plan.gym_per_week} de academia da semana já foram. Se for treinar, que seja a corrida.`, { run_type: type });
+			}
+			return result("rest", "Hoje: descanso", `Os ${plan.gym_per_week} de academia da semana já foram. Mais academia seria desvio.`);
+		}
+		if (plannedToday?.kind === "run" && remainingRun > 0) {
+			const type = plannedToday.run_type ?? "leve";
+			return result("run", `Hoje: corrida ${RUN_TYPE_LABEL[type]}`, `Corrida ${RUN_TYPE_LABEL[type]} no seu plano, às ${plannedToday.time}.`, { run_type: type });
+		}
+		const rotation = plan.rules.rotation?.length ? plan.rules.rotation : null;
+		const from = weekStart(today);
+		const weekSessions = sessions.filter((s) => inRange(s.local_date, from, today));
+		let candidates = rotation ? rotationQueue(rotation, sessions) : remainingSplits(plan, weekSessions);
+		if (candidates.length === 0) candidates = [...new Set(plan.days.filter((d) => d.kind === "gym" && d.split_key).map((d) => d.split_key))];
+		const heavyRun = heavyRunYesterday(today, runs);
+		const blockedReasons = [];
+		let filtered = candidates.filter((split) => {
+			const legAlert = legsBeforeRunAlert(input, split);
+			if (legAlert) {
+				const reason = legAlert.text;
+				blockedReasons.push(reason);
+				if (externalRun && !alerts.some((a) => a.kind === "legs_before_run")) alerts.push({
+					kind: "legs_before_run",
+					text: reason
+				});
+				return false;
+			}
+			if (daysSinceSplit(today, sessions, split) <= 2) return false;
+			return true;
+		});
+		if (heavyRun) {
+			const withoutLegs = filtered.filter((s) => !splitHasLegs(s));
+			if (withoutLegs.length < filtered.length) {
+				blockedReasons.push(`${cardioTitle({
+					...heavyRun,
+					duration_sec: heavyRun.duration_sec ?? 0
+				})} feita ontem (${heavyRun.local_date}) pesa nas pernas, então perna fica para depois.`);
+				alerts.push({
+					kind: "run_legs",
+					text: `${cardioTitle({
+						...heavyRun,
+						duration_sec: heavyRun.duration_sec ?? 0
+					})} ontem pesa nas pernas.`
+				});
+			}
+			filtered = withoutLegs;
+		}
+		const slotsLeft = plan.days.filter((d) => d.kind === "gym" && d.weekday > weekday(today)).length;
+		let chosen = null;
+		let reason = "";
+		const nextUp = candidates[0] ?? null;
+		if (rotation && plannedToday?.kind === "gym" && filtered.length > 0 && nextUp) {
+			chosen = filtered[0];
+			const last = lastFicha(rotation, sessions);
+			if (chosen === nextUp) {
+				const after = last ? `, depois da ficha ${fichaLetter(rotation, rotation[last.index])} ${last.local_date === addDays(today, -1) ? "de ontem" : `${weekday(last.local_date) >= 5 ? "do" : "da"} ${WEEKDAY_NAMES[weekday(last.local_date)]}`}` : "";
+				reason = `${capitalizeFirst(fichaName(rotation, chosen))} é a próxima do rodízio${after}. ${faltam(remainingGym, "de academia nesta semana")}.`;
+			} else reason = `${blockedReasons[0] ?? `${capitalizeFirst(dayName(rotation, nextUp))} treinou há pouco.`} Hoje vai a ficha ${fichaLetter(rotation, chosen)}, e a ${fichaLetter(rotation, nextUp)} fica para o próximo treino.`;
+		} else if (!rotation && plannedToday?.kind === "gym" && plannedToday.split_key && filtered.includes(plannedToday.split_key)) {
+			chosen = plannedToday.split_key;
+			reason = `Dia de ${splitLabel(chosen).toLowerCase()} no seu plano. ${faltam(remainingGym, "de academia nesta semana")}.`;
+		} else if (plannedToday?.kind !== "gym" && remainingGym <= slotsLeft) return result("rest", "Hoje: descanso", plannedToday?.kind === "run" ? "As corridas da semana já foram. Hoje é descanso." : "Descanso planejado. Ele conta como cumprido.");
+		else if (filtered.length > 0) {
+			chosen = rotation ? filtered[0] : [...filtered].sort((a, b) => daysSinceSplit(today, sessions, b) - daysSinceSplit(today, sessions, a))[0];
+			const since = daysSinceSplit(today, sessions, chosen);
+			const parts = [];
+			if (blockedReasons[0]) parts.push(blockedReasons[0]);
+			else if (plannedToday?.kind !== "gym") parts.push(`${faltam(remainingGym, "de academia")} e a semana tem ${slotsLeft} ${plural(slotsLeft, "dia", "dias")} de academia pela frente.`);
+			else if (!rotation && plannedToday.split_key && plannedToday.split_key !== chosen) parts.push(`${splitLabel(plannedToday.split_key)} já foi feito nesta semana.`);
+			if (rotation) parts.push(`${capitalizeFirst(fichaName(rotation, chosen))} é a próxima do rodízio.`);
+			else parts.push(Number.isFinite(since) ? `${splitLabel(chosen)} está há ${since} dias parado.` : `${splitLabel(chosen)} ainda não entrou nesta semana.`);
+			reason = parts.join(" ");
+		}
+		if (!chosen) return result("light", "Hoje: descanso ou algo leve", `${blockedReasons[0] ?? "Os grupos que faltam treinaram há pouco."} Hoje descanso ou algo leve.`);
+		const overlap = overlapAlert(today, sessions, chosen);
+		if (overlap) alerts.push(overlap);
+		return result("gym", `Hoje: ${dayName(rotation, chosen)}`, reason, { split_key: chosen });
+	}
+	function recommendWithoutPlan(input, alerts, week, todayDone, heavy) {
+		const { today } = input;
+		const base = {
+			run_type: null,
+			alerts,
+			today_done: todayDone,
+			planned_today: null,
+			week,
+			excess: false
+		};
+		if (heavy) return {
+			...base,
+			kind: "light",
+			split_key: null,
+			headline: "Hoje: descanso ou algo leve",
+			reason: `${alerts.map((a) => a.text).join(" ")} Hoje descanso ou algo leve.`
+		};
+		const chosen = [...new Set(input.sessions.filter((s) => s.split_key && s.split_key !== "livre" && diffDays(s.local_date, today) <= 28).map((s) => s.split_key))].filter((s) => daysSinceSplit(today, input.sessions, s) > 2).sort((a, b) => daysSinceSplit(today, input.sessions, b) - daysSinceSplit(today, input.sessions, a))[0];
+		if (!chosen) return {
+			...base,
+			kind: "gym",
+			split_key: null,
+			headline: "Hoje: treino livre",
+			reason: "Sem plano ainda. Monte o seu em Plano para eu sugerir o treino do dia."
+		};
+		return {
+			...base,
+			kind: "gym",
+			split_key: chosen,
+			headline: `Hoje: ${splitLabel(chosen).toLowerCase()}`,
+			reason: `${splitLabel(chosen)} é o que está há mais tempo parado.`
+		};
+	}
+	function deviationText(week) {
+		const parts = [];
+		if (week.done_gym > week.planned_gym) parts.push(`${week.done_gym} de academia num plano de ${week.planned_gym}`);
+		if (week.done_run > week.planned_run) parts.push(`${week.done_run} corridas num plano de ${week.planned_run}`);
+		if (parts.length === 0) return "";
+		return `${capitalizeFirst(joinPt(parts))}. Excesso conta como desvio.`;
+	}
+	//#endregion
+	//#region src/engine/history.ts
+	/** Finished sessions reduced for the recommender. */
+	function summarizeSessions(sessions, items, exercises) {
+		const itemsBySession = /* @__PURE__ */ new Map();
+		for (const it of items) {
+			if (it.deleted || it.status !== "done" && it.status !== "pending") continue;
+			const list = itemsBySession.get(it.session_id) ?? [];
+			list.push(it);
+			itemsBySession.set(it.session_id, list);
+		}
+		return sessions.filter((s) => !s.deleted && s.status === "done").map((s) => {
+			const exs = (itemsBySession.get(s.id) ?? []).filter((i) => i.status === "done").map((i) => exercises.get(i.exercise_id)).filter((e) => !!e).map((e) => ({
+				name: e.name,
+				muscles: e.muscles
+			}));
+			const muscles = [.../* @__PURE__ */ new Set([...s.split_key ? SPLITS[s.split_key].muscles : [], ...exs.flatMap((e) => e.muscles)])];
+			return {
+				id: s.id,
+				local_date: s.local_date,
+				split_key: s.split_key,
+				title: s.title,
+				muscles,
+				exercises: exs
+			};
+		}).sort((a, b) => a.local_date.localeCompare(b.local_date));
+	}
+	//#endregion
+	//#region scripts/ios-today-engine.ts
+	function evaluateToday(input) {
+		const active = (rows = []) => rows.filter((r) => !r.deleted);
+		const t = input.tables;
+		const library = new Map(input.catalog.map((e) => [e.id, e]));
+		for (const e of t.exercises ?? []) if (e.deleted) library.delete(e.id);
+		else library.set(e.id, e);
+		const byID = (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+		const exercises = [...library.values()].sort(byID);
+		const profile = active(t.profiles)[0];
+		const safeProfile = profile && !input.health ? {
+			...profile,
+			onboarding: profile.onboarding && {
+				...profile.onboarding,
+				spare_joints: []
+			}
+		} : profile;
+		const overrides = active(t.day_overrides).filter((o) => input.health || o.action !== "spare_joint");
+		const sessions = active(t.sessions).sort((a, b) => b.local_date.localeCompare(a.local_date) || b.started_at - a.started_at || byID(a, b));
+		const rec = recommendDay({
+			today: input.today,
+			plan: planForDay(active(t.plans), input.today),
+			sessions: summarizeSessions(sessions, active(t.session_items), library),
+			runs: active(t.runs),
+			overrides,
+			externalPlans: active(t.external_plan_items)
+		});
+		const routines = active(t.routines).filter((r) => !r.archived).sort((a, b) => a.position - b.position || byID(a, b));
+		const routine = routineFor(rec.split_key, routines);
+		const base = plannedFromRoutine(routine, active(t.routine_items).sort(byID));
+		const override = overrides.find((o) => o.local_date === input.today) ?? null;
+		const adjusted = applyAdjustment(base, overrideToAdjustment(override), exercises, safeProfile);
+		return {
+			rec,
+			routine,
+			override,
+			items: adjusted.items,
+			summary: adjusted.summary,
+			descriptions: adjusted.changes.map((c) => describeChange(c, exercises))
+		};
+	}
+	function today(input) {
+		return JSON.stringify(evaluateToday(JSON.parse(input)));
+	}
+	function dayOptions() {
+		const choices = (labels) => Object.entries(labels).map(([id, name]) => ({
+			id,
+			name
+		}));
+		return JSON.stringify({
+			time: [
+				"30",
+				"45",
+				"60"
+			].map((id) => ({
+				id,
+				name: `${id} min`
+			})),
+			focus: choices(GROUP_LABEL),
+			no_equipment: ALL_EQUIPMENT.filter((e) => e !== "peso_corporal").map((id) => ({
+				id,
+				name: EQUIPMENT_LABEL[id]
+			})),
+			spare_joint: JOINTS.map((id) => ({
+				id,
+				name: JOINT_LABEL[id].slice(0, 1).toUpperCase() + JOINT_LABEL[id].slice(1)
+			}))
+		});
+	}
+	//#endregion
 	//#region scripts/ios-plan-engine.ts
 	function generate(input) {
 		return JSON.stringify(generatePlan(JSON.parse(input)));
@@ -2644,7 +3565,9 @@ var AnilhaPlanEngine = (function(exports) {
 		return JSON.stringify(withSplit(JSON.parse(input), picked));
 	}
 	//#endregion
+	exports.dayOptions = dayOptions;
 	exports.generate = generate;
 	exports.parameters = parameters;
+	exports.today = today;
 	return exports;
 })({});

@@ -119,6 +119,12 @@ try {
   const { output } = await planBundle.generate({ format: 'esm' });
   plans = await (await import('data:text/javascript;base64,' + Buffer.from(output[0].code).toString('base64'))).planArtifacts();
 } finally { await planBundle.close(); }
+const todayBundle = await rolldown({ input: resolve(root, 'scripts/ios-today-source.ts'), platform: 'node', transform: { define: { 'import.meta.env': '{}' } } });
+let today;
+try {
+  const { output } = await todayBundle.generate({ format: 'esm' });
+  today = await (await import('data:text/javascript;base64,' + Buffer.from(output[0].code).toString('base64'))).todayArtifacts();
+} finally { await todayBundle.close(); }
 const engineBundle = await rolldown({ input: resolve(root, 'scripts/ios-plan-engine.ts'), platform: 'neutral' });
 let planEngine;
 try {
@@ -164,6 +170,7 @@ const howtoIos = Object.fromEntries(
     }),
 );
 const outputs = {
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/today.json': json(today),
   'ios/AnilhaCore/Sources/AnilhaCore/Resources/plan-engine.js': planEngine,
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/new-plans.json': json(plans),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/analysis-sync.json': json(analysisSync),

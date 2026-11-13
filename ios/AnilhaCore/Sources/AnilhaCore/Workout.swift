@@ -134,22 +134,26 @@ public enum Workout {
         return result
     }
     public static func start(_ data: ReadData, routine: ReadRow, catalog: [ReadRow], today: String, now: Double,
+                             planned: [ReadRow]? = nil, adjustment: String? = nil,
                              newID: () -> String = id) -> [PushChange] {
         guard !data.active("sessions").contains(where: { $0.string("status") == "active" }) else { return [] }
         let session = newID(), profile = data.active("profiles").first
         let simple = profile?.object("onboarding").string("level") == "iniciante" || returning(data, today: today)
         let monday = LocalDay.add(today, -LocalDay.weekday(today))
         let deload = profile?.string("deload_week") == monday
+        var adjustments: [JSONValue] = []
+        if let adjustment, !adjustment.isEmpty { adjustments.append(.string(adjustment)) }
+        if deload { adjustments.append(.string("Semana leve: metade das séries e 10% menos carga.")) }
         var changes = [PushChange("sessions", ReadRow(fields: ["id": .string(session), "deleted": .bool(false),
             "local_date": .string(today), "started_at": .number(floor(now)), "ended_at": .null, "status": .string("active"),
             "split_key": routine.fields["split_key"] ?? .null, "title": routine.fields["name"] ?? .string("Treino"),
             "routine_id": .string(routine.id), "source": .string("routine"), "note": .null, "detail": .string("full"),
             "rest_started_at": .null, "rest_duration_sec": .null,
-            "adjustments": .array(deload ? [.string("Semana leve: metade das séries e 10% menos carga.")] : []),
+            "adjustments": .array(adjustments),
             "deload": deload ? .bool(true) : .null]))]
         let exercises = data.exercises(catalog: catalog)
         var firstWeighted = true
-        for (position, original) in data.items(routine.id).enumerated() {
+        for (position, original) in (planned ?? data.items(routine.id)).enumerated() {
             guard let exercise = exercises[original.string("exercise_id") ?? ""] else { continue }
             var plan = original
             if deload { plan.fields["sets"] = .number(max(1, ceil((plan.number("sets") ?? 0) * 0.5))) }
