@@ -54,12 +54,14 @@ struct PerfilTreinoView: View {
                     Text("Depois de mais de 3 semanas sem treino, liga sozinho e dura 4 semanas: até 10 séries por grupo na semana e 2 a 3 repetições na reserva. Muda na hora, sem trocar o plano.")
                 }
                 Section {
+                    NavigationLink { PlanoNovoView(conta: conta, today: today, soRespostas: true) } label: {
+                        Label("Editar respostas", systemImage: "pencil")
+                    }
                     NavigationLink { PlanoNovoView(conta: conta, today: today) } label: {
                         Label("Plano novo", systemImage: "arrow.triangle.2.circlepath")
                     }
-                    Link("Salvar só as respostas no site", destination: Site.url("/voce/treino"))
                 } footer: {
-                    Text("Revise suas respostas e a prévia antes de trocar as fichas do plano.")
+                    Text("Editar respostas guarda o perfil e mantém o plano. Plano novo mostra a prévia antes de trocar as fichas do plano.")
                 }
             }
         }

@@ -140,6 +140,39 @@ final class TrainingTests: XCTestCase {
             }
         }
     }
+    func testEditFinishedSetUpdatesItemStatusAndRecords() throws {
+        let ex = ReadRow(fields: ["id": .string("supino"), "name": .string("Fictício"), "measure": .string("weight_reps")])
+        func done(_ id: String, _ session: String, _ kg: Double, _ at: Double) -> ReadRow {
+            ReadRow(fields: ["id": .string(id), "session_id": .string(session), "item_id": .string("i-" + session), "exercise_id": .string("supino"),
+                             "kind": .string("work"), "load_kg": .number(kg), "reps": .number(8), "completed_at": .number(at), "position": .number(0)])
+        }
+        var tables: [String: [ReadRow]] = [
+            "sessions": [ReadRow(fields: ["id": .string("a"), "status": .string("done"), "local_date": .string("2026-11-01")]),
+                         ReadRow(fields: ["id": .string("b"), "status": .string("done"), "local_date": .string("2026-11-08")]),
+                         ReadRow(fields: ["id": .string("c"), "status": .string("active"), "local_date": .string("2026-11-13")])],
+            "session_items": [ReadRow(fields: ["id": .string("i-a"), "session_id": .string("a"), "status": .string("done")]),
+                              ReadRow(fields: ["id": .string("i-b"), "session_id": .string("b"), "status": .string("done")])],
+            "sets": [done("sa", "a", 20, 1), done("sb", "b", 25, 2)],
+        ]
+        let before = ReadData(tables: tables)
+        tables["records"] = Workout.records(before, session: "b", catalog: [ex]).map(\.row)
+        XCTAssertEqual(tables["records"]?.count, 1)
+        let data = ReadData(tables: tables)
+        // A typo fixed down to 20 kg: no record left in session b.
+        let fixed = Workout.editFinishedSet(data, set: "sb", values: ["load_kg": .number(20)], catalog: [ex])
+        XCTAssertEqual(fixed.first { $0.table == "sets" }?.row.number("load_kg"), 20)
+        XCTAssertEqual(fixed.filter { $0.table == "records" }.map(\.row.deleted), [true])
+        XCTAssertTrue(fixed.filter { $0.table == "session_items" }.isEmpty)
+        // Deleting the only set of b: the exercise becomes not done and the record goes.
+        let deleted = Workout.editFinishedSet(data, set: "sb", values: nil, catalog: [ex])
+        XCTAssertEqual(deleted.first { $0.table == "sets" }?.row.deleted, true)
+        XCTAssertEqual(deleted.first { $0.table == "session_items" }?.row.string("status"), "not_done")
+        XCTAssertEqual(deleted.filter { $0.table == "records" }.map(\.row.deleted), [true])
+        // An unchanged value writes only the set; an active workout is not edited here.
+        XCTAssertEqual(Workout.editFinishedSet(data, set: "sb", values: ["load_kg": .number(25)], catalog: [ex]).map(\.table), ["sets"])
+        XCTAssertEqual(Workout.editFinishedSet(data, set: "missing", values: [:], catalog: [ex]), [])
+    }
+
     func testDeleteSessionTombstonesRowsAndRecomputesRecords() throws {
         for v in try fixture("training").array("progression") {
             let input = v.object("input"), exercise = input.object("exercise").changing(["id": .string("exercise"), "name": .string("Fictício")])

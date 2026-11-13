@@ -314,21 +314,38 @@ public enum Workout {
         }
         return out
     }
-    /// ops.ts deleteSession: tombstones for the session, its items and sets, then recomputeRecords
-    /// for the exercises it touched (a record can move to a later session or disappear).
-    public static func deleteSession(_ data: ReadData, session: String, catalog: [ReadRow]) -> [PushChange] {
-        guard let row = data.active("sessions").first(where: { $0.id == session }) else { return [] }
-        let sets = data.active("sets").filter { $0.string("session_id") == session }
-        let items = data.active("session_items").filter { $0.string("session_id") == session }
-        var changes = sets.map { PushChange("sets", $0.changing(["deleted": .bool(true)])) }
-            + items.map { PushChange("session_items", $0.changing(["deleted": .bool(true)])) }
-            + [PushChange("sessions", row.changing(["deleted": .bool(true)]))]
-        var after = data
-        for change in changes {
-            after.tables[change.table] = (after.tables[change.table] ?? []).map { $0.id == change.row.id ? change.row : $0 }
+    /// ops.ts updateSet/deleteSet + afterFinishedEdit, for a set of a finished workout: the set
+    /// changes (or becomes a tombstone when `values` is nil), the exercise is done or not done
+    /// again, and its records are recalculated from the whole history.
+    public static func editFinishedSet(_ data: ReadData, set setID: String, values: [String: JSONValue]?, catalog: [ReadRow]) -> [PushChange] {
+        guard let set = data.active("sets").first(where: { $0.id == setID }),
+              data.active("sessions").first(where: { $0.id == set.string("session_id") })?.string("status") == "done" else { return [] }
+        var changes = [PushChange("sets", values.map { set.changing($0) } ?? set.changing(["deleted": .bool(true)]))]
+        var after = applying(changes, to: data)
+        if let item = data.active("session_items").first(where: { $0.id == set.string("item_id") }), item.string("status") != "skipped" {
+            let done = after.active("sets").contains { $0.string("item_id") == item.id && $0.number("completed_at") != nil }
+            let status = done ? "done" : "not_done"
+            if status != item.string("status") {
+                let change = PushChange("session_items", item.changing(["status": .string(status)]))
+                changes.append(change); after = applying([change], to: after)
+            }
         }
+        return changes + recomputeRecords(before: data, after: after, exercises: [set.string("exercise_id") ?? ""], catalog: catalog)
+    }
+    static func applying(_ changes: [PushChange], to data: ReadData) -> ReadData {
+        var out = data
+        for change in changes {
+            var rows = out.tables[change.table] ?? []
+            if let index = rows.firstIndex(where: { $0.id == change.row.id }) { rows[index] = change.row } else { rows.append(change.row) }
+            out.tables[change.table] = rows
+        }
+        return out
+    }
+    /// ops.ts recomputeRecords: wanted records over `after`, written as the difference to `before`.
+    static func recomputeRecords(before data: ReadData, after: ReadData, exercises ids: [String], catalog: [ReadRow]) -> [PushChange] {
         let exercises = data.exercises(catalog: catalog)
-        for exerciseID in Set(sets.compactMap { $0.string("exercise_id") }).sorted() {
+        var changes: [PushChange] = []
+        for exerciseID in Set(ids).sorted() {
             guard let ex = exercises[exerciseID] else { continue }
             var wanted = Dictionary(recordRows(after, exercise: exerciseID, ex: ex, session: nil).map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
             let existing = (data.tables["records"] ?? []).filter { $0.string("exercise_id") == exerciseID && $0.string("run_id") == nil }
@@ -344,6 +361,19 @@ public enum Workout {
             }
             changes += wanted.keys.sorted().compactMap { wanted[$0].map { PushChange("records", $0) } }
         }
+        return changes
+    }
+    /// ops.ts deleteSession: tombstones for the session, its items and sets, then recomputeRecords
+    /// for the exercises it touched (a record can move to a later session or disappear).
+    public static func deleteSession(_ data: ReadData, session: String, catalog: [ReadRow]) -> [PushChange] {
+        guard let row = data.active("sessions").first(where: { $0.id == session }) else { return [] }
+        let sets = data.active("sets").filter { $0.string("session_id") == session }
+        let items = data.active("session_items").filter { $0.string("session_id") == session }
+        var changes = sets.map { PushChange("sets", $0.changing(["deleted": .bool(true)])) }
+            + items.map { PushChange("session_items", $0.changing(["deleted": .bool(true)])) }
+            + [PushChange("sessions", row.changing(["deleted": .bool(true)]))]
+        let after = applying(changes, to: data)
+        changes += recomputeRecords(before: data, after: after, exercises: sets.compactMap { $0.string("exercise_id") }, catalog: catalog)
         return changes
     }
 }

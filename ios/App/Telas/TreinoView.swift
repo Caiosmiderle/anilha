@@ -8,6 +8,7 @@ struct TreinoView: View {
     var jogoInicial: RestCardGame? = nil
     @Environment(\.dismiss) private var dismiss
     @State private var confirmarApagar = false
+    @State private var corrigindo: ReadRow?
     private var session: ReadRow? { conta.dados.active("sessions").first { $0.id == sessionID } }
 
     var body: some View {
@@ -39,8 +40,16 @@ struct TreinoView: View {
                                     Text("No lugar de \(conta.dados.exercises(catalog: conta.catalogo)[original]?.string("name") ?? "exercício original")").font(.footnote)
                                 }
                                 ForEach(sets) { set in
-                                    Text(resumoSerie(set, lb: conta.dados.active("profiles").first?.string("unit") == "lb"))
-                                        .font(.subheadline).monospacedDigit()
+                                    Button { corrigindo = set } label: {
+                                        HStack {
+                                            Text(resumoSerie(set, lb: conta.dados.active("profiles").first?.string("unit") == "lb"))
+                                                .font(.subheadline).monospacedDigit().foregroundStyle(Tema.tinta)
+                                            Spacer()
+                                            Image(systemName: "pencil").font(.footnote).foregroundStyle(Tema.tintaSuave)
+                                        }.frame(minHeight: 44).contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
+                                    .accessibilityHint("Corrigir esta série")
                                 }
                             } header: {
                                 HStack {
@@ -55,6 +64,9 @@ struct TreinoView: View {
                                 .accessibilityHint("Pede confirmação antes de apagar")
                         }.listRowBackground(Tema.superficie)
                         Button("Voltar") { dismiss() }.buttonStyle(.glass)
+                    }
+                    .sheet(item: $corrigindo) { set in
+                        CorrigirSerie(conta: conta, set: set, measure: conta.dados.exercises(catalog: conta.catalogo)[set.string("exercise_id") ?? ""]?.string("measure") ?? "weight_reps")
                     }
                     .confirmationDialog("Apagar este treino?", isPresented: $confirmarApagar, titleVisibility: .visible) {
                         Button("Apagar treino", role: .destructive) { apagar() }
@@ -106,5 +118,81 @@ func textoSugestao(_ kind: String) -> String {
     case "first_time": "Primeira vez: ajuste os valores. Esta sessão vira a base."
     case "hold_below": "Mantenha e tente reencontrar o piso da faixa."
     default: "Mantenha a carga e some repetições até o topo."
+    }
+}
+
+/// Fix a set of a finished workout, like SetEditSheet on the site: load, reps or seconds and
+/// effort, or delete the set. Records and the exercise status are recalculated.
+struct CorrigirSerie: View {
+    let conta: ContaStore
+    let set: ReadRow
+    let measure: String
+    @Environment(\.dismiss) private var dismiss
+    @State private var carga: Double
+    @State private var valor: Int
+    @State private var rir: Int
+    @State private var confirmarApagar = false
+    private var lb: Bool { conta.dados.active("profiles").first?.string("unit") == "lb" }
+    private var tempo: Bool { measure == "time" }
+    private var trabalho: Bool { set.string("kind") == "work" }
+
+    init(conta: ContaStore, set: ReadRow, measure: String) {
+        self.conta = conta; self.set = set; self.measure = measure
+        let lb = conta.dados.active("profiles").first?.string("unit") == "lb"
+        _carga = State(initialValue: (set.number("load_kg") ?? 0) * (lb ? Progression.lbPerKg : 1))
+        _valor = State(initialValue: Int(set.number(measure == "time" ? "seconds" : "reps") ?? 0))
+        _rir = State(initialValue: Int(set.number("rir") ?? -1))
+    }
+    var body: some View {
+        NavigationStack {
+            Form {
+                if measure != "reps" && measure != "time" || (set.number("load_kg") ?? 0) > 0 {
+                    Section("Carga") {
+                        HStack {
+                            TextField("Carga", value: $carga, format: .number.precision(.fractionLength(0...2)))
+                                .keyboardType(.decimalPad).monospacedDigit()
+                            Text(lb ? "lb" : "kg").foregroundStyle(Tema.tintaSuave)
+                        }
+                    }
+                }
+                Section(tempo ? "Segundos" : "Repetições") {
+                    Stepper(value: $valor, in: 0...(tempo ? 3600 : 500)) { Text("\(valor)").monospacedDigit() }
+                }
+                if trabalho {
+                    Section("Esforço") {
+                        Picker("Repetições na reserva", selection: $rir) {
+                            Text("Não informado").tag(-1)
+                            ForEach(0...5, id: \.self) { Text("\($0)").tag($0) }
+                        }
+                    }
+                }
+                Section {
+                    Button("Apagar série", role: .destructive) { confirmarApagar = true }.frame(minHeight: 44)
+                } footer: { Text("Os recordes deste exercício são recalculados.") }
+            }
+            .navigationTitle("Corrigir série").navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancelar") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button("Salvar") { salvar() }.disabled(carga < 0) }
+            }
+            .confirmationDialog("Apagar esta série?", isPresented: $confirmarApagar, titleVisibility: .visible) {
+                Button("Apagar série", role: .destructive) { gravar(nil) }
+                Button("Manter", role: .cancel) {}
+            }
+        }
+    }
+    private func salvar() {
+        var values: [String: JSONValue] = [tempo ? "seconds" : "reps": .number(Double(valor))]
+        if set.number("load_kg") != nil || carga > 0 {
+            values["load_kg"] = .number(Progression.round(carga / (lb ? Progression.lbPerKg : 1) * 100) / 100)
+        }
+        if trabalho { values["rir"] = rir < 0 ? .null : .number(Double(rir)) }
+        gravar(values)
+    }
+    private func gravar(_ values: [String: JSONValue]?) {
+        let changes = Workout.editFinishedSet(conta.dados, set: set.id, values: values, catalog: conta.catalogo)
+        guard !changes.isEmpty, conta.gravar(changes) else { return }
+        dismiss()
+        Task { await conta.atualizar() }
     }
 }

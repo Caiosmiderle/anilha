@@ -5,6 +5,8 @@ struct PlanoNovoView: View {
     let conta: ContaStore
     let today: String
     var demonstracao = false
+    /// Opened from Perfil de treino: saving the answers keeps the plan (saveTrainingProfile).
+    var soRespostas = false
     @Environment(\.dismiss) private var dismiss
     @State private var params: ReadRow
     @State private var splitPicked: Bool
@@ -16,13 +18,14 @@ struct PlanoNovoView: View {
     @State private var confirmar = false
     @State private var salvando = false
     @State private var salvo = false
+    @State private var respostasSalvas: String?
 
     private static let equipment = [("halteres", "Halteres"), ("barra", "Barra e anilhas"), ("polia", "Polias"), ("maquina", "Máquinas"), ("peso_corporal", "Peso corporal"), ("kettlebell", "Kettlebell"), ("barra_fixa", "Barra fixa")]
     private static let places: [String: [String]] = ["completa": equipment.map { $0.0 }, "pequena": ["halteres", "polia", "peso_corporal", "barra_fixa"], "casa": ["halteres", "peso_corporal"]]
     private static let weekdays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
 
-    init(conta: ContaStore, today: String, demonstracao: Bool = false) {
-        self.conta = conta; self.today = today; self.demonstracao = demonstracao
+    init(conta: ContaStore, today: String, demonstracao: Bool = false, soRespostas: Bool = false) {
+        self.conta = conta; self.today = today; self.demonstracao = demonstracao; self.soRespostas = soRespostas
         let initial = conta.dados.active("profiles").first?.object("onboarding") ?? ReadRow(fields: [:])
         let defaults: [String: JSONValue] = ["first_name": .string(""), "goal": .string("hipertrofia"), "level": .string("intermediario"),
             "gym_days": .number(3), "run_days": .number(1), "minutes": .number(45), "time": .string("18:30"), "returning": .bool(false),
@@ -44,7 +47,7 @@ struct PlanoNovoView: View {
             if let erro { Section { Text(erro).foregroundStyle(Tema.perigo).accessibilityIdentifier("plano-novo-erro") } }
         }
         .scrollContentBackground(.hidden).background { FundoAnilha() }
-        .navigationTitle("Plano novo").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(soRespostas && preview == nil && !salvo ? "Suas respostas" : "Plano novo").navigationBarTitleDisplayMode(.inline)
         .disabled(salvando)
         // Save stays in view while the preview scrolls (it used to sit after every ficha and reason).
         .safeAreaInset(edge: .bottom) {
@@ -67,7 +70,7 @@ struct PlanoNovoView: View {
         } message: {
             Text("Só as fichas de origem plano serão trocadas. Suas outras fichas e os treinos já feitos ficam no histórico. O plano novo começa hoje.")
         }
-        .onChange(of: params) { _, _ in if !salvo { preview = nil; erro = nil } }
+        .onChange(of: params) { _, _ in if !salvo { preview = nil; erro = nil; respostasSalvas = nil } }
         .onChange(of: conta.saudePermitida) { _, allowed in
             if !allowed { params.fields["spare_joints"] = .array([]) }
             preview = nil; confirmar = false
@@ -134,8 +137,19 @@ struct PlanoNovoView: View {
             Section { Text("Para poupar articulações, permita dados de saúde em Você > Privacidade.").font(.footnote).foregroundStyle(Tema.tintaSuave) }
         }
         Section {
-            Button("Ver prévia do plano") { revisar() }.buttonStyle(.principalAnilha).frame(minHeight: 44)
-                .disabled(conta.dados.active("profiles").isEmpty)
+            if soRespostas {
+                Button("Salvar respostas") { salvarRespostas() }.buttonStyle(.principalAnilha).frame(minHeight: 44)
+                    .disabled(conta.dados.active("profiles").isEmpty)
+                Button("Ver plano novo com estas respostas") { revisar() }.frame(minHeight: 44)
+                    .disabled(conta.dados.active("profiles").isEmpty)
+            } else {
+                Button("Ver prévia do plano") { revisar() }.buttonStyle(.principalAnilha).frame(minHeight: 44)
+                    .disabled(conta.dados.active("profiles").isEmpty)
+                Button("Salvar só as respostas, sem trocar o plano") { salvarRespostas() }.frame(minHeight: 44)
+                    .disabled(conta.dados.active("profiles").isEmpty)
+            }
+        } footer: {
+            if let respostasSalvas { Text(respostasSalvas) }
         }
     }
     private var forEquipamentos: some View {
@@ -274,6 +288,19 @@ struct PlanoNovoView: View {
             let generated = try PlanEngine.generate(effective)
             reviewed = effective; baseline = NewPlan.binding(conta.dados); preview = generated; erro = nil
         } catch { preview = nil; erro = error.localizedDescription }
+    }
+    /// saveTrainingProfile on the site: only profiles.onboarding changes; the plan stays.
+    private func salvarRespostas() {
+        do {
+            let effective = try PlanEngine.parameters(params, picked: splitPicked, health: conta.saudePermitida)
+            try PlanEngine.validate(effective, today: today)
+            guard effective.string("time")?.range(of: #"^([01]\d|2[0-3]):[0-5]\d$"#, options: .regularExpression) != nil else { throw PlanEngine.Failure.invalid }
+            guard let profile = conta.dados.active("profiles").first else { throw PlanEngine.Failure.conflict }
+            guard conta.gravar([PushChange("profiles", profile.changing(["onboarding": .object(effective.fields)]))]) else { return }
+            erro = nil
+            respostasSalvas = "Respostas salvas. Seu plano continua o mesmo; para trocá-lo, use Plano novo."
+            Task { await conta.atualizar() }
+        } catch { erro = error.localizedDescription }
     }
     private func salvar() {
         guard !salvando, let preview else { return }

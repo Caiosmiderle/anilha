@@ -6,6 +6,8 @@ struct PlanoView: View {
     let conta: ContaStore
     let today: String
     @AppStorage("anilha.planoParte") private var parte = Parte.semana.rawValue
+    @State private var abrirPlanoNovo = false
+    @State private var abrirExercicios = false
 
     enum Parte: String, CaseIterable, Identifiable {
         case semana, fichas, calendario
@@ -28,12 +30,6 @@ struct PlanoView: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                NavigationLink { ExerciciosView(conta: conta) } label: {
-                    Label("Exercícios", systemImage: "books.vertical")
-                }
-                .accessibilityHint("Abre o catálogo de exercícios")
-            }
             ToolbarItem(placement: .principal) {
                 Picker("Parte do plano", selection: $parte) {
                     ForEach(Parte.allCases) { p in Text(p.nome).tag(p.rawValue) }
@@ -41,13 +37,19 @@ struct PlanoView: View {
                 .pickerStyle(.segmented)
                 .frame(maxWidth: 300)
             }
+            // Two bare icons (a shelf that looked like a chart, circular arrows that looked like
+            // "refresh") became one menu where every option has its name.
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink { PlanoNovoView(conta: conta, today: today) } label: {
-                    Label("Plano novo", systemImage: "arrow.triangle.2.circlepath")
+                Menu {
+                    Button("Plano novo", systemImage: "arrow.triangle.2.circlepath") { abrirPlanoNovo = true }
+                    Button("Catálogo de exercícios", systemImage: "books.vertical") { abrirExercicios = true }
+                } label: {
+                    Label("Opções do plano", systemImage: "ellipsis.circle")
                 }
-                .accessibilityHint("Revise as respostas e o plano antes de trocar as fichas")
             }
         }
+        .navigationDestination(isPresented: $abrirPlanoNovo) { PlanoNovoView(conta: conta, today: today) }
+        .navigationDestination(isPresented: $abrirExercicios) { ExerciciosView(conta: conta) }
     }
 }
 

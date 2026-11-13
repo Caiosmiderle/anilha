@@ -14,6 +14,7 @@ struct ExecucaoTreino: View {
     @State private var rascunho: ReadRow?
     @State private var esforcoID: String?
     @State private var confirmarFim = false
+    @State private var confirmarDescarte = false
     @State private var trocar: ReadRow?
     @State private var busca = ""
     @State private var erro: String?
@@ -135,6 +136,13 @@ struct ExecucaoTreino: View {
             Button("Concluir treino") { if conta.concluir(session) { Task { await conta.atualizar() } } }
             Button("Continuar treinando", role: .cancel) {}
         } message: { Text("As séries ainda não registradas ficam como não feitas no resumo.") }
+        .confirmationDialog("Descartar este treino?", isPresented: $confirmarDescarte, titleVisibility: .visible) {
+            Button("Descartar treino", role: .destructive) { descartar() }
+            Button("Continuar treinando", role: .cancel) {}
+        } message: {
+            Text(done == 0 ? "Nenhuma série feita ainda. Descartar não deixa rastro no histórico."
+                 : "\(done == 1 ? "A série feita some" : "As \(done) séries feitas somem") e nada vai para o histórico. Para guardar, use Concluir treino.")
+        }
         .sheet(item: $trocar) { alvo in
             NavigationStack {
                 List(exercises.values.filter { !$0.deleted && $0.bool("archived") != true && $0.id != alvo.string("exercise_id") && (busca.isEmpty || ($0.string("name") ?? "").localizedStandardContains(busca)) }.sorted { ($0.string("name") ?? "") < ($1.string("name") ?? "") }) { replacement in
@@ -170,6 +178,7 @@ struct ExecucaoTreino: View {
                 if let item { acoesExercicio(item) }
                 Button("Concluir treino") { confirmarFim = true }
                 Button("Minimizar treino") { conta.sessaoAberta = nil; dismiss() }
+                Button("Descartar treino", systemImage: "trash", role: .destructive) { confirmarDescarte = true }
                 Button("Ativar aviso de descanso") {
                     Task { aviso = await conta.permitirAvisos() ? "Aviso local ativado." : "Confira as permissões do iPhone e a preferência de descanso no site." }
                 }
@@ -408,6 +417,14 @@ struct ExecucaoTreino: View {
             let row = current.changing([key: .number(value)])
             rascunho = row; conta.guardarRascunho(row)
         })
+    }
+    /// Like discardSession on the site: the session, its items and sets become tombstones.
+    private func descartar() {
+        let changes = Workout.deleteSession(conta.dados, session: session.id, catalog: conta.catalogo)
+        guard !changes.isEmpty, conta.gravar(changes) else { return }
+        conta.sessaoAberta = nil
+        dismiss()
+        Task { await conta.atualizar() }
     }
     private func registrar() {
         guard let next, let value = current.number(time ? "seconds" : "reps"), value.isFinite,
