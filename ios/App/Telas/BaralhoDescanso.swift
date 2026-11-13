@@ -34,6 +34,8 @@ struct BaralhoDescanso: View {
         }
         .background { FeltroMesa().ignoresSafeArea() }
         .foregroundStyle(FeltroMesa.texto)
+        // The felt is always dark: system controls (segment picker, glass buttons) must match it.
+        .environment(\.colorScheme, .dark)
         .onAppear { jaNaMesa = Set(cartasNaMesa) }
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.6), trigger: cartasNaMesa.count)
         .sensoryFeedback(trigger: saldoAtual) { _, novo in
@@ -259,7 +261,8 @@ struct BaralhoDescanso: View {
 
     private func acao(_ titulo: String, _ icone: String, _ fazer: @escaping () -> Void) -> some View {
         Button(action: fazer) {
-            Label(titulo, systemImage: icone).frame(maxWidth: .infinity, minHeight: 50)
+            Label(titulo, systemImage: icone).lineLimit(1).minimumScaleFactor(0.75)
+                .frame(maxWidth: .infinity, minHeight: 50)
         }
         .buttonStyle(.glass).controlSize(.large).font(.headline)
     }
