@@ -42,7 +42,7 @@ struct PerfilTreinoView: View {
                     linha("Horário", texto("time", [:]))
                 }
                 Section {
-                    Picker("Modo retorno", selection: Binding(get: { perfil?.string("return_mode") ?? "auto" }, set: mudarRetorno)) {
+                    Picker("Modo retorno", selection: Binding(get: { perfil?.string("return_mode") ?? "auto" }, set: { mudarRetorno($0) })) {
                         Text("Automático").tag("auto")
                         Text("Ligado").tag("on")
                         Text("Desligado").tag("off")
