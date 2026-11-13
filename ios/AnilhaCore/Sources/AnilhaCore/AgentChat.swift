@@ -225,7 +225,7 @@ public enum AgentChat {
     }
     /// Same four-round protocol and context refresh as runTurn in the PWA. Injected model for tests.
     @MainActor public static func run(history: [ReadRow], ask: String, context: ReadRow, withContext: Bool, catalog: [ReadRow],
-        stage: (String) -> Void, call: @MainActor ([ReadRow]) async throws -> ReadRow) async throws -> Turn {
+        stage: @MainActor (String) -> Void, call: @MainActor ([ReadRow]) async throws -> ReadRow) async throws -> Turn {
         var messages = history + [ReadRow(fields: ["role": .string("user"), "content": .string(withContext ? contextText(context, catalog: catalog) + "\n\nPedido: " + ask : ask)])]
         var proposals: [ReadRow] = []
         for _ in 0..<4 {
