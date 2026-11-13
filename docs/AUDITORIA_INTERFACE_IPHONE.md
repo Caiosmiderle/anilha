@@ -45,7 +45,7 @@ Claude, 13/11/2026. Base: as 28 telas capturadas no simulador no build 36 (iOS 0
 
 ## Andamento
 
-- P1 feito na 0.18.3. P2 (itens 7 a 12) feito na 0.19.0. P3 pendente.
+- P1 feito na 0.18.3. P2 (itens 7 a 12) feito na 0.19.0. P3 (itens 13 a 19) feito na 0.19.1.
 
 ## Ordem que eu proponho
 
