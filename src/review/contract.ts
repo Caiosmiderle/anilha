@@ -80,7 +80,8 @@ export function validReviewContext(x: unknown, names: readonly string[]): x is R
       'schedule',
       ...(Object.hasOwn(x, 'memory') ? ['memory'] : []),
     ]) &&
-    (!Object.hasOwn(x, 'memory') || validMemory(x.memory, Array.isArray(x.items) ? x.items.length : 0)) &&
+    (!Object.hasOwn(x, 'memory') ||
+      validMemory(x.memory, Array.isArray(x.items) ? x.items.length : 0)) &&
     validRunning(x.running, 14) &&
     Array.isArray(x.schedule) &&
     x.schedule.length <= 15 &&
@@ -190,10 +191,16 @@ export function reviewTool(ids: readonly string[]) {
       properties: {
         avaliacao: { type: 'string', enum: ['boa', 'ajustavel', 'revisar'] },
         resumo: { type: 'string' },
-        pontos: { type: 'array', maxItems: 3, items: { type: 'string' } },
+        // Strict tools reject array length constraints (400 before the model runs): the limit
+        // of three lives in the description and in parseReviewReply.
+        pontos: {
+          type: 'array',
+          description: 'De zero a três pontos, até 300 caracteres cada.',
+          items: { type: 'string' },
+        },
         ajustes: {
           type: 'array',
-          maxItems: 3,
+          description: 'De zero a três ajustes.',
           items: {
             ...base,
             properties: { ...base.properties, motivo: { type: 'string' } },

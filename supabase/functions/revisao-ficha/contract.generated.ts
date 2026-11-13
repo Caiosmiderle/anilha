@@ -549,12 +549,12 @@ function reviewTool(ids) {
 				resumo: { type: "string" },
 				pontos: {
 					type: "array",
-					maxItems: 3,
+					description: "De zero a três pontos, até 300 caracteres cada.",
 					items: { type: "string" }
 				},
 				ajustes: {
 					type: "array",
-					maxItems: 3,
+					description: "De zero a três ajustes.",
 					items: {
 						...base,
 						properties: {
