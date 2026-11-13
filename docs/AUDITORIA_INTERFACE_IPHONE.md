@@ -43,6 +43,10 @@ Claude, 13/11/2026. Base: as 28 telas capturadas no simulador no build 36 (iOS 0
 - Pedir plano novo pelo chat do Waltér (precisa de proposta, avisos e desfazer para todas as fichas).
 - Revisão do Waltér antes de salvar o plano (hoje é depois, nas fichas novas).
 
+## Andamento
+
+- P1 feito na 0.18.3. P2 (itens 7 a 12) feito na 0.19.0. P3 pendente.
+
 ## Ordem que eu proponho
 
 1. P1 inteiro, numa versão (0.18.3).
