@@ -6,11 +6,11 @@ Mantido pelo Claude, atualizado a cada item. Última atualização: 13/11/2026 (
 
 | App | Versão | Onde |
 | --- | --- | --- |
-| Anilha, site | `main` em `08ea80a` | https://anilha-eight.vercel.app (Vercel, publicação `index-BdVyF1ws.js`) |
-| Anilha, iPhone | 0.19.1, build 45 | Release `ios-build-45` do GitHub; cópia em `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.19.1-build45.ipa` (SHA-256 conferido). Falta instalar (você) |
-| Funções do Anilha | `analise-treino` v3, `revisao-ficha` v1, `troca-crunning` v2, `agente` (sem mudança) | Supabase, projeto `ssuuvzgqtobnfvobvjcu` |
-| Banco do Anilha | migração 22, `analysis_sync` (só aditiva) | Supabase |
-| CRUNNING | 0.21.0, build 57 (`53e0ca3`) | `C:\Users\caiog\crunning-artifacts\ipa`. Falta instalar (você) |
+| Anilha, site | `main` em 13/11 | https://anilha-eight.vercel.app (Vercel publica a cada push na `main`) |
+| Anilha, iPhone | 0.20.0, build 47 | Release `ios-build-47` do GitHub; cópia em `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.20.0-build47.ipa` (versão e esquema `anilha://` conferidos no Info.plist). Falta instalar (você) |
+| Funções do Anilha | `analise-treino` v3, `revisao-ficha` v1, `troca-crunning` v4 (publicada pelo painel, idêntica ao repositório), `agente` (sem mudança) | Supabase, projeto `ssuuvzgqtobnfvobvjcu` |
+| Banco do Anilha | migração 24 (`crunning_exchange` com corridas planejadas e detalhe da força) | Supabase |
+| CRUNNING | 0.22.0, build 59 (`5724738`) | `C:\Users\caiog\crunning-artifacts\ipa\CRUNNING-build-59.ipa`. Falta instalar (você) |
 
 Backup da `main` anterior: tag `backup-main-antes-ios-2026-11-12` (`abc2b1e`). A publicação anterior da Vercel era `anilha-96av088my`.
 
@@ -74,7 +74,7 @@ O que só o iPhone de verdade comprova está em `docs/ROTEIRO_TESTE_IPHONE.md`.
 
 ## Depende do Caio
 
-- **Instalar o iPhone 0.19.1 e o CRUNNING 0.21.0 (E4, Apple ID gratuito):** os apps vencem 7 dias depois de cada instalação. Abrir o Sideloadly no PC, ligar o iPhone no cabo, escolher `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.19.1-build45.ipa` (e depois o `.ipa` mais recente em `C:\Users\caiog\crunning-artifacts\ipa` para o CRUNNING), entrar com o mesmo Apple ID e instalar por cima. Os dados ficam.
+- **Instalar o iPhone 0.20.0 e o CRUNNING 0.22.0 (E4, Apple ID gratuito):** os apps vencem 7 dias depois de cada instalação. Abrir o Sideloadly no PC, ligar o iPhone no cabo, escolher `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.20.0-build47.ipa` (e depois `C:\Users\caiog\crunning-artifacts\ipa\CRUNNING-build-59.ipa`), entrar com o mesmo Apple ID e instalar por cima. Os dados ficam.
 - **D14, teste no iPhone:** seguir `docs/ROTEIRO_TESTE_IPHONE.md` (blocos independentes) e contar o que não bateu, com print.
 - **E1, teste da força no CRUNNING:** seguir a seção "Força do Anilha" de `crunning-app/docs/TESTES-NA-RUA.md`.
 - **C11:** no site, Histórico > "1 corrida parece repetida" > Revisar, e decidir se junta a do dia 11.
