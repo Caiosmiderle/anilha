@@ -164,6 +164,112 @@ describe('CRUNNING no motor', () => {
     expect(response.planejadas[0]).toMatchObject({ data_local: '2026-11-09', status: 'pulado' });
     expect(response.planejadas.length).toBe(14);
   });
+  it('força leva o detalhe do treino feito e da ficha prevista, com link para o Anilha', () => {
+    const set = (id: string, exercise: string, item: string, position: number, extra = {}) => ({
+      session_id: 's1',
+      item_id: item,
+      exercise_id: exercise,
+      position,
+      kind: 'work' as const,
+      load_kg: 40,
+      reps: 10,
+      seconds: null,
+      completed_at: 1000 + position,
+      deleted: false,
+      ...extra,
+      id,
+    });
+    const data: StrengthSnapshot = {
+      cursor: '2',
+      today: '2026-11-09',
+      changed: ['s1', 'gone'],
+      sessions: [
+        {
+          id: 's1',
+          updated_at: 5,
+          deleted: false,
+          local_date: '2026-11-09',
+          started_at: 0,
+          ended_at: 3_600_000,
+          status: 'done',
+          title: 'Ficha fictícia',
+          split_key: 'perna',
+        },
+        {
+          id: 'gone',
+          updated_at: 6,
+          deleted: true,
+          local_date: '2026-11-08',
+          started_at: 0,
+          ended_at: null,
+          status: 'done',
+          title: 'Apagado',
+          split_key: null,
+        },
+      ],
+      sets: [
+        set('a', 'agachamento-livre', 'i2', 1, { kind: 'warmup', load_kg: 20 }),
+        set('b', 'agachamento-livre', 'i2', 2),
+        set('c', 'prancha', 'i1', 1, { load_kg: null, reps: null, seconds: 45 }),
+        set('d', 'prancha', 'i1', 2, { completed_at: null }),
+        set('e', 'prancha', 'i1', 3, { deleted: true }),
+        set('f', 'custom-1', 'i3', 1),
+      ],
+      session_items: [
+        { id: 'i1', session_id: 's1', position: 0, deleted: false },
+        { id: 'i2', session_id: 's1', position: 1, deleted: false },
+        { id: 'i3', session_id: 's1', position: 2, deleted: false },
+      ],
+      exercises: [
+        {
+          id: 'custom-1',
+          name: 'Exercício inventado',
+          primary_group: 'core',
+          secondary_groups: [],
+          muscles: [],
+        },
+      ],
+      plans: [input.plan],
+      routines: fixture.routines,
+      routine_items: fixture.routineItems,
+      overrides: [],
+    };
+    const response = strengthResponse(data, true);
+    expect(deployedStrength(data, true)).toEqual(response);
+    const done = response.feitas.find((f) => f.origem_id === 's1')!;
+    expect(done.link).toBe('anilha://treino/s1');
+    expect(done.exercicios.map((e) => e.nome)).toEqual([
+      'Prancha',
+      'Agachamento livre com barra',
+      'Exercício inventado',
+    ]);
+    expect(done.exercicios[0]!.series).toEqual([
+      { tipo: 'trabalho', carga_kg: null, reps: null, segundos: 45 },
+    ]);
+    expect(done.exercicios[1]).toMatchObject({
+      grupo: 'pernas',
+      series: [
+        { tipo: 'aquecimento', carga_kg: 20, reps: 10, segundos: null },
+        { tipo: 'trabalho', carga_kg: 40, reps: 10, segundos: null },
+      ],
+    });
+    const gone = response.feitas.find((f) => f.origem_id === 'gone')!;
+    expect(gone).toMatchObject({ link: null, exercicios: [] });
+    const planned = response.planejadas[0]!;
+    const routine = fixture.routines.find((r) => r.id === planned.ficha_id)!;
+    expect(planned.link).toBe(`anilha://ficha/${routine.id}`);
+    const items = fixture.routineItems
+      .filter((i) => i.routine_id === routine.id)
+      .sort((a, b) => a.position - b.position);
+    expect(planned.exercicios).toHaveLength(items.length);
+    expect(planned.exercicios[0]).toMatchObject({
+      series: items[0]!.sets,
+      reps_min: items[0]!.target_min,
+      reps_max: items[0]!.target_max,
+    });
+    // Notes and effort never leave.
+    expect(JSON.stringify(response)).not.toMatch(/note|rir/);
+  });
   it('força prevista tira perna da véspera de corrida importante do CRUNNING', () => {
     const data: StrengthSnapshot = {
       cursor: '1',

@@ -19,6 +19,8 @@ struct AnilhaApp: App {
 private struct ContaRaiz: View {
     @State private var conta = ContaStore()
     @State private var linkAberto = false
+    @State private var linkFalhou: String?
+    @State private var fichaAberta: String?
     @State private var confirmarSaida = false
     @AppStorage(Aparencia.chave) private var aparencia = Aparencia.sistema.rawValue
     @Environment(\.scenePhase) private var fase
@@ -81,12 +83,23 @@ private struct ContaRaiz: View {
                 Task { await conta.atualizar() }
             }
         }
+        .sheet(item: Binding(get: { fichaAberta.map { SessaoApresentada(id: $0) } },
+                             set: { fichaAberta = $0?.id })) { ficha in
+            NavigationStack {
+                if let row = conta.dados.routines.first(where: { $0.id == ficha.id }) {
+                    FichaView(conta: conta, ficha: row)
+                }
+            }
+        }
         .onOpenURL { url in
             guard url.scheme == "anilha" else { return }
             // Never echo URL parameters: links can contain credentials or personal information.
-            linkAberto = true
+            abrir(LinkAnilha.ler(url))
         }
         .alert("Link do Anilha recebido", isPresented: $linkAberto) { Button("OK", role: .cancel) {} }
+        .alert("Não deu para abrir", isPresented: Binding(get: { linkFalhou != nil }, set: { if !$0 { linkFalhou = nil } })) {
+            Button("OK", role: .cancel) {}
+        } message: { Text(linkFalhou ?? "") }
         .confirmationDialog("Sair e apagar os dados baixados deste iPhone?", isPresented: $confirmarSaida,
                             titleVisibility: .visible) {
             Button("Sair e apagar dados locais", role: .destructive) { Task { await conta.sair() } }
@@ -101,3 +114,31 @@ private struct ContaRaiz: View {
 }
 
 private struct SessaoApresentada: Identifiable { let id: String }
+
+extension ContaRaiz {
+    /// Link do CRUNNING: abre o treino feito ou a ficha, se já estiverem neste iPhone.
+    fileprivate func abrir(_ link: LinkAnilha) {
+        guard conta.dono != nil else {
+            linkFalhou = "Entre na sua conta e toque no link de novo."
+            return
+        }
+        switch link {
+        case .treino(let id):
+            if conta.dados.active("sessions").contains(where: { $0.id == id }) {
+                fichaAberta = nil
+                conta.sessaoAberta = id
+            } else {
+                linkFalhou = "Esse treino ainda não está neste iPhone. Puxe para atualizar no Hoje e toque no link de novo."
+            }
+        case .ficha(let id):
+            if conta.dados.routines.contains(where: { $0.id == id }) {
+                conta.sessaoAberta = nil
+                fichaAberta = id
+            } else {
+                linkFalhou = "Essa ficha não está neste iPhone. Puxe para atualizar no Hoje e toque no link de novo."
+            }
+        case .outro:
+            linkAberto = true
+        }
+    }
+}
