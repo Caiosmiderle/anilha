@@ -7,7 +7,7 @@ Mantido pelo Claude, atualizado a cada item. Última atualização: 13/11/2026 (
 | App | Versão | Onde |
 | --- | --- | --- |
 | Anilha, site | `main` em `08ea80a` | https://anilha-eight.vercel.app (Vercel, publicação `index-BdVyF1ws.js`) |
-| Anilha, iPhone | 0.18.1, build 36 | Release `ios-build-36` do GitHub; cópia em `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.18.1-build36.ipa` (SHA-256 conferido). Falta instalar (você) |
+| Anilha, iPhone | 0.18.3, build 38 | Release `ios-build-38` do GitHub; cópia em `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.18.3-build38.ipa` (SHA-256 conferido). Falta instalar (você) |
 | Funções do Anilha | `analise-treino` v3, `revisao-ficha` v1, `troca-crunning` v2, `agente` (sem mudança) | Supabase, projeto `ssuuvzgqtobnfvobvjcu` |
 | Banco do Anilha | migração 22, `analysis_sync` (só aditiva) | Supabase |
 | CRUNNING | 0.21.0, build 57 (`53e0ca3`) | `C:\Users\caiog\crunning-artifacts\ipa`. Falta instalar (você) |
@@ -37,6 +37,8 @@ Backup da `main` anterior: tag `backup-main-antes-ios-2026-11-12` (`abc2b1e`). A
   - **Apagar treino no iPhone (0.17.1):** na tela do treino concluído, com confirmação; sessão, exercícios e séries viram lápide pela fila e os recordes são recalculados, como no site. Teste Swift no CI.
   - **Plano novo no iPhone (0.18.0, Codex, revisado):** mesmas perguntas do perfil, prévia e confirmação; o gerador é o mesmo código TypeScript do site, empacotado e executado pelo JavaScriptCore (paridade conferida no CI); só a montagem das linhas foi portada. Pedir plano pelo chat continua pendente (precisa de proposta, avisos e desfazer para todas as fichas).
   - **Mesa de descanso (0.18.1):** no modo claro o seletor e o botão de fechar ficavam sem contraste e "Dobrar" quebrava em tela pequena; corrigido e conferido nos prints do build 36.
+  - **Plano novo, Salvar à vista (0.18.2):** o botão ficava no fim da prévia com o nome "Gerar plano novo"; agora "Salvar plano novo" fica fixo embaixo, e depois de salvar a tela lista as fichas novas para a revisão do Waltér (decisão: revisão depois de salvar, onde já há Aplicar, Recusar e Desfazer).
+  - **Auditoria da interface (0.18.3):** `docs/AUDITORIA_INTERFACE_IPHONE.md`. Corrigidos os 6 itens P1 (plural, data crua, "Braços", cor da corrida, textos "PWA", "Reordenar"); P2 e P3 aguardam o Caio.
   - **CI:** os prints passaram do limite de 20 minutos com as telas novas; limite aumentado. Builds 35 e 36: todas as capturas feitas, nenhuma falha.
 
 ## Resultado dos testes automáticos
@@ -65,7 +67,7 @@ O que só o iPhone de verdade comprova está em `docs/ROTEIRO_TESTE_IPHONE.md`.
 
 ## Depende do Caio
 
-- **Instalar o iPhone 0.18.1 e o CRUNNING 0.21.0 (E4, Apple ID gratuito):** os apps vencem 7 dias depois de cada instalação. Abrir o Sideloadly no PC, ligar o iPhone no cabo, escolher `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.18.1-build36.ipa` (e depois o `.ipa` mais recente em `C:\Users\caiog\crunning-artifacts\ipa` para o CRUNNING), entrar com o mesmo Apple ID e instalar por cima. Os dados ficam.
+- **Instalar o iPhone 0.18.3 e o CRUNNING 0.21.0 (E4, Apple ID gratuito):** os apps vencem 7 dias depois de cada instalação. Abrir o Sideloadly no PC, ligar o iPhone no cabo, escolher `C:\Users\caiog\crunning-artifacts\anilha-ipa\Anilha-0.18.3-build38.ipa` (e depois o `.ipa` mais recente em `C:\Users\caiog\crunning-artifacts\ipa` para o CRUNNING), entrar com o mesmo Apple ID e instalar por cima. Os dados ficam.
 - **D14, teste no iPhone:** seguir `docs/ROTEIRO_TESTE_IPHONE.md` (blocos independentes) e contar o que não bateu, com print.
 - **E1, teste da força no CRUNNING:** seguir a seção "Força do Anilha" de `crunning-app/docs/TESTES-NA-RUA.md`.
 - **C11:** no site, Histórico > "1 corrida parece repetida" > Revisar, e decidir se junta a do dia 11.
