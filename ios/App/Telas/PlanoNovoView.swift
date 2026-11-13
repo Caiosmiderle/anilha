@@ -15,6 +15,7 @@ struct PlanoNovoView: View {
     @State private var erro: String?
     @State private var confirmar = false
     @State private var salvando = false
+    @State private var salvo = false
 
     private static let equipment = [("halteres", "Halteres"), ("barra", "Barra e anilhas"), ("polia", "Polias"), ("maquina", "Máquinas"), ("peso_corporal", "Peso corporal"), ("kettlebell", "Kettlebell"), ("barra_fixa", "Barra fixa")]
     private static let places: [String: [String]] = ["completa": equipment.map { $0.0 }, "pequena": ["halteres", "polia", "peso_corporal", "barra_fixa"], "casa": ["halteres", "peso_corporal"]]
@@ -35,22 +36,38 @@ struct PlanoNovoView: View {
     }
     var body: some View {
         List {
-            CabecalhoAnilha(titulo: "Plano novo", selo: preview == nil ? "Suas respostas" : "Antes de trocar", icone: "arrow.triangle.2.circlepath")
+            CabecalhoAnilha(titulo: salvo ? "Plano novo salvo" : "Plano novo", selo: salvo ? "Pronto" : preview == nil ? "Suas respostas" : "Antes de salvar", icone: salvo ? "checkmark.circle" : "arrow.triangle.2.circlepath")
                 .listRowBackground(Color.clear).listRowSeparator(.hidden)
-            if let preview { revisao(preview) }
+            if salvo { depoisDeSalvar }
+            else if let preview { revisao(preview) }
             else { perguntas }
             if let erro { Section { Text(erro).foregroundStyle(Tema.perigo).accessibilityIdentifier("plano-novo-erro") } }
         }
         .scrollContentBackground(.hidden).background { FundoAnilha() }
         .navigationTitle("Plano novo").navigationBarTitleDisplayMode(.inline)
         .disabled(salvando)
-        .confirmationDialog("Gerar plano novo?", isPresented: $confirmar, titleVisibility: .visible) {
-            Button("Gerar plano novo") { salvar() }
+        // Save stays in view while the preview scrolls (it used to sit after every ficha and reason).
+        .safeAreaInset(edge: .bottom) {
+            if preview != nil && !salvo {
+                VStack(spacing: 8) {
+                    Button { confirmar = true } label: {
+                        Label("Salvar plano novo", systemImage: "checkmark").frame(maxWidth: .infinity, minHeight: 50)
+                    }
+                    .buttonStyle(.principalAnilha).controlSize(.large)
+                    .accessibilityIdentifier("plano-novo-salvar")
+                    Button("Voltar às respostas") { preview = nil; erro = nil }.frame(minHeight: 44)
+                }
+                .padding(.horizontal, 16).padding(.vertical, 10)
+                .background(.bar)
+            }
+        }
+        .confirmationDialog("Salvar este plano novo?", isPresented: $confirmar, titleVisibility: .visible) {
+            Button("Salvar plano novo") { salvar() }
             Button("Cancelar", role: .cancel) { }
         } message: {
             Text("Só as fichas de origem plano serão trocadas. Suas outras fichas e os treinos já feitos ficam no histórico. O plano novo começa hoje.")
         }
-        .onChange(of: params) { _, _ in preview = nil; erro = nil }
+        .onChange(of: params) { _, _ in if !salvo { preview = nil; erro = nil } }
         .onChange(of: conta.saudePermitida) { _, allowed in
             if !allowed { params.fields["spare_joints"] = .array([]) }
             preview = nil; confirmar = false
@@ -117,7 +134,7 @@ struct PlanoNovoView: View {
             Section { Text("Para poupar articulações, permita dados de saúde em Você > Privacidade.").font(.footnote).foregroundStyle(Tema.tintaSuave) }
         }
         Section {
-            Button("Revisar plano novo") { revisar() }.buttonStyle(.principalAnilha).frame(minHeight: 44)
+            Button("Ver prévia do plano") { revisar() }.buttonStyle(.principalAnilha).frame(minHeight: 44)
                 .disabled(conta.dados.active("profiles").isEmpty)
         }
     }
@@ -215,10 +232,32 @@ struct PlanoNovoView: View {
             ForEach(Array(Self.strings(plan, "reasons").enumerated()), id: \.offset) { _, reason in Text(reason).font(.subheadline) }
         }
         Section {
-            Text("Só as fichas do plano são trocadas. Suas fichas próprias e os treinos já feitos ficam.")
-            Button("Gerar plano novo") { confirmar = true }.buttonStyle(.principalAnilha).frame(minHeight: 44)
-            Button("Voltar às respostas") { preview = nil; erro = nil }.frame(minHeight: 44)
+            Text("Nada muda até você tocar em Salvar plano novo. Só as fichas do plano são trocadas; suas fichas próprias e os treinos já feitos ficam.")
+            if conta.admin {
+                Text("Depois de salvar, o Waltér pode revisar cada ficha nova. Cada ajuste dele só muda a ficha com Aplicar.").font(.footnote).foregroundStyle(Tema.tintaSuave)
+            }
         } footer: { Text("Com as mesmas respostas, o plano pode ser igual ao anterior. Ele segue suas preferências, sem sorteio.") }
+    }
+    /// After saving: the plan's new fichas, each one with the Waltér review (FichaView, admin).
+    @ViewBuilder private var depoisDeSalvar: some View {
+        let novas = conta.dados.routines.filter { $0.string("origin") == "plano" }
+        Section {
+            Text("O plano novo já está nas suas fichas e vai para o site na próxima sincronização.")
+            if conta.admin {
+                Text("Quer a opinião do Waltér? Abra uma ficha e toque em revisar. Ele propõe até três ajustes e nada muda sem Aplicar.").font(.footnote).foregroundStyle(Tema.tintaSuave)
+            }
+        }
+        Section(conta.admin ? "Revisar com o Waltér" : "Fichas do plano") {
+            ForEach(novas) { ficha in
+                NavigationLink { FichaView(conta: conta, ficha: ficha) } label: {
+                    Label(ficha.string("name") ?? "Ficha", systemImage: conta.admin ? "sparkles" : "list.bullet")
+                }
+                .frame(minHeight: 44)
+            }
+        }
+        Section {
+            Button("Concluir") { dismiss() }.buttonStyle(.principalAnilha).frame(minHeight: 44)
+        }
     }
     private func nomeDia(_ day: ReadRow) -> String {
         switch day.string("kind") {
@@ -242,7 +281,7 @@ struct PlanoNovoView: View {
         defer { salvando = false }
         do {
             try conta.adotarPlano(preview, params: reviewed, baseline: baseline, today: today)
-            dismiss()
+            salvo = true
         } catch { self.preview = nil; erro = error.localizedDescription }
     }
     private func escolha(_ title: String, _ key: String, _ options: [(String, String)]) -> some View {
