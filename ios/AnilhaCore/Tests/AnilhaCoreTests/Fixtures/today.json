@@ -3003,7 +3003,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -3146,7 +3146,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -3395,7 +3395,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -3529,12 +3529,12 @@
             "superset": null
           }
         ],
-        "summary": "30 min: ficam os 3 principais, na mesma ordem. Saem tríceps na polia com corda, agachamento livre com barra, prancha e rosca-direta-barra.",
+        "summary": "30 min: ficam os 3 principais, na mesma ordem. Saem tríceps na polia com corda, agachamento livre com barra, prancha e rosca direta com barra.",
         "descriptions": [
           "Sai Tríceps na polia com corda",
           "Sai Agachamento livre com barra",
           "Sai Prancha",
-          "Sai rosca-direta-barra"
+          "Sai Rosca direta com barra"
         ]
       }
     },
@@ -3774,7 +3774,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -3926,10 +3926,10 @@
             "superset": null
           }
         ],
-        "summary": "45 min: ficam os 5 principais, na mesma ordem. Saem prancha e rosca-direta-barra.",
+        "summary": "45 min: ficam os 5 principais, na mesma ordem. Saem prancha e rosca direta com barra.",
         "descriptions": [
           "Sai Prancha",
-          "Sai rosca-direta-barra"
+          "Sai Rosca direta com barra"
         ]
       }
     },
@@ -4169,7 +4169,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -4330,9 +4330,9 @@
             "superset": null
           }
         ],
-        "summary": "60 min: ficam os 6 principais, na mesma ordem. Saem rosca-direta-barra.",
+        "summary": "60 min: ficam os 6 principais, na mesma ordem. Saem rosca direta com barra.",
         "descriptions": [
-          "Sai rosca-direta-barra"
+          "Sai Rosca direta com barra"
         ]
       }
     },
@@ -4572,7 +4572,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -4727,7 +4727,7 @@
           "Sai Tríceps na polia com corda",
           "Sai Agachamento livre com barra",
           "Sai Prancha",
-          "Sai rosca-direta-barra",
+          "Sai Rosca direta com barra",
           "Entra Barra fixa",
           "Entra Hiperextensão lombar",
           "Entra Pulldown com braços estendidos",
@@ -4971,7 +4971,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -5126,7 +5126,7 @@
           "Sai Remada baixa na polia",
           "Sai Agachamento livre com barra",
           "Sai Prancha",
-          "Sai rosca-direta-barra",
+          "Sai Rosca direta com barra",
           "Entra Crossover na polia",
           "Entra Crucifixo com halteres",
           "Entra Crucifixo na máquina"
@@ -5369,7 +5369,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -5540,7 +5540,7 @@
           "Sai Tríceps na polia com corda",
           "Sai Remada baixa na polia",
           "Sai Prancha",
-          "Sai rosca-direta-barra",
+          "Sai Rosca direta com barra",
           "Entra Afundo com halteres",
           "Entra Elevação pélvica com barra",
           "Entra Cadeira abdutora",
@@ -5786,7 +5786,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -5957,7 +5957,7 @@
           "Sai Remada baixa na polia",
           "Sai Agachamento livre com barra",
           "Sai Prancha",
-          "Sai rosca-direta-barra",
+          "Sai Rosca direta com barra",
           "Entra Desenvolvimento Arnold",
           "Entra Crucifixo inverso com halteres",
           "Entra Elevação frontal com halteres",
@@ -6204,7 +6204,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -6319,6 +6319,14 @@
             "warmup_sets": 0
           },
           {
+            "exercise_id": "supino-fechado",
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 120,
+            "warmup_sets": 0
+          },
+          {
             "exercise_id": "triceps-corda",
             "sets": 3,
             "target_min": 8,
@@ -6326,6 +6334,23 @@
             "rest_sec": 90,
             "warmup_sets": 0,
             "superset": "par"
+          },
+          {
+            "exercise_id": "rosca-direta",
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "rest_sec": 90,
+            "warmup_sets": 0,
+            "superset": null
+          },
+          {
+            "exercise_id": "mergulho-banco",
+            "sets": 3,
+            "target_min": 10,
+            "target_max": 15,
+            "rest_sec": 90,
+            "warmup_sets": 0
           },
           {
             "exercise_id": "rosca-alternada",
@@ -6342,30 +6367,6 @@
             "target_max": 15,
             "rest_sec": 90,
             "warmup_sets": 0
-          },
-          {
-            "exercise_id": "rosca-concentrada",
-            "sets": 3,
-            "target_min": 10,
-            "target_max": 15,
-            "rest_sec": 90,
-            "warmup_sets": 0
-          },
-          {
-            "exercise_id": "rosca-direta",
-            "sets": 3,
-            "target_min": 10,
-            "target_max": 15,
-            "rest_sec": 90,
-            "warmup_sets": 0
-          },
-          {
-            "exercise_id": "rosca-inclinada",
-            "sets": 3,
-            "target_min": 10,
-            "target_max": 15,
-            "rest_sec": 90,
-            "warmup_sets": 0
           }
         ],
         "summary": "Foco em braços: 7 exercícios.",
@@ -6375,13 +6376,11 @@
           "Sai Remada baixa na polia",
           "Sai Agachamento livre com barra",
           "Sai Prancha",
-          "Sai rosca-direta-barra",
           "Entra Paralelas",
+          "Entra Supino fechado",
+          "Entra Mergulho no banco",
           "Entra Rosca alternada com halteres",
-          "Entra Rosca com barra W",
-          "Entra Rosca concentrada",
-          "Entra Rosca direta com barra",
-          "Entra Rosca inclinada com halteres"
+          "Entra Rosca com barra W"
         ]
       }
     },
@@ -6621,7 +6620,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -6784,7 +6783,7 @@
           "Sai Tríceps na polia com corda",
           "Sai Remada baixa na polia",
           "Sai Agachamento livre com barra",
-          "Sai rosca-direta-barra",
+          "Sai Rosca direta com barra",
           "Entra Abdominal bicicleta",
           "Entra Abdominal infra",
           "Entra Abdominal na máquina",
@@ -7029,7 +7028,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -7190,7 +7189,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -7441,7 +7440,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -7602,7 +7601,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-alternada",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -7611,10 +7610,11 @@
             "superset": null
           }
         ],
-        "summary": "Sem barra e anilhas: 2 mudanças.",
+        "summary": "Sem barra e anilhas: 3 mudanças.",
         "descriptions": [
           "Supino reto com barra vira Supino inclinado na máquina",
-          "Agachamento livre com barra vira Agachamento goblet"
+          "Agachamento livre com barra vira Agachamento goblet",
+          "Rosca direta com barra vira Rosca alternada com halteres"
         ]
       }
     },
@@ -7854,7 +7854,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -8015,7 +8015,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -8267,7 +8267,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -8428,7 +8428,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -8677,7 +8677,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -8838,7 +8838,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -9087,7 +9087,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -9248,7 +9248,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -9497,7 +9497,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -9640,7 +9640,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -9893,7 +9893,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -10043,23 +10043,15 @@
             "rest_sec": 90,
             "warmup_sets": 0,
             "superset": null
-          },
-          {
-            "exercise_id": "rosca-direta-barra",
-            "sets": 3,
-            "target_min": 8,
-            "target_max": 12,
-            "rest_sec": 90,
-            "warmup_sets": 0,
-            "superset": null
           }
         ],
-        "summary": "Poupando o cotovelo: 4 mudanças.",
+        "summary": "Poupando o cotovelo: 5 mudanças.",
         "descriptions": [
           "Supino reto com barra vira Flexão de braços",
           "Supino inclinado com halteres vira Crossover na polia",
           "Sai Tríceps na polia com corda",
-          "Remada baixa na polia vira Remada cavalinho"
+          "Remada baixa na polia vira Remada cavalinho",
+          "Sai Rosca direta com barra"
         ]
       }
     },
@@ -10299,7 +10291,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -10451,7 +10443,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -10702,7 +10694,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -10863,7 +10855,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -11114,7 +11106,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -11275,7 +11267,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-alternada",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -11284,9 +11276,10 @@
             "superset": null
           }
         ],
-        "summary": "Poupando o punho: 1 mudança.",
+        "summary": "Poupando o punho: 2 mudanças.",
         "descriptions": [
-          "Supino reto com barra vira Supino inclinado na máquina"
+          "Supino reto com barra vira Supino inclinado na máquina",
+          "Rosca direta com barra vira Rosca alternada com halteres"
         ]
       }
     },
@@ -11526,7 +11519,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -11861,7 +11854,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -12196,7 +12189,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -12349,7 +12342,7 @@
             "superset": null
           },
           {
-            "exercise_id": "rosca-direta-barra",
+            "exercise_id": "rosca-direta",
             "sets": 3,
             "target_min": 8,
             "target_max": 12,
@@ -12779,7 +12772,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -13096,7 +13089,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -13219,7 +13212,7 @@
           "Sai Tríceps na polia com corda",
           "Sai Remada baixa na polia",
           "Sai Prancha",
-          "Sai rosca-direta-barra"
+          "Sai Rosca direta com barra"
         ]
       }
     },
@@ -13481,7 +13474,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -13846,7 +13839,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -14241,7 +14234,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -14607,7 +14600,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -14996,7 +14989,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -15380,7 +15373,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -15806,7 +15799,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -16166,7 +16159,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -16526,7 +16519,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -16864,7 +16857,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -17206,7 +17199,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -17571,7 +17564,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -17956,7 +17949,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -18316,7 +18309,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -18817,7 +18810,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -19160,7 +19153,7 @@
               "deleted": false,
               "id": "item-6",
               "routine_id": "plan-ficha",
-              "exercise_id": "rosca-direta-barra",
+              "exercise_id": "rosca-direta",
               "position": 6,
               "sets": 3,
               "target_min": 8,
@@ -19383,7 +19376,7 @@
           "Sai Tríceps na polia com corda",
           "Sai Agachamento livre com barra",
           "Sai Prancha",
-          "Sai rosca-direta-barra",
+          "Sai Rosca direta com barra",
           "Entra Barra fixa",
           "Entra Hiperextensão lombar",
           "Entra Pulldown com braços estendidos",

@@ -80,7 +80,7 @@ export async function todayArtifacts() {
       'remada-baixa',
       'agachamento-livre',
       'prancha',
-      'rosca-direta-barra',
+      'rosca-direta',
     ];
     const items = ids.map((exercise_id, position) => ({
       ...sync,
