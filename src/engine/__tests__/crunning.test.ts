@@ -57,7 +57,15 @@ describe('CRUNNING no motor', () => {
     expect(crunningDuplicates([run, { ...overlapping, distance_km: 10.50001 }])).toEqual([]);
     expect(crunningDuplicates([run, { ...imported, deleted: true }])).toEqual([]);
     expect(crunningDuplicates([run, { ...imported, activity: 'bike' }])).toEqual([]);
-    expect(crunningDuplicates([run, { ...imported, source: 'manual' }])).toEqual([]);
+    // Registered by hand: same day and distance within 5%, no start time needed.
+    const manual = { ...imported, source: 'manual' as const, started_at: null, strava_id: null };
+    expect(
+      crunningDuplicates([run, { ...manual, distance_km: run.distance_km! * 1.05 }])[0]?.reason,
+    ).toBe('manual_day');
+    expect(crunningDuplicates([run, { ...manual, distance_km: run.distance_km! * 1.06 }])).toEqual(
+      [],
+    );
+    expect(crunningDuplicates([run, { ...manual, local_date: '2000-01-01' }])).toEqual([]);
     expect(imported.deleted).toBe(false);
   });
   it('reconhece horário de TCX/GPX antigo no external_id, sem inventar hora do CSV', () => {

@@ -21,14 +21,20 @@ import { Button, Empty, ErrorText, LoadingCard, Widget } from '../ui/primitives'
 const REASON = {
   strava: 'Mesmo registro do Strava',
   time_distance: 'Começaram com até 5 minutos de diferença e a distância bate',
+  manual_day: 'Registrada à mão no mesmo dia, com distância parecida',
 } as const;
 
 function useMeta<T>(key: string, fallback: T): T {
   const { db } = useAccount();
-  return useLiveQuery(async () => ((await db.meta.get(key))?.value as T | undefined) ?? fallback, [db, key]) ?? fallback;
+  return (
+    useLiveQuery(
+      async () => ((await db.meta.get(key))?.value as T | undefined) ?? fallback,
+      [db, key],
+    ) ?? fallback
+  );
 }
 
-/** Corridas que chegaram duas vezes: pelo CRUNNING e por importação de arquivo. */
+/** Corridas que chegaram duas vezes: pelo CRUNNING e por arquivo importado ou registro à mão. */
 export function useDuplicateRuns(): PendingDuplicate[] | undefined {
   const runs = useRuns();
   const dismissed = useMeta<string[]>(DISMISSED_KEY, []);
@@ -36,14 +42,19 @@ export function useDuplicateRuns(): PendingDuplicate[] | undefined {
 }
 
 const day = (d: string) =>
-  new Date(`${d}T12:00:00`).toLocaleDateString('pt-BR', { weekday: 'short', day: 'numeric', month: 'short' });
+  new Date(`${d}T12:00:00`).toLocaleDateString('pt-BR', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+  });
 
 function RunLine({ run, label }: { run: RunRow; label: string }) {
   return (
     <div className="dup-run">
       <span className="dup-run-label">{label}</span>
       <strong>
-        {run.distance_km != null ? `${fmtNum(run.distance_km, 2)} km` : 'Sem distância'} · {fmtDuration(run.duration_sec)}
+        {run.distance_km != null ? `${fmtNum(run.distance_km, 2)} km` : 'Sem distância'} ·{' '}
+        {fmtDuration(run.duration_sec)}
       </strong>
       <span className="dup-run-meta">
         {day(run.local_date)}
@@ -80,8 +91,8 @@ export default function DuplicateRuns() {
         <div>
           <h1 className="page-title">Corridas repetidas</h1>
           <p className="page-sub">
-            A mesma corrida chegou pelo CRUNNING e por um arquivo importado. Juntar mantém a do CRUNNING;
-            a importada guarda uma cópia e pode voltar com Desfazer.
+            A mesma corrida chegou pelo CRUNNING e também por arquivo importado ou registro à mão.
+            Juntar mantém a do CRUNNING; a outra guarda uma cópia e pode voltar com Desfazer.
           </p>
           <Link to="/historico" className="hb-btn-link">
             Voltar ao histórico
@@ -92,7 +103,7 @@ export default function DuplicateRuns() {
       {lastMerged ? (
         <Widget headless className="dup-toast">
           <div className="dup-toast-row" role="status">
-            <span>Juntadas. A importada ficou guardada.</span>
+            <span>Juntadas. A outra ficou guardada.</span>
             <Button
               variant="ghost"
               icon={Undo2}
@@ -118,10 +129,15 @@ export default function DuplicateRuns() {
           <Widget key={p.key} title={day(p.canonical.local_date)} sub={REASON[p.reason]}>
             <div className="dup-pair">
               <RunLine run={p.canonical} label="Fica (CRUNNING)" />
-              <RunLine run={p.imported} label="Sai (importada)" />
+              <RunLine
+                run={p.imported}
+                label={
+                  p.imported.source === 'manual' ? 'Sai (registrada à mão)' : 'Sai (importada)'
+                }
+              />
             </div>
             {!p.canonical.note && p.imported.note ? (
-              <p className="dup-note">A nota da importada passa para a do CRUNNING.</p>
+              <p className="dup-note">A nota da outra passa para a do CRUNNING.</p>
             ) : null}
             <div className="dup-actions">
               <Button
@@ -136,7 +152,11 @@ export default function DuplicateRuns() {
               >
                 Juntar
               </Button>
-              <Button variant="outline" disabled={busy !== null} onClick={() => act(p.key, () => dismissDuplicate(p.key))}>
+              <Button
+                variant="outline"
+                disabled={busy !== null}
+                onClick={() => act(p.key, () => dismissDuplicate(p.key))}
+              >
                 Não é repetida
               </Button>
             </div>
@@ -144,13 +164,18 @@ export default function DuplicateRuns() {
         ))
       )}
       {merges.length > 0 ? (
-        <Widget title="Juntadas neste aparelho" sub="Cada uma guarda a cópia da importada e pode voltar">
+        <Widget
+          title="Juntadas neste aparelho"
+          sub="Cada uma guarda a cópia da outra e pode voltar"
+        >
           <ul className="dup-merged">
             {merges.map((m) => (
               <li key={m.id}>
                 <span>
                   {day(m.imported.local_date)} ·{' '}
-                  {m.imported.distance_km != null ? `${fmtNum(m.imported.distance_km, 2)} km` : 'sem distância'}
+                  {m.imported.distance_km != null
+                    ? `${fmtNum(m.imported.distance_km, 2)} km`
+                    : 'sem distância'}
                 </span>
                 <Button
                   variant="ghost"

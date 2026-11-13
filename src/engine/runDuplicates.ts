@@ -2,7 +2,7 @@ import type { RunRow } from './types';
 interface Duplicate {
   canonical: RunRow;
   imported: RunRow;
-  reason: 'strava' | 'time_distance';
+  reason: 'strava' | 'time_distance' | 'manual_day';
 }
 
 /** Suggestions only. CRUNNING is canonical; never mutate or silently hide an import. */
@@ -14,8 +14,17 @@ export function crunningDuplicates(runs: RunRow[]): Duplicate[] {
     .filter((r) => r.source === 'crunning')
     .flatMap((canonical) =>
       live
-        .filter((r) => r.source === 'import')
+        .filter((r) => r.source === 'import' || r.source === 'manual')
         .flatMap<Duplicate>((imported) => {
+          const close = (a: number, b: number) => Math.abs(a - b) / a <= 0.05 + Number.EPSILON;
+          // Registered by hand has no start time: same day and distance within 5%.
+          if (imported.source === 'manual')
+            return canonical.local_date === imported.local_date &&
+              canonical.distance_km &&
+              imported.distance_km &&
+              close(canonical.distance_km, imported.distance_km)
+              ? [{ canonical, imported, reason: 'manual_day' as const }]
+              : [];
           if (canonical.strava_id && canonical.strava_id === imported.strava_id)
             return [{ canonical, imported, reason: 'strava' as const }];
           if (

@@ -21,20 +21,23 @@ export interface MergeRecord {
   imported: RunRow;
   /** Campos da importada copiados para a canônica porque ela não tinha. */
   copied: ('note' | 'rpe')[];
-  reason: 'strava' | 'time_distance';
+  reason: 'strava' | 'time_distance' | 'manual_day';
 }
 
 export interface PendingDuplicate {
   key: string;
   canonical: RunRow;
   imported: RunRow;
-  reason: 'strava' | 'time_distance';
+  reason: 'strava' | 'time_distance' | 'manual_day';
 }
 
 export const pairKey = (canonicalId: string, importedId: string) => `${canonicalId}|${importedId}`;
 
 /** Pares a mostrar: sem os dispensados e com cada importada uma vez só. */
-export function pendingDuplicates(runs: RunRow[], dismissed: readonly string[]): PendingDuplicate[] {
+export function pendingDuplicates(
+  runs: RunRow[],
+  dismissed: readonly string[],
+): PendingDuplicate[] {
   const seen = new Set<string>();
   const out: PendingDuplicate[] = [];
   for (const d of crunningDuplicates(runs)) {

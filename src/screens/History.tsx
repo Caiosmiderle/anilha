@@ -107,7 +107,7 @@ export default function History() {
   );
 }
 
-/** Aviso só quando a mesma corrida chegou pelo CRUNNING e por arquivo importado. */
+/** Aviso só quando a mesma corrida chegou pelo CRUNNING e também por arquivo ou registro à mão. */
 function DuplicateNotice() {
   const pairs = useDuplicateRuns();
   if (!pairs?.length) return null;
@@ -116,8 +116,8 @@ function DuplicateNotice() {
       <div className="dup-toast-row">
         <span>
           {pairs.length === 1
-            ? '1 corrida parece repetida (CRUNNING e importação).'
-            : `${pairs.length} corridas parecem repetidas (CRUNNING e importação).`}
+            ? '1 corrida parece repetida (CRUNNING e outro registro).'
+            : `${pairs.length} corridas parecem repetidas (CRUNNING e outro registro).`}
         </span>
         <Link to="/historico/repetidas" className="hb-btn hb-btn-outline">
           Revisar
