@@ -206,7 +206,8 @@ jobs:
   prints:
     needs: build
     runs-on: macos-latest
-    timeout-minutes: 30
+    # About 33 screens in light and dark plus the small iPhone: 20 minutes stopped being enough.
+    timeout-minutes: 55
     steps:
       - name: Baixar o código
         uses: actions/checkout@v6
@@ -238,7 +239,7 @@ jobs:
       - name: Capturar SwiftUI no simulador em claro e escuro
         id: screenshots
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 45
         env:
           CAPTURA_TAMANHOS: ${{ inputs.prints_letra_grande && 'large accessibility3' || 'large' }}
         run: bash scripts/capture-screenshots.sh
