@@ -6,10 +6,24 @@ import {
   parseReviewReply,
   validReviewContext,
 } from './contract.generated.ts';
-import type { AnalysisDependencies } from '../analise-treino/core.ts';
-
-export interface ReviewDependencies extends AnalysisDependencies {
+// Same shape as AnalysisDependencies in analise-treino; kept here because a deployed function
+// only carries its own folder.
+export interface ReviewDependencies {
   authorize(auth: string): Promise<{ status?: number; error?: string }>;
+  /** Both RPCs run with the caller JWT, never a service key. */
+  begin(auth: string): Promise<{ status?: number; error?: string }>;
+  end(auth: string, input: number, output: number): Promise<void>;
+  model(
+    system: string,
+    tool: unknown,
+    context: unknown,
+  ): Promise<{
+    content: { type: string; name?: string; input?: unknown }[];
+    input: number;
+    output: number;
+    stop: string;
+    model?: string;
+  }>;
 }
 const CORS = {
   'access-control-allow-origin': '*',
