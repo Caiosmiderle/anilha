@@ -125,7 +125,7 @@ func textoSugestao(_ kind: String) -> String {
 /// effort, or delete the set. Records and the exercise status are recalculated.
 struct CorrigirSerie: View {
     let conta: ContaStore
-    let set: ReadRow
+    let serie: ReadRow
     let measure: String
     @Environment(\.dismiss) private var dismiss
     @State private var carga: Double
@@ -134,19 +134,19 @@ struct CorrigirSerie: View {
     @State private var confirmarApagar = false
     private var lb: Bool { conta.dados.active("profiles").first?.string("unit") == "lb" }
     private var tempo: Bool { measure == "time" }
-    private var trabalho: Bool { set.string("kind") == "work" }
+    private var trabalho: Bool { serie.string("kind") == "work" }
 
-    init(conta: ContaStore, set: ReadRow, measure: String) {
-        self.conta = conta; self.set = set; self.measure = measure
+    init(conta: ContaStore, set serie: ReadRow, measure: String) {
+        self.conta = conta; self.serie = serie; self.measure = measure
         let lb = conta.dados.active("profiles").first?.string("unit") == "lb"
-        _carga = State(initialValue: (set.number("load_kg") ?? 0) * (lb ? Progression.lbPerKg : 1))
-        _valor = State(initialValue: Int(set.number(measure == "time" ? "seconds" : "reps") ?? 0))
-        _rir = State(initialValue: Int(set.number("rir") ?? -1))
+        _carga = State(initialValue: (serie.number("load_kg") ?? 0) * (lb ? Progression.lbPerKg : 1))
+        _valor = State(initialValue: Int(serie.number(measure == "time" ? "seconds" : "reps") ?? 0))
+        _rir = State(initialValue: Int(serie.number("rir") ?? -1))
     }
     var body: some View {
         NavigationStack {
             Form {
-                if measure != "reps" && measure != "time" || (set.number("load_kg") ?? 0) > 0 {
+                if measure != "reps" && measure != "time" || (serie.number("load_kg") ?? 0) > 0 {
                     Section("Carga") {
                         HStack {
                             TextField("Carga", value: $carga, format: .number.precision(.fractionLength(0...2)))
@@ -183,14 +183,14 @@ struct CorrigirSerie: View {
     }
     private func salvar() {
         var values: [String: JSONValue] = [tempo ? "seconds" : "reps": .number(Double(valor))]
-        if set.number("load_kg") != nil || carga > 0 {
+        if serie.number("load_kg") != nil || carga > 0 {
             values["load_kg"] = .number(Progression.round(carga / (lb ? Progression.lbPerKg : 1) * 100) / 100)
         }
         if trabalho { values["rir"] = rir < 0 ? .null : .number(Double(rir)) }
         gravar(values)
     }
     private func gravar(_ values: [String: JSONValue]?) {
-        let changes = Workout.editFinishedSet(conta.dados, set: set.id, values: values, catalog: conta.catalogo)
+        let changes = Workout.editFinishedSet(conta.dados, set: serie.id, values: values, catalog: conta.catalogo)
         guard !changes.isEmpty, conta.gravar(changes) else { return }
         dismiss()
         Task { await conta.atualizar() }
