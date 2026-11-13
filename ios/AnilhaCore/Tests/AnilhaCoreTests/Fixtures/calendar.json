@@ -172,7 +172,7 @@
         "today": true,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -183,12 +183,10 @@
             "id": "strength:2026-11-12",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
-        "warnings": [
-          "Corrida planejada no CRUNNING: Longão, amanhã (2026-11-13). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
-        ]
+        "warnings": []
       },
       {
         "date": "2026-11-13",
@@ -209,7 +207,7 @@
             "title": "Longão"
           },
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -220,7 +218,7 @@
             "id": "strength:2026-11-13",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -263,7 +261,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -274,7 +272,7 @@
             "id": "strength:2026-11-17",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -284,7 +282,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -295,7 +293,7 @@
             "id": "strength:2026-11-18",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -326,7 +324,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -337,7 +335,7 @@
             "id": "strength:2026-11-20",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -359,7 +357,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -370,7 +368,7 @@
             "id": "strength:2026-11-23",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -401,7 +399,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -412,7 +410,7 @@
             "id": "strength:2026-11-25",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -422,7 +420,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -433,7 +431,7 @@
             "id": "strength:2026-11-26",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -476,7 +474,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -487,7 +485,7 @@
             "id": "strength:2026-11-30",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -4299,7 +4297,7 @@
               "weekday": 4,
               "kind": "run",
               "split_key": null,
-              "run_type": "leve",
+              "run_type": "intervalado",
               "time": "06:00"
             }
           ],
@@ -4403,7 +4401,7 @@
           }
         ],
         "warnings": [
-          "Corrida amanhã cedo, então perna fica para outro dia."
+          "Corrida forte amanhã, então perna fica para outro dia."
         ]
       },
       {
@@ -4462,7 +4460,7 @@
           }
         ],
         "warnings": [
-          "Corrida amanhã cedo, então perna fica para outro dia."
+          "Corrida forte amanhã, então perna fica para outro dia."
         ]
       },
       {
@@ -4521,7 +4519,7 @@
           }
         ],
         "warnings": [
-          "Corrida amanhã cedo, então perna fica para outro dia."
+          "Corrida forte amanhã, então perna fica para outro dia."
         ]
       },
       {
@@ -4657,7 +4655,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4668,7 +4666,7 @@
             "id": "strength:2026-12-01",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -4699,7 +4697,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4710,7 +4708,7 @@
             "id": "strength:2026-12-03",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -4720,7 +4718,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4731,7 +4729,7 @@
             "id": "strength:2026-12-04",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -4774,7 +4772,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4785,7 +4783,7 @@
             "id": "strength:2026-12-08",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -4795,7 +4793,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4806,7 +4804,7 @@
             "id": "strength:2026-12-09",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -4837,7 +4835,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4848,7 +4846,7 @@
             "id": "strength:2026-12-11",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -4870,7 +4868,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4881,7 +4879,7 @@
             "id": "strength:2026-12-14",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -4912,7 +4910,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4923,7 +4921,7 @@
             "id": "strength:2026-12-16",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -4933,7 +4931,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4944,7 +4942,7 @@
             "id": "strength:2026-12-17",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -4987,7 +4985,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -4998,7 +4996,7 @@
             "id": "strength:2026-12-21",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -5008,7 +5006,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -5019,7 +5017,7 @@
             "id": "strength:2026-12-22",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -5050,7 +5048,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -5061,7 +5059,7 @@
             "id": "strength:2026-12-24",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -5071,7 +5069,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -5082,7 +5080,7 @@
             "id": "strength:2026-12-25",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -5125,7 +5123,7 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -5136,7 +5134,7 @@
             "id": "strength:2026-12-29",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -5146,7 +5144,7 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -5157,7 +5155,7 @@
             "id": "strength:2026-12-30",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []
@@ -6026,9 +6024,9 @@
         "today": true,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
-            "routineID": "generated",
+            "routineID": null,
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6037,12 +6035,10 @@
             "id": "strength:2026-11-12",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna do plano"
+            "title": "Costas e bíceps"
           }
         ],
-        "warnings": [
-          "Corrida planejada no CRUNNING: Longão, amanhã (2026-11-13). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
-        ]
+        "warnings": []
       },
       {
         "date": "2026-11-13",
@@ -6063,9 +6059,9 @@
             "title": "Longão"
           },
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
-            "routineID": null,
+            "routineID": "generated",
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6074,7 +6070,7 @@
             "id": "strength:2026-11-13",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna do plano"
           }
         ],
         "warnings": []
@@ -6117,9 +6113,9 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
-            "routineID": "generated",
+            "routineID": null,
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6128,7 +6124,7 @@
             "id": "strength:2026-11-17",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna do plano"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -6138,9 +6134,9 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
-            "routineID": null,
+            "routineID": "generated",
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6149,7 +6145,7 @@
             "id": "strength:2026-11-18",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna do plano"
           }
         ],
         "warnings": []
@@ -6180,9 +6176,9 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
-            "routineID": "generated",
+            "routineID": null,
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6191,7 +6187,7 @@
             "id": "strength:2026-11-20",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna do plano"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -6213,9 +6209,9 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
-            "routineID": null,
+            "routineID": "generated",
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6224,7 +6220,7 @@
             "id": "strength:2026-11-23",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna do plano"
           }
         ],
         "warnings": []
@@ -6255,9 +6251,9 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
-            "routineID": "generated",
+            "routineID": null,
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6266,7 +6262,7 @@
             "id": "strength:2026-11-25",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna do plano"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -6276,9 +6272,9 @@
         "today": false,
         "events": [
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
-            "routineID": null,
+            "routineID": "generated",
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6287,7 +6283,7 @@
             "id": "strength:2026-11-26",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna do plano"
           }
         ],
         "warnings": []
@@ -6330,9 +6326,9 @@
         "today": false,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
-            "routineID": "generated",
+            "routineID": null,
             "runID": null,
             "externalID": null,
             "runType": null,
@@ -6341,7 +6337,7 @@
             "id": "strength:2026-11-30",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna do plano"
+            "title": "Costas e bíceps"
           }
         ],
         "warnings": []
@@ -6657,7 +6653,7 @@
         "today": true,
         "events": [
           {
-            "split": "perna",
+            "split": "costas_biceps",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -6668,12 +6664,10 @@
             "id": "strength:2026-11-12",
             "kind": "strength",
             "status": "planned",
-            "title": "Perna"
+            "title": "Costas e bíceps"
           }
         ],
-        "warnings": [
-          "Corrida planejada no CRUNNING: Longão, amanhã (2026-11-13). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
-        ]
+        "warnings": []
       },
       {
         "date": "2026-11-13",
@@ -6694,7 +6688,7 @@
             "title": "Longão"
           },
           {
-            "split": "costas_biceps",
+            "split": "perna",
             "sessionID": null,
             "routineID": null,
             "runID": null,
@@ -6705,7 +6699,7 @@
             "id": "strength:2026-11-13",
             "kind": "strength",
             "status": "planned",
-            "title": "Costas e bíceps"
+            "title": "Perna"
           }
         ],
         "warnings": []

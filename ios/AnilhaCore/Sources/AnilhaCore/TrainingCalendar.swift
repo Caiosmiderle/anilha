@@ -100,7 +100,7 @@ public enum TrainingCalendar {
                         sessions: sessions.map { SessionSummary(local_date: $0.string("local_date") ?? "", split_key: $0.string("split_key")) },
                         runs: runs.map { RunSummary(local_date: $0.string("local_date") ?? "", run_type: $0.string("run_type")) },
                         overrides: overrides.map { OverrideSummary(local_date: $0.string("local_date") ?? "", action: $0.string("action") ?? "") },
-                        today: input.today)
+                        today: input.today, externalPlans: external.map(ExternalRunSummary.init(row:)))
                     projections[plan.id] = Planning.projectDays(projection, from: first, count: dates.count)
                 }
                 if let day = projections[plan.id]?.first(where: { $0.date == date }), day.kind == "gym",
@@ -131,16 +131,12 @@ public enum TrainingCalendar {
     static func legsBeforeRunAlert(day: String, split: String, plan: Plan,
                                             overrides: [ReadRow], external: [ReadRow]) -> String? {
         guard plan.rules.no_legs_before_run, Planning.splits.contains(where: { $0.id == split && $0.legs }) else { return nil }
-        let tomorrow = LocalDay.add(day, 1)
-        let action = overrides.first { $0.string("local_date") == tomorrow }?.string("action")
-        let run = external.first {
-            $0.string("local_date") == tomorrow && $0.string("status") == "planejada" && $0.bool("important") == true
+        let summaries = overrides.map { OverrideSummary(local_date: $0.string("local_date") ?? "", action: $0.string("action") ?? "") }
+        guard let run = Planning.hardRunAfter(day, days: plan.days, overrides: summaries,
+                                              external: external.map(ExternalRunSummary.init(row:))) else { return nil }
+        if case .external(let item) = run {
+            return "Corrida planejada no CRUNNING: \(item.name ?? "corrida importante"), amanhã (\(LocalDay.add(day, 1))). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
         }
-        let planned = plan.days.first { $0.weekday == LocalDay.weekday(tomorrow) }
-        guard run != nil || action == "run" || (planned?.kind == "run" && action != "rest") else { return nil }
-        if let run {
-            return "Corrida planejada no CRUNNING: \(run.string("name") ?? "corrida importante"), amanhã (\(tomorrow)). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino."
-        }
-        return "Corrida amanhã cedo, então perna fica para outro dia."
+        return "Corrida forte amanhã, então perna fica para outro dia."
     }
 }

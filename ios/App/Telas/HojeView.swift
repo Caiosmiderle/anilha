@@ -215,6 +215,15 @@ func nomeCorrida(_ key: String?) -> String {
     default: "com tipo não informado"
     }
 }
+/// Run type in words: the Anilha keys (leve, longo, intervalado) and CRUNNING's own types
+/// (facil, longao, limiar...), which arrive as source_type.
+func tipoCorrida(_ key: String) -> String {
+    [
+        "leve": "leve", "longo": "longa", "intervalado": "de qualidade",
+        "caminhada": "caminhada", "recuperacao": "recuperação", "facil": "fácil", "longao": "longão",
+        "ritmoProva": "ritmo de prova", "limiar": "limiar", "repeticoes": "repetições", "prova": "prova",
+    ][key] ?? key
+}
 func statusExterno(_ key: String?) -> String {
     switch key {
     case "planejada": "Planejado, do CRUNNING"

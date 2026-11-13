@@ -62,8 +62,10 @@ public struct ReadData: Sendable {
         let overrides = active("day_overrides").map {
             OverrideSummary(local_date: $0.string("local_date") ?? "", action: $0.string("action") ?? "")
         }
+        let external = active("external_plan_items").map(ExternalRunSummary.init(row:))
         let input = ProjectionInput(plan: .init(days: plan.days, rules: plan.rules),
-                                    sessions: sessions, runs: [], overrides: overrides, today: today)
+                                    sessions: sessions, runs: [], overrides: overrides, today: today,
+                                    externalPlans: external)
         return Planning.projectDays(input, from: today, count: 1).first
     }
 }

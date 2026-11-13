@@ -131,7 +131,7 @@ struct SemanaPlanoView: View {
 
     private func detalhe(_ e: CalendarEvent) -> String {
         let estado = e.status == "done" ? "Feito" : e.status == "missed" ? "Perdido" : "Previsto"
-        let tipo = e.runType.map { ["leve": "leve", "longo": "longa", "intervalado": "de qualidade"][$0] ?? $0 }
+        let tipo = e.runType.map(tipoCorrida)
         let km = e.distanceKm.map { $0.formatted(.number.precision(.fractionLength(0...1)).locale(Locale(identifier: "pt_BR"))) + " km" }
         return [estado, tipo, km, e.important ? "Importante" : nil].compactMap { $0 }.joined(separator: " · ")
     }

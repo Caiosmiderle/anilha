@@ -1,5 +1,5 @@
 import { CalendarCheck, Check, Dumbbell, Footprints, Moon } from 'lucide-react';
-import { useHistorySummaries, useOverrides } from '../../data/hooks';
+import { useExternalPlanItems, useHistorySummaries, useOverrides } from '../../data/hooks';
 import { useTodayData } from '../../data/today';
 import {
   addDays,
@@ -30,6 +30,7 @@ export function WeekPlan({
 }) {
   const history = useHistorySummaries();
   const overrides = useOverrides();
+  const externalPlans = useExternalPlanItems();
   const { rec } = useTodayData(today);
   const rotation = plan.rules.rotation?.length ? plan.rules.rotation : null;
   const input = {
@@ -37,6 +38,7 @@ export function WeekPlan({
     sessions: history.sessions,
     runs: history.runs,
     overrides,
+    externalPlans,
     today,
     todayRec: rec,
   };

@@ -164,6 +164,34 @@ describe('CRUNNING no motor', () => {
     expect(response.planejadas[0]).toMatchObject({ data_local: '2026-11-09', status: 'pulado' });
     expect(response.planejadas.length).toBe(14);
   });
+  it('força prevista tira perna da véspera de corrida importante do CRUNNING', () => {
+    const data: StrengthSnapshot = {
+      cursor: '1',
+      today: '2026-11-09',
+      changed: [],
+      sessions: [],
+      sets: [],
+      exercises: [],
+      plans: [input.plan],
+      routines: fixture.routines,
+      routine_items: fixture.routineItems,
+      overrides: [],
+    };
+    const legsOn = (r: ReturnType<typeof strengthResponse>, day: string) =>
+      r.planejadas.find((p) => p.data_local === day)?.pernas;
+    const plain = strengthResponse(data, false);
+    const withRun = { ...data, external_plans: [external] };
+    const moved = strengthResponse(withRun, false);
+    expect(deployedStrength(withRun, false)).toEqual(moved);
+    expect(legsOn(plain, '2026-11-09')).toBe(true);
+    expect(legsOn(moved, '2026-11-09')).toBe(false);
+    // Not important: legs stay.
+    const easy = strengthResponse(
+      { ...data, external_plans: [{ ...external, important: false }] },
+      false,
+    );
+    expect(legsOn(easy, '2026-11-09')).toBe(true);
+  });
   it('handler ignora campos desconhecidos e mantém null sem enviar dados privados ao banco', async () => {
     let received: Record<string, unknown> = {};
     const res = await handleCrunning(

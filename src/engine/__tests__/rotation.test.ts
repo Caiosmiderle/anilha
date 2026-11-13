@@ -226,10 +226,10 @@ describe('ficha do dia no rodízio', () => {
         ...d,
         kind: kinds[d.weekday] ?? 'rest',
         split_key: null,
-        run_type: kinds[d.weekday] === 'run' ? 'leve' : null,
+        run_type: kinds[d.weekday] === 'run' ? 'intervalado' : null,
       })),
     };
-    // Last done was B, so C (perna) is next, but tomorrow is a run.
+    // Last done was B, so C (perna) is next, but tomorrow is a hard run.
     const rec = recommendDay({
       today: monday,
       plan: withRun,

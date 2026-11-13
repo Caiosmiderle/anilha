@@ -129,7 +129,7 @@ export function calendarDays(input: CalendarInput): CalendarDay[] {
       let projection = projections.get(plan.id);
       if (!projection) {
         projection = projectDays(
-          { plan, today: input.today, sessions, runs, overrides },
+          { plan, today: input.today, sessions, runs, overrides, externalPlans: external },
           first,
           dates.length,
         );

@@ -870,7 +870,7 @@ export function generatePlan(p: OnboardingParams): GeneratedPlan {
   const runList = days.filter((d) => d.kind === 'run');
   if (rotation && legDays.length && runList.length) {
     reasons.push(
-      'Se a ficha de perna cair na véspera de corrida, o app sugere a ficha seguinte e perna fica para o próximo treino.',
+      'Se a ficha de perna cair na véspera de corrida forte (intervalado, longão ou importante no CRUNNING), o app sugere a ficha seguinte e perna fica para o próximo treino. Antes de corrida leve, a perna fica.',
     );
   } else if (legDays.length && runList.length) {
     const eve = legDays.filter((d) => days[(d.weekday + 1) % 7]?.kind === 'run');

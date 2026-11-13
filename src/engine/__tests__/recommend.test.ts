@@ -99,7 +99,7 @@ describe('recomendação do dia', () => {
       {},
       { kind: 'gym', split_key: 'peito_triceps' },
       { kind: 'gym', split_key: 'perna' },
-      { kind: 'run', run_type: 'leve' },
+      { kind: 'run', run_type: 'longo' },
       {},
       {},
     ]);
@@ -110,7 +110,52 @@ describe('recomendação do dia', () => {
     const rec = recommendDay({ today: '2026-10-15', plan: p, sessions, runs: [] });
     expect(rec.split_key === null || !splitHasLegs(rec.split_key)).toBe(true);
     expect(rec.kind).not.toBe('gym');
-    expect(rec.reason).toMatch(/Corrida amanhã cedo/);
+    expect(rec.reason).toMatch(/Corrida forte amanhã/);
+
+    // An easy run tomorrow does not move legs.
+    const easy = {
+      ...p,
+      days: p.days.map((d) => (d.kind === 'run' ? { ...d, run_type: 'leve' as const } : d)),
+    };
+    expect(recommendDay({ today: '2026-10-15', plan: easy, sessions, runs: [] }).split_key).toBe(
+      'perna',
+    );
+    // CRUNNING decides when it plans that day: an easy run there frees legs, an important one does not.
+    const crunning = (important: boolean) => ({
+      user_id: 'u',
+      updated_at: 1,
+      deleted: false,
+      id: `c-${important}`,
+      source: 'crunning' as const,
+      kind: 'corrida' as const,
+      origin_id: 'x',
+      local_date: '2026-10-16',
+      run_type: 'leve' as const,
+      source_type: null,
+      name: 'Fictícia',
+      distance_m: null,
+      duration_sec: null,
+      important,
+      status: 'planejada' as const,
+    });
+    expect(
+      recommendDay({
+        today: '2026-10-15',
+        plan: p,
+        sessions,
+        runs: [],
+        externalPlans: [crunning(false)],
+      }).split_key,
+    ).toBe('perna');
+    expect(
+      recommendDay({
+        today: '2026-10-15',
+        plan: easy,
+        sessions,
+        runs: [],
+        externalPlans: [crunning(true)],
+      }).split_key,
+    ).not.toBe('perna');
 
     // Same thing when today is a catch-up day: still no legs.
     for (const today of ['2026-10-13', '2026-10-15', '2026-10-17']) {

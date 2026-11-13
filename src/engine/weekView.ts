@@ -1,5 +1,6 @@
 import { addDays, weekday } from './dates';
 import {
+  hardRunAfter,
   rotationQueue,
   type DayRecommendation,
   type OverrideSummary,
@@ -7,7 +8,7 @@ import {
   type SessionSummary,
 } from './recommend';
 import { splitHasLegs } from './taxonomy';
-import type { PlanRow, RunType, SplitKey } from './types';
+import type { ExternalPlanItemRow, PlanRow, RunType, SplitKey } from './types';
 
 export type DayState = 'feito' | 'hoje' | 'passou' | 'por_vir';
 
@@ -27,6 +28,11 @@ export interface WeekViewInput {
   sessions: Pick<SessionSummary, 'local_date' | 'split_key'>[];
   runs: Pick<RunSummary, 'local_date' | 'run_type'>[];
   overrides?: Pick<OverrideSummary, 'local_date' | 'action'>[];
+  /** CRUNNING's planned runs: its important ones keep legs off the day before. */
+  externalPlans?: Pick<
+    ExternalPlanItemRow,
+    'deleted' | 'source' | 'kind' | 'local_date' | 'status' | 'important' | 'name'
+  >[];
   today: string;
   /** What Hoje recommends, so both screens say the same about today. */
   todayRec?: Pick<DayRecommendation, 'kind' | 'split_key' | 'run_type'> | null;
@@ -35,7 +41,8 @@ export interface WeekViewInput {
 /**
  * The days from `from` on, with the real ficha of each one. Past days show what was done;
  * today follows Hoje; the next gym days take the rotation in order, and when legs would
- * land on the eve of a run (with that rule on) the next ficha without legs goes first.
+ * land on the eve of a hard run (with that rule on) the next ficha without legs goes first.
+ * Before an easy run, legs stay.
  */
 export function projectDays(input: WeekViewInput, from: string, count: number): DayView[] {
   const { plan, today } = input;
@@ -61,7 +68,9 @@ export function projectDays(input: WeekViewInput, from: string, count: number): 
   }
   const take = (d: string): SplitKey | null => {
     if (!queue.length) return null;
-    const avoidLegs = plan.rules.no_legs_before_run && kindOn(addDays(d, 1)) === 'run';
+    const avoidLegs =
+      plan.rules.no_legs_before_run &&
+      !!hardRunAfter(d, plan, input.overrides, input.externalPlans);
     const i = avoidLegs ? queue.findIndex((s) => !splitHasLegs(s)) : 0;
     const [picked] = queue.splice(i < 0 ? 0 : i, 1);
     queue.push(picked as SplitKey);

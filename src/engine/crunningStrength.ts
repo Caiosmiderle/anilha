@@ -3,7 +3,15 @@ import { addDays } from './dates';
 import { planForDay } from './recommend';
 import { projectDays } from './weekView';
 import { splitLabel } from './taxonomy';
-import type { DayOverrideRow, ExerciseDef, PlanRow, RoutineRow, SessionRow, SetRow } from './types';
+import type {
+  DayOverrideRow,
+  ExerciseDef,
+  ExternalPlanItemRow,
+  PlanRow,
+  RoutineRow,
+  SessionRow,
+  SetRow,
+} from './types';
 
 export interface StrengthSnapshot {
   cursor: string;
@@ -27,6 +35,11 @@ export interface StrengthSnapshot {
   routines: Pick<RoutineRow, 'id' | 'name' | 'split_key' | 'origin'>[];
   routine_items: { routine_id: string; exercise_id: string }[];
   overrides: Pick<DayOverrideRow, 'local_date' | 'action'>[];
+  /** CRUNNING's own planned runs, so legs stay off the eve of its important ones. */
+  external_plans?: Pick<
+    ExternalPlanItemRow,
+    'deleted' | 'source' | 'kind' | 'local_date' | 'status' | 'important'
+  >[];
 }
 
 /** Explicit allowlist: this projection cannot export notes, pain, names or email. */
@@ -78,7 +91,14 @@ export function strengthResponse(data: StrengthSnapshot, incremental: boolean) {
   const sessions = data.sessions.filter((s) => !s.deleted);
   const days = plan
     ? projectDays(
-        { plan, today: data.today, sessions, runs: [], overrides: data.overrides },
+        {
+          plan,
+          today: data.today,
+          sessions,
+          runs: [],
+          overrides: data.overrides,
+          externalPlans: (data.external_plans ?? []).map((p) => ({ ...p, name: null })),
+        },
         data.today,
         14,
       )

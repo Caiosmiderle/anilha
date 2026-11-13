@@ -97,6 +97,37 @@ export function iosArtifacts() {
     },
     '2026-11-10',
   );
+  const easy = days.map((d) => (d.kind === 'run' ? { ...d, run_type: 'leve' as const } : d));
+  // Legs come first on Saturday: a hard run on Sunday moves them, an easy one does not.
+  add('hard run eve', { ...base, today: '2026-11-14' });
+  add('easy run eve', {
+    ...base,
+    today: '2026-11-14',
+    plan: { ...base.plan, days: easy },
+  });
+  const external = (local_date: string, important: boolean, status = 'planejada' as const) => ({
+    deleted: false,
+    source: 'crunning' as const,
+    kind: 'corrida' as const,
+    local_date,
+    status,
+    important,
+    name: important ? 'Subidas' : 'Fácil',
+  });
+  add(
+    'crunning runs',
+    {
+      ...base,
+      externalPlans: [
+        external('2026-11-13', true),
+        external('2026-11-15', false),
+        external('2026-11-22', true),
+        { ...external('2026-11-20', true), deleted: true },
+      ],
+    },
+    base.today,
+    14,
+  );
   add('run today', { ...base, runs: [{ local_date: base.today, run_type: 'intervalado' }] });
   add('overrides', {
     ...base,

@@ -140,7 +140,7 @@ export function calendarArtifacts() {
             rules: { no_legs_before_run: true },
             days: [
               { weekday: 3, kind: 'gym', split_key: 'perna', run_type: null, time: '18:00' },
-              { weekday: 4, kind: 'run', split_key: null, run_type: 'leve', time: '06:00' },
+              { weekday: 4, kind: 'run', split_key: null, run_type: 'intervalado', time: '06:00' },
             ],
           },
         ],

@@ -35,7 +35,7 @@ describe('calendário de força e corridas', () => {
       ['missed', 'missed', null, true],
     ]);
   });
-  it('reutiliza o aviso da recomendação na véspera importante, com opt-out', () => {
+  it('tira perna da véspera importante do CRUNNING, como a recomendação, com opt-out', () => {
     const rec = recommendDay({
       today: input.today,
       plan: input.plans[0]!,
@@ -43,17 +43,26 @@ describe('calendário de força e corridas', () => {
       runs: [],
       externalPlans: input.externalPlans,
     });
-    expect(today(0).warnings).toEqual(
-      rec.alerts.filter((a) => a.kind === 'legs_before_run').map((a) => a.text),
-    );
-    expect(today(0).warnings[0]).toContain('2026-11-13');
+    const planned = today(0).events.find((e) => e.status === 'planned');
+    expect(planned?.split).toBe('costas_biceps');
+    expect(rec.split_key).toBe('costas_biceps');
+    expect(today(0).warnings).toEqual([]);
+    // Perna goes to the day of the run, whose eve has no run.
+    expect(
+      vectors[0]!.expected
+        .find((d) => d.date === '2026-11-13')!
+        .events.find((e) => e.kind === 'strength')?.split,
+    ).toBe('perna');
+    // Legs stay in the regra desligada case, with no warning.
+    expect(today(6).events.find((e) => e.kind === 'strength')?.split).toBe('perna');
     expect(today(6).warnings).toEqual([]);
     expect(today(7).warnings).toEqual([]);
     expect(today(8).events).toEqual([]);
-    expect(today(9).warnings).toEqual(['Corrida amanhã cedo, então perna fica para outro dia.']);
+    expect(today(9).warnings).toEqual(['Corrida forte amanhã, então perna fica para outro dia.']);
   });
   it('projeta rodízio, prefere ficha do plano e respeita o plano da semana', () => {
-    expect(today(13).events[0]).toMatchObject({
+    const nextLegs = vectors[13]!.expected.find((d) => d.date === '2026-11-13')!;
+    expect(nextLegs.events.find((e) => e.kind === 'strength')).toMatchObject({
       title: 'Perna do plano',
       routineID: 'generated',
       status: 'planned',

@@ -16737,7 +16737,7 @@
                   "weekday": 4,
                   "kind": "run",
                   "split_key": null,
-                  "run_type": "leve",
+                  "run_type": "intervalado",
                   "time": "06:00"
                 }
               ],
@@ -16915,7 +16915,7 @@
           "split_key": null,
           "run_type": null,
           "headline": "Hoje: descanso ou algo leve",
-          "reason": "Corrida amanhã cedo, então perna fica para outro dia. Hoje descanso ou algo leve.",
+          "reason": "Corrida forte amanhã, então perna fica para outro dia. Hoje descanso ou algo leve.",
           "alerts": [],
           "today_done": false,
           "planned_today": {

@@ -134,7 +134,7 @@ struct CalendarioView: View {
 
 private func detalheEvento(_ event: CalendarEvent) -> String {
     let state = event.status == "done" ? "Feito" : event.status == "missed" ? "Perdido" : "Previsto"
-    let type = event.runType.map { ["leve": "leve", "longo": "longa", "intervalado": "de qualidade"][$0] ?? $0 }
+    let type = event.runType.map(tipoCorrida)
     let distance = event.distanceKm.map { $0.formatted(.number.locale(Locale(identifier: "pt_BR"))) + " km" }
     return [state, type, distance, event.important ? "Importante" : nil].compactMap { $0 }.joined(separator: " · ")
 }

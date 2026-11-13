@@ -39,7 +39,8 @@ public enum RoutineReview {
             let overrides = data.active("day_overrides")
             let external = data.active("external_plan_items").filter { $0.string("source") == "crunning" && $0.string("kind") == "corrida" }
             let input = ProjectionInput(plan: .init(days: decoded.days, rules: decoded.rules), sessions: sessions, runs: runs,
-                overrides: overrides.map { OverrideSummary(local_date: $0.string("local_date") ?? "", action: $0.string("action") ?? "") }, today: today)
+                overrides: overrides.map { OverrideSummary(local_date: $0.string("local_date") ?? "", action: $0.string("action") ?? "") }, today: today,
+                externalPlans: external.map(ExternalRunSummary.init(row:)))
             schedule = Planning.projectDays(input, from: today, count: 15).enumerated().map { offset, d in
                 let alert = d.split_key.flatMap { TrainingCalendar.legsBeforeRunAlert(day: d.date, split: $0, plan: decoded, overrides: overrides, external: external) }
                 return ReadRow(fields: ["days_ahead": .number(Double(offset)), "weekday": .number(Double(d.weekday)), "kind": .string(d.kind), "split": d.split_key.map(JSONValue.string) ?? .null,

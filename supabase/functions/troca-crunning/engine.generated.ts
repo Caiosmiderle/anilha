@@ -1205,6 +1205,24 @@ function planForDay(plans, day) {
 	}
 	return best;
 }
+/**
+* The run the day after `day` that makes legs wait, or null. An easy run is fine after legs;
+* the hard ones (interval, long, or what CRUNNING marks as important) are not. When CRUNNING
+* plans a run that day, its plan decides; otherwise a one-day "run" change counts, and so does
+* a planned run that is not easy.
+*/
+function hardRunAfter(day, plan, overrides, externalPlans) {
+	const next = addDays(day, 1);
+	const planned = (externalPlans ?? []).filter((p) => !p.deleted && p.source === "crunning" && p.kind === "corrida" && p.local_date === next && p.status === "planejada");
+	const important = planned.find((p) => p.important);
+	if (important) return { external: important };
+	if (planned.length) return null;
+	const action = overrides?.find((o) => o.local_date === next)?.action;
+	if (action === "run") return { external: null };
+	if (action === "rest") return null;
+	const p = plan?.days.find((d) => d.weekday === weekday(next));
+	return p?.kind === "run" && p.run_type !== "leve" ? { external: null } : null;
+}
 /** The last ficha of the rotation that was done, by date. */
 function lastFicha(rotation, sessions) {
 	let last = null;
@@ -1229,7 +1247,8 @@ function rotationQueue(rotation, sessions) {
 /**
 * The days from `from` on, with the real ficha of each one. Past days show what was done;
 * today follows Hoje; the next gym days take the rotation in order, and when legs would
-* land on the eve of a run (with that rule on) the next ficha without legs goes first.
+* land on the eve of a hard run (with that rule on) the next ficha without legs goes first.
+* Before an easy run, legs stay.
 */
 function projectDays(input, from, count) {
 	const { plan, today } = input;
@@ -1251,7 +1270,7 @@ function projectDays(input, from, count) {
 	if (rotation && !sessionOn(today) && rec?.kind === "gym" && rec.split_key) queue = [rec.split_key, ...queue.filter((s) => s !== rec.split_key)];
 	const take = (d) => {
 		if (!queue.length) return null;
-		const i = plan.rules.no_legs_before_run && kindOn(addDays(d, 1)) === "run" ? queue.findIndex((s) => !splitHasLegs(s)) : 0;
+		const i = plan.rules.no_legs_before_run && !!hardRunAfter(d, plan, input.overrides, input.externalPlans) ? queue.findIndex((s) => !splitHasLegs(s)) : 0;
 		const [picked] = queue.splice(i < 0 ? 0 : i, 1);
 		queue.push(picked);
 		return picked;
@@ -1365,7 +1384,11 @@ function strengthResponse(data, incremental) {
 		today: data.today,
 		sessions,
 		runs: [],
-		overrides: data.overrides
+		overrides: data.overrides,
+		externalPlans: (data.external_plans ?? []).map((p) => ({
+			...p,
+			name: null
+		}))
 	}, data.today, 14) : []).filter((d) => d.kind === "gym" || data.overrides.some((o) => o.local_date === d.date && o.action === "rest") && plan?.days.some((p) => p.weekday === d.weekday && p.kind === "gym")).map((d) => {
 		const plannedSplit = plan?.days.find((p) => p.weekday === d.weekday)?.split_key;
 		const split = d.split_key ?? plannedSplit;

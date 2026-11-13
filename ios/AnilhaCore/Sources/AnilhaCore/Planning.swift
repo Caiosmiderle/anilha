@@ -49,6 +49,27 @@ public struct OverrideSummary: Codable, Sendable {
     }
 }
 
+/// A run CRUNNING planned (external_plan_items). Only what the eve-of-run rule reads.
+public struct ExternalRunSummary: Codable, Sendable {
+    public var deleted: Bool?
+    public var source: String?
+    public var kind: String?
+    public var local_date: String?
+    public var status: String?
+    public var important: Bool?
+    public var name: String?
+    public init(local_date: String?, status: String?, important: Bool?, name: String?,
+                deleted: Bool? = false, source: String? = "crunning", kind: String? = "corrida") {
+        self.local_date = local_date; self.status = status; self.important = important; self.name = name
+        self.deleted = deleted; self.source = source; self.kind = kind
+    }
+    public init(row: ReadRow) {
+        self.init(local_date: row.string("local_date"), status: row.string("status"),
+                  important: row.bool("important"), name: row.string("name"), deleted: row.deleted,
+                  source: row.string("source"), kind: row.string("kind"))
+    }
+}
+
 public struct TodayRecommendation: Codable, Sendable {
     public var kind: String
     public var split_key: String?
@@ -65,12 +86,13 @@ public struct ProjectionInput: Codable, Sendable {
     public var sessions: [SessionSummary]
     public var runs: [RunSummary]
     public var overrides: [OverrideSummary]?
+    public var externalPlans: [ExternalRunSummary]?
     public var today: String
     public var todayRec: TodayRecommendation?
     public init(plan: Schedule, sessions: [SessionSummary], runs: [RunSummary],
-                overrides: [OverrideSummary], today: String) {
+                overrides: [OverrideSummary], today: String, externalPlans: [ExternalRunSummary] = []) {
         self.plan = plan; self.sessions = sessions; self.runs = runs
-        self.overrides = overrides; self.today = today
+        self.overrides = overrides; self.today = today; self.externalPlans = externalPlans
     }
 }
 
@@ -150,6 +172,26 @@ public enum Planning {
         return rotation.indices.map { rotation[(start + $0) % rotation.count] }
     }
 
+    /// Port of recommend.ts hardRunAfter: the run the day after `day` that makes legs wait.
+    /// An easy run is fine after legs. CRUNNING's plan decides when it has a run that day (its
+    /// important ones count); otherwise a one-day "run" change, or a planned run that is not easy.
+    public enum HardRun: Sendable { case external(ExternalRunSummary), plan }
+    public static func hardRunAfter(_ day: String, days: [PlanDay], overrides: [OverrideSummary],
+                                    external: [ExternalRunSummary]) -> HardRun? {
+        let next = LocalDay.add(day, 1)
+        let planned = external.filter {
+            $0.deleted != true && $0.source == "crunning" && $0.kind == "corrida" &&
+                $0.local_date == next && $0.status == "planejada"
+        }
+        if let important = planned.first(where: { $0.important == true }) { return .external(important) }
+        if !planned.isEmpty { return nil }
+        let action = overrides.first { $0.local_date == next }?.action
+        if action == "run" { return .plan }
+        if action == "rest" { return nil }
+        let p = days.first { $0.weekday == LocalDay.weekday(next) }
+        return p?.kind == "run" && p?.run_type != "leve" ? .plan : nil
+    }
+
     // Port of src/engine/weekView.ts projectDays. Keep the order of inputs (same-day ties).
     public static func projectDays(_ input: ProjectionInput, from: String, count: Int) -> [DayView] {
         let today = input.today
@@ -172,7 +214,8 @@ public enum Planning {
         }
         func take(_ d: String) -> String? {
             guard !queue.isEmpty else { return nil }
-            let avoid = plan.rules.no_legs_before_run && kindOn(LocalDay.add(d, 1)) == "run"
+            let avoid = plan.rules.no_legs_before_run &&
+                hardRunAfter(d, days: plan.days, overrides: input.overrides ?? [], external: input.externalPlans ?? []) != nil
             let i = avoid ? queue.firstIndex { s in !splits.contains { $0.id == s && $0.legs } } ?? 0 : 0
             let picked = queue.remove(at: i)
             queue.append(picked)

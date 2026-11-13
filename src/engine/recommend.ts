@@ -139,33 +139,56 @@ export function runLegLoad(
 
 const HEAVY_RUN_LOAD = 8;
 
-/** The existing eve-of-run rule, also used to annotate the calendar's projection. */
+type EveExternal = Pick<
+  ExternalPlanItemRow,
+  'deleted' | 'source' | 'kind' | 'local_date' | 'status' | 'important' | 'name'
+>;
+
+/**
+ * The run the day after `day` that makes legs wait, or null. An easy run is fine after legs;
+ * the hard ones (interval, long, or what CRUNNING marks as important) are not. When CRUNNING
+ * plans a run that day, its plan decides; otherwise a one-day "run" change counts, and so does
+ * a planned run that is not easy.
+ */
+export function hardRunAfter(
+  day: string,
+  plan: Pick<PlanRow, 'days'> | null,
+  overrides?: Pick<OverrideSummary, 'local_date' | 'action'>[],
+  externalPlans?: EveExternal[],
+): { external: EveExternal | null } | null {
+  const next = addDays(day, 1);
+  const planned = (externalPlans ?? []).filter(
+    (p) =>
+      !p.deleted &&
+      p.source === 'crunning' &&
+      p.kind === 'corrida' &&
+      p.local_date === next &&
+      p.status === 'planejada',
+  );
+  const important = planned.find((p) => p.important);
+  if (important) return { external: important };
+  if (planned.length) return null;
+  const action = overrides?.find((o) => o.local_date === next)?.action;
+  if (action === 'run') return { external: null };
+  if (action === 'rest') return null;
+  const p = plan?.days.find((d) => d.weekday === weekday(next));
+  return p?.kind === 'run' && p.run_type !== 'leve' ? { external: null } : null;
+}
+
+/** The eve-of-run rule, also used to annotate the calendar's projection. */
 export function legsBeforeRunAlert(
   input: Pick<RecommendInput, 'today' | 'plan' | 'overrides' | 'externalPlans'>,
   split: SplitKey,
 ): Alert | null {
   if (!splitHasLegs(split) || !(input.plan?.rules.no_legs_before_run ?? true)) return null;
-  const tomorrow = addDays(input.today, 1);
-  const override = input.overrides?.find((o) => o.local_date === tomorrow);
-  const external = input.externalPlans?.find(
-    (p) =>
-      !p.deleted &&
-      p.source === 'crunning' &&
-      p.kind === 'corrida' &&
-      p.local_date === tomorrow &&
-      p.status === 'planejada' &&
-      p.important,
-  );
-  const run =
-    !!external ||
-    override?.action === 'run' ||
-    (planDayFor(input.plan, tomorrow)?.kind === 'run' && override?.action !== 'rest');
+  const run = hardRunAfter(input.today, input.plan, input.overrides, input.externalPlans);
   if (!run) return null;
+  const tomorrow = addDays(input.today, 1);
   return {
     kind: 'legs_before_run',
-    text: external
-      ? `Corrida planejada no CRUNNING: ${external.name ?? 'corrida importante'}, amanhã (${tomorrow}). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino.`
-      : 'Corrida amanhã cedo, então perna fica para outro dia.',
+    text: run.external
+      ? `Corrida planejada no CRUNNING: ${run.external.name ?? 'corrida importante'}, amanhã (${tomorrow}). Sugiro deixar perna para outro dia. Confirme ao iniciar ou escolha outro treino.`
+      : 'Corrida forte amanhã, então perna fica para outro dia.',
   };
 }
 

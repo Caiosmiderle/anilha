@@ -64,7 +64,14 @@ export function buildReviewContext(
     ),
     schedule: input.plan
       ? projectDays(
-          { plan: input.plan, today: input.today, sessions, runs, overrides },
+          {
+            plan: input.plan,
+            today: input.today,
+            sessions,
+            runs,
+            overrides,
+            externalPlans: input.externalPlans,
+          },
           input.today,
           15,
         ).map((d, days_ahead) => ({
