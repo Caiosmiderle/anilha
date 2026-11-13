@@ -35,7 +35,7 @@ export function ReviewCard({ routineID }: { routineID: string }) {
   const state = useLiveQuery(async () => {
     const input = await reviewInput(db, today);
     const saved = (await db.meta.get(reviewKey(routineID)))?.value as SavedReview | undefined;
-    return { input, saved: saved?.version === reviewVersion(input, routineID) ? saved : undefined };
+    return { input, saved: saved?.reply && saved.version === reviewVersion(input, routineID) ? saved : undefined };
   }, [db, routineID, today]);
   async function run(action: () => Promise<unknown>) {
     if (busy) return;

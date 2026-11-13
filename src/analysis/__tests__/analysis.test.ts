@@ -233,7 +233,8 @@ describe('análise: gravação e fila compartilhadas com Waltér e treino', () =
   it('deduplica pedidos e preserva resposta na memória se o disco falhar, sem nova chamada', async () => {
     const saved = await setup(),
       id = saved.binding.session.id;
-    await d!.meta.delete(`analysis:${id}`);
+    // An iPhone attempt may reach this account before its reply does.
+    await d!.meta.put({ key: `analysis:${id}`, value: { status: 'pending' } });
     const invoke = vi.fn(async () => ({ data: saved.reply, error: null }));
     vi.mocked(getClient).mockResolvedValue({
       auth: {

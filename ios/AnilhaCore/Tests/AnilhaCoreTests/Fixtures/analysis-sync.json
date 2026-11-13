@@ -1,0 +1,1018 @@
+{
+  "keys": [
+    {
+      "key": "analysis:x",
+      "expected": true
+    },
+    {
+      "key": "review:x",
+      "expected": true
+    },
+    {
+      "key": "chat:x",
+      "expected": false
+    },
+    {
+      "key": "dismissed:x",
+      "expected": false
+    },
+    {
+      "key": "analysis-plan:x",
+      "expected": false
+    },
+    {
+      "key": "analysis-sync-cursor",
+      "expected": false
+    }
+  ],
+  "payloads": [
+    {
+      "input": {
+        "status": "saved",
+        "undo": {
+          "before": [
+            {
+              "id": "fiction-item",
+              "note": "Nota fictícia"
+            }
+          ],
+          "after": []
+        },
+        "reply": {
+          "summary": "Treino fictício",
+          "points": [],
+          "adjustment": null
+        }
+      },
+      "expected": {
+        "status": "saved",
+        "reply": {
+          "summary": "Treino fictício",
+          "points": [],
+          "adjustment": null
+        }
+      },
+      "stable": "{\"reply\":{\"adjustment\":null,\"points\":[],\"summary\":\"Treino fictício\"},\"status\":\"saved\"}"
+    },
+    {
+      "input": {
+        "decisions": [
+          {
+            "status": "saved",
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          },
+          {
+            "status": "proposed"
+          }
+        ],
+        "undo": {
+          "before": [
+            {
+              "id": "fiction-item",
+              "note": "Nota fictícia"
+            }
+          ],
+          "after": []
+        }
+      },
+      "expected": {
+        "decisions": [
+          {
+            "status": "saved"
+          },
+          {
+            "status": "proposed"
+          }
+        ]
+      },
+      "stable": "{\"decisions\":[{\"status\":\"saved\"},{\"status\":\"proposed\"}]}"
+    },
+    {
+      "input": {
+        "decisions": [
+          null,
+          false,
+          3,
+          "text",
+          {
+            "status": "refused",
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        ],
+        "context": {
+          "z": [
+            3,
+            null
+          ],
+          "a": true
+        }
+      },
+      "expected": {
+        "decisions": [
+          null,
+          false,
+          3,
+          "text",
+          {
+            "status": "refused"
+          }
+        ],
+        "context": {
+          "z": [
+            3,
+            null
+          ],
+          "a": true
+        }
+      },
+      "stable": "{\"context\":{\"a\":true,\"z\":[3,null]},\"decisions\":[null,false,3,\"text\",{\"status\":\"refused\"}]}"
+    },
+    {
+      "input": {
+        "status": "proposed",
+        "reply": {
+          "summary": "Texto com / e acentuação",
+          "points": [
+            "Controle"
+          ],
+          "adjustment": null
+        }
+      },
+      "expected": {
+        "status": "proposed",
+        "reply": {
+          "summary": "Texto com / e acentuação",
+          "points": [
+            "Controle"
+          ],
+          "adjustment": null
+        }
+      },
+      "stable": "{\"reply\":{\"adjustment\":null,\"points\":[\"Controle\"],\"summary\":\"Texto com / e acentuação\"},\"status\":\"proposed\"}"
+    }
+  ],
+  "merges": [
+    {
+      "remote": {
+        "status": "saved"
+      },
+      "expected": {
+        "status": "saved"
+      }
+    },
+    {
+      "remote": {
+        "status": "saved",
+        "reply": {
+          "summary": "Remoto"
+        }
+      },
+      "local": {
+        "status": "saved",
+        "undo": {
+          "before": [
+            {
+              "id": "fiction-item",
+              "note": "Nota fictícia"
+            }
+          ],
+          "after": []
+        }
+      },
+      "expected": {
+        "status": "saved",
+        "reply": {
+          "summary": "Remoto"
+        },
+        "undo": {
+          "before": [
+            {
+              "id": "fiction-item",
+              "note": "Nota fictícia"
+            }
+          ],
+          "after": []
+        }
+      }
+    },
+    {
+      "remote": {
+        "status": "undone"
+      },
+      "local": {
+        "status": "saved",
+        "undo": {
+          "before": [
+            {
+              "id": "fiction-item",
+              "note": "Nota fictícia"
+            }
+          ],
+          "after": []
+        }
+      },
+      "expected": {
+        "status": "undone"
+      }
+    },
+    {
+      "remote": {
+        "decisions": [
+          {
+            "status": "saved"
+          },
+          {
+            "status": "refused"
+          },
+          {
+            "status": "proposed"
+          }
+        ]
+      },
+      "local": {
+        "decisions": [
+          {
+            "status": "saved",
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          },
+          {
+            "status": "saved",
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decisions": [
+          {
+            "status": "saved",
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          },
+          {
+            "status": "refused"
+          },
+          {
+            "status": "proposed"
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "name": "primeiro-envio-e-undo-local",
+      "before": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "saved",
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            },
+            "reply": {
+              "summary": "Treino fictício",
+              "points": [],
+              "adjustment": null
+            }
+          }
+        },
+        {
+          "key": "review:fiction-routine",
+          "value": {
+            "decisions": [
+              {
+                "status": "saved",
+                "undo": {
+                  "before": [
+                    {
+                      "id": "fiction-item",
+                      "note": "Nota fictícia"
+                    }
+                  ],
+                  "after": []
+                }
+              },
+              {
+                "status": "proposed"
+              }
+            ],
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        },
+        {
+          "key": "chat:fiction",
+          "value": {
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        },
+        {
+          "key": "dismissed:fiction",
+          "value": {
+            "x": true
+          }
+        },
+        {
+          "key": "analysis-plan:fiction",
+          "value": {
+            "load": 20
+          }
+        }
+      ],
+      "page": {
+        "rows": [
+          {
+            "id": "analysis:fiction-session",
+            "payload": {
+              "status": "saved",
+              "reply": {
+                "summary": "Treino fictício",
+                "points": [],
+                "adjustment": null
+              }
+            },
+            "updated_at": 900
+          },
+          {
+            "id": "review:fiction-routine",
+            "payload": {
+              "decisions": [
+                {
+                  "status": "saved"
+                },
+                {
+                  "status": "proposed"
+                }
+              ]
+            },
+            "updated_at": 900
+          },
+          {
+            "id": "chat:remote",
+            "payload": {
+              "status": "saved"
+            },
+            "updated_at": 900
+          }
+        ],
+        "cursor": 10,
+        "more": false
+      },
+      "duringPush": [],
+      "duringPull": [],
+      "pushes": [
+        {
+          "items": [
+            {
+              "id": "analysis:fiction-session",
+              "payload": {
+                "status": "saved",
+                "reply": {
+                  "summary": "Treino fictício",
+                  "points": [],
+                  "adjustment": null
+                }
+              },
+              "updated_at": 1000
+            },
+            {
+              "id": "review:fiction-routine",
+              "payload": {
+                "decisions": [
+                  {
+                    "status": "saved"
+                  },
+                  {
+                    "status": "proposed"
+                  }
+                ]
+              },
+              "updated_at": 1000
+            }
+          ]
+        }
+      ],
+      "cursors": [
+        0
+      ],
+      "expected": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "saved",
+            "reply": {
+              "summary": "Treino fictício",
+              "points": [],
+              "adjustment": null
+            },
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        },
+        {
+          "key": "review:fiction-routine",
+          "value": {
+            "decisions": [
+              {
+                "status": "saved",
+                "undo": {
+                  "before": [
+                    {
+                      "id": "fiction-item",
+                      "note": "Nota fictícia"
+                    }
+                  ],
+                  "after": []
+                }
+              },
+              {
+                "status": "proposed"
+              }
+            ],
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "nada-mudou",
+      "before": [],
+      "page": {
+        "rows": [],
+        "cursor": 10,
+        "more": false
+      },
+      "duringPush": [],
+      "duringPull": [],
+      "pushes": [],
+      "cursors": [
+        10
+      ],
+      "expected": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "saved",
+            "reply": {
+              "summary": "Treino fictício",
+              "points": [],
+              "adjustment": null
+            },
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        },
+        {
+          "key": "review:fiction-routine",
+          "value": {
+            "decisions": [
+              {
+                "status": "saved",
+                "undo": {
+                  "before": [
+                    {
+                      "id": "fiction-item",
+                      "note": "Nota fictícia"
+                    }
+                  ],
+                  "after": []
+                }
+              },
+              {
+                "status": "proposed"
+              }
+            ],
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "edicao-durante-push",
+      "before": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "refused"
+          }
+        }
+      ],
+      "page": {
+        "rows": [
+          {
+            "id": "analysis:fiction-session",
+            "payload": {
+              "status": "undone"
+            },
+            "updated_at": 1100
+          }
+        ],
+        "cursor": 11,
+        "more": false
+      },
+      "duringPush": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "proposed",
+            "reply": {
+              "summary": "Edição em voo"
+            }
+          }
+        }
+      ],
+      "duringPull": [],
+      "pushes": [
+        {
+          "items": [
+            {
+              "id": "analysis:fiction-session",
+              "payload": {
+                "status": "refused"
+              },
+              "updated_at": 1000
+            }
+          ]
+        }
+      ],
+      "cursors": [
+        10
+      ],
+      "expected": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "proposed",
+            "reply": {
+              "summary": "Edição em voo"
+            }
+          }
+        },
+        {
+          "key": "review:fiction-routine",
+          "value": {
+            "decisions": [
+              {
+                "status": "saved",
+                "undo": {
+                  "before": [
+                    {
+                      "id": "fiction-item",
+                      "note": "Nota fictícia"
+                    }
+                  ],
+                  "after": []
+                }
+              },
+              {
+                "status": "proposed"
+              }
+            ],
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "reenvia-edicao-e-servidor-vence",
+      "before": [],
+      "page": {
+        "rows": [
+          {
+            "id": "analysis:fiction-session",
+            "payload": {
+              "status": "saved"
+            },
+            "updated_at": 1200
+          }
+        ],
+        "cursor": 12,
+        "more": false
+      },
+      "duringPush": [],
+      "duringPull": [],
+      "pushes": [
+        {
+          "items": [
+            {
+              "id": "analysis:fiction-session",
+              "payload": {
+                "status": "proposed",
+                "reply": {
+                  "summary": "Edição em voo"
+                }
+              },
+              "updated_at": 1000
+            }
+          ]
+        }
+      ],
+      "cursors": [
+        11
+      ],
+      "expected": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "saved"
+          }
+        },
+        {
+          "key": "review:fiction-routine",
+          "value": {
+            "decisions": [
+              {
+                "status": "saved",
+                "undo": {
+                  "before": [
+                    {
+                      "id": "fiction-item",
+                      "note": "Nota fictícia"
+                    }
+                  ],
+                  "after": []
+                }
+              },
+              {
+                "status": "proposed"
+              }
+            ],
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "edicao-durante-pull",
+      "before": [],
+      "page": {
+        "rows": [
+          {
+            "id": "analysis:fiction-session",
+            "payload": {
+              "status": "undone"
+            },
+            "updated_at": 1300
+          }
+        ],
+        "cursor": 13,
+        "more": false
+      },
+      "duringPush": [],
+      "duringPull": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "refused"
+          }
+        }
+      ],
+      "pushes": [],
+      "cursors": [
+        12
+      ],
+      "expected": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "refused"
+          }
+        },
+        {
+          "key": "review:fiction-routine",
+          "value": {
+            "decisions": [
+              {
+                "status": "saved",
+                "undo": {
+                  "before": [
+                    {
+                      "id": "fiction-item",
+                      "note": "Nota fictícia"
+                    }
+                  ],
+                  "after": []
+                }
+              },
+              {
+                "status": "proposed"
+              }
+            ],
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "mesmo-conteudo-pode-entrar",
+      "before": [],
+      "page": {
+        "rows": [
+          {
+            "id": "analysis:fiction-session",
+            "payload": {
+              "status": "refused"
+            },
+            "updated_at": 1400
+          }
+        ],
+        "cursor": 14,
+        "more": false
+      },
+      "duringPush": [],
+      "duringPull": [],
+      "pushes": [
+        {
+          "items": [
+            {
+              "id": "analysis:fiction-session",
+              "payload": {
+                "status": "refused"
+              },
+              "updated_at": 1000
+            }
+          ]
+        }
+      ],
+      "cursors": [
+        13
+      ],
+      "expected": [
+        {
+          "key": "analysis:fiction-session",
+          "value": {
+            "status": "refused"
+          }
+        },
+        {
+          "key": "review:fiction-routine",
+          "value": {
+            "decisions": [
+              {
+                "status": "saved",
+                "undo": {
+                  "before": [
+                    {
+                      "id": "fiction-item",
+                      "note": "Nota fictícia"
+                    }
+                  ],
+                  "after": []
+                }
+              },
+              {
+                "status": "proposed"
+              }
+            ],
+            "undo": {
+              "before": [
+                {
+                  "id": "fiction-item",
+                  "note": "Nota fictícia"
+                }
+              ],
+              "after": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "nativeReview": {
+    "routineID": "fiction-routine",
+    "version": {
+      "routine": {
+        "id": "fiction-routine",
+        "name": "Ficha fictícia",
+        "position": 0,
+        "split_key": "peito",
+        "archived": false,
+        "deleted": false,
+        "updated_at": 10,
+        "user_id": "fiction"
+      },
+      "items": [
+        {
+          "id": "fiction-item",
+          "routine_id": "fiction-routine",
+          "exercise_id": "supino-reto-barra",
+          "position": 0,
+          "sets": 3,
+          "target_min": 8,
+          "target_max": 12,
+          "warmup_sets": 0,
+          "rest_sec": 90,
+          "note": null,
+          "reason": null,
+          "superset": null,
+          "deleted": false,
+          "updated_at": 11,
+          "user_id": "fiction"
+        }
+      ]
+    },
+    "binding": {
+      "items": [
+        {
+          "id": "fiction-item",
+          "routine_id": "fiction-routine",
+          "exercise_id": "supino-reto-barra",
+          "position": 0,
+          "sets": 3,
+          "target_min": 8,
+          "target_max": 12,
+          "warmup_sets": 0,
+          "rest_sec": 90,
+          "note": null,
+          "reason": null,
+          "superset": null,
+          "deleted": false,
+          "updated_at": 11,
+          "user_id": "fiction"
+        }
+      ]
+    },
+    "context": {},
+    "reply": {
+      "resumo": "Ficha fictícia",
+      "ajustes": []
+    },
+    "decisions": [
+      {
+        "status": "saved",
+        "undoBefore": [
+          {
+            "id": "fiction-item",
+            "routine_id": "fiction-routine",
+            "exercise_id": "supino-reto-barra",
+            "position": 0,
+            "sets": 3,
+            "target_min": 8,
+            "target_max": 12,
+            "warmup_sets": 0,
+            "rest_sec": 90,
+            "note": null,
+            "reason": null,
+            "superset": null,
+            "deleted": false,
+            "updated_at": 11,
+            "user_id": "fiction"
+          }
+        ],
+        "undoAfter": []
+      }
+    ]
+  },
+  "wireReview": {
+    "routineID": "fiction-routine",
+    "version": "[{\"archived\":false,\"deleted\":false,\"id\":\"fiction-routine\",\"name\":\"Ficha fictícia\",\"position\":0,\"split_key\":\"peito\",\"updated_at\":10,\"user_id\":\"fiction\"},[{\"deleted\":false,\"exercise_id\":\"supino-reto-barra\",\"id\":\"fiction-item\",\"note\":null,\"position\":0,\"reason\":null,\"rest_sec\":90,\"routine_id\":\"fiction-routine\",\"sets\":3,\"superset\":null,\"target_max\":12,\"target_min\":8,\"updated_at\":11,\"user_id\":\"fiction\",\"warmup_sets\":0}]]",
+    "binding": {
+      "items": [
+        {
+          "id": "fiction-item",
+          "routine_id": "fiction-routine",
+          "exercise_id": "supino-reto-barra",
+          "position": 0,
+          "sets": 3,
+          "target_min": 8,
+          "target_max": 12,
+          "warmup_sets": 0,
+          "rest_sec": 90,
+          "note": null,
+          "reason": null,
+          "superset": null,
+          "deleted": false,
+          "updated_at": 11,
+          "user_id": "fiction"
+        }
+      ]
+    },
+    "context": {},
+    "reply": {
+      "resumo": "Ficha fictícia",
+      "ajustes": []
+    },
+    "decisions": [
+      {
+        "status": "saved"
+      }
+    ],
+    "exercises": [
+      "supino-reto-barra"
+    ]
+  }
+}

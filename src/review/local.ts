@@ -133,7 +133,7 @@ export async function requestReview(id: string, today: string): Promise<SavedRev
     const stored = (await d.meta.get(reviewKey(id)))?.value as SavedReview | undefined;
     const cached = previouslyReceived?.version === version ? previouslyReceived : stored;
     check();
-    if (cached?.version === version) {
+    if (cached?.reply && cached.version === version) {
       await d.meta.put({ key: reviewKey(id), value: cached });
       received.get(d)?.delete(id);
       return cached;

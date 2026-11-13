@@ -109,7 +109,7 @@ export async function requestAnalysis(id: string): Promise<SavedAnalysis> {
   const task = (async () => {
     const cached = (await owner.db.meta.get(key(id)))?.value as SavedAnalysis | undefined;
     check(owner);
-    if (cached) return cached;
+    if (cached?.reply) return cached;
     const persist = async (saved: SavedAnalysis) => {
       check(owner);
       let pending = unpersisted.get(owner);

@@ -107,6 +107,12 @@ try {
   const { output } = await routineBundle.generate({ format: 'esm' });
   routines = await (await import('data:text/javascript;base64,' + Buffer.from(output[0].code).toString('base64'))).routineArtifacts();
 } finally { await routineBundle.close(); }
+const analysisSyncBundle = await rolldown({ input: resolve(root, 'scripts/ios-analysis-sync-source.ts'), platform: 'node', transform: { define: { 'import.meta.env': '{}' } } });
+let analysisSync;
+try {
+  const { output } = await analysisSyncBundle.generate({ format: 'esm' });
+  analysisSync = await (await import('data:text/javascript;base64,' + Buffer.from(output[0].code).toString('base64'))).analysisSyncArtifacts();
+} finally { await analysisSyncBundle.close(); }
 const env = await readFile(resolve(root, '.env.production'), 'utf8');
 if (!/^VITE_SUPABASE_ANON_KEY=sb_publishable_[A-Za-z0-9_-]+\s*$/m.test(env)) {
   throw new Error(
@@ -146,6 +152,7 @@ const howtoIos = Object.fromEntries(
     }),
 );
 const outputs = {
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/analysis-sync.json': json(analysisSync),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/routines.json': json(routines),
   'ios/App/Recursos/howto.json': json(howtoIos),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/chat.json': json(chat),

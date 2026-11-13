@@ -304,6 +304,48 @@ public final class CacheLeitura {
             try contexto.save()
         } catch { contexto.rollback(); throw error }
     }
+    public func cursorAnalises(_ dono: String) throws -> Int64 {
+        Int64(try metadados(dono)[AnalysisSync.cursorKey]?.number("value") ?? 0)
+    }
+    /// Snapshot once per run; an edit during a request must remain pending for the next run.
+    public func analisesPendentes(_ dono: String, now: Double = Date.now.timeIntervalSince1970 * 1000) throws -> [AnalysisSync.Item] {
+        let metadata = try metadados(dono)
+        return try metadata.keys.filter(AnalysisSync.syncedKey).sorted().compactMap { key in
+            let row = metadata[key]!
+            guard try metadata[AnalysisSync.hashKey(key)]?.string("value") != AnalysisSync.fingerprint(row, key: key) else { return nil }
+            return AnalysisSync.Item(id: key, payload: try AnalysisSync.wirePayload(row, key: key), updated_at: floor(now))
+        }
+    }
+    public func confirmarAnalises(_ batch: [AnalysisSync.Item], dono: String) throws {
+        do {
+            for item in batch where AnalysisSync.syncedKey(item.id) {
+                try porMeta(ReadRow(fields: ["value": .string(try AnalysisSync.fingerprint(item.payload, key: item.id))]), nome: AnalysisSync.hashKey(item.id), dono: dono)
+            }
+            try contexto.save()
+        } catch { contexto.rollback(); throw error }
+    }
+    public func aplicarAnalises(_ page: AnalysisSync.Page, dono: String, since: Int64) throws {
+        guard page.cursor >= since, !page.more || page.cursor > since else { throw ReadSync.Failure.invalidPage }
+        do {
+            var metadata = try metadados(dono)
+            for item in page.rows where AnalysisSync.syncedKey(item.id) {
+                let local = metadata[item.id], hashKey = AnalysisSync.hashKey(item.id)
+                let remote = try AnalysisSync.nativePayload(item.payload, key: item.id)
+                let remoteHash = try AnalysisSync.fingerprint(remote, key: item.id)
+                if let local {
+                    let mine = try AnalysisSync.fingerprint(local, key: item.id)
+                    if mine != metadata[hashKey]?.string("value") && mine != remoteHash { continue }
+                }
+                let merged = AnalysisSync.mergePulled(remote, local: local)
+                try porMeta(merged, nome: item.id, dono: dono)
+                let hash = ReadRow(fields: ["value": .string(remoteHash)])
+                try porMeta(hash, nome: hashKey, dono: dono)
+                metadata[item.id] = merged; metadata[hashKey] = hash
+            }
+            try porMeta(ReadRow(fields: ["value": .number(Double(page.cursor))]), nome: AnalysisSync.cursorKey, dono: dono)
+            try contexto.save()
+        } catch { contexto.rollback(); throw error }
+    }
     private func porMeta(_ row: ReadRow, nome: String, dono: String) throws {
         let key = "\(dono):\(nome)"
         let entries = try contexto.fetch(FetchDescriptor<AnaliseLocal>(predicate: #Predicate { $0.chave == key }))

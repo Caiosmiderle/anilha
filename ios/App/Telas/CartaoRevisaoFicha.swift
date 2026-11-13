@@ -71,7 +71,9 @@ struct CartaoRevisaoFicha: View {
                 }.buttonStyle(.glass).controlSize(.large)
             } else if decision.string("status") == "saved" {
                 Text("Aplicado.").font(.footnote)
-                Button("Voltar ao anterior") { conta.decidirRevisao(routineID, index: index, action: "undo") }.buttonStyle(.glass)
+                if decision.fields["undoBefore"] != nil {
+                    Button("Voltar ao anterior") { conta.decidirRevisao(routineID, index: index, action: "undo") }.buttonStyle(.glass)
+                }
             } else { Text(decision.string("status") == "refused" ? "Recusado." : "Desfeito: voltou como estava.").font(.footnote) }
         }.padding(.vertical, 8)
     }

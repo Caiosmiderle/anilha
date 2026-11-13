@@ -220,6 +220,9 @@ final class ContaStore {
                 try recarregar()
                 atualizadoEm = try cache.cursor(owner).atualizadoEm
                 if !page.more {
+                    // Optional metadata sync cannot turn a successful training sync into an error.
+                    try? await sincronizarAnalises(owner: owner, cliente: cliente, cache: cache, epoch: epoch)
+                    try conferir(owner, epoch)
                     aviso = rejeitadas > 0 ? "Há envios recusados pelo servidor. Confira os dados antes de sair da conta." : pendentes > 0 ? "Há alterações aguardando envio." : "Dados atualizados."
                     return
                 }
@@ -232,6 +235,36 @@ final class ContaStore {
                 aviso = "Sua sessão expirou. Saia e entre novamente para atualizar. Os dados baixados continuam disponíveis."
             }
         }
+    }
+
+    private func sincronizarAnalises(owner: String, cliente: SupabaseClient, cache: CacheLeitura, epoch: UUID) async throws {
+        func token() async throws -> String {
+            try conferir(owner, epoch)
+            let session = try await cliente.auth.session
+            try conferir(owner, epoch)
+            guard session.user.id.uuidString.lowercased() == owner else { throw ReadSync.Failure.accountChanged }
+            return session.accessToken
+        }
+        struct Push: Encodable { let items: [AnalysisSync.Item] }
+        struct Pull: Encodable { let since: Int64; let max_rows = 200 }
+        let changed = try cache.analisesPendentes(owner)
+        for offset in stride(from: 0, to: changed.count, by: 50) {
+            let batch = Array(changed[offset..<min(offset + 50, changed.count)])
+            let jwt = try await token()
+            let _: ReadRow = try await rpc("analysis_push", body: JSONEncoder().encode(Push(items: batch)), token: jwt)
+            try conferir(owner, epoch)
+            try cache.confirmarAnalises(batch, dono: owner)
+        }
+        for _ in 0..<100 {
+            let jwt = try await token()
+            let since = try cache.cursorAnalises(owner)
+            let page: AnalysisSync.Page = try await rpc("analysis_pull", body: JSONEncoder().encode(Pull(since: since)), token: jwt)
+            try conferir(owner, epoch)
+            try cache.aplicarAnalises(page, dono: owner, since: since)
+            try recarregar()
+            if !page.more { return }
+        }
+        throw ReadSync.Failure.tooManyPages
     }
 
     // Fixed-token read RPC, like accountRpc in the PWA. No request can adopt a new account's JWT.

@@ -193,7 +193,10 @@ it('aplica os três e desfaz em ordem inversa sem perder os outros ajustes', asy
 });
 it('guarda uma resposta por versão, compartilha chamada e refaz só depois de edição', async () => {
   const c = await setup();
-  await d!.meta.delete(reviewKey(c.routineID));
+  await d!.meta.put({
+    key: reviewKey(c.routineID),
+    value: { status: 'requesting', version: reviewVersion(await reviewInput(d!, c.input.today), c.routineID) },
+  });
   const invoke = vi.fn(async () => ({
     data: {
       ...reviewReply,

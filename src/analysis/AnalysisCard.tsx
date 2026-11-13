@@ -24,7 +24,10 @@ export function AnalysisCard({ sessionID }: { sessionID: string }) {
     [db, sessionID],
   );
   const saved = useLiveQuery(
-    async () => (await db.meta.get(`analysis:${sessionID}`))?.value as SavedAnalysis | undefined,
+    async () => {
+      const value = (await db.meta.get(`analysis:${sessionID}`))?.value as SavedAnalysis | undefined;
+      return value?.reply ? value : undefined;
+    },
     [db, sessionID],
   );
   const [busy, setBusy] = useState(false);

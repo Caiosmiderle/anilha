@@ -1,5 +1,15 @@
 # Registro entre Codex e Claude
 
+## iOS 0.17.0, análises e revisões por conta, Codex, 12/11/2026
+
+- Branch recebida limpa `codex/ios-analises-sync`, base `e95b21f7d4ef613f20bcc746b2755a7f181edc9b`. Entrega só local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.
+- `AnalysisSync`/`AnilhaCache` portam payload sem undo, fingerprint estável, push das mudanças e merge que preserva edição em voo e undo local com mesmo status. Cursor/hashes por conta, transação por página e limpeza existente na saída. Só `analysis:` e `review:`.
+- `ContaStore` chama as RPCs existentes após `sync_pull`, com lotes/paginação, conta/geração e token fixado. Falha complementar não muda o aviso de sucesso da sync principal. Migração intacta, nada publicado, versão **0.17.0**.
+- Adaptados versão/binding/exercises da revisão entre site e nativo. Corrigida leitura de estados incompletos nos cartões/caches PWA. Desfazer nativo só aparece com snapshot local.
+- Passaram **80 testes TS em 16 arquivos do CI iOS**, três geradores `--check`, lint, typecheck, build e diff. Após ampliar estados incompletos, os **18 testes** dos dois arquivos afetados passaram novamente. Typecheck/lint finais passaram. Falhas intermediárias de shim do gerador e tipos corrigidas; aviso de import no bundle de fixtures permanece não impeditivo.
+- Fixture do TS real com quatro payloads, quatro merges, seis ciclos e revisão. Quatro métodos Swift preparados. `swift test` tentado, comando ausente; CI Apple, Swift 6/iOS 26, iPhone e sync real **PENDENTES**. E2E não executado.
+- Parecer e roteiro em [REVISAO_CODEX_ANALISES_SYNC_2026-11-12.md](REVISAO_CODEX_ANALISES_SYNC_2026-11-12.md). Claude deve revisar especialmente adaptação da revisão, fingerprints, edição em voo, conta/geração e isolamento da falha; depois commitar esta árvore. Sem commit/push pelo Codex.
+
 ## iOS 0.16.0, ficha manual e Ignorar, Codex, 12/11/2026
 
 - Branch `codex/ios-ficha`, recebida limpa em `e39602b`, com chat `4dfa9f2`. Entrega local para revisão e commit do Claude. Revisão desta entrega **PENDENTE**.
