@@ -39,6 +39,9 @@ on:
         'scripts/ios-history-source.ts',
         'scripts/ios-chat-source.ts',
         'scripts/ios-routine-source.ts',
+        'scripts/ios-plan-source.ts',
+        'scripts/ios-plan-engine.ts',
+        'src/engine/__tests__/iosNewPlan.test.ts',
         'scripts/ios-analysis-sync-source.ts',
         'src/analysis/AnalysisCard.tsx',
         'src/analysis/local.ts',
@@ -106,7 +109,7 @@ jobs:
           node scripts/generate-ios.mjs --check
           node scripts/build-analysis.mjs --check
           node scripts/build-review.mjs --check
-          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/engine/__tests__/iosDemo.test.ts src/engine/__tests__/iosHistory.test.ts src/engine/__tests__/calendar.test.ts src/analysis/__tests__/analysis.test.ts src/analysis/__tests__/memory.test.ts src/analysis/__tests__/evolution.test.ts tests/db/analysis.test.ts src/review/__tests__/review.test.ts src/content/__tests__/howtoIos.test.ts src/data/__tests__/duplicates.test.ts src/agent/__tests__/iosChat.test.ts src/engine/__tests__/iosRoutines.test.ts src/sync/__tests__/iosAnalysisSync.test.ts src/sync/__tests__/analysisSync.test.ts tests/db/analysisSync.test.ts --maxWorkers=1 --no-file-parallelism
+          npx vitest run src/engine/__tests__/iosArtifacts.test.ts src/engine/__tests__/iosDemo.test.ts src/engine/__tests__/iosHistory.test.ts src/engine/__tests__/calendar.test.ts src/analysis/__tests__/analysis.test.ts src/analysis/__tests__/memory.test.ts src/analysis/__tests__/evolution.test.ts tests/db/analysis.test.ts src/review/__tests__/review.test.ts src/content/__tests__/howtoIos.test.ts src/data/__tests__/duplicates.test.ts src/agent/__tests__/iosChat.test.ts src/engine/__tests__/iosRoutines.test.ts src/engine/__tests__/iosNewPlan.test.ts src/sync/__tests__/iosAnalysisSync.test.ts src/sync/__tests__/analysisSync.test.ts tests/db/analysisSync.test.ts --maxWorkers=1 --no-file-parallelism
 
       - name: Testar paridade, gravação e fila Swift
         working-directory: .

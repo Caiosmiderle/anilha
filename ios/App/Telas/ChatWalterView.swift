@@ -17,7 +17,7 @@ struct ChatWalterView: View {
                     if !demonstracao { VStack(alignment: .leading, spacing: 8) {
                         Text("Converse sobre suas fichas").font(.headline)
                         Text("O Waltér recebe seu perfil de treino, fichas e volume semanal. Articulações a poupar só vão com sua permissão de saúde. As ferramentas rodam neste iPhone e nada muda sem Salvar.")
-                        Text("Gerar plano e criar ficha ainda precisam do site.").foregroundStyle(Tema.tintaSuave)
+                        Text("Para gerar plano no iPhone, use Plano > Plano novo. Pedidos de plano pelo chat e criação de ficha ainda precisam do site.").foregroundStyle(Tema.tintaSuave)
                         Text("A conversa fica na memória deste aparelho até você limpar ou fechar o app. Usa o mesmo limite diário do site e das análises.").foregroundStyle(Tema.tintaSuave)
                     }.font(.footnote).padding(Tema.Espaco.e4).cartao() }
                     if conta.chatEntries.isEmpty {

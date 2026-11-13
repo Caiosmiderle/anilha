@@ -3,7 +3,7 @@ import SwiftUI
 
 /// Plano da semana: segunda a domingo com a força prevista ou feita e as corridas do CRUNNING,
 /// os avisos do motor e o rodízio de fichas. Mesma fonte do calendário (`TrainingCalendar`),
-/// sem regra nova. Mudar o plano continua no site.
+/// sem regra nova. Plano novo abre o formulário e a prévia nativos.
 struct SemanaPlanoView: View {
     let conta: ContaStore
     let today: String
@@ -74,7 +74,7 @@ struct SemanaPlanoView: View {
                     .padding(Tema.Espaco.e5).frame(maxWidth: .infinity, alignment: .leading).cartao()
                     .entradaAnilha(2)
                 }
-                Text("A força prevista muda com os treinos feitos e as trocas do dia. Para mudar os dias do plano, use Editar no site.")
+                Text("A força prevista muda com os treinos feitos e as trocas do dia. Para mudar os dias do plano, use Plano novo.")
                     .font(.footnote).foregroundStyle(Tema.tintaSuave)
             }
             .padding(Tema.Espaco.e5)

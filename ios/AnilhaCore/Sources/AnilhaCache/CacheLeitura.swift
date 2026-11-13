@@ -167,7 +167,7 @@ public final class CacheLeitura {
             var written: [PushChange] = []
             for change in changes {
                 // profiles: modo retorno; exercises: exercício próprio criado no iPhone. Como no site.
-                guard ["sessions", "session_items", "sets", "records", "routines", "routine_items", "body_logs", "profiles", "exercises"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
+                guard ["plans", "sessions", "session_items", "sets", "records", "routines", "routine_items", "body_logs", "profiles", "exercises"].contains(change.table), !change.row.id.isEmpty else { throw ReadSync.Failure.invalidPage }
                 if change.table == "body_logs" {
                     _ = try History.bodyChange(change.row, consent: metadados(dono)["consent"], today: LocalDay.today())
                 }
@@ -217,6 +217,16 @@ public final class CacheLeitura {
             }
             try contexto.save()
         } catch { contexto.rollback(); throw error }
+    }
+    public func adotarPlano(_ generated: ReadRow, params: ReadRow, baseline: ReadRow, today: String, dono: String) throws {
+        let data = try ler(dono)
+        guard NewPlan.binding(data) == baseline, let profile = data.active("profiles").first(where: { $0.id == dono }) else { throw PlanEngine.Failure.conflict }
+        let allowed = History.healthOn(try metadados(dono)["consent"])
+        guard allowed || params.fields["spare_joints"] == .array([]) else { throw PlanEngine.Failure.conflict }
+        try PlanEngine.validate(params, today: today)
+        // Saving must match exactly what was reviewed, including current consent.
+        guard try PlanEngine.generate(params) == generated else { throw PlanEngine.Failure.conflict }
+        try gravar(NewPlan.changes(generated, params: params, today: today, profile: profile, routines: data.tables["routines"] ?? []), dono: dono)
     }
     public func lote(_ dono: String) throws -> Envio {
         let entries = try saidas(dono).filter { !$0.rejeitada }.sorted { $0.carimbo < $1.carimbo }.prefix(200)
