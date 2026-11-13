@@ -273,40 +273,77 @@ public enum Workout {
     /// records.ts detectRecords, only events belonging to the newly finished session.
     public static func records(_ data: ReadData, session: String, catalog: [ReadRow]) -> [PushChange] {
         let exercises = data.exercises(catalog: catalog)
-        var out: [PushChange] = []
         let ids = Set(data.active("sets").filter { $0.string("session_id") == session && $0.string("kind") == "work" && $0.number("completed_at") != nil }.compactMap { $0.string("exercise_id") })
-        for exerciseID in ids.sorted() {
-            guard let ex = exercises[exerciseID] else { continue }
-            var seen = 0, bestLoad: Double?, bestE1: Double?, bestReps: Double?, bestSec: Double?
-            for log in logs(data, exercise: exerciseID) {
-                let sets = log.array("sets").filter { $0.string("kind") == "work" && $0.number(ex.string("measure") == "time" ? "seconds" : "reps") != nil }
-                let loaded = sets.filter { ($0.number("load_kg") ?? 0) > 0 && ($0.number("reps") ?? 0) >= 1 }
-                let load = loaded.compactMap { $0.number("load_kg") }.max()
-                let e1 = loaded.compactMap { row -> Double? in
-                    guard let kg = row.number("load_kg"), let reps = row.number("reps"), reps <= 12 else { return nil }
-                    return reps == 1 ? kg : kg * (1 + reps / 30)
-                }.max()
-                let reps = sets.compactMap { $0.number("reps") }.max(), sec = sets.compactMap { $0.number("seconds") }.max()
-                if load == nil && reps == nil && sec == nil { continue }
-                func event(_ kind: String, _ value: Double?, _ previous: Double?, unit: String, margin: Double = 0) {
-                    guard seen > 0, let value, let previous, value > previous + margin, log.string("session_id") == session else { return }
-                    out.append(PushChange("records", ReadRow(fields: ["id": .string("\(exerciseID):\(kind):\(session)"), "deleted": .bool(false),
-                        "exercise_id": .string(exerciseID), "exercise_name": ex.fields["name"] ?? .string("Exercício"), "kind": .string(kind),
-                        "value": .number(Progression.round(value * 100) / 100), "unit": .string(unit), "local_date": log.fields["local_date"] ?? .null,
-                        "session_id": .string(session), "run_id": .null])))
-                }
-                if ex.string("measure") == "time" { event("tempo", sec, bestSec, unit: "s"); if let sec { bestSec = max(bestSec ?? 0, sec) } }
-                else if let load {
-                    if seen > 0, let bestLoad, load > bestLoad { event("carga", load, bestLoad, unit: "kg") }
-                    else { event("e1rm", e1, bestE1, unit: "kg", margin: 0.01) }
-                    bestLoad = max(bestLoad ?? 0, load)
-                    if let e1 { bestE1 = max(bestE1 ?? 0, e1) }
-                } else if ex.bool("bodyweight") == true, let reps {
-                    event("repeticoes", reps, bestReps, unit: "reps"); bestReps = max(bestReps ?? 0, reps)
-                }
-                seen += 1
+        return ids.sorted().flatMap { exerciseID -> [PushChange] in
+            guard let ex = exercises[exerciseID] else { return [] }
+            return recordRows(data, exercise: exerciseID, ex: ex, session: session).map { PushChange("records", $0) }
+        }
+    }
+    /// detectRecords over the finished history of one exercise; `session` keeps only its events.
+    static func recordRows(_ data: ReadData, exercise exerciseID: String, ex: ReadRow, session onlySession: String?) -> [ReadRow] {
+        var out: [ReadRow] = []
+        var seen = 0, bestLoad: Double?, bestE1: Double?, bestReps: Double?, bestSec: Double?
+        for log in logs(data, exercise: exerciseID) {
+            let sets = log.array("sets").filter { $0.string("kind") == "work" && $0.number(ex.string("measure") == "time" ? "seconds" : "reps") != nil }
+            let loaded = sets.filter { ($0.number("load_kg") ?? 0) > 0 && ($0.number("reps") ?? 0) >= 1 }
+            let load = loaded.compactMap { $0.number("load_kg") }.max()
+            let e1 = loaded.compactMap { row -> Double? in
+                guard let kg = row.number("load_kg"), let reps = row.number("reps"), reps <= 12 else { return nil }
+                return reps == 1 ? kg : kg * (1 + reps / 30)
+            }.max()
+            let reps = sets.compactMap { $0.number("reps") }.max(), sec = sets.compactMap { $0.number("seconds") }.max()
+            if load == nil && reps == nil && sec == nil { continue }
+            let logSession = log.string("session_id") ?? ""
+            func event(_ kind: String, _ value: Double?, _ previous: Double?, unit: String, margin: Double = 0) {
+                guard seen > 0, let value, let previous, value > previous + margin, onlySession == nil || logSession == onlySession else { return }
+                out.append(ReadRow(fields: ["id": .string("\(exerciseID):\(kind):\(logSession)"), "deleted": .bool(false),
+                    "exercise_id": .string(exerciseID), "exercise_name": ex.fields["name"] ?? .string("Exercício"), "kind": .string(kind),
+                    "value": .number(Progression.round(value * 100) / 100), "unit": .string(unit), "local_date": log.fields["local_date"] ?? .null,
+                    "session_id": .string(logSession), "run_id": .null]))
             }
+            if ex.string("measure") == "time" { event("tempo", sec, bestSec, unit: "s"); if let sec { bestSec = max(bestSec ?? 0, sec) } }
+            else if let load {
+                if seen > 0, let bestLoad, load > bestLoad { event("carga", load, bestLoad, unit: "kg") }
+                else { event("e1rm", e1, bestE1, unit: "kg", margin: 0.01) }
+                bestLoad = max(bestLoad ?? 0, load)
+                if let e1 { bestE1 = max(bestE1 ?? 0, e1) }
+            } else if ex.bool("bodyweight") == true, let reps {
+                event("repeticoes", reps, bestReps, unit: "reps"); bestReps = max(bestReps ?? 0, reps)
+            }
+            seen += 1
         }
         return out
+    }
+    /// ops.ts deleteSession: tombstones for the session, its items and sets, then recomputeRecords
+    /// for the exercises it touched (a record can move to a later session or disappear).
+    public static func deleteSession(_ data: ReadData, session: String, catalog: [ReadRow]) -> [PushChange] {
+        guard let row = data.active("sessions").first(where: { $0.id == session }) else { return [] }
+        let sets = data.active("sets").filter { $0.string("session_id") == session }
+        let items = data.active("session_items").filter { $0.string("session_id") == session }
+        var changes = sets.map { PushChange("sets", $0.changing(["deleted": .bool(true)])) }
+            + items.map { PushChange("session_items", $0.changing(["deleted": .bool(true)])) }
+            + [PushChange("sessions", row.changing(["deleted": .bool(true)]))]
+        var after = data
+        for change in changes {
+            after.tables[change.table] = (after.tables[change.table] ?? []).map { $0.id == change.row.id ? change.row : $0 }
+        }
+        let exercises = data.exercises(catalog: catalog)
+        for exerciseID in Set(sets.compactMap { $0.string("exercise_id") }).sorted() {
+            guard let ex = exercises[exerciseID] else { continue }
+            var wanted = Dictionary(recordRows(after, exercise: exerciseID, ex: ex, session: nil).map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
+            let existing = (data.tables["records"] ?? []).filter { $0.string("exercise_id") == exerciseID && $0.string("run_id") == nil }
+            for record in existing {
+                if let w = wanted[record.id] {
+                    if record.deleted || record.number("value") != w.number("value") || record.string("local_date") != w.string("local_date") {
+                        changes.append(PushChange("records", w))
+                    }
+                    wanted.removeValue(forKey: record.id)
+                } else if !record.deleted {
+                    changes.append(PushChange("records", record.changing(["deleted": .bool(true)])))
+                }
+            }
+            changes += wanted.keys.sorted().compactMap { wanted[$0].map { PushChange("records", $0) } }
+        }
+        return changes
     }
 }

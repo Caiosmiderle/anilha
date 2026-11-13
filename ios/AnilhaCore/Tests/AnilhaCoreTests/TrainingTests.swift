@@ -140,6 +140,40 @@ final class TrainingTests: XCTestCase {
             }
         }
     }
+    func testDeleteSessionTombstonesRowsAndRecomputesRecords() throws {
+        for v in try fixture("training").array("progression") {
+            let input = v.object("input"), exercise = input.object("exercise").changing(["id": .string("exercise"), "name": .string("Fictício")])
+            let logs = input.array("logs")
+            var tables: [String: [ReadRow]] = [:]
+            for log in logs {
+                let session = log.string("session_id") ?? ""
+                tables["sessions", default: []].append(ReadRow(fields: ["id": .string(session), "status": .string("done"), "local_date": log.fields["local_date"] ?? .null]))
+                tables["session_items", default: []].append(ReadRow(fields: ["id": .string(session), "session_id": .string(session), "target_min": log.fields["target_min"] ?? .null, "target_max": log.fields["target_max"] ?? .null]))
+                for (i, set) in log.array("sets").enumerated() {
+                    tables["sets", default: []].append(set.changing(["id": .string("\(session)-\(i)"), "session_id": .string(session), "item_id": .string(session), "exercise_id": .string("exercise"), "position": .number(Double(i)), "completed_at": .number(Double(i + 1))]))
+                }
+            }
+            // The records the history already has, as the site and the iPhone would have saved.
+            let before = ReadData(tables: tables)
+            // The latest session in history order (the same order records use).
+            guard let last = Workout.logs(before, exercise: "exercise").last?.string("session_id") else { continue }
+            tables["records"] = before.active("sessions").flatMap { Workout.records(before, session: $0.id, catalog: [exercise]).map(\.row) }
+            let data = ReadData(tables: tables)
+            let changes = Workout.deleteSession(data, session: last, catalog: [exercise])
+            // Every row of the last session becomes a tombstone; nothing else of the workout changes.
+            let rows = changes.filter { $0.table != "records" }
+            XCTAssertEqual(rows.count, data.active("sets").filter { $0.string("session_id") == last }.count + 2)
+            XCTAssertTrue(rows.allSatisfy { $0.row.deleted })
+            XCTAssertEqual(Set(rows.filter { $0.table == "sessions" }.map(\.row.id)), [last])
+            // Deleting the last session only removes its own records: earlier ones do not depend on it.
+            let records = changes.filter { $0.table == "records" }
+            let ownRecords = (tables["records"] ?? []).filter { $0.string("session_id") == last }
+            XCTAssertEqual(Set(records.map(\.row.id)), Set(ownRecords.map(\.id)))
+            XCTAssertTrue(records.allSatisfy { $0.row.deleted })
+        }
+        XCTAssertEqual(Workout.deleteSession(ReadData(), session: "missing", catalog: []), [])
+    }
+
     func testRecordsFromTypeScriptHistories() throws {
         for v in try fixture("training").array("progression") {
             let input = v.object("input"), exercise = input.object("exercise").changing(["id": .string("exercise"), "name": .string("Fictício")])

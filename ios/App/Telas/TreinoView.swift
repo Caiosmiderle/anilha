@@ -7,6 +7,7 @@ struct TreinoView: View {
     var focoInicial = true
     var jogoInicial: RestCardGame? = nil
     @Environment(\.dismiss) private var dismiss
+    @State private var confirmarApagar = false
     private var session: ReadRow? { conta.dados.active("sessions").first { $0.id == sessionID } }
 
     var body: some View {
@@ -48,7 +49,18 @@ struct TreinoView: View {
                                 }.textCase(nil)
                             }.listRowBackground(Tema.superficie)
                         }
+                        Section {
+                            Button("Apagar treino", systemImage: "trash", role: .destructive) { confirmarApagar = true }
+                                .frame(minHeight: 44)
+                                .accessibilityHint("Pede confirmação antes de apagar")
+                        }.listRowBackground(Tema.superficie)
                         Button("Voltar") { dismiss() }.buttonStyle(.glass)
+                    }
+                    .confirmationDialog("Apagar este treino?", isPresented: $confirmarApagar, titleVisibility: .visible) {
+                        Button("Apagar treino", role: .destructive) { apagar() }
+                        Button("Manter treino", role: .cancel) {}
+                    } message: {
+                        Text("Some do histórico neste iPhone e no site. Os recordes deste treino são recalculados.")
                     }
                     .scrollContentBackground(.hidden).background { FundoAnilha() }
                     .navigationTitle("Treino concluído").navigationBarTitleDisplayMode(.inline)
@@ -56,6 +68,14 @@ struct TreinoView: View {
                 }
             } else { Text("Sessão indisponível. Atualize os dados.") }
         }
+    }
+
+    /// Same as Apagar treino on the site: tombstones through the queue, records recomputed.
+    private func apagar() {
+        let changes = Workout.deleteSession(conta.dados, session: sessionID, catalog: conta.catalogo)
+        guard !changes.isEmpty, conta.gravar(changes) else { return }
+        dismiss()
+        Task { await conta.atualizar() }
     }
 }
 
