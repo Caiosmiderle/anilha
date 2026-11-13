@@ -11,6 +11,10 @@ on:
         description: 'Publicar o .ipa também como Release (link fixo para baixar)'
         type: boolean
         default: true
+      prints:
+        description: 'Tirar os prints do simulador (uns 20 minutos a mais)'
+        type: boolean
+        default: false
       prints_letra_grande:
         description: 'Tirar também os prints com letra grande (dobra o tempo dos prints)'
         type: boolean
@@ -209,8 +213,11 @@ jobs:
             --prerelease
 
   # Prints depois do .ipa, num Mac separado: o .ipa sai sem esperar o simulador.
+  # Só quando pedidos (uns 20 minutos a mais): Run workflow com "prints" marcado, ou um push
+  # cuja mensagem de commit tenha [prints] (mudança de tela que precisa ser vista).
   prints:
     needs: build
+    if: (github.event_name == 'workflow_dispatch' && inputs.prints) || contains(github.event.head_commit.message, '[prints]')
     runs-on: macos-latest
     # About 33 screens in light and dark plus the small iPhone: 20 minutes stopped being enough.
     timeout-minutes: 55

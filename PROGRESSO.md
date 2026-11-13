@@ -62,6 +62,7 @@ O que só o iPhone de verdade comprova está em `docs/ROTEIRO_TESTE_IPHONE.md`.
 
 ## Decisões tomadas
 
+- **Prints do iPhone só sob pedido (13/11, pedido do Caio):** o job de prints (uns 20 minutos a mais) roda só com "prints" marcado no Run workflow ou com `[prints]` na mensagem do commit; o `.ipa` sai em uns 20 minutos.
 - **Pasta separada para o Claude:** `../anilha-claude` (git worktree), para não mexer nos arquivos do Codex em `anilha-publico`.
 - **CI:** dispara em `claude/**` e `codex/**`; ao falhar sem erro, o passo de compilação mostra o fim do log e o contexto de uma quebra do compilador.
 - **Quebra do compilador Swift 6.3.3 no Release:** era uma referência de método (`set: mudarRetorno`) num `Binding<String>` do perfil de treino. Trocada por closure literal, como nos outros Bindings.
