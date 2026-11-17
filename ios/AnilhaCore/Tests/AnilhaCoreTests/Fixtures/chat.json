@@ -21,7 +21,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "puxada-supinada",
@@ -43,7 +44,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "puxada-triangulo",
@@ -65,7 +67,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "barra-fixa",
@@ -87,7 +90,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "avancado"
     },
     {
       "id": "remada-curvada",
@@ -111,7 +115,8 @@
       "joints": [
         "lombar",
         "ombro"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "remada-unilateral",
@@ -133,7 +138,8 @@
       "compound": true,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "remada-baixa",
@@ -156,7 +162,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "remada-cavalinho",
@@ -178,7 +185,8 @@
       "compound": true,
       "joints": [
         "lombar"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "remada-maquina",
@@ -200,7 +208,8 @@
       "compound": true,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "remada-invertida",
@@ -221,7 +230,8 @@
       "compound": true,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "pulldown-bracos-estendidos",
@@ -240,7 +250,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "pullover-halter",
@@ -262,7 +273,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "hiperextensao-lombar",
@@ -284,7 +296,8 @@
       "compound": false,
       "joints": [
         "lombar"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "supino-reto-barra",
@@ -308,7 +321,8 @@
         "ombro",
         "cotovelo",
         "punho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "supino-reto-halteres",
@@ -331,7 +345,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "supino-inclinado-barra",
@@ -355,7 +370,8 @@
         "ombro",
         "cotovelo",
         "punho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "supino-inclinado-halteres",
@@ -378,7 +394,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "supino-declinado",
@@ -401,7 +418,8 @@
         "ombro",
         "cotovelo",
         "punho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "supino-maquina",
@@ -424,7 +442,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "supino-inclinado-maquina",
@@ -447,7 +466,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "crucifixo-halteres",
@@ -466,7 +486,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "crucifixo-maquina",
@@ -485,7 +506,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "crossover",
@@ -504,7 +526,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "flexao-bracos",
@@ -527,7 +550,8 @@
       "joints": [
         "ombro",
         "punho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "desenvolvimento-halteres-sentado",
@@ -550,7 +574,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "desenvolvimento-maquina",
@@ -573,7 +598,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "desenvolvimento-barra",
@@ -597,7 +623,8 @@
         "ombro",
         "cotovelo",
         "lombar"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "desenvolvimento-arnold",
@@ -620,7 +647,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "elevacao-lateral",
@@ -639,7 +667,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "elevacao-lateral-polia",
@@ -658,7 +687,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "elevacao-lateral-maquina",
@@ -677,7 +707,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "elevacao-frontal",
@@ -696,7 +727,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "remada-alta",
@@ -717,7 +749,8 @@
       "joints": [
         "ombro",
         "punho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "crucifixo-inverso",
@@ -738,7 +771,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "crucifixo-inverso-maquina",
@@ -759,7 +793,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "face-pull",
@@ -781,7 +816,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "encolhimento-halteres",
@@ -802,7 +838,8 @@
       "compound": false,
       "joints": [
         "punho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "encolhimento-barra",
@@ -823,7 +860,8 @@
       "compound": false,
       "joints": [
         "punho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-direta",
@@ -845,7 +883,8 @@
       "joints": [
         "cotovelo",
         "punho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-barra-w",
@@ -866,7 +905,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-alternada",
@@ -887,7 +927,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-martelo",
@@ -907,7 +948,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-scott",
@@ -926,7 +968,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-concentrada",
@@ -945,7 +988,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-polia",
@@ -964,7 +1008,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "rosca-inclinada",
@@ -984,7 +1029,8 @@
       "joints": [
         "cotovelo",
         "ombro"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "triceps-polia",
@@ -1003,7 +1049,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "triceps-corda",
@@ -1022,7 +1069,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "triceps-frances",
@@ -1042,7 +1090,8 @@
       "joints": [
         "cotovelo",
         "ombro"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "triceps-testa",
@@ -1061,7 +1110,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "triceps-coice",
@@ -1080,7 +1130,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "triceps-maquina",
@@ -1099,7 +1150,8 @@
       "compound": false,
       "joints": [
         "cotovelo"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "supino-fechado",
@@ -1122,7 +1174,8 @@
         "cotovelo",
         "ombro",
         "punho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "paralelas",
@@ -1143,7 +1196,8 @@
       "joints": [
         "ombro",
         "cotovelo"
-      ]
+      ],
+      "level": "avancado"
     },
     {
       "id": "mergulho-banco",
@@ -1164,7 +1218,8 @@
         "ombro",
         "cotovelo",
         "punho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "agachamento-livre",
@@ -1187,7 +1242,8 @@
       "joints": [
         "joelho",
         "lombar"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "agachamento-smith",
@@ -1207,7 +1263,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "agachamento-goblet",
@@ -1227,7 +1284,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "agachamento-sumo",
@@ -1249,7 +1307,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "agachamento-bulgaro",
@@ -1269,7 +1328,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "afundo",
@@ -1289,7 +1349,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "passada",
@@ -1309,7 +1370,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "leg-press-45",
@@ -1329,7 +1391,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "leg-press-horizontal",
@@ -1349,7 +1412,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "hack-squat",
@@ -1370,7 +1434,8 @@
       "compound": true,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "cadeira-extensora",
@@ -1389,7 +1454,8 @@
       "compound": false,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "mesa-flexora",
@@ -1408,7 +1474,8 @@
       "compound": false,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "cadeira-flexora",
@@ -1427,7 +1494,8 @@
       "compound": false,
       "joints": [
         "joelho"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "stiff",
@@ -1449,7 +1517,8 @@
       "compound": true,
       "joints": [
         "lombar"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "stiff-halteres",
@@ -1471,7 +1540,8 @@
       "compound": true,
       "joints": [
         "lombar"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "levantamento-terra",
@@ -1496,7 +1566,8 @@
       "joints": [
         "lombar",
         "joelho"
-      ]
+      ],
+      "level": "avancado"
     },
     {
       "id": "elevacao-pelvica",
@@ -1515,7 +1586,8 @@
       "progression_hint": null,
       "pattern": "dobradica",
       "compound": true,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "swing-kettlebell",
@@ -1537,7 +1609,8 @@
       "compound": true,
       "joints": [
         "lombar"
-      ]
+      ],
+      "level": "intermediario"
     },
     {
       "id": "cadeira-abdutora",
@@ -1554,7 +1627,8 @@
       "progression_hint": null,
       "pattern": "abducao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "cadeira-adutora",
@@ -1571,7 +1645,8 @@
       "progression_hint": null,
       "pattern": "aducao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "panturrilha-em-pe",
@@ -1588,7 +1663,8 @@
       "progression_hint": null,
       "pattern": "panturrilha",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "panturrilha-sentado",
@@ -1605,7 +1681,8 @@
       "progression_hint": null,
       "pattern": "panturrilha",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "panturrilha-leg-press",
@@ -1622,7 +1699,8 @@
       "progression_hint": null,
       "pattern": "panturrilha",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "panturrilha-halter",
@@ -1639,7 +1717,8 @@
       "progression_hint": null,
       "pattern": "panturrilha",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "prancha",
@@ -1656,7 +1735,8 @@
       "progression_hint": "pés mais afastados do apoio ou um pé elevado",
       "pattern": "core_anti_extensao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "prancha-lateral",
@@ -1673,7 +1753,8 @@
       "progression_hint": "perna de cima elevada",
       "pattern": "core_lateral",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "elevacao-pernas-cadeira",
@@ -1690,7 +1771,8 @@
       "progression_hint": "pernas mais esticadas, descida mais lenta",
       "pattern": "core_quadril",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "elevacao-pernas-solo",
@@ -1709,7 +1791,8 @@
       "compound": false,
       "joints": [
         "lombar"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "elevacao-pernas-barra",
@@ -1728,7 +1811,8 @@
       "compound": false,
       "joints": [
         "ombro"
-      ]
+      ],
+      "level": "avancado"
     },
     {
       "id": "abdominal-polia",
@@ -1745,7 +1829,8 @@
       "progression_hint": null,
       "pattern": "core_flexao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "abdominal-supra",
@@ -1762,7 +1847,8 @@
       "progression_hint": "descida mais lenta, depois anilha no peito",
       "pattern": "core_flexao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "abdominal-maquina",
@@ -1779,7 +1865,8 @@
       "progression_hint": null,
       "pattern": "core_flexao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "abdominal-infra",
@@ -1798,7 +1885,8 @@
       "compound": false,
       "joints": [
         "lombar"
-      ]
+      ],
+      "level": "iniciante"
     },
     {
       "id": "abdominal-bicicleta",
@@ -1815,7 +1903,8 @@
       "progression_hint": "ritmo mais lento",
       "pattern": "core_rotacao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "roda-abdominal",
@@ -1835,7 +1924,8 @@
       "joints": [
         "lombar",
         "ombro"
-      ]
+      ],
+      "level": "avancado"
     },
     {
       "id": "pallof-press",
@@ -1852,7 +1942,8 @@
       "progression_hint": null,
       "pattern": "core_rotacao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     },
     {
       "id": "dead-bug",
@@ -1869,7 +1960,8 @@
       "progression_hint": "braços e pernas mais longe do corpo",
       "pattern": "core_anti_extensao",
       "compound": false,
-      "joints": []
+      "joints": [],
+      "level": "iniciante"
     }
   ],
   "places": {

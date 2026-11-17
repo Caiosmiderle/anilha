@@ -1,5 +1,6 @@
 import { EXERCISES } from '../src/engine/exercises';
 import { planForDay } from '../src/engine/recommend';
+import { suggestSubstitutes, type SuggestOptions } from '../src/engine/substitute';
 import { SPLITS, splitHasLegs } from '../src/engine/taxonomy';
 import { projectDays, type WeekViewInput } from '../src/engine/weekView';
 import type { PlanDay, SplitKey } from '../src/engine/types';
@@ -20,6 +21,7 @@ export function iosArtifacts() {
     pattern: e.pattern,
     compound: e.compound,
     joints: e.joints,
+    level: e.level ?? null,
   }));
   const splits = Object.values(SPLITS).map((s) => ({
     id: s.key,
@@ -161,5 +163,26 @@ export function iosArtifacts() {
       },
     });
   }
-  return { catalog, splits, planCases, projectionCases };
+  // Swap list in the workout: same rule as SubstituteList (suggestSubstitutes, 6 at most).
+  const substituteCases = EXERCISES.flatMap((e, i) => {
+    const options: Omit<SuggestOptions<(typeof EXERCISES)[number]>, 'library'>[] = [
+      {},
+      { available: ['halteres'], level: 'iniciante' },
+      {
+        excludeIds: [EXERCISES[(i + 1) % EXERCISES.length]!.id],
+        available: ['maquina', 'polia'],
+        level: 'intermediario',
+        spareJoints: ['ombro', 'joelho'],
+      },
+    ];
+    return options.map((o) => ({
+      exercise: e.id,
+      options: o,
+      expected: suggestSubstitutes(e, { library: EXERCISES, limit: 6, ...o }).map((s) => ({
+        id: s.exercise.id,
+        reason: s.reason,
+      })),
+    }));
+  });
+  return { catalog, splits, planCases, projectionCases, substituteCases };
 }

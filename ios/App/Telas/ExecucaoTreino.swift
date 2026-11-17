@@ -145,17 +145,15 @@ struct ExecucaoTreino: View {
         }
         .sheet(item: $trocar) { alvo in
             NavigationStack {
-                List(exercises.values.filter { !$0.deleted && $0.bool("archived") != true && $0.id != alvo.string("exercise_id") && (busca.isEmpty || ($0.string("name") ?? "").localizedStandardContains(busca)) }.sorted { ($0.string("name") ?? "") < ($1.string("name") ?? "") }) { replacement in
-                    Button(replacement.string("name") ?? "Exercício") {
-                        if let live = items.first(where: { $0.id == alvo.id }),
-                           conta.dados.active("sessions").contains(where: { $0.id == session.id && $0.string("status") == "active" }),
-                           conta.gravar(Workout.substitute(conta.dados, item: live, exercise: replacement, catalog: conta.catalogo, today: LocalDay.today())) {
-                            trocar = nil; selecionada = nil; rascunho = nil
-                        }
+                TrocaExercicioView(conta: conta, atual: exercises[alvo.string("exercise_id") ?? ""] ?? alvo,
+                                   noTreino: items.compactMap { $0.string("exercise_id") },
+                                   escolher: { replacement in
+                    if let live = items.first(where: { $0.id == alvo.id }),
+                       conta.dados.active("sessions").contains(where: { $0.id == session.id && $0.string("status") == "active" }),
+                       conta.gravar(Workout.substitute(conta.dados, item: live, exercise: replacement, catalog: conta.catalogo, today: LocalDay.today())) {
+                        trocar = nil; selecionada = nil; rascunho = nil
                     }
-                }
-                .searchable(text: $busca, prompt: "Buscar exercício").navigationTitle("Trocar exercício")
-                .toolbar { Button("Cancelar") { trocar = nil } }
+                }, cancelar: { trocar = nil })
             }
         }
     }

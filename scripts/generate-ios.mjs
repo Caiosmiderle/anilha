@@ -190,6 +190,7 @@ const outputs = {
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/training.json': json(training),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/session.json': json(sessionFixture),
   'ios/App/Recursos/exercises.json': json(artifacts.catalog),
+  'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/substitutes.json': json(artifacts.substituteCases),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/plans.json': json(artifacts.planCases),
   'ios/AnilhaCore/Tests/AnilhaCoreTests/Fixtures/projections.json': json(artifacts.projectionCases),
   'ios/AnilhaCore/Sources/AnilhaCore/Resources/splits.json': json(artifacts.splits),
