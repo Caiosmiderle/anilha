@@ -50,7 +50,7 @@ test('calendário reúne força e CRUNNING, abre detalhes e navega entre meses',
   await page.goto('/voce/conexoes/crunning');
   await page.getByRole('button', { name: 'Gerar token', exact: true }).click();
   const token = await page.getByLabel('Token do CRUNNING').inputValue();
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = { Authorization: `Bearer ${token}`, 'x-local-today': '2026-11-12' };
   const run = await page.request.post(`${API}/functions/v1/troca-crunning/corridas`, {
     headers,
     data: {

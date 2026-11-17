@@ -223,7 +223,7 @@ test('créditos: a fonte das imagens com a atribuição que a licença pede', as
     'href',
     'https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md',
   );
-  await expect(page.getByText(/89 exercícios/)).toBeVisible();
+  await expect(page.getByText(/162 exercícios/)).toBeVisible();
   // As três imagens feitas pelo Anilha, em 3D, para o que o RepDB não tem.
   await expect(
     page.getByText(/Imagens feitas em 3D pela equipe do Anilha\. Termos de uso\. 3 exercícios/),

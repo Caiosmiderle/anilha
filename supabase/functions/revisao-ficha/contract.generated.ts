@@ -696,7 +696,80 @@ const LEVEL = {
 	"abdominal-bicicleta": "iniciante",
 	"roda-abdominal": "avancado",
 	"pallof-press": "iniciante",
-	"dead-bug": "iniciante"
+	"dead-bug": "iniciante",
+	"remada-pendlay": "intermediario",
+	"remada-curvada-halteres": "intermediario",
+	"remada-apoiada-halteres": "iniciante",
+	"remada-curvada-supinada": "intermediario",
+	"remada-smith": "iniciante",
+	"puxada-unilateral": "iniciante",
+	"remada-baixa-aberta": "iniciante",
+	"remada-unilateral-polia": "iniciante",
+	"barra-fixa-supinada": "avancado",
+	"barra-fixa-neutra": "avancado",
+	"extensao-lombar-maquina": "iniciante",
+	"crucifixo-inclinado": "iniciante",
+	"supino-declinado-halteres": "iniciante",
+	"supino-smith": "iniciante",
+	"supino-inclinado-smith": "iniciante",
+	"supino-polia": "iniciante",
+	"flexao-inclinada": "iniciante",
+	"flexao-joelhos": "iniciante",
+	"flexao-declinada": "intermediario",
+	"supino-chao-halteres": "iniciante",
+	"desenvolvimento-halteres-em-pe": "intermediario",
+	"desenvolvimento-smith": "iniciante",
+	"elevacao-lateral-sentado": "iniciante",
+	"elevacao-frontal-polia": "iniciante",
+	"elevacao-frontal-barra": "iniciante",
+	"remada-alta-polia": "iniciante",
+	"remada-alta-halteres": "iniciante",
+	"crucifixo-inverso-polia": "iniciante",
+	"encolhimento-smith": "iniciante",
+	"rosca-scott-halter": "iniciante",
+	"rosca-maquina": "iniciante",
+	"rosca-martelo-polia": "iniciante",
+	"rosca-inversa": "iniciante",
+	"rosca-spider": "intermediario",
+	"rosca-sentado": "iniciante",
+	"rosca-punho": "iniciante",
+	"triceps-acima-polia": "iniciante",
+	"triceps-unilateral-polia": "iniciante",
+	"triceps-testa-halteres": "iniciante",
+	"triceps-barra-v": "iniciante",
+	"triceps-coice-polia": "iniciante",
+	"triceps-frances-barra": "intermediario",
+	"mergulho-maquina": "iniciante",
+	"flexao-diamante": "intermediario",
+	"agachamento-frontal": "avancado",
+	"agachamento-halteres": "iniciante",
+	"agachamento-bulgaro-smith": "intermediario",
+	"afundo-smith": "iniciante",
+	"afundo-reverso": "intermediario",
+	"afundo-barra": "intermediario",
+	"subida-banco": "iniciante",
+	"terra-romeno": "intermediario",
+	"terra-sumo": "avancado",
+	"terra-hexagonal": "intermediario",
+	"elevacao-pelvica-maquina": "iniciante",
+	"elevacao-pelvica-smith": "iniciante",
+	"ponte-gluteos": "iniciante",
+	"elevacao-pelvica-unilateral": "intermediario",
+	"coice-polia": "iniciante",
+	"extensora-unilateral": "iniciante",
+	"flexora-unilateral": "iniciante",
+	"leg-press-unilateral": "iniciante",
+	"stiff-unilateral": "intermediario",
+	"panturrilha-smith": "iniciante",
+	"panturrilha-burrinho": "iniciante",
+	"good-morning": "intermediario",
+	"abdominal-declinado": "iniciante",
+	"abdominal-canivete": "intermediario",
+	"elevacao-joelhos-barra": "intermediario",
+	"rotacao-russa": "iniciante",
+	"canoa": "intermediario",
+	"flexao-lateral-halter": "iniciante",
+	"abdominal-completo": "iniciante"
 };
 /** Built-in library (pt-BR). Ids are stable: never rename them. */
 const EXERCISES = [
@@ -825,6 +898,125 @@ const EXERCISES = [
 		bw: true,
 		hint: "pausa de 2 s no topo, depois anilha no peito"
 	}),
+	ex("remada-pendlay", "Remada Pendlay", "costas", {
+		muscles: ["costas"],
+		sec: [
+			"biceps",
+			"ombro_posterior",
+			"lombar"
+		],
+		secGroups: ["bracos"],
+		eq: "barra",
+		pattern: "puxar_horizontal",
+		joints: ["lombar", "ombro"],
+		compound: true
+	}),
+	ex("remada-curvada-halteres", "Remada curvada com halteres", "costas", {
+		muscles: ["costas"],
+		sec: [
+			"biceps",
+			"ombro_posterior",
+			"lombar"
+		],
+		secGroups: ["bracos"],
+		eq: "halteres",
+		pattern: "puxar_horizontal",
+		joints: ["lombar", "ombro"],
+		compound: true
+	}),
+	ex("remada-apoiada-halteres", "Remada apoiada no banco com halteres", "costas", {
+		muscles: ["costas"],
+		sec: ["biceps", "ombro_posterior"],
+		secGroups: ["bracos"],
+		eq: "halteres",
+		pattern: "puxar_horizontal",
+		joints: ["ombro"],
+		compound: true
+	}),
+	ex("remada-curvada-supinada", "Remada curvada supinada", "costas", {
+		muscles: ["costas"],
+		sec: ["biceps", "lombar"],
+		secGroups: ["bracos"],
+		eq: "barra",
+		pattern: "puxar_horizontal",
+		joints: [
+			"lombar",
+			"ombro",
+			"cotovelo"
+		],
+		compound: true
+	}),
+	ex("remada-smith", "Remada curvada no Smith", "costas", {
+		muscles: ["costas"],
+		sec: [
+			"biceps",
+			"ombro_posterior",
+			"lombar"
+		],
+		secGroups: ["bracos"],
+		eq: "maquina",
+		pattern: "puxar_horizontal",
+		joints: ["lombar", "ombro"],
+		compound: true
+	}),
+	ex("puxada-unilateral", "Puxada unilateral na polia", "costas", {
+		muscles: ["costas"],
+		sec: ["biceps"],
+		secGroups: ["bracos"],
+		eq: "polia",
+		pattern: "puxar_vertical",
+		joints: ["ombro", "cotovelo"],
+		compound: true
+	}),
+	ex("remada-baixa-aberta", "Remada baixa com pegada aberta", "costas", {
+		muscles: ["costas"],
+		sec: ["ombro_posterior", "biceps"],
+		secGroups: ["bracos", "ombros"],
+		eq: "polia",
+		pattern: "puxar_horizontal",
+		joints: ["ombro", "cotovelo"],
+		compound: true
+	}),
+	ex("remada-unilateral-polia", "Remada unilateral na polia", "costas", {
+		muscles: ["costas"],
+		sec: ["biceps", "ombro_posterior"],
+		secGroups: ["bracos"],
+		eq: "polia",
+		pattern: "puxar_horizontal",
+		joints: ["ombro", "cotovelo"],
+		compound: true
+	}),
+	ex("barra-fixa-supinada", "Barra fixa supinada", "costas", {
+		muscles: ["costas", "biceps"],
+		secGroups: ["bracos"],
+		eq: "barra_fixa",
+		pattern: "puxar_vertical",
+		joints: ["ombro", "cotovelo"],
+		compound: true,
+		measure: "reps",
+		bw: true,
+		hint: "descida mais lenta, depois carga extra no cinto"
+	}),
+	ex("barra-fixa-neutra", "Barra fixa com pegada neutra", "costas", {
+		muscles: ["costas"],
+		sec: ["biceps"],
+		secGroups: ["bracos"],
+		eq: "barra_fixa",
+		pattern: "puxar_vertical",
+		joints: ["ombro", "cotovelo"],
+		compound: true,
+		measure: "reps",
+		bw: true,
+		hint: "descida mais lenta, depois carga extra no cinto"
+	}),
+	ex("extensao-lombar-maquina", "Extensão lombar na máquina", "costas", {
+		muscles: ["lombar"],
+		sec: ["gluteos", "posterior_coxa"],
+		secGroups: ["pernas"],
+		eq: "maquina",
+		pattern: "extensao_lombar",
+		joints: ["lombar"]
+	}),
 	ex("supino-reto-barra", "Supino reto com barra", "peito", {
 		muscles: ["peito"],
 		sec: ["triceps", "ombro_anterior"],
@@ -929,6 +1121,114 @@ const EXERCISES = [
 		measure: "reps",
 		bw: true,
 		hint: "pés elevados, descida mais lenta"
+	}),
+	ex("crucifixo-inclinado", "Crucifixo inclinado com halteres", "peito", {
+		muscles: ["peito"],
+		sec: ["ombro_anterior"],
+		eq: "halteres",
+		pattern: "crucifixo",
+		joints: ["ombro"]
+	}),
+	ex("supino-declinado-halteres", "Supino declinado com halteres", "peito", {
+		muscles: ["peito"],
+		sec: ["triceps", "ombro_anterior"],
+		secGroups: ["bracos", "ombros"],
+		eq: "halteres",
+		pattern: "empurrar_horizontal",
+		joints: ["ombro", "cotovelo"],
+		compound: true
+	}),
+	ex("supino-smith", "Supino reto no Smith", "peito", {
+		muscles: ["peito"],
+		sec: ["triceps", "ombro_anterior"],
+		secGroups: ["bracos", "ombros"],
+		eq: "maquina",
+		pattern: "empurrar_horizontal",
+		joints: [
+			"ombro",
+			"cotovelo",
+			"punho"
+		],
+		compound: true
+	}),
+	ex("supino-inclinado-smith", "Supino inclinado no Smith", "peito", {
+		muscles: ["peito"],
+		sec: ["ombro_anterior", "triceps"],
+		secGroups: ["ombros", "bracos"],
+		eq: "maquina",
+		pattern: "empurrar_horizontal",
+		joints: [
+			"ombro",
+			"cotovelo",
+			"punho"
+		],
+		compound: true
+	}),
+	ex("supino-polia", "Supino na polia", "peito", {
+		muscles: ["peito"],
+		sec: ["triceps", "ombro_anterior"],
+		secGroups: ["bracos", "ombros"],
+		eq: "polia",
+		pattern: "empurrar_horizontal",
+		joints: ["ombro", "cotovelo"],
+		compound: true
+	}),
+	ex("flexao-inclinada", "Flexão inclinada", "peito", {
+		muscles: ["peito"],
+		sec: ["triceps", "ombro_anterior"],
+		secGroups: ["bracos", "ombros"],
+		eq: "peso_corporal",
+		pattern: "empurrar_horizontal",
+		joints: [
+			"ombro",
+			"cotovelo",
+			"punho"
+		],
+		compound: true,
+		measure: "reps",
+		bw: true,
+		hint: "apoio mais baixo até chegar à flexão no chão"
+	}),
+	ex("flexao-joelhos", "Flexão com joelhos no chão", "peito", {
+		muscles: ["peito"],
+		sec: ["triceps", "ombro_anterior"],
+		secGroups: ["bracos", "ombros"],
+		eq: "peso_corporal",
+		pattern: "empurrar_horizontal",
+		joints: [
+			"ombro",
+			"cotovelo",
+			"punho"
+		],
+		compound: true,
+		measure: "reps",
+		bw: true,
+		hint: "descida mais lenta, depois flexão completa"
+	}),
+	ex("flexao-declinada", "Flexão declinada", "peito", {
+		muscles: ["peito"],
+		sec: ["ombro_anterior", "triceps"],
+		secGroups: ["ombros", "bracos"],
+		eq: "peso_corporal",
+		pattern: "empurrar_horizontal",
+		joints: [
+			"ombro",
+			"cotovelo",
+			"punho"
+		],
+		compound: true,
+		measure: "reps",
+		bw: true,
+		hint: "pés mais altos, depois colete ou anilha nas costas"
+	}),
+	ex("supino-chao-halteres", "Supino no chão com halteres", "peito", {
+		muscles: ["peito"],
+		sec: ["triceps", "ombro_anterior"],
+		secGroups: ["bracos", "ombros"],
+		eq: "halteres",
+		pattern: "empurrar_horizontal",
+		joints: ["cotovelo"],
+		compound: true
 	}),
 	ex("desenvolvimento-halteres-sentado", "Desenvolvimento com halteres sentado", "ombros", {
 		muscles: ["ombro_anterior", "ombro_lateral"],
@@ -1038,6 +1338,72 @@ const EXERCISES = [
 		pattern: "encolhimento",
 		joints: ["punho"]
 	}),
+	ex("desenvolvimento-halteres-em-pe", "Desenvolvimento com halteres em pé", "ombros", {
+		muscles: ["ombro_anterior", "ombro_lateral"],
+		sec: ["triceps"],
+		secGroups: ["bracos"],
+		eq: "halteres",
+		pattern: "empurrar_vertical",
+		joints: [
+			"ombro",
+			"cotovelo",
+			"lombar"
+		],
+		compound: true
+	}),
+	ex("desenvolvimento-smith", "Desenvolvimento no Smith", "ombros", {
+		muscles: ["ombro_anterior", "ombro_lateral"],
+		sec: ["triceps"],
+		secGroups: ["bracos"],
+		eq: "maquina",
+		pattern: "empurrar_vertical",
+		joints: ["ombro", "cotovelo"],
+		compound: true
+	}),
+	ex("elevacao-lateral-sentado", "Elevação lateral sentado", "ombros", {
+		muscles: ["ombro_lateral"],
+		eq: "halteres",
+		pattern: "elevacao_lateral",
+		joints: ["ombro"]
+	}),
+	ex("elevacao-frontal-polia", "Elevação frontal na polia", "ombros", {
+		muscles: ["ombro_anterior"],
+		eq: "polia",
+		pattern: "elevacao_frontal",
+		joints: ["ombro"]
+	}),
+	ex("elevacao-frontal-barra", "Elevação frontal com barra", "ombros", {
+		muscles: ["ombro_anterior"],
+		eq: "barra",
+		pattern: "elevacao_frontal",
+		joints: ["ombro", "punho"]
+	}),
+	ex("remada-alta-polia", "Remada alta na polia", "ombros", {
+		muscles: ["ombro_lateral", "trapezio"],
+		eq: "polia",
+		pattern: "elevacao_lateral",
+		joints: ["ombro", "punho"]
+	}),
+	ex("remada-alta-halteres", "Remada alta com halteres", "ombros", {
+		muscles: ["ombro_lateral", "trapezio"],
+		eq: "halteres",
+		pattern: "elevacao_lateral",
+		joints: ["ombro"]
+	}),
+	ex("crucifixo-inverso-polia", "Crucifixo inverso na polia", "ombros", {
+		muscles: ["ombro_posterior"],
+		sec: ["trapezio"],
+		eq: "polia",
+		pattern: "crucifixo_inverso",
+		joints: ["ombro"]
+	}),
+	ex("encolhimento-smith", "Encolhimento no Smith", "ombros", {
+		muscles: ["trapezio"],
+		sec: ["antebraco"],
+		eq: "maquina",
+		pattern: "encolhimento",
+		joints: ["punho"]
+	}),
 	ex("rosca-direta", "Rosca direta com barra", "bracos", {
 		muscles: ["biceps"],
 		sec: ["antebraco"],
@@ -1088,6 +1454,51 @@ const EXERCISES = [
 		eq: "halteres",
 		pattern: "rosca",
 		joints: ["cotovelo", "ombro"]
+	}),
+	ex("rosca-scott-halter", "Rosca Scott com halter", "bracos", {
+		muscles: ["biceps"],
+		eq: "halteres",
+		pattern: "rosca",
+		joints: ["cotovelo"]
+	}),
+	ex("rosca-maquina", "Rosca na máquina", "bracos", {
+		muscles: ["biceps"],
+		eq: "maquina",
+		pattern: "rosca",
+		joints: ["cotovelo"]
+	}),
+	ex("rosca-martelo-polia", "Rosca martelo na polia", "bracos", {
+		muscles: ["biceps"],
+		sec: ["antebraco"],
+		eq: "polia",
+		pattern: "rosca",
+		joints: ["cotovelo"]
+	}),
+	ex("rosca-inversa", "Rosca inversa com barra W", "bracos", {
+		muscles: ["antebraco", "biceps"],
+		eq: "barra",
+		pattern: "rosca",
+		joints: ["cotovelo", "punho"]
+	}),
+	ex("rosca-spider", "Rosca spider", "bracos", {
+		muscles: ["biceps"],
+		eq: "halteres",
+		pattern: "rosca",
+		joints: ["cotovelo"]
+	}),
+	ex("rosca-sentado", "Rosca sentado com halteres", "bracos", {
+		muscles: ["biceps"],
+		sec: ["antebraco"],
+		eq: "halteres",
+		pattern: "rosca",
+		joints: ["cotovelo"]
+	}),
+	ex("rosca-punho", "Rosca de punho com halteres", "bracos", {
+		muscles: ["antebraco"],
+		eq: "halteres",
+		pattern: "rosca",
+		joints: ["punho"],
+		inc: 1
 	}),
 	ex("triceps-polia", "Tríceps na polia com barra", "bracos", {
 		muscles: ["triceps"],
@@ -1161,6 +1572,61 @@ const EXERCISES = [
 		measure: "reps",
 		bw: true,
 		hint: "pés elevados, depois anilha no colo"
+	}),
+	ex("triceps-acima-polia", "Tríceps acima da cabeça na polia", "bracos", {
+		muscles: ["triceps"],
+		eq: "polia",
+		pattern: "extensao_cotovelo",
+		joints: ["cotovelo", "ombro"]
+	}),
+	ex("triceps-unilateral-polia", "Tríceps unilateral na polia", "bracos", {
+		muscles: ["triceps"],
+		eq: "polia",
+		pattern: "extensao_cotovelo",
+		joints: ["cotovelo"]
+	}),
+	ex("triceps-testa-halteres", "Tríceps testa com halteres", "bracos", {
+		muscles: ["triceps"],
+		eq: "halteres",
+		pattern: "extensao_cotovelo",
+		joints: ["cotovelo"]
+	}),
+	ex("triceps-barra-v", "Tríceps na polia com barra V", "bracos", {
+		muscles: ["triceps"],
+		eq: "polia",
+		pattern: "extensao_cotovelo",
+		joints: ["cotovelo"]
+	}),
+	ex("triceps-coice-polia", "Tríceps coice na polia", "bracos", {
+		muscles: ["triceps"],
+		eq: "polia",
+		pattern: "extensao_cotovelo",
+		joints: ["cotovelo"]
+	}),
+	ex("triceps-frances-barra", "Tríceps francês com barra W", "bracos", {
+		muscles: ["triceps"],
+		eq: "barra",
+		pattern: "extensao_cotovelo",
+		joints: ["cotovelo", "ombro"]
+	}),
+	ex("mergulho-maquina", "Mergulho na máquina", "bracos", {
+		muscles: ["triceps"],
+		sec: ["peito"],
+		secGroups: ["peito"],
+		eq: "maquina",
+		pattern: "extensao_cotovelo",
+		joints: ["ombro", "cotovelo"]
+	}),
+	ex("flexao-diamante", "Flexão diamante", "bracos", {
+		muscles: ["triceps", "peito"],
+		secGroups: ["peito"],
+		eq: "peso_corporal",
+		pattern: "empurrar_horizontal",
+		joints: ["cotovelo", "punho"],
+		compound: true,
+		measure: "reps",
+		bw: true,
+		hint: "descida mais lenta, depois pés elevados"
 	}),
 	ex("agachamento-livre", "Agachamento livre com barra", "pernas", {
 		muscles: ["quadriceps", "gluteos"],
@@ -1333,6 +1799,178 @@ const EXERCISES = [
 		eq: "halteres",
 		pattern: "panturrilha"
 	}),
+	ex("agachamento-frontal", "Agachamento frontal com barra", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		sec: ["abdomen"],
+		eq: "barra",
+		pattern: "agachamento",
+		joints: [
+			"joelho",
+			"lombar",
+			"punho"
+		],
+		compound: true
+	}),
+	ex("agachamento-halteres", "Agachamento com halteres", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		eq: "halteres",
+		pattern: "agachamento",
+		joints: ["joelho"],
+		compound: true
+	}),
+	ex("agachamento-bulgaro-smith", "Agachamento búlgaro no Smith", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		eq: "maquina",
+		pattern: "avanco",
+		joints: ["joelho"],
+		compound: true
+	}),
+	ex("afundo-smith", "Afundo no Smith", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		eq: "maquina",
+		pattern: "avanco",
+		joints: ["joelho"],
+		compound: true
+	}),
+	ex("afundo-reverso", "Afundo reverso com halteres", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		eq: "halteres",
+		pattern: "avanco",
+		joints: ["joelho"],
+		compound: true
+	}),
+	ex("afundo-barra", "Afundo com barra", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		eq: "barra",
+		pattern: "avanco",
+		joints: ["joelho"],
+		compound: true
+	}),
+	ex("subida-banco", "Subida no banco com halteres", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		eq: "halteres",
+		pattern: "avanco",
+		joints: ["joelho"],
+		compound: true
+	}),
+	ex("terra-romeno", "Levantamento terra romeno", "pernas", {
+		muscles: ["posterior_coxa", "gluteos"],
+		sec: ["lombar"],
+		eq: "barra",
+		pattern: "dobradica",
+		joints: ["lombar"],
+		compound: true
+	}),
+	ex("terra-sumo", "Levantamento terra sumô", "pernas", {
+		muscles: ["gluteos", "quadriceps"],
+		sec: [
+			"posterior_coxa",
+			"adutores",
+			"lombar"
+		],
+		eq: "barra",
+		pattern: "dobradica",
+		joints: ["lombar", "joelho"],
+		compound: true
+	}),
+	ex("terra-hexagonal", "Levantamento terra com barra hexagonal", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		sec: [
+			"posterior_coxa",
+			"lombar",
+			"trapezio"
+		],
+		eq: "barra",
+		pattern: "dobradica",
+		joints: ["lombar", "joelho"],
+		compound: true
+	}),
+	ex("elevacao-pelvica-maquina", "Elevação pélvica na máquina", "pernas", {
+		muscles: ["gluteos"],
+		sec: ["posterior_coxa"],
+		eq: "maquina",
+		pattern: "dobradica",
+		compound: true,
+		inc: 5
+	}),
+	ex("elevacao-pelvica-smith", "Elevação pélvica no Smith", "pernas", {
+		muscles: ["gluteos"],
+		sec: ["posterior_coxa"],
+		eq: "maquina",
+		pattern: "dobradica",
+		compound: true,
+		inc: 5
+	}),
+	ex("ponte-gluteos", "Ponte de glúteos", "pernas", {
+		muscles: ["gluteos"],
+		sec: ["posterior_coxa"],
+		eq: "peso_corporal",
+		pattern: "dobradica",
+		measure: "reps",
+		bw: true,
+		hint: "uma perna só, depois peso sobre o quadril"
+	}),
+	ex("elevacao-pelvica-unilateral", "Elevação pélvica unilateral", "pernas", {
+		muscles: ["gluteos"],
+		sec: ["posterior_coxa"],
+		eq: "peso_corporal",
+		pattern: "dobradica",
+		measure: "reps",
+		bw: true,
+		hint: "pausa no alto, depois peso sobre o quadril"
+	}),
+	ex("coice-polia", "Coice na polia", "pernas", {
+		muscles: ["gluteos"],
+		eq: "polia",
+		pattern: "dobradica"
+	}),
+	ex("extensora-unilateral", "Cadeira extensora unilateral", "pernas", {
+		muscles: ["quadriceps"],
+		eq: "maquina",
+		pattern: "extensao_joelho",
+		joints: ["joelho"]
+	}),
+	ex("flexora-unilateral", "Mesa flexora unilateral", "pernas", {
+		muscles: ["posterior_coxa"],
+		eq: "maquina",
+		pattern: "flexao_joelho",
+		joints: ["joelho"]
+	}),
+	ex("leg-press-unilateral", "Leg press unilateral", "pernas", {
+		muscles: ["quadriceps", "gluteos"],
+		eq: "maquina",
+		pattern: "agachamento",
+		joints: ["joelho"],
+		compound: true
+	}),
+	ex("stiff-unilateral", "Stiff unilateral com halteres", "pernas", {
+		muscles: ["posterior_coxa", "gluteos"],
+		sec: ["lombar"],
+		eq: "halteres",
+		pattern: "dobradica",
+		joints: ["lombar"],
+		compound: true
+	}),
+	ex("panturrilha-smith", "Panturrilha no Smith", "pernas", {
+		muscles: ["panturrilha"],
+		eq: "maquina",
+		pattern: "panturrilha",
+		inc: 5
+	}),
+	ex("panturrilha-burrinho", "Panturrilha burrinho na máquina", "pernas", {
+		muscles: ["panturrilha"],
+		eq: "maquina",
+		pattern: "panturrilha",
+		inc: 5
+	}),
+	ex("good-morning", "Good morning com barra", "pernas", {
+		muscles: ["posterior_coxa", "gluteos"],
+		sec: ["lombar"],
+		eq: "barra",
+		pattern: "dobradica",
+		joints: ["lombar"],
+		compound: true
+	}),
 	ex("prancha", "Prancha", "core", {
 		muscles: ["abdomen"],
 		eq: "peso_corporal",
@@ -1431,6 +2069,62 @@ const EXERCISES = [
 		measure: "reps",
 		bw: true,
 		hint: "braços e pernas mais longe do corpo"
+	}),
+	ex("abdominal-declinado", "Abdominal no banco declinado", "core", {
+		muscles: ["abdomen"],
+		eq: "peso_corporal",
+		pattern: "core_flexao",
+		measure: "reps",
+		bw: true,
+		hint: "banco mais inclinado, depois anilha no peito"
+	}),
+	ex("abdominal-canivete", "Abdominal canivete", "core", {
+		muscles: ["abdomen"],
+		eq: "peso_corporal",
+		pattern: "core_flexao",
+		measure: "reps",
+		bw: true,
+		hint: "descida mais lenta"
+	}),
+	ex("elevacao-joelhos-barra", "Elevação de joelhos na barra fixa", "core", {
+		muscles: ["abdomen"],
+		eq: "barra_fixa",
+		pattern: "core_quadril",
+		measure: "reps",
+		bw: true,
+		joints: ["ombro"],
+		hint: "pernas mais esticadas a cada fase"
+	}),
+	ex("rotacao-russa", "Rotação russa", "core", {
+		muscles: ["abdomen"],
+		eq: "peso_corporal",
+		pattern: "core_rotacao",
+		measure: "reps",
+		bw: true,
+		joints: ["lombar"],
+		hint: "pés fora do chão, depois anilha nas mãos"
+	}),
+	ex("canoa", "Canoa", "core", {
+		muscles: ["abdomen"],
+		eq: "peso_corporal",
+		pattern: "core_anti_extensao",
+		measure: "time",
+		bw: true,
+		hint: "braços acima da cabeça e pernas mais baixas"
+	}),
+	ex("flexao-lateral-halter", "Flexão lateral com halter", "core", {
+		muscles: ["abdomen"],
+		eq: "halteres",
+		pattern: "core_lateral",
+		joints: ["lombar"]
+	}),
+	ex("abdominal-completo", "Abdominal completo", "core", {
+		muscles: ["abdomen"],
+		eq: "peso_corporal",
+		pattern: "core_flexao",
+		measure: "reps",
+		bw: true,
+		hint: "descida mais lenta, depois anilha no peito"
 	})
 ];
 new Map(EXERCISES.map((e) => [e.id, e]));

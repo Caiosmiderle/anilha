@@ -3001,6 +3001,50 @@
       "name": "Hiperextensão lombar"
     },
     {
+      "id": "remada-pendlay",
+      "name": "Remada Pendlay"
+    },
+    {
+      "id": "remada-curvada-halteres",
+      "name": "Remada curvada com halteres"
+    },
+    {
+      "id": "remada-apoiada-halteres",
+      "name": "Remada apoiada no banco com halteres"
+    },
+    {
+      "id": "remada-curvada-supinada",
+      "name": "Remada curvada supinada"
+    },
+    {
+      "id": "remada-smith",
+      "name": "Remada curvada no Smith"
+    },
+    {
+      "id": "puxada-unilateral",
+      "name": "Puxada unilateral na polia"
+    },
+    {
+      "id": "remada-baixa-aberta",
+      "name": "Remada baixa com pegada aberta"
+    },
+    {
+      "id": "remada-unilateral-polia",
+      "name": "Remada unilateral na polia"
+    },
+    {
+      "id": "barra-fixa-supinada",
+      "name": "Barra fixa supinada"
+    },
+    {
+      "id": "barra-fixa-neutra",
+      "name": "Barra fixa com pegada neutra"
+    },
+    {
+      "id": "extensao-lombar-maquina",
+      "name": "Extensão lombar na máquina"
+    },
+    {
       "id": "supino-reto-barra",
       "name": "Supino reto com barra"
     },
@@ -3043,6 +3087,42 @@
     {
       "id": "flexao-bracos",
       "name": "Flexão de braços"
+    },
+    {
+      "id": "crucifixo-inclinado",
+      "name": "Crucifixo inclinado com halteres"
+    },
+    {
+      "id": "supino-declinado-halteres",
+      "name": "Supino declinado com halteres"
+    },
+    {
+      "id": "supino-smith",
+      "name": "Supino reto no Smith"
+    },
+    {
+      "id": "supino-inclinado-smith",
+      "name": "Supino inclinado no Smith"
+    },
+    {
+      "id": "supino-polia",
+      "name": "Supino na polia"
+    },
+    {
+      "id": "flexao-inclinada",
+      "name": "Flexão inclinada"
+    },
+    {
+      "id": "flexao-joelhos",
+      "name": "Flexão com joelhos no chão"
+    },
+    {
+      "id": "flexao-declinada",
+      "name": "Flexão declinada"
+    },
+    {
+      "id": "supino-chao-halteres",
+      "name": "Supino no chão com halteres"
     },
     {
       "id": "desenvolvimento-halteres-sentado",
@@ -3101,6 +3181,42 @@
       "name": "Encolhimento com barra"
     },
     {
+      "id": "desenvolvimento-halteres-em-pe",
+      "name": "Desenvolvimento com halteres em pé"
+    },
+    {
+      "id": "desenvolvimento-smith",
+      "name": "Desenvolvimento no Smith"
+    },
+    {
+      "id": "elevacao-lateral-sentado",
+      "name": "Elevação lateral sentado"
+    },
+    {
+      "id": "elevacao-frontal-polia",
+      "name": "Elevação frontal na polia"
+    },
+    {
+      "id": "elevacao-frontal-barra",
+      "name": "Elevação frontal com barra"
+    },
+    {
+      "id": "remada-alta-polia",
+      "name": "Remada alta na polia"
+    },
+    {
+      "id": "remada-alta-halteres",
+      "name": "Remada alta com halteres"
+    },
+    {
+      "id": "crucifixo-inverso-polia",
+      "name": "Crucifixo inverso na polia"
+    },
+    {
+      "id": "encolhimento-smith",
+      "name": "Encolhimento no Smith"
+    },
+    {
       "id": "rosca-direta",
       "name": "Rosca direta com barra"
     },
@@ -3131,6 +3247,34 @@
     {
       "id": "rosca-inclinada",
       "name": "Rosca inclinada com halteres"
+    },
+    {
+      "id": "rosca-scott-halter",
+      "name": "Rosca Scott com halter"
+    },
+    {
+      "id": "rosca-maquina",
+      "name": "Rosca na máquina"
+    },
+    {
+      "id": "rosca-martelo-polia",
+      "name": "Rosca martelo na polia"
+    },
+    {
+      "id": "rosca-inversa",
+      "name": "Rosca inversa com barra W"
+    },
+    {
+      "id": "rosca-spider",
+      "name": "Rosca spider"
+    },
+    {
+      "id": "rosca-sentado",
+      "name": "Rosca sentado com halteres"
+    },
+    {
+      "id": "rosca-punho",
+      "name": "Rosca de punho com halteres"
     },
     {
       "id": "triceps-polia",
@@ -3167,6 +3311,38 @@
     {
       "id": "mergulho-banco",
       "name": "Mergulho no banco"
+    },
+    {
+      "id": "triceps-acima-polia",
+      "name": "Tríceps acima da cabeça na polia"
+    },
+    {
+      "id": "triceps-unilateral-polia",
+      "name": "Tríceps unilateral na polia"
+    },
+    {
+      "id": "triceps-testa-halteres",
+      "name": "Tríceps testa com halteres"
+    },
+    {
+      "id": "triceps-barra-v",
+      "name": "Tríceps na polia com barra V"
+    },
+    {
+      "id": "triceps-coice-polia",
+      "name": "Tríceps coice na polia"
+    },
+    {
+      "id": "triceps-frances-barra",
+      "name": "Tríceps francês com barra W"
+    },
+    {
+      "id": "mergulho-maquina",
+      "name": "Mergulho na máquina"
+    },
+    {
+      "id": "flexao-diamante",
+      "name": "Flexão diamante"
     },
     {
       "id": "agachamento-livre",
@@ -3265,6 +3441,94 @@
       "name": "Panturrilha unilateral com halter"
     },
     {
+      "id": "agachamento-frontal",
+      "name": "Agachamento frontal com barra"
+    },
+    {
+      "id": "agachamento-halteres",
+      "name": "Agachamento com halteres"
+    },
+    {
+      "id": "agachamento-bulgaro-smith",
+      "name": "Agachamento búlgaro no Smith"
+    },
+    {
+      "id": "afundo-smith",
+      "name": "Afundo no Smith"
+    },
+    {
+      "id": "afundo-reverso",
+      "name": "Afundo reverso com halteres"
+    },
+    {
+      "id": "afundo-barra",
+      "name": "Afundo com barra"
+    },
+    {
+      "id": "subida-banco",
+      "name": "Subida no banco com halteres"
+    },
+    {
+      "id": "terra-romeno",
+      "name": "Levantamento terra romeno"
+    },
+    {
+      "id": "terra-sumo",
+      "name": "Levantamento terra sumô"
+    },
+    {
+      "id": "terra-hexagonal",
+      "name": "Levantamento terra com barra hexagonal"
+    },
+    {
+      "id": "elevacao-pelvica-maquina",
+      "name": "Elevação pélvica na máquina"
+    },
+    {
+      "id": "elevacao-pelvica-smith",
+      "name": "Elevação pélvica no Smith"
+    },
+    {
+      "id": "ponte-gluteos",
+      "name": "Ponte de glúteos"
+    },
+    {
+      "id": "elevacao-pelvica-unilateral",
+      "name": "Elevação pélvica unilateral"
+    },
+    {
+      "id": "coice-polia",
+      "name": "Coice na polia"
+    },
+    {
+      "id": "extensora-unilateral",
+      "name": "Cadeira extensora unilateral"
+    },
+    {
+      "id": "flexora-unilateral",
+      "name": "Mesa flexora unilateral"
+    },
+    {
+      "id": "leg-press-unilateral",
+      "name": "Leg press unilateral"
+    },
+    {
+      "id": "stiff-unilateral",
+      "name": "Stiff unilateral com halteres"
+    },
+    {
+      "id": "panturrilha-smith",
+      "name": "Panturrilha no Smith"
+    },
+    {
+      "id": "panturrilha-burrinho",
+      "name": "Panturrilha burrinho na máquina"
+    },
+    {
+      "id": "good-morning",
+      "name": "Good morning com barra"
+    },
+    {
       "id": "prancha",
       "name": "Prancha"
     },
@@ -3315,6 +3579,34 @@
     {
       "id": "dead-bug",
       "name": "Dead bug"
+    },
+    {
+      "id": "abdominal-declinado",
+      "name": "Abdominal no banco declinado"
+    },
+    {
+      "id": "abdominal-canivete",
+      "name": "Abdominal canivete"
+    },
+    {
+      "id": "elevacao-joelhos-barra",
+      "name": "Elevação de joelhos na barra fixa"
+    },
+    {
+      "id": "rotacao-russa",
+      "name": "Rotação russa"
+    },
+    {
+      "id": "canoa",
+      "name": "Canoa"
+    },
+    {
+      "id": "flexao-lateral-halter",
+      "name": "Flexão lateral com halter"
+    },
+    {
+      "id": "abdominal-completo",
+      "name": "Abdominal completo"
     }
   ],
   "replies": [

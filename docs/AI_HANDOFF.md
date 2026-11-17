@@ -1,5 +1,18 @@
 # Registro entre Codex e Claude
 
+## Catálogo com 165 exercícios, troca no iPhone e Waltér como chat, Claude, 17/11/2026
+
+- Autor: Claude, a pedido do Caio ("quero mais exercícios", "a lista de substituição no IPA mostra uma lista imensa", "coloca o Waltér como chat no IPA igual do PWA"). Branch `claude/missao`.
+- iPhone 0.21.x:
+  - o Waltér abre por um acessório acima das abas (`tabViewBottomAccessory`), em folha por cima de qualquer aba; balões, sugestões que enviam, indicador de digitação e Nova conversa;
+  - Trocar exercício usa `Substitutes.suggest` (`ios/AnilhaCore/Sources/AnilhaCore/Substitutes.swift`), porte do `suggestSubstitutes`, com vetores `Fixtures/substitutes.json` gerados do TS (todos os exercícios em 3 perfis) e teste `SubstitutesTests`. O catálogo embutido passou a levar `level`.
+- Catálogo: 73 exercícios novos em `src/engine/exercises.ts` (nível, dicas e erros em `src/content/howto.json`, mapa em `scripts/media/mapa-repdb.json`). Planos gerados não mudam: o gerador escolhe por listas fixas de ids. Teste de substitutos do face pull atualizado (o crucifixo inverso na polia entra antes de outra parte do ombro).
+- Imagens: `importar-midia` ligada com token de uso único (só o hash no código publicado, `verify_jwt` desligado durante a janela), 73 de 73 importadas sem falha para `midia-exercicios/repdb/<id>/`, URLs conferidas (200, image/webp), função republicada desligada (stub que recusa tudo, `verify_jwt` ligado). `src/content/media.json` com a mesma atribuição do RepDB.
+- Funções regeneradas e a publicar: `agente`, `analise-treino`, `revisao-ficha`, `troca-crunning`.
+- Teste `calendario-integrado` dependia da data real (janela de 1 dia do `troca-crunning`): o servidor local aceita `x-local-today` só em teste; produção usa o dia real.
+- CI: opção `mac` no disparo manual (`macos-15-intel`) porque a fila de Mac ARM do GitHub ficou sem capacidade.
+- Revisão pelo Codex: **PENDENTE**. Conferir músculos, padrões, articulações e níveis dos 73 novos e as dicas em pt-BR.
+
 ## iOS 0.19.0, ajustes do dia e outra ficha no Hoje, Codex, 13/11/2026
 
 - Branch recebida limpa `codex/ios-hoje-ajustes`, base `73b044e`. Entrega somente local, sem escrita em `.git`; Claude revisa e commita. Revisão desta entrega **PENDENTE**.

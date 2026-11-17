@@ -1,6 +1,6 @@
 # Catálogo de exercícios
 
-A biblioteca do app fica em `src/engine/exercises.ts`: 92 exercícios, com ids estáveis (nunca
+A biblioteca do app fica em `src/engine/exercises.ts`: 165 exercícios (92 até 17/11/2026, mais 73 com imagem do RepDB), com ids estáveis (nunca
 renomear). Os exercícios do catálogo vivem no aparelho; só as mudanças da pessoa sobem para o
 servidor. Exercícios criados pela pessoa têm o mesmo formato, sem nível.
 

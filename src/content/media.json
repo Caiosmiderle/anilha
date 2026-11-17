@@ -1084,5 +1084,878 @@
     "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
     "origem": "https://repdb.co",
     "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "abdominal-canivete": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/abdominal-canivete/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/abdominal-canivete/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "abdominal-completo": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/abdominal-completo/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/abdominal-completo/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "abdominal-declinado": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/abdominal-declinado/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/abdominal-declinado/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "afundo-barra": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/afundo-barra/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/afundo-barra/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "afundo-reverso": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/afundo-reverso/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/afundo-reverso/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "afundo-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/afundo-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/afundo-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "agachamento-bulgaro-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/agachamento-bulgaro-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/agachamento-bulgaro-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "agachamento-frontal": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/agachamento-frontal/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/agachamento-frontal/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "agachamento-halteres": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/agachamento-halteres/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/agachamento-halteres/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "barra-fixa-neutra": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/barra-fixa-neutra/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/barra-fixa-neutra/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "barra-fixa-supinada": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/barra-fixa-supinada/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/barra-fixa-supinada/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "canoa": {
+    "url": "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/canoa/principal.webp",
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "coice-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/coice-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/coice-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "crucifixo-inclinado": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/crucifixo-inclinado/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/crucifixo-inclinado/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "crucifixo-inverso-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/crucifixo-inverso-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/crucifixo-inverso-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "desenvolvimento-halteres-em-pe": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/desenvolvimento-halteres-em-pe/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/desenvolvimento-halteres-em-pe/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "desenvolvimento-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/desenvolvimento-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/desenvolvimento-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "elevacao-frontal-barra": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-frontal-barra/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-frontal-barra/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "elevacao-frontal-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-frontal-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-frontal-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "elevacao-joelhos-barra": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-joelhos-barra/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-joelhos-barra/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "elevacao-lateral-sentado": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-lateral-sentado/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-lateral-sentado/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "elevacao-pelvica-maquina": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-pelvica-maquina/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-pelvica-maquina/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "elevacao-pelvica-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-pelvica-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-pelvica-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "elevacao-pelvica-unilateral": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-pelvica-unilateral/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/elevacao-pelvica-unilateral/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "encolhimento-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/encolhimento-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/encolhimento-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "extensao-lombar-maquina": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/extensao-lombar-maquina/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/extensao-lombar-maquina/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "extensora-unilateral": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/extensora-unilateral/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/extensora-unilateral/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "flexao-declinada": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-declinada/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-declinada/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "flexao-diamante": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-diamante/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-diamante/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "flexao-inclinada": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-inclinada/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-inclinada/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "flexao-joelhos": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-joelhos/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-joelhos/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "flexao-lateral-halter": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-lateral-halter/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexao-lateral-halter/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "flexora-unilateral": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexora-unilateral/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/flexora-unilateral/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "good-morning": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/good-morning/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/good-morning/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "leg-press-unilateral": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/leg-press-unilateral/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/leg-press-unilateral/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "mergulho-maquina": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/mergulho-maquina/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/mergulho-maquina/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "panturrilha-burrinho": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/panturrilha-burrinho/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/panturrilha-burrinho/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "panturrilha-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/panturrilha-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/panturrilha-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "ponte-gluteos": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/ponte-gluteos/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/ponte-gluteos/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "puxada-unilateral": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/puxada-unilateral/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/puxada-unilateral/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-alta-halteres": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-alta-halteres/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-alta-halteres/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-alta-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-alta-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-alta-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-apoiada-halteres": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-apoiada-halteres/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-apoiada-halteres/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-baixa-aberta": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-baixa-aberta/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-baixa-aberta/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-curvada-halteres": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-curvada-halteres/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-curvada-halteres/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-curvada-supinada": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-curvada-supinada/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-curvada-supinada/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-pendlay": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-pendlay/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-pendlay/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "remada-unilateral-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-unilateral-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/remada-unilateral-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rosca-inversa": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-inversa/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-inversa/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rosca-maquina": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-maquina/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-maquina/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rosca-martelo-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-martelo-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-martelo-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rosca-punho": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-punho/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-punho/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rosca-scott-halter": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-scott-halter/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-scott-halter/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rosca-sentado": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-sentado/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-sentado/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rosca-spider": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-spider/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rosca-spider/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "rotacao-russa": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rotacao-russa/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/rotacao-russa/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "stiff-unilateral": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/stiff-unilateral/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/stiff-unilateral/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "subida-banco": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/subida-banco/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/subida-banco/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "supino-chao-halteres": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-chao-halteres/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-chao-halteres/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "supino-declinado-halteres": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-declinado-halteres/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-declinado-halteres/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "supino-inclinado-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-inclinado-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-inclinado-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "supino-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "supino-smith": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-smith/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/supino-smith/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "terra-hexagonal": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/terra-hexagonal/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/terra-hexagonal/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "terra-romeno": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/terra-romeno/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/terra-romeno/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "terra-sumo": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/terra-sumo/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/terra-sumo/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "triceps-acima-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-acima-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-acima-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "triceps-barra-v": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-barra-v/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-barra-v/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "triceps-coice-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-coice-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-coice-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "triceps-frances-barra": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-frances-barra/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-frances-barra/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "triceps-testa-halteres": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-testa-halteres/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-testa-halteres/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
+  },
+  "triceps-unilateral-polia": {
+    "frames": [
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-unilateral-polia/inicio.webp",
+      "https://ssuuvzgqtobnfvobvjcu.supabase.co/storage/v1/object/public/midia-exercicios/repdb/triceps-unilateral-polia/fim.webp"
+    ],
+    "fonte": "RepDB, versão gratuita",
+    "autor": "RepDB (Sergei Argutin)",
+    "licenca": "RepDB Free Tier License v1.0",
+    "licencaUrl": "https://github.com/RepDB/exercise-dataset/blob/main/LICENSE-DATA.md",
+    "origem": "https://repdb.co",
+    "atribuicao": "Exercise data by RepDB (repdb.co)"
   }
 }

@@ -54,8 +54,12 @@ describe('substitutos', () => {
     for (const s of presses) expect(s.exercise.pattern).toBe('empurrar_horizontal');
 
     const rear = suggestSubstitutes(get('face-pull'), { library: EXERCISES });
-    expect(ids(rear).slice(0, 2)).toEqual(['crucifixo-inverso', 'crucifixo-inverso-maquina']);
-    expect(rear[2]?.reason).toMatch(/^Outra parte do ombro, /);
+    expect(ids(rear).slice(0, 3)).toEqual([
+      'crucifixo-inverso',
+      'crucifixo-inverso-maquina',
+      'crucifixo-inverso-polia',
+    ]);
+    expect(rear[3]?.reason).toMatch(/^Outra parte do ombro, /);
   });
 
   it('com o mesmo movimento, o equipamento de quem treina vem antes', () => {

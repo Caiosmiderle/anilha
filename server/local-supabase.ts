@@ -169,15 +169,22 @@ export async function startLocalSupabase(opts: Options = {}): Promise<LocalSupab
         },
         ...(req.method === 'POST' || req.method === 'PUT' ? { body: JSON.stringify(body) } : {}),
       });
-      const response = await handleCrunning(request, async (hash, operation, payload) =>
-        db.transaction(async (tx) => {
-          await tx.exec('set local role service_role');
-          const result = await tx.query<{ value: Record<string, unknown> }>(
-            'select public.crunning_exchange($1,$2,$3::jsonb) as value',
-            [hash, operation, JSON.stringify(payload)],
-          );
-          return result.rows[0]!.value;
-        }),
+      const response = await handleCrunning(
+        request,
+        async (hash, operation, payload) =>
+          db.transaction(async (tx) => {
+            await tx.exec('set local role service_role');
+            const result = await tx.query<{ value: Record<string, unknown> }>(
+              'select public.crunning_exchange($1,$2,$3::jsonb) as value',
+              [hash, operation, JSON.stringify(payload)],
+            );
+            return result.rows[0]!.value;
+          }),
+        // Local server only: tests with a fixed clock pass their day; production uses the real one.
+        typeof req.headers['x-local-today'] === 'string' &&
+          /^\d{4}-\d{2}-\d{2}$/.test(req.headers['x-local-today'])
+          ? req.headers['x-local-today']
+          : undefined,
       );
       return send(response.status, await response.json());
     }

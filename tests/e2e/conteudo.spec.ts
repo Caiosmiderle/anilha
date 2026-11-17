@@ -76,7 +76,7 @@ test('painel: aviso no sino de todos e ficha pronta nova, com a conta de adiçõ
   await news.getByRole('textbox', { name: 'Texto' }).fill('Quatro fichas para começar, em Plano.');
   await news.getByLabel('Ao tocar, abre').selectOption('/plano/fichas-prontas');
   await news.getByRole('button', { name: 'Publicar aviso' }).click();
-  await expect(dono.getByText('Aviso publicado')).toBeVisible();
+  await expect(dono.getByText('Aviso publicado', { exact: true })).toBeVisible();
   await expect(news.getByTestId('admin-announcement').first()).toContainText(
     'Chegaram as fichas prontas',
   );

@@ -1105,5 +1105,890 @@
     "videoId": "",
     "start": null,
     "end": null
+  },
+  "remada-pendlay": {
+    "tips": [
+      "Tronco quase paralelo ao chão, costas retas.",
+      "A barra sai parada do chão em cada repetição.",
+      "Puxe rápido até a parte baixa do peito.",
+      "Devolva a barra ao chão com controle."
+    ],
+    "errors": ["Levantar o tronco para ajudar a puxar.", "Arredondar a lombar na saída do chão."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-curvada-halteres": {
+    "tips": [
+      "Joelhos um pouco dobrados e quadril para trás.",
+      "Costas retas e tronco inclinado à frente.",
+      "Puxe os halteres até a cintura.",
+      "Desça devagar até esticar os braços."
+    ],
+    "errors": ["Arredondar as costas durante a série.", "Balançar o tronco para subir o peso."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-apoiada-halteres": {
+    "tips": [
+      "Peito apoiado no banco inclinado.",
+      "Braços pendurados, halteres com pegada neutra.",
+      "Puxe levando os cotovelos para trás.",
+      "Aperte as escápulas no alto e desça devagar."
+    ],
+    "errors": ["Tirar o peito do banco para puxar.", "Encolher os ombros em direção às orelhas."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-curvada-supinada": {
+    "tips": [
+      "Pegada com as palmas para cima, na largura dos ombros.",
+      "Tronco inclinado e costas retas.",
+      "Puxe a barra até o umbigo.",
+      "Cotovelos perto do corpo."
+    ],
+    "errors": ["Transformar a puxada em rosca.", "Subir o tronco a cada repetição."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-smith": {
+    "tips": [
+      "Barra do Smith na altura dos joelhos para começar.",
+      "Quadril para trás, costas retas.",
+      "Puxe a barra até a parte baixa do peito.",
+      "Desça até esticar os braços sem soltar a postura."
+    ],
+    "errors": ["Ficar em pé demais e virar encolhimento.", "Arredondar a lombar."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "puxada-unilateral": {
+    "tips": [
+      "Pegador alto, um braço de cada vez.",
+      "Comece com o braço esticado e o ombro alongado.",
+      "Puxe o cotovelo para baixo, ao lado do corpo.",
+      "Volte devagar até esticar."
+    ],
+    "errors": ["Girar o tronco para puxar.", "Encurtar a volta e perder o alongamento."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-baixa-aberta": {
+    "tips": [
+      "Barra reta com pegada mais aberta que os ombros.",
+      "Tronco firme e peito alto.",
+      "Puxe com os cotovelos abertos até o peito.",
+      "Volte devagar até esticar os braços."
+    ],
+    "errors": ["Jogar o tronco para trás a cada puxada.", "Encolher os ombros."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-unilateral-polia": {
+    "tips": [
+      "Sentado, um pegador na mão e o outro braço livre.",
+      "Tronco parado de frente para a polia.",
+      "Puxe o cotovelo para trás, perto do corpo.",
+      "Deixe o ombro ir à frente na volta, sem girar o tronco."
+    ],
+    "errors": ["Girar o tronco para puxar mais peso.", "Puxar com o bíceps e não com as costas."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "barra-fixa-supinada": {
+    "tips": [
+      "Palmas viradas para você, na largura dos ombros.",
+      "Comece pendurado com os braços esticados.",
+      "Suba até o queixo passar a barra.",
+      "Desça devagar até esticar."
+    ],
+    "errors": ["Balançar as pernas para subir.", "Fazer meia repetição sem esticar os braços."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "barra-fixa-neutra": {
+    "tips": [
+      "Palmas uma de frente para a outra.",
+      "Peito alto e ombros para baixo antes de puxar.",
+      "Suba até o queixo chegar aos pegadores.",
+      "Desça com controle até esticar."
+    ],
+    "errors": ["Usar impulso das pernas.", "Soltar o corpo de uma vez na descida."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "extensao-lombar-maquina": {
+    "tips": [
+      "Ajuste o apoio na altura das costas, acima da cintura.",
+      "Pés firmes e braços cruzados no peito.",
+      "Empurre o apoio para trás até o tronco ficar reto.",
+      "Volte devagar, sem soltar o peso."
+    ],
+    "errors": [
+      "Jogar o corpo para trás passando da linha reta.",
+      "Usar carga que obriga a dar tranco."
+    ],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "crucifixo-inclinado": {
+    "tips": [
+      "Banco inclinado em 30 a 45 graus.",
+      "Cotovelos levemente dobrados o tempo todo.",
+      "Abra os braços até sentir o peito alongar.",
+      "Feche como num abraço, sem bater os halteres."
+    ],
+    "errors": ["Descer demais e forçar o ombro.", "Dobrar os cotovelos e virar supino."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "supino-declinado-halteres": {
+    "tips": [
+      "Pés presos no banco declinado.",
+      "Halteres na linha da parte baixa do peito.",
+      "Desça com os cotovelos a uns 45 graus do corpo.",
+      "Empurre para cima até quase esticar."
+    ],
+    "errors": ["Abrir os cotovelos em linha com os ombros.", "Descer rápido e quicar no peito."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "supino-smith": {
+    "tips": [
+      "Banco posicionado para a barra descer no meio do peito.",
+      "Escápulas juntas e pés firmes no chão.",
+      "Desça a barra até encostar de leve no peito.",
+      "Empurre até quase esticar os braços."
+    ],
+    "errors": ["Banco no lugar errado e barra descendo no pescoço.", "Tirar o quadril do banco."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "supino-inclinado-smith": {
+    "tips": [
+      "Banco inclinado em 30 a 45 graus.",
+      "A barra desce na parte alta do peito.",
+      "Cotovelos um pouco abaixo da linha dos ombros.",
+      "Empurre até quase esticar."
+    ],
+    "errors": ["Inclinar demais o banco e virar desenvolvimento.", "Descer só metade do caminho."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "supino-polia": {
+    "tips": [
+      "Polias na altura do peito, de costas para o aparelho.",
+      "Um pé à frente do outro para firmar.",
+      "Empurre os pegadores à frente até quase esticar.",
+      "Volte devagar até sentir o peito alongar."
+    ],
+    "errors": [
+      "Inclinar o tronco à frente para empurrar.",
+      "Deixar o peso puxar os braços de uma vez."
+    ],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "flexao-inclinada": {
+    "tips": [
+      "Mãos num banco ou apoio firme, na largura dos ombros.",
+      "Corpo reto da cabeça aos pés.",
+      "Desça até o peito chegar perto do apoio.",
+      "Empurre até esticar os braços."
+    ],
+    "errors": ["Deixar o quadril cair.", "Abrir demais os cotovelos."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "flexao-joelhos": {
+    "tips": [
+      "Joelhos no chão e corpo reto dos joelhos à cabeça.",
+      "Mãos um pouco mais abertas que os ombros.",
+      "Desça até o peito quase tocar o chão.",
+      "Empurre até esticar os braços."
+    ],
+    "errors": ["Dobrar o quadril e empinar o bumbum.", "Descer só um pouco."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "flexao-declinada": {
+    "tips": [
+      "Pés num banco e mãos no chão.",
+      "Corpo reto, abdômen firme.",
+      "Desça até o rosto chegar perto do chão.",
+      "Empurre até esticar os braços."
+    ],
+    "errors": ["Deixar a lombar afundar.", "Olhar para a frente e forçar o pescoço."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "supino-chao-halteres": {
+    "tips": [
+      "Deitado no chão, joelhos dobrados.",
+      "Halteres em cima do peito, braços esticados.",
+      "Desça até os braços encostarem no chão.",
+      "Pausa curta e empurre de volta."
+    ],
+    "errors": ["Bater os cotovelos no chão.", "Abrir os cotovelos em linha com os ombros."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "desenvolvimento-halteres-em-pe": {
+    "tips": [
+      "Em pé, pés na largura do quadril e abdômen firme.",
+      "Halteres na altura dos ombros.",
+      "Empurre para cima até quase esticar.",
+      "Desça devagar até a altura das orelhas."
+    ],
+    "errors": ["Arquear a lombar para empurrar.", "Usar as pernas para dar impulso."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "desenvolvimento-smith": {
+    "tips": [
+      "Banco com encosto reto, embaixo da barra.",
+      "Pegada um pouco mais aberta que os ombros.",
+      "Desça a barra até a altura do queixo.",
+      "Empurre até quase esticar."
+    ],
+    "errors": ["Banco longe e barra descendo à frente do rosto.", "Tirar as costas do encosto."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "elevacao-lateral-sentado": {
+    "tips": [
+      "Sentado na ponta do banco, tronco reto.",
+      "Cotovelos levemente dobrados.",
+      "Suba os braços pelos lados até a altura dos ombros.",
+      "Desça devagar."
+    ],
+    "errors": ["Balançar o tronco para subir.", "Subir os halteres acima dos ombros."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "elevacao-frontal-polia": {
+    "tips": [
+      "De costas para a polia baixa, cabo entre as pernas.",
+      "Braço quase esticado.",
+      "Suba à frente até a altura dos ombros.",
+      "Desça devagar."
+    ],
+    "errors": ["Inclinar o tronco para trás.", "Subir acima da linha dos ombros."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "elevacao-frontal-barra": {
+    "tips": [
+      "Barra com pegada pronada na largura dos ombros.",
+      "Braços quase esticados à frente das coxas.",
+      "Suba a barra até a altura dos olhos.",
+      "Desça devagar."
+    ],
+    "errors": ["Dar impulso com o quadril.", "Arquear a lombar no alto."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-alta-polia": {
+    "tips": [
+      "Barra na polia baixa, pegada na largura dos ombros.",
+      "Puxe com os cotovelos à frente das mãos.",
+      "Suba até a barra chegar à altura do peito.",
+      "Desça devagar."
+    ],
+    "errors": ["Subir a barra até o queixo e apertar o ombro.", "Pegada fechada demais."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "remada-alta-halteres": {
+    "tips": [
+      "Halteres à frente das coxas.",
+      "Suba levando os cotovelos para os lados e para cima.",
+      "Pare com os cotovelos na altura dos ombros.",
+      "Desça devagar."
+    ],
+    "errors": ["Subir os halteres acima do peito.", "Balançar o tronco."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "crucifixo-inverso-polia": {
+    "tips": [
+      "Polias na altura dos ombros, cabos cruzados.",
+      "Braços quase esticados à frente.",
+      "Abra os braços para trás até a linha do corpo.",
+      "Volte devagar."
+    ],
+    "errors": ["Puxar com as costas e não com o ombro.", "Dobrar os cotovelos a cada repetição."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "encolhimento-smith": {
+    "tips": [
+      "Barra na altura das coxas, braços esticados.",
+      "Suba os ombros em direção às orelhas.",
+      "Segure um segundo no alto.",
+      "Desça devagar."
+    ],
+    "errors": ["Girar os ombros.", "Dobrar os cotovelos para puxar."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rosca-scott-halter": {
+    "tips": [
+      "Braço apoiado no banco Scott, axila encostada.",
+      "Comece com o braço quase esticado.",
+      "Suba o halter sem tirar o braço do apoio.",
+      "Desça devagar até quase esticar."
+    ],
+    "errors": ["Esticar o braço de uma vez embaixo.", "Tirar o cotovelo do apoio."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rosca-maquina": {
+    "tips": [
+      "Ajuste o banco para o cotovelo ficar no eixo da máquina.",
+      "Braços apoiados e costas retas.",
+      "Suba até contrair o bíceps.",
+      "Desça devagar."
+    ],
+    "errors": ["Banco desalinhado com o eixo.", "Tirar o quadril do banco para puxar."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rosca-martelo-polia": {
+    "tips": [
+      "Corda na polia baixa, palmas uma de frente para a outra.",
+      "Cotovelos colados no corpo.",
+      "Suba até a altura dos ombros.",
+      "Desça devagar."
+    ],
+    "errors": ["Levar os cotovelos à frente.", "Balançar o tronco."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rosca-inversa": {
+    "tips": [
+      "Pegada com as palmas para baixo.",
+      "Cotovelos ao lado do corpo.",
+      "Suba a barra sem dobrar os punhos.",
+      "Desça devagar."
+    ],
+    "errors": ["Deixar os punhos caírem.", "Usar carga de rosca direta."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rosca-spider": {
+    "tips": [
+      "Deitado de bruços no banco inclinado.",
+      "Braços pendurados para baixo.",
+      "Suba os halteres sem mexer os cotovelos.",
+      "Desça até esticar."
+    ],
+    "errors": ["Balançar os braços para subir.", "Tirar o peito do banco."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rosca-sentado": {
+    "tips": [
+      "Sentado com as costas apoiadas.",
+      "Braços esticados ao lado do corpo.",
+      "Suba girando as palmas para cima.",
+      "Desça devagar."
+    ],
+    "errors": ["Tirar as costas do encosto.", "Levar os cotovelos à frente."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rosca-punho": {
+    "tips": [
+      "Antebraços apoiados na coxa ou no banco, palmas para cima.",
+      "Só os punhos passam da borda.",
+      "Suba dobrando só o punho.",
+      "Desça devagar até alongar."
+    ],
+    "errors": ["Mexer o cotovelo.", "Carga alta demais e movimento curto."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "triceps-acima-polia": {
+    "tips": [
+      "De costas para a polia, corda atrás da cabeça.",
+      "Cotovelos apontando para a frente.",
+      "Estique os braços à frente e acima.",
+      "Volte devagar até alongar."
+    ],
+    "errors": ["Abrir os cotovelos.", "Arquear a lombar."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "triceps-unilateral-polia": {
+    "tips": [
+      "Pegador na polia alta, um braço de cada vez.",
+      "Cotovelo colado ao lado do corpo.",
+      "Empurre até esticar o braço.",
+      "Suba devagar até a altura do peito."
+    ],
+    "errors": ["Tirar o cotovelo do lugar.", "Inclinar o tronco sobre o pegador."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "triceps-testa-halteres": {
+    "tips": [
+      "Deitado no banco, halteres acima do peito.",
+      "Palmas uma de frente para a outra.",
+      "Dobre só os cotovelos, descendo ao lado da cabeça.",
+      "Estique os braços de volta."
+    ],
+    "errors": ["Abrir os cotovelos para os lados.", "Mexer os ombros junto."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "triceps-barra-v": {
+    "tips": [
+      "Barra V na polia alta.",
+      "Cotovelos colados ao corpo.",
+      "Empurre até esticar os braços.",
+      "Suba devagar até a altura do peito."
+    ],
+    "errors": ["Abrir os cotovelos.", "Usar o peso do corpo para descer."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "triceps-coice-polia": {
+    "tips": [
+      "Tronco inclinado à frente, polia baixa.",
+      "Braço colado ao corpo, cotovelo dobrado.",
+      "Estique o braço para trás.",
+      "Volte devagar."
+    ],
+    "errors": ["Mexer o ombro em vez do cotovelo.", "Balançar o braço."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "triceps-frances-barra": {
+    "tips": [
+      "Sentado com as costas apoiadas.",
+      "Barra acima da cabeça, braços esticados.",
+      "Desça a barra atrás da cabeça dobrando os cotovelos.",
+      "Estique de volta."
+    ],
+    "errors": ["Abrir os cotovelos.", "Arquear a lombar."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "mergulho-maquina": {
+    "tips": [
+      "Sentado, pegadores ao lado do corpo.",
+      "Peito alto e ombros para baixo.",
+      "Empurre para baixo até esticar os braços.",
+      "Suba devagar."
+    ],
+    "errors": ["Inclinar o tronco à frente.", "Deixar os ombros subirem."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "flexao-diamante": {
+    "tips": [
+      "Mãos juntas embaixo do peito, formando um losango.",
+      "Corpo reto da cabeça aos pés.",
+      "Desça até o peito chegar perto das mãos.",
+      "Empurre até esticar."
+    ],
+    "errors": ["Deixar o quadril cair.", "Abrir os cotovelos."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "agachamento-frontal": {
+    "tips": [
+      "Barra apoiada na frente dos ombros, cotovelos altos.",
+      "Pés na largura dos ombros.",
+      "Desça com o tronco o mais reto possível.",
+      "Suba empurrando o chão."
+    ],
+    "errors": ["Deixar os cotovelos caírem e a barra escorregar.", "Inclinar o tronco à frente."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "agachamento-halteres": {
+    "tips": [
+      "Halteres ao lado do corpo.",
+      "Pés na largura dos ombros.",
+      "Desça com o quadril para trás e o peito alto.",
+      "Suba empurrando o chão."
+    ],
+    "errors": ["Joelhos entrando na subida.", "Calcanhares saindo do chão."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "agachamento-bulgaro-smith": {
+    "tips": [
+      "Pé de trás apoiado num banco.",
+      "Barra do Smith nas costas.",
+      "Desça até a coxa da frente ficar paralela ao chão.",
+      "Suba empurrando com o pé da frente."
+    ],
+    "errors": ["Pé da frente perto demais do banco.", "Joelho da frente entrando."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "afundo-smith": {
+    "tips": [
+      "Barra nas costas, um pé à frente e outro atrás.",
+      "Tronco reto.",
+      "Desça até o joelho de trás quase tocar o chão.",
+      "Suba empurrando com a perna da frente."
+    ],
+    "errors": ["Passos curtos demais.", "Joelho da frente entrando."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "afundo-reverso": {
+    "tips": [
+      "Em pé com halteres ao lado do corpo.",
+      "Dê um passo para trás.",
+      "Desça até o joelho de trás quase tocar o chão.",
+      "Volte empurrando com a perna da frente."
+    ],
+    "errors": ["Tronco caindo à frente.", "Joelho da frente entrando."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "afundo-barra": {
+    "tips": [
+      "Barra apoiada nas costas.",
+      "Dê um passo à frente.",
+      "Desça até as duas pernas formarem ângulos retos.",
+      "Volte empurrando com a perna da frente."
+    ],
+    "errors": [
+      "Passo curto e joelho passando muito dos dedos.",
+      "Perder o equilíbrio por pés na mesma linha."
+    ],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "subida-banco": {
+    "tips": [
+      "Banco ou caixa firme na altura do joelho.",
+      "Pé inteiro apoiado em cima.",
+      "Suba empurrando com a perna de cima.",
+      "Desça devagar com controle."
+    ],
+    "errors": ["Dar impulso com a perna de baixo.", "Apoiar só a ponta do pé."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "terra-romeno": {
+    "tips": [
+      "Comece em pé com a barra nas mãos.",
+      "Joelhos levemente dobrados e fixos.",
+      "Leve o quadril para trás, a barra desce rente às pernas.",
+      "Suba apertando os glúteos."
+    ],
+    "errors": ["Arredondar as costas.", "Barra longe das pernas."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "terra-sumo": {
+    "tips": [
+      "Pés bem afastados, pontas para fora.",
+      "Mãos por dentro dos joelhos.",
+      "Peito alto e costas retas.",
+      "Empurre o chão com as pernas e estenda o quadril."
+    ],
+    "errors": ["Joelhos caindo para dentro.", "Quadril subindo antes da barra."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "terra-hexagonal": {
+    "tips": [
+      "Fique no centro da barra hexagonal.",
+      "Pegadores nas laterais, costas retas.",
+      "Suba empurrando o chão com as pernas.",
+      "Desça com o mesmo caminho."
+    ],
+    "errors": ["Arredondar a lombar.", "Esticar as pernas antes de subir o tronco."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "elevacao-pelvica-maquina": {
+    "tips": [
+      "Costas no apoio e cinto da máquina sobre o quadril.",
+      "Pés firmes, joelhos dobrados.",
+      "Suba o quadril até o corpo ficar reto.",
+      "Aperte os glúteos no alto e desça devagar."
+    ],
+    "errors": ["Arquear a lombar no alto.", "Empurrar com a ponta dos pés."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "elevacao-pelvica-smith": {
+    "tips": [
+      "Costas apoiadas num banco, barra do Smith sobre o quadril.",
+      "Use uma proteção na barra.",
+      "Suba o quadril até o corpo ficar reto.",
+      "Desça devagar."
+    ],
+    "errors": ["Olhar para cima e arquear o pescoço.", "Pés longe demais do quadril."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "ponte-gluteos": {
+    "tips": [
+      "Deitado de costas, joelhos dobrados e pés no chão.",
+      "Braços ao lado do corpo.",
+      "Suba o quadril até alinhar com os joelhos.",
+      "Aperte os glúteos e desça devagar."
+    ],
+    "errors": ["Arquear a lombar em vez de usar os glúteos.", "Pés longe demais do quadril."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "elevacao-pelvica-unilateral": {
+    "tips": [
+      "Costas apoiadas no banco, um pé no chão.",
+      "A outra perna dobrada no ar.",
+      "Suba o quadril empurrando com o pé apoiado.",
+      "Desça devagar."
+    ],
+    "errors": ["Quadril torto na subida.", "Arquear a lombar no alto."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "coice-polia": {
+    "tips": [
+      "Caneleira presa na polia baixa e no tornozelo.",
+      "Tronco levemente inclinado, mãos no aparelho.",
+      "Leve a perna para trás apertando o glúteo.",
+      "Volte devagar."
+    ],
+    "errors": ["Arquear a lombar para subir mais.", "Balançar a perna."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "extensora-unilateral": {
+    "tips": [
+      "Joelho alinhado com o eixo da máquina.",
+      "Uma perna de cada vez.",
+      "Estique a perna até o fim.",
+      "Desça devagar."
+    ],
+    "errors": ["Dar tranco para subir.", "Tirar o quadril do banco."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "flexora-unilateral": {
+    "tips": [
+      "Deitado de bruços, rolo acima do calcanhar.",
+      "Uma perna de cada vez.",
+      "Dobre o joelho trazendo o calcanhar ao glúteo.",
+      "Desça devagar."
+    ],
+    "errors": ["Tirar o quadril da mesa.", "Soltar o peso na descida."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "leg-press-unilateral": {
+    "tips": [
+      "Um pé no meio da plataforma.",
+      "Costas e quadril colados no encosto.",
+      "Desça até o joelho dobrar uns 90 graus.",
+      "Empurre sem travar o joelho."
+    ],
+    "errors": ["Quadril saindo do banco no fim da descida.", "Joelho entrando."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "stiff-unilateral": {
+    "tips": [
+      "Apoio numa perna, joelho levemente dobrado.",
+      "Incline o tronco e leve a outra perna para trás.",
+      "Desça os halteres até sentir o posterior alongar.",
+      "Volte apertando o glúteo."
+    ],
+    "errors": ["Girar o quadril para o lado.", "Arredondar as costas."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "panturrilha-smith": {
+    "tips": [
+      "Pontas dos pés num degrau, barra nas costas.",
+      "Desça os calcanhares até alongar.",
+      "Suba o mais alto que der.",
+      "Pausa curta no alto."
+    ],
+    "errors": ["Dobrar os joelhos para ajudar.", "Movimento curto sem alongar."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "panturrilha-burrinho": {
+    "tips": [
+      "Tronco inclinado à frente, apoio no quadril.",
+      "Pontas dos pés na plataforma.",
+      "Desça os calcanhares até alongar.",
+      "Suba o mais alto que der."
+    ],
+    "errors": ["Dobrar os joelhos.", "Subir rápido sem pausa."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "good-morning": {
+    "tips": [
+      "Barra nas costas como no agachamento.",
+      "Joelhos levemente dobrados.",
+      "Incline o tronco levando o quadril para trás.",
+      "Suba com as costas retas."
+    ],
+    "errors": ["Arredondar a lombar.", "Carga alta logo de início."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "abdominal-declinado": {
+    "tips": [
+      "Pés presos no alto do banco declinado.",
+      "Braços cruzados no peito.",
+      "Suba enrolando o tronco.",
+      "Desça devagar sem encostar de vez."
+    ],
+    "errors": ["Puxar o pescoço com as mãos.", "Subir de uma vez com impulso."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "abdominal-canivete": {
+    "tips": [
+      "Deitado, braços acima da cabeça e pernas esticadas.",
+      "Suba tronco e pernas ao mesmo tempo.",
+      "Tente tocar as mãos nos pés.",
+      "Desça devagar."
+    ],
+    "errors": ["Dobrar demais os joelhos.", "Bater as costas no chão na descida."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "elevacao-joelhos-barra": {
+    "tips": [
+      "Pendurado na barra, braços esticados.",
+      "Suba os joelhos em direção ao peito.",
+      "Enrole o quadril no alto.",
+      "Desça devagar sem balançar."
+    ],
+    "errors": ["Balançar o corpo.", "Subir só as pernas sem enrolar o quadril."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "rotacao-russa": {
+    "tips": [
+      "Sentado, joelhos dobrados e tronco inclinado para trás.",
+      "Mãos juntas à frente do peito.",
+      "Gire o tronco de um lado para o outro.",
+      "Costas retas o tempo todo."
+    ],
+    "errors": ["Mexer só os braços.", "Arredondar as costas."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "canoa": {
+    "tips": [
+      "Deitado de costas, lombar colada no chão.",
+      "Suba ombros e pernas do chão.",
+      "Braços esticados acima da cabeça.",
+      "Segure a posição respirando."
+    ],
+    "errors": ["Deixar a lombar sair do chão.", "Prender a respiração."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "flexao-lateral-halter": {
+    "tips": [
+      "Em pé, halter numa mão.",
+      "Incline o tronco para o lado do halter.",
+      "Volte usando a lateral do abdômen.",
+      "Troque de lado na série seguinte."
+    ],
+    "errors": ["Girar o tronco.", "Halter em cada mão, o que anula o exercício."],
+    "videoId": "",
+    "start": null,
+    "end": null
+  },
+  "abdominal-completo": {
+    "tips": [
+      "Deitado, joelhos dobrados e pés presos.",
+      "Braços cruzados no peito.",
+      "Suba até o tronco ficar sentado.",
+      "Desça devagar."
+    ],
+    "errors": ["Puxar o pescoço.", "Descer de uma vez."],
+    "videoId": "",
+    "start": null,
+    "end": null
   }
 }

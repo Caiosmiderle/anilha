@@ -337,6 +337,302 @@
       "level": "iniciante"
     },
     {
+      "id": "remada-pendlay",
+      "name": "Remada Pendlay",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps",
+        "ombro_posterior",
+        "lombar"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar",
+        "ombro"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "remada-curvada-halteres",
+      "name": "Remada curvada com halteres",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps",
+        "ombro_posterior",
+        "lombar"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar",
+        "ombro"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "remada-apoiada-halteres",
+      "name": "Remada apoiada no banco com halteres",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps",
+        "ombro_posterior"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "remada-curvada-supinada",
+      "name": "Remada curvada supinada",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps",
+        "lombar"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar",
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "remada-smith",
+      "name": "Remada curvada no Smith",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps",
+        "ombro_posterior",
+        "lombar"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "lombar",
+        "ombro"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "puxada-unilateral",
+      "name": "Puxada unilateral na polia",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps"
+      ],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_vertical",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "remada-baixa-aberta",
+      "name": "Remada baixa com pegada aberta",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "ombro_posterior",
+        "biceps"
+      ],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "remada-unilateral-polia",
+      "name": "Remada unilateral na polia",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps",
+        "ombro_posterior"
+      ],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "puxar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "barra-fixa-supinada",
+      "name": "Barra fixa supinada",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas",
+        "biceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "barra_fixa",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": true,
+      "pattern": "puxar_vertical",
+      "progression_hint": "descida mais lenta, depois carga extra no cinto",
+      "level": "avancado"
+    },
+    {
+      "id": "barra-fixa-neutra",
+      "name": "Barra fixa com pegada neutra",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "costas"
+      ],
+      "secondary_muscles": [
+        "biceps"
+      ],
+      "equipment": "barra_fixa",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": true,
+      "pattern": "puxar_vertical",
+      "progression_hint": "descida mais lenta, depois carga extra no cinto",
+      "level": "avancado"
+    },
+    {
+      "id": "extensao-lombar-maquina",
+      "name": "Extensão lombar na máquina",
+      "primary_group": "costas",
+      "secondary_groups": [
+        "pernas"
+      ],
+      "muscles": [
+        "lombar"
+      ],
+      "secondary_muscles": [
+        "gluteos",
+        "posterior_coxa"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "lombar"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_lombar",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
       "id": "supino-reto-barra",
       "name": "Supino reto com barra",
       "primary_group": "peito",
@@ -621,6 +917,257 @@
       "bodyweight": true,
       "pattern": "empurrar_horizontal",
       "progression_hint": "pés elevados, descida mais lenta",
+      "level": "iniciante"
+    },
+    {
+      "id": "crucifixo-inclinado",
+      "name": "Crucifixo inclinado com halteres",
+      "primary_group": "peito",
+      "secondary_groups": [],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "ombro_anterior"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "crucifixo",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "supino-declinado-halteres",
+      "name": "Supino declinado com halteres",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "triceps",
+        "ombro_anterior"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "supino-smith",
+      "name": "Supino reto no Smith",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "triceps",
+        "ombro_anterior"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "supino-inclinado-smith",
+      "name": "Supino inclinado no Smith",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "ombros",
+        "bracos"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "ombro_anterior",
+        "triceps"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "supino-polia",
+      "name": "Supino na polia",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "triceps",
+        "ombro_anterior"
+      ],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "flexao-inclinada",
+      "name": "Flexão inclinada",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "triceps",
+        "ombro_anterior"
+      ],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": true,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": "apoio mais baixo até chegar à flexão no chão",
+      "level": "iniciante"
+    },
+    {
+      "id": "flexao-joelhos",
+      "name": "Flexão com joelhos no chão",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "triceps",
+        "ombro_anterior"
+      ],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": true,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": "descida mais lenta, depois flexão completa",
+      "level": "iniciante"
+    },
+    {
+      "id": "flexao-declinada",
+      "name": "Flexão declinada",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "ombros",
+        "bracos"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "ombro_anterior",
+        "triceps"
+      ],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": true,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": "pés mais altos, depois colete ou anilha nas costas",
+      "level": "intermediario"
+    },
+    {
+      "id": "supino-chao-halteres",
+      "name": "Supino no chão com halteres",
+      "primary_group": "peito",
+      "secondary_groups": [
+        "bracos",
+        "ombros"
+      ],
+      "muscles": [
+        "peito"
+      ],
+      "secondary_muscles": [
+        "triceps",
+        "ombro_anterior"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": null,
       "level": "iniciante"
     },
     {
@@ -962,6 +1509,216 @@
       "level": "iniciante"
     },
     {
+      "id": "desenvolvimento-halteres-em-pe",
+      "name": "Desenvolvimento com halteres em pé",
+      "primary_group": "ombros",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "ombro_anterior",
+        "ombro_lateral"
+      ],
+      "secondary_muscles": [
+        "triceps"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro",
+        "cotovelo",
+        "lombar"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_vertical",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "desenvolvimento-smith",
+      "name": "Desenvolvimento no Smith",
+      "primary_group": "ombros",
+      "secondary_groups": [
+        "bracos"
+      ],
+      "muscles": [
+        "ombro_anterior",
+        "ombro_lateral"
+      ],
+      "secondary_muscles": [
+        "triceps"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "empurrar_vertical",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "elevacao-lateral-sentado",
+      "name": "Elevação lateral sentado",
+      "primary_group": "ombros",
+      "secondary_groups": [],
+      "muscles": [
+        "ombro_lateral"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "elevacao_lateral",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "elevacao-frontal-polia",
+      "name": "Elevação frontal na polia",
+      "primary_group": "ombros",
+      "secondary_groups": [],
+      "muscles": [
+        "ombro_anterior"
+      ],
+      "secondary_muscles": [],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "elevacao_frontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "elevacao-frontal-barra",
+      "name": "Elevação frontal com barra",
+      "primary_group": "ombros",
+      "secondary_groups": [],
+      "muscles": [
+        "ombro_anterior"
+      ],
+      "secondary_muscles": [],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro",
+        "punho"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "elevacao_frontal",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "remada-alta-polia",
+      "name": "Remada alta na polia",
+      "primary_group": "ombros",
+      "secondary_groups": [],
+      "muscles": [
+        "ombro_lateral",
+        "trapezio"
+      ],
+      "secondary_muscles": [],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "punho"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "elevacao_lateral",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "remada-alta-halteres",
+      "name": "Remada alta com halteres",
+      "primary_group": "ombros",
+      "secondary_groups": [],
+      "muscles": [
+        "ombro_lateral",
+        "trapezio"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "elevacao_lateral",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "crucifixo-inverso-polia",
+      "name": "Crucifixo inverso na polia",
+      "primary_group": "ombros",
+      "secondary_groups": [],
+      "muscles": [
+        "ombro_posterior"
+      ],
+      "secondary_muscles": [
+        "trapezio"
+      ],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "crucifixo_inverso",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "encolhimento-smith",
+      "name": "Encolhimento no Smith",
+      "primary_group": "ombros",
+      "secondary_groups": [],
+      "muscles": [
+        "trapezio"
+      ],
+      "secondary_muscles": [
+        "antebraco"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "punho"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "encolhimento",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
       "id": "rosca-direta",
       "name": "Rosca direta com barra",
       "primary_group": "bracos",
@@ -1137,6 +1894,159 @@
       "pattern": "rosca",
       "progression_hint": null,
       "level": "intermediario"
+    },
+    {
+      "id": "rosca-scott-halter",
+      "name": "Rosca Scott com halter",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "biceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "rosca",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "rosca-maquina",
+      "name": "Rosca na máquina",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "biceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "rosca",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "rosca-martelo-polia",
+      "name": "Rosca martelo na polia",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "biceps"
+      ],
+      "secondary_muscles": [
+        "antebraco"
+      ],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "rosca",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "rosca-inversa",
+      "name": "Rosca inversa com barra W",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "antebraco",
+        "biceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "cotovelo",
+        "punho"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "rosca",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "rosca-spider",
+      "name": "Rosca spider",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "biceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "rosca",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "rosca-sentado",
+      "name": "Rosca sentado com halteres",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "biceps"
+      ],
+      "secondary_muscles": [
+        "antebraco"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "rosca",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "rosca-punho",
+      "name": "Rosca de punho com halteres",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "antebraco"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 1,
+      "joints": [
+        "punho"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "rosca",
+      "progression_hint": null,
+      "level": "iniciante"
     },
     {
       "id": "triceps-polia",
@@ -1339,6 +2249,185 @@
       "pattern": "extensao_cotovelo",
       "progression_hint": "pés elevados, depois anilha no colo",
       "level": "iniciante"
+    },
+    {
+      "id": "triceps-acima-polia",
+      "name": "Tríceps acima da cabeça na polia",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "triceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "cotovelo",
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_cotovelo",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "triceps-unilateral-polia",
+      "name": "Tríceps unilateral na polia",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "triceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_cotovelo",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "triceps-testa-halteres",
+      "name": "Tríceps testa com halteres",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "triceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_cotovelo",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "triceps-barra-v",
+      "name": "Tríceps na polia com barra V",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "triceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_cotovelo",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "triceps-coice-polia",
+      "name": "Tríceps coice na polia",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "triceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_cotovelo",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "triceps-frances-barra",
+      "name": "Tríceps francês com barra W",
+      "primary_group": "bracos",
+      "secondary_groups": [],
+      "muscles": [
+        "triceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "cotovelo",
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_cotovelo",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "mergulho-maquina",
+      "name": "Mergulho na máquina",
+      "primary_group": "bracos",
+      "secondary_groups": [
+        "peito"
+      ],
+      "muscles": [
+        "triceps"
+      ],
+      "secondary_muscles": [
+        "peito"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro",
+        "cotovelo"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_cotovelo",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "flexao-diamante",
+      "name": "Flexão diamante",
+      "primary_group": "bracos",
+      "secondary_groups": [
+        "peito"
+      ],
+      "muscles": [
+        "triceps",
+        "peito"
+      ],
+      "secondary_muscles": [],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "cotovelo",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": true,
+      "pattern": "empurrar_horizontal",
+      "progression_hint": "descida mais lenta, depois pés elevados",
+      "level": "intermediario"
     },
     {
       "id": "agachamento-livre",
@@ -1866,6 +2955,495 @@
       "level": "iniciante"
     },
     {
+      "id": "agachamento-frontal",
+      "name": "Agachamento frontal com barra",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "abdomen"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "joelho",
+        "lombar",
+        "punho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "agachamento",
+      "progression_hint": null,
+      "level": "avancado"
+    },
+    {
+      "id": "agachamento-halteres",
+      "name": "Agachamento com halteres",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "agachamento",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "agachamento-bulgaro-smith",
+      "name": "Agachamento búlgaro no Smith",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "avanco",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "afundo-smith",
+      "name": "Afundo no Smith",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "avanco",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "afundo-reverso",
+      "name": "Afundo reverso com halteres",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "avanco",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "afundo-barra",
+      "name": "Afundo com barra",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "avanco",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "subida-banco",
+      "name": "Subida no banco com halteres",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "avanco",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "terra-romeno",
+      "name": "Levantamento terra romeno",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "posterior_coxa",
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "lombar"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "terra-sumo",
+      "name": "Levantamento terra sumô",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "gluteos",
+        "quadriceps"
+      ],
+      "secondary_muscles": [
+        "posterior_coxa",
+        "adutores",
+        "lombar"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar",
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "avancado"
+    },
+    {
+      "id": "terra-hexagonal",
+      "name": "Levantamento terra com barra hexagonal",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "posterior_coxa",
+        "lombar",
+        "trapezio"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar",
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "elevacao-pelvica-maquina",
+      "name": "Elevação pélvica na máquina",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "posterior_coxa"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 5,
+      "joints": [],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "elevacao-pelvica-smith",
+      "name": "Elevação pélvica no Smith",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "posterior_coxa"
+      ],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 5,
+      "joints": [],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "ponte-gluteos",
+      "name": "Ponte de glúteos",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "posterior_coxa"
+      ],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "dobradica",
+      "progression_hint": "uma perna só, depois peso sobre o quadril",
+      "level": "iniciante"
+    },
+    {
+      "id": "elevacao-pelvica-unilateral",
+      "name": "Elevação pélvica unilateral",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "posterior_coxa"
+      ],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "dobradica",
+      "progression_hint": "pausa no alto, depois peso sobre o quadril",
+      "level": "intermediario"
+    },
+    {
+      "id": "coice-polia",
+      "name": "Coice na polia",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "polia",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "extensora-unilateral",
+      "name": "Cadeira extensora unilateral",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "joelho"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "extensao_joelho",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "flexora-unilateral",
+      "name": "Mesa flexora unilateral",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "posterior_coxa"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "joelho"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "flexao_joelho",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "leg-press-unilateral",
+      "name": "Leg press unilateral",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "joelho"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "agachamento",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "stiff-unilateral",
+      "name": "Stiff unilateral com halteres",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "posterior_coxa",
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "lombar"
+      ],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
+      "id": "panturrilha-smith",
+      "name": "Panturrilha no Smith",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "panturrilha"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "panturrilha",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "panturrilha-burrinho",
+      "name": "Panturrilha burrinho na máquina",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "panturrilha"
+      ],
+      "secondary_muscles": [],
+      "equipment": "maquina",
+      "measure": "weight_reps",
+      "increment_kg": 5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "panturrilha",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "good-morning",
+      "name": "Good morning com barra",
+      "primary_group": "pernas",
+      "secondary_groups": [],
+      "muscles": [
+        "posterior_coxa",
+        "gluteos"
+      ],
+      "secondary_muscles": [
+        "lombar"
+      ],
+      "equipment": "barra",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar"
+      ],
+      "compound": true,
+      "bodyweight": false,
+      "pattern": "dobradica",
+      "progression_hint": null,
+      "level": "intermediario"
+    },
+    {
       "id": "prancha",
       "name": "Prancha",
       "primary_group": "core",
@@ -2119,6 +3697,145 @@
       "bodyweight": true,
       "pattern": "core_anti_extensao",
       "progression_hint": "braços e pernas mais longe do corpo",
+      "level": "iniciante"
+    },
+    {
+      "id": "abdominal-declinado",
+      "name": "Abdominal no banco declinado",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "core_flexao",
+      "progression_hint": "banco mais inclinado, depois anilha no peito",
+      "level": "iniciante"
+    },
+    {
+      "id": "abdominal-canivete",
+      "name": "Abdominal canivete",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "core_flexao",
+      "progression_hint": "descida mais lenta",
+      "level": "intermediario"
+    },
+    {
+      "id": "elevacao-joelhos-barra",
+      "name": "Elevação de joelhos na barra fixa",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "barra_fixa",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "ombro"
+      ],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "core_quadril",
+      "progression_hint": "pernas mais esticadas a cada fase",
+      "level": "intermediario"
+    },
+    {
+      "id": "rotacao-russa",
+      "name": "Rotação russa",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [
+        "lombar"
+      ],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "core_rotacao",
+      "progression_hint": "pés fora do chão, depois anilha nas mãos",
+      "level": "iniciante"
+    },
+    {
+      "id": "canoa",
+      "name": "Canoa",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "peso_corporal",
+      "measure": "time",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "core_anti_extensao",
+      "progression_hint": "braços acima da cabeça e pernas mais baixas",
+      "level": "intermediario"
+    },
+    {
+      "id": "flexao-lateral-halter",
+      "name": "Flexão lateral com halter",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "halteres",
+      "measure": "weight_reps",
+      "increment_kg": 2,
+      "joints": [
+        "lombar"
+      ],
+      "compound": false,
+      "bodyweight": false,
+      "pattern": "core_lateral",
+      "progression_hint": null,
+      "level": "iniciante"
+    },
+    {
+      "id": "abdominal-completo",
+      "name": "Abdominal completo",
+      "primary_group": "core",
+      "secondary_groups": [],
+      "muscles": [
+        "abdomen"
+      ],
+      "secondary_muscles": [],
+      "equipment": "peso_corporal",
+      "measure": "reps",
+      "increment_kg": 2.5,
+      "joints": [],
+      "compound": false,
+      "bodyweight": true,
+      "pattern": "core_flexao",
+      "progression_hint": "descida mais lenta, depois anilha no peito",
       "level": "iniciante"
     }
   ],
@@ -36721,6 +38438,17 @@
       "pulldown-bracos-estendidos": "costas",
       "pullover-halter": "costas",
       "hiperextensao-lombar": "costas",
+      "remada-pendlay": "costas",
+      "remada-curvada-halteres": "costas",
+      "remada-apoiada-halteres": "costas",
+      "remada-curvada-supinada": "costas",
+      "remada-smith": "costas",
+      "puxada-unilateral": "costas",
+      "remada-baixa-aberta": "costas",
+      "remada-unilateral-polia": "costas",
+      "barra-fixa-supinada": "costas",
+      "barra-fixa-neutra": "costas",
+      "extensao-lombar-maquina": "costas",
       "supino-reto-barra": "peito",
       "supino-reto-halteres": "peito",
       "supino-inclinado-barra": "peito",
@@ -36732,6 +38460,15 @@
       "crucifixo-maquina": "peito",
       "crossover": "peito",
       "flexao-bracos": "peito",
+      "crucifixo-inclinado": "peito",
+      "supino-declinado-halteres": "peito",
+      "supino-smith": "peito",
+      "supino-inclinado-smith": "peito",
+      "supino-polia": "peito",
+      "flexao-inclinada": "peito",
+      "flexao-joelhos": "peito",
+      "flexao-declinada": "peito",
+      "supino-chao-halteres": "peito",
       "desenvolvimento-halteres-sentado": "ombros",
       "desenvolvimento-maquina": "ombros",
       "desenvolvimento-barra": "ombros",
@@ -36746,6 +38483,15 @@
       "face-pull": "ombros",
       "encolhimento-halteres": "ombros",
       "encolhimento-barra": "ombros",
+      "desenvolvimento-halteres-em-pe": "ombros",
+      "desenvolvimento-smith": "ombros",
+      "elevacao-lateral-sentado": "ombros",
+      "elevacao-frontal-polia": "ombros",
+      "elevacao-frontal-barra": "ombros",
+      "remada-alta-polia": "ombros",
+      "remada-alta-halteres": "ombros",
+      "crucifixo-inverso-polia": "ombros",
+      "encolhimento-smith": "ombros",
       "rosca-direta": "biceps",
       "rosca-barra-w": "biceps",
       "rosca-alternada": "biceps",
@@ -36754,6 +38500,13 @@
       "rosca-concentrada": "biceps",
       "rosca-polia": "biceps",
       "rosca-inclinada": "biceps",
+      "rosca-scott-halter": "biceps",
+      "rosca-maquina": "biceps",
+      "rosca-martelo-polia": "biceps",
+      "rosca-inversa": "biceps",
+      "rosca-spider": "biceps",
+      "rosca-sentado": "biceps",
+      "rosca-punho": "biceps",
       "triceps-polia": "triceps",
       "triceps-corda": "triceps",
       "triceps-frances": "triceps",
@@ -36763,6 +38516,14 @@
       "supino-fechado": "triceps",
       "paralelas": "triceps",
       "mergulho-banco": "triceps",
+      "triceps-acima-polia": "triceps",
+      "triceps-unilateral-polia": "triceps",
+      "triceps-testa-halteres": "triceps",
+      "triceps-barra-v": "triceps",
+      "triceps-coice-polia": "triceps",
+      "triceps-frances-barra": "triceps",
+      "mergulho-maquina": "triceps",
+      "flexao-diamante": "triceps",
       "agachamento-livre": "quadriceps",
       "agachamento-smith": "quadriceps",
       "agachamento-goblet": "quadriceps",
@@ -36787,6 +38548,28 @@
       "panturrilha-sentado": "panturrilha",
       "panturrilha-leg-press": "panturrilha",
       "panturrilha-halter": "panturrilha",
+      "agachamento-frontal": "quadriceps",
+      "agachamento-halteres": "quadriceps",
+      "agachamento-bulgaro-smith": "quadriceps",
+      "afundo-smith": "quadriceps",
+      "afundo-reverso": "quadriceps",
+      "afundo-barra": "quadriceps",
+      "subida-banco": "quadriceps",
+      "terra-romeno": "posteriores",
+      "terra-sumo": "posteriores",
+      "terra-hexagonal": "quadriceps",
+      "elevacao-pelvica-maquina": "posteriores",
+      "elevacao-pelvica-smith": "posteriores",
+      "ponte-gluteos": "posteriores",
+      "elevacao-pelvica-unilateral": "posteriores",
+      "coice-polia": "posteriores",
+      "extensora-unilateral": "quadriceps",
+      "flexora-unilateral": "posteriores",
+      "leg-press-unilateral": "quadriceps",
+      "stiff-unilateral": "posteriores",
+      "panturrilha-smith": "panturrilha",
+      "panturrilha-burrinho": "panturrilha",
+      "good-morning": "posteriores",
       "prancha": "core",
       "prancha-lateral": "core",
       "elevacao-pernas-cadeira": "core",
@@ -36799,7 +38582,14 @@
       "abdominal-bicicleta": "core",
       "roda-abdominal": "core",
       "pallof-press": "core",
-      "dead-bug": "core"
+      "dead-bug": "core",
+      "abdominal-declinado": "core",
+      "abdominal-canivete": "core",
+      "elevacao-joelhos-barra": "core",
+      "rotacao-russa": "core",
+      "canoa": "core",
+      "flexao-lateral-halter": "core",
+      "abdominal-completo": "core"
     },
     "labels": {
       "costas": "Costas",
