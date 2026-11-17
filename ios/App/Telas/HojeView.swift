@@ -54,16 +54,6 @@ struct HojeView: View {
                 CartaoHoje(conta: conta, today: today)
                     .entradaAnilha(1)
                 NavigationLink {
-                    ChatWalterView(conta: conta)
-                } label: {
-                    Label("Falar com o Waltér", systemImage: "bubble.left.and.text.bubble.right")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, minHeight: 50)
-                }
-                .buttonStyle(.glass)
-                .accessibilityHint("Abre a conversa com o Waltér neste iPhone")
-                .entradaAnilha(2)
-                NavigationLink {
                     CalendarioView(conta: conta, today: today)
                 } label: {
                     cartaoSemana

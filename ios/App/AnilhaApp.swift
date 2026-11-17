@@ -22,6 +22,7 @@ private struct ContaRaiz: View {
     @State private var linkFalhou: String?
     @State private var fichaAberta: String?
     @State private var confirmarSaida = false
+    @State private var walterAberto = false
     @AppStorage(Aparencia.chave) private var aparencia = Aparencia.sistema.rawValue
     @Environment(\.scenePhase) private var fase
 
@@ -64,6 +65,22 @@ private struct ContaRaiz: View {
                     Tab("Você", systemImage: "person.crop.circle") {
                         NavigationStack { VoceView(conta: conta, pedirSaida: { confirmarSaida = true }) }
                     }
+                }
+                // Como o botão flutuante do site: o Waltér fica a um toque em qualquer aba
+                // e a conversa continua ao minimizar.
+                .tabViewBottomAccessory {
+                    Button { walterAberto = true } label: {
+                        Label("Falar com Waltér", systemImage: "bubble.left.and.text.bubble.right")
+                            .font(.subheadline.weight(.semibold)).foregroundStyle(Tema.marcaForte)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityHint("Abre a conversa com o Waltér por cima da tela atual")
+                }
+                .sheet(isPresented: $walterAberto) {
+                    NavigationStack { ChatWalterView(conta: conta, fechar: { walterAberto = false }) }
+                        .presentationDragIndicator(.visible)
                 }
                 .id(conta.dono)
             }
