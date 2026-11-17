@@ -20,10 +20,11 @@ describe('chat nativo: especificação executada pelo PWA', () => {
     }
     expect(contexts.filter(c => c.expected.returnMode)).toHaveLength(3);
   });
-  it('captura proposta local no demo nativo e abre a tela pela aba Hoje', () => {
-    const hoje = readFileSync('ios/App/Telas/HojeView.swift', 'utf8');
-    expect(hoje).toContain('ChatWalterView(conta: conta)');
-    expect(hoje).not.toContain('Site.url("/plano/pedir")');
+  it('captura proposta local no demo nativo e abre a conversa por cima de qualquer aba', () => {
+    const app = readFileSync('ios/App/AnilhaApp.swift', 'utf8');
+    expect(app).toContain('.tabViewBottomAccessory');
+    expect(app).toContain('ChatWalterView(conta: conta, fechar:');
+    expect(readFileSync('ios/App/Telas/HojeView.swift', 'utf8')).not.toContain('Site.url("/plano/pedir")');
     const demo = readFileSync('ios/App/Demo/ModoDemo.swift', 'utf8');
     expect(demo).toContain('case "chat": ChatWalterView');
     expect(readFileSync('ios/scripts/capture-screenshots.sh', 'utf8')).toContain('revisao chat historico');
