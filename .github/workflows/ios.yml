@@ -19,6 +19,11 @@ on:
         description: 'Tirar também os prints com letra grande (dobra o tempo dos prints)'
         type: boolean
         default: false
+      mac:
+        description: 'Mac do GitHub (Intel quando a fila de ARM estiver cheia; é mais lento)'
+        type: choice
+        options: ['macos-latest', 'macos-15-intel']
+        default: 'macos-latest'
   push:
     # Any Claude or Codex branch (revisao-ficha, memoria-analise and missao did not match ios-*).
     branches: ['claude/**', 'codex/**']
@@ -89,7 +94,7 @@ defaults:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ${{ inputs.mac || 'macos-latest' }}
     timeout-minutes: 45
     steps:
       - name: Baixar o código
@@ -218,7 +223,7 @@ jobs:
   prints:
     needs: build
     if: (github.event_name == 'workflow_dispatch' && inputs.prints) || contains(github.event.head_commit.message, '[prints]')
-    runs-on: macos-latest
+    runs-on: ${{ inputs.mac || 'macos-latest' }}
     # About 33 screens in light and dark plus the small iPhone: 20 minutes stopped being enough.
     timeout-minutes: 55
     steps:
